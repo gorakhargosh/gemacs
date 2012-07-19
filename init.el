@@ -9,21 +9,31 @@
 
 (require 'cl)
 
-;; ----------------------------------------------------------------------
-;; Configuration directory.
-;; ----------------------------------------------------------------------
+;; ======================================================================
+;; Initial configuration.
+;; ======================================================================
 (setq config-dir (file-name-directory (or (buffer-file-name)
                                           load-file-name)))
 (add-to-list 'load-path config-dir)
+
+;; Directory paths.
+(setq third-party-dir (expand-file-name (concat config-dir "third_party")))
+
+;; Load-path.
+(add-to-list 'load-path third-party-dir)
+
+;; Add all subdirectories of third_party/ to load path.
+(let ((default-directory third-party-dir))
+  (normal-top-level-add-subdirs-to-load-path))
 
 ;; Network-specific configuration is loaded from goog-network-dir.
 (setq goog-network-name "corp.google.com"
       goog-network-dir (format "~/.%s/emacs.d/" goog-network-name)
       goog-network-re ".*[.]corp[.]google[.]com")
 
-;; ----------------------------------------------------------------------
-;; Platform
-;; ----------------------------------------------------------------------
+;; ======================================================================
+;; Platform detection.
+;; ======================================================================
 (defun goog/platform/is-darwin-p ()
   (interactive)
   "Return true if system is darwin-based (Mac OS X)"
@@ -34,9 +44,10 @@
   "Return true if system is GNU/Linux-based."
   (string-equal system-type "gnu/linux"))
 
-;; ----------------------------------------------------------------------
-;; Package management
-;; ----------------------------------------------------------------------
+
+;; ======================================================================
+;; Package management.
+;; ======================================================================
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -46,69 +57,81 @@
 (defvar default-packages '(
                            ;; find-things-fast
                            ido-ubiquitous
-                           undo-tree
                            paredit
+                           undo-tree
                            ))
 (dolist (p default-packages)
   (when (not (package-installed-p p))
     (package-install p)))
 
-;; ----------------------------------------------------------------------
-;; Vanilla Emacs Preferences.
-;; ----------------------------------------------------------------------
+;; ======================================================================
+;; Vanilla Emacs preferences.
+;; ======================================================================
 (when window-system
-  (setq frame-title-format '(buffer-file-name "%f" ("%b")))
-  (tooltip-mode -1)
-  (tool-bar-mode -1)
-  (mouse-wheel-mode t)
   (blink-cursor-mode nil)
-  (global-hl-line-mode))
+  (global-font-lock-mode 1)
+  (global-hl-line-mode)
+  (mouse-wheel-mode t)
+  (scroll-bar-mode -1)
+  (setq frame-title-format '(buffer-file-name "%f" ("%b")))
+  (tool-bar-mode -1)
+  (tooltip-mode -1)
+  )
 
-(setq-default indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil
+              indicate-empty-lines t
+              indicate-buffer-boundaries (quote left))
 
-(custom-set-variables
- '(indicate-buffer-boundaries (quote left))
- '(indicate-empty-lines t))
-
-(setq visible-bell t
-      inhibit-startup-message t
+(setq
+      auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
+      backup-directory-alist `((".*" . ,temporary-file-directory))
       color-theme-is-global t
+      diff-switches "-u"
+      ediff-window-setup-function 'ediff-setup-windows-plain
+      inhibit-startup-message t
+      mouse-yank-at-point t
+      oddmuse-directory (concat user-emacs-directory "oddmuse")
+      read-file-name-completion-ignore-case 't
+      save-place-file (concat user-emacs-directory "places")
       sentence-end-double-space nil
       shift-select-mode nil
-      mouse-yank-at-point t
       uniquify-buffer-name-style 'forward
-      ediff-window-setup-function 'ediff-setup-windows-plain
-      oddmuse-directory (concat user-emacs-directory "oddmuse")
-      save-place-file (concat user-emacs-directory "places")
-      diff-switches "-u")
-
-(setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
+      visible-bell t
+      require-final-newline 't
+      next-line-add-newlines t
+      )
 
 (progn
-  (line-number-mode 1)               ;; show line numbers in the mode line.
   (column-number-mode 1)             ;; show column numbers in mode line.
+  (delete-selection-mode t)          ;; Overwrite selection; DWIM.
+  (fset 'yes-or-no-p 'y-or-n-p)      ;; y or n is better than yes or no.
   (global-auto-revert-mode 1)        ;; Auto-reflect on-disk changes.
   (global-linum-mode 1)              ;; line numbers in left gutter.
-  (show-paren-mode t)                ;; Highlight matching parentheses.
-  (fset 'yes-or-no-p 'y-or-n-p)      ;; y or n is better than yes or no.
-  (delete-selection-mode t)          ;; Overwrite selection; DWIM.
   (global-subword-mode t)            ;; Use subword navigation.
-  (desktop-save-mode t)              ;; Save sessions.
+  (line-number-mode 1)               ;; show line numbers in the mode line.
   )
+
+(progn
+  (show-paren-mode t)                ;; Highlight matching parentheses.
+  (setq show-paren-style 'expression)
+  )
+
+;; (progn
+;;   (desktop-save-mode t)              ;; Save sessions.
+;;   (desktop-load-default)             ;; Load the desktop on startup.
+;;   (setq desktop-enable t))           ;; Automatically save desktop on exit.
 
 ;; ----------------------------------------------------------------------
 ;; Backups.
 ;; ----------------------------------------------------------------------
-(setq backup-by-copying t             ;; don't clobber symlinks
-      backup-directory-alist
-      '(("." . "~/.emacs.d/saves"))   ;; don't litter my fs tree
-      delete-old-versions t
-      kept-new-versions 6
-      kept-old-versions 2
-      version-control t)              ;; use versioned backups
+;; (setq backup-by-copying t             ;; don't clobber symlinks
+;;       backup-directory-alist
+;;       '(("." . "~/.emacs.d/saves"))   ;; don't litter my fs tree
+;;       delete-old-versions t
+;;       kept-new-versions 6
+;;       kept-old-versions 2
+;;       version-control t)              ;; use versioned backups
+(setq make-backup-files nil)             ;; No backup files ~
 
 ;; ----------------------------------------------------------------------
 ;; Fonts
@@ -155,9 +178,47 @@
   (if (not (bolp))
       (delete-region (point) (progn (skip-chars-forward " \t") (point)))))
 
+;; Autofill mode.
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+(add-hook 'prog-mode-common-hook
+              (lambda ()
+                (auto-fill-mode 1)
+                (set (make-local-variable 'fill-nobreak-predicate)
+                     (lambda ()
+                       (not (eq (get-text-property (point) 'face)
+                                'font-lock-comment-face))))))
+
 ;; ----------------------------------------------------------------------
+;; OS Clipboard.
+;; ----------------------------------------------------------------------
+(setq x-select-enable-clipboard t) ;; <3 clipboard copy-paste.
+;; https://github.com/bbatsov/emacs-prelude/commit/d26924894b31d5dc3a8b2813719579baccc2b433
+(when (goog/platform/is-darwin-p)
+  (defun goog/clipboard/copy-from-osx ()
+    (shell-command-to-string "pbpaste"))
+  (defun goog/clipboard/paste-to-osx (text &optional push)
+    (let ((process-connection-type nil))
+      (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+        (process-send-string proc text)
+        (process-send-eof proc))))
+  (setq interprogram-cut-function 'goog/clipboard/paste-to-osx
+        interprogram-paste-function 'goog/clipboard/copy-from-osx))
+
+;; ----------------------------------------------------------------------
+;; File and directory navigation.
+;; ----------------------------------------------------------------------
+(require 'dired-x)     ;; C-x C-j jumps to current file in dired.
+
+;; Recent files.
+(require 'recentf)
+;; Disable before we start recentf for tramp.
+(setq recentf-auto-cleanup 'never)
+(recentf-mode 1)
+
+
+;; ======================================================================
 ;; goog/ido
-;; ----------------------------------------------------------------------
+;; ======================================================================
 (require 'ido)
 (require 'ido-ubiquitous)
 
@@ -178,9 +239,9 @@
       ido-enable-flex-matching t)
 
 
-;; ----------------------------------------------------------------------
+;; ======================================================================
 ;; goog/paredit
-;; ----------------------------------------------------------------------
+;; ======================================================================
 (autoload 'paredit-mode "paredit"
   "Minor mode for pseudo-structurally editing Lisp code." t)
 
@@ -536,6 +597,92 @@ index in STRING."
     (add-hook 'after-init-hook func)
     (when after-init-time
       (eval form))))
+
+;; ======================================================================
+;; Programming-specific.
+;; ======================================================================
+
+;; Automatically set executable permissions on executable script files.
+(add-hook 'after-save-hook
+          'executable-make-buffer-file-executable-if-script-p)
+
+;; Highlight watchwords.
+(add-hook 'prog-mode-hook 'goog/edit/watchwords)
+
+;; ----------------------------------------------------------------------
+;; sh-mode
+;; ----------------------------------------------------------------------
+(defun goog/config/sh-mode/setup-style ()
+  "Sets up the style for sh-mode."
+  (setq sh-basic-offset 2
+        sh-indentation 2))
+(add-hook 'sh-mode-hook 'goog/config/sh-mode/setup-style)
+
+;; ----------------------------------------------------------------------
+;; html-mode
+;; ----------------------------------------------------------------------
+;; Don't use tabs when indenting in HTML mode.
+(add-hook
+ 'html-mode-hook
+ '(lambda ()
+    (set (make-local-variable 'sgml-basic-offset) 2)
+    (setq indent-tabs-mode nil)))
+
+
+;; ======================================================================
+;; Keyboard bindings.
+;; ======================================================================
+;; ;; Find things fast.
+;; (global-set-key (kbd "C-x f") 'ftf-find-file)
+;; (global-set-key (kbd "<f6>") 'ftf-grepsource)
+
+;; Shift region left/right.
+(global-set-key (kbd "M-]") 'goog/edit/shift-right)
+(global-set-key (kbd "M-[") 'goog/edit/shift-left)
+(define-key global-map (kbd "RET") 'newline-and-indent)
+
+;; Increase/decrease/reset font size.
+(global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "C-=") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "C-0") '(lambda ()
+                               (interactive)
+                               (text-scale-set 0)
+                               ))
+
+;; Use regex searches by default
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-set-key (kbd "\C-r") 'isearch-backward-regexp)
+(global-set-key (kbd "C-M-s") 'isearch-forward)
+(global-set-key (kbd "C-M-r") 'isearch-backward)
+
+;; Killing and yanking.
+(define-key global-map (kbd "<delete>") 'delete-char)
+(define-key global-map (kbd "M-<delete>") 'kill-word)
+;; (global-set-key (kbd "C-k") 'kill-whole-line)
+;; (global-set-key (kbd "C-S-<backspace>")
+;;                 'goog/edit/kill-and-join-forward)
+
+;; Line insertion
+(global-set-key (kbd "S-<return>") 'goog/edit/insert-blank-line-below)
+(global-set-key (kbd "M-S-<return>") 'goog/edit/insert-blank-line-above)
+(global-set-key (kbd "s-<return>")
+                'goog/edit/insert-blank-line-below-next-line)
+
+;; Line or region duplication.
+(global-set-key (kbd "C-c C-d")
+                'goog/edit/duplicate-current-line-or-region)
+
+;; Toggle identifier case.
+(global-set-key (kbd "C-x t c")
+                'goog/edit/toggle-identifier-naming-style)
+
+;; Refill mode.
+(global-set-key (kbd "C-c q") 'refill-mode)
+
+;; Sort lines
+(global-set-key (kbd "C-c s") 'sort-lines)
+
 
 ;; ----------------------------------------------------------------------
 ;; Now load host, os, network-specific configuration.
