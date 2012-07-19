@@ -57,23 +57,26 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar default-packages '(
-                           find-things-fast
+                           ;; duplicate-thing
                            ;; flex-isearch
                            ;; icicles
-                           ;; duplicate-thing
                            autopair
                            expand-region
                            fastnav
                            fill-column-indicator
+                           find-things-fast
                            ido-ubiquitous
                            iedit
+                           js2-mode
+                           ;; js2-refactor
+                           key-chord
                            magit
+                           mark-multiple
                            move-text
                            paredit
                            switch-window
                            undo-tree
-                           key-chord
-                           powerline
+                           nav
                            ))
 (dolist (p default-packages)
   (when (not (package-installed-p p))
@@ -642,8 +645,8 @@ index in STRING."
 
 (require 'undo-tree)
 
-;; (require 'nav)
-;; (global-set-key (kbd "C-x C-a") 'nav)
+(require 'nav)
+(global-set-key (kbd "C-x C-a") 'nav)
 
 (require 'iedit)
 (put 'narrow-to-region 'disabled nil)
@@ -659,8 +662,6 @@ index in STRING."
   (require 'fill-column-indicator)
   (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
   (global-fci-mode 1))
-
-(require 'powerline)
 
 (require 'expand-region)
 (global-set-key (kbd "M-8") 'er/expand-region)
@@ -688,6 +689,8 @@ index in STRING."
 (global-set-key (kbd "C-x f") 'ftf-find-file)
 (global-set-key (kbd "<f6>") 'ftf-grepsource)
 
+(require 'mark-multiple)
+;; (require 'js2-refactor)
 
 ;; ======================================================================
 ;; Programming-specific.
@@ -718,6 +721,12 @@ index in STRING."
  '(lambda ()
     (set (make-local-variable 'sgml-basic-offset) 2)
     (setq indent-tabs-mode nil)))
+
+;; ----------------------------------------------------------------------
+;; JavaScript
+;; ----------------------------------------------------------------------
+(autoload 'js2-mode "js2-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 
 ;; ======================================================================
