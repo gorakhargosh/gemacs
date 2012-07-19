@@ -1,11 +1,17 @@
 ;; Copyright 2012 Google Inc. All Rights Reserved.
 ;;
 ;; Author: yesudeep@google.com (Yesudeep Mangalapilly)
+;;
+;; Description:
+;;   All of the configuration has been placed into a single file
+;;   to load it extremely quickly even when using NFS.
+
 
 (require 'cl)
 
-
+;; ----------------------------------------------------------------------
 ;; Configuration directory.
+;; ----------------------------------------------------------------------
 (setq config-dir (file-name-directory (or (buffer-file-name)
                                           load-file-name)))
 (add-to-list 'load-path config-dir)
@@ -18,7 +24,6 @@
 ;; ----------------------------------------------------------------------
 ;; Platform
 ;; ----------------------------------------------------------------------
-
 (defun goog/platform/is-darwin-p ()
   (interactive)
   "Return true if system is darwin-based (Mac OS X)"
@@ -35,26 +40,15 @@
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
-;; (progn
-;;   (switch-to-buffer
-;;    (url-retrieve-synchronously
-;;     "https://raw.github.com/milkypostman/melpa/master/melpa.el"))
-;;   (package-install-from-buffer  (package-buffer-info) 'single))
-
 (package-initialize)
-
-;; Automatically install these packages if they aren't present.
 (when (not package-archive-contents)
   (package-refresh-contents))
-
-;; Add in your own as you wish:
 (defvar default-packages '(
                            ;; find-things-fast
                            ido-ubiquitous
                            undo-tree
                            paredit
                            ))
-
 (dolist (p default-packages)
   (when (not (package-installed-p p))
     (package-install p)))
@@ -62,7 +56,6 @@
 ;; ----------------------------------------------------------------------
 ;; Vanilla Emacs Preferences.
 ;; ----------------------------------------------------------------------
-
 (when window-system
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
   (tooltip-mode -1)
@@ -140,7 +133,6 @@
                                (interactive)
                                (scroll-up 1))))
 
-
 ;; ----------------------------------------------------------------------
 ;; Editing
 ;; ----------------------------------------------------------------------
@@ -162,7 +154,6 @@
   "cleanup whitespace on kill-line"
   (if (not (bolp))
       (delete-region (point) (progn (skip-chars-forward " \t") (point)))))
-
 
 ;; ----------------------------------------------------------------------
 ;; goog/ido
@@ -514,7 +505,6 @@ index in STRING."
    nil '(("\\<\\(FIX\\(ME\\)?\\|NOTE\\|WARNING\\(S\\)?\\|CAUTION\\|TODO\\|HACK\\|REFACTOR\\|NOCOMMIT\\)"
           1 font-lock-warning-face t))))
 
-
 ;; ----------------------------------------------------------------------
 ;; goog/elisp
 ;; ----------------------------------------------------------------------
@@ -552,13 +542,13 @@ index in STRING."
 ;; ----------------------------------------------------------------------
 (progn
   ;; ~/.emacs.d/*
-  (setq goog-local-hosts-dir (concat config-dir "hosts/"))
-  (setq goog-local-users-dir (concat config-dir "users/"))
+  (setq goog-local-hosts-dir (concat config-dir "host/"))
+  (setq goog-local-users-dir (concat config-dir "user/"))
   (setq goog-local-os-dir (concat config-dir "os/"))
 
   ;; ~/.example.com/*.
-  (setq goog-network-hosts-dir (concat goog-network-dir "hosts/"))
-  (setq goog-network-users-dir (concat goog-network-dir "users/"))
+  (setq goog-network-hosts-dir (concat goog-network-dir "host/"))
+  (setq goog-network-users-dir (concat goog-network-dir "user/"))
 
   ;; ~/.emacs.d/hosts/dhcp-172-26-239-50.hyd.corp.google.com.el
   (setq goog-hostname-config (concat goog-local-hosts-dir system-name ".el"))
