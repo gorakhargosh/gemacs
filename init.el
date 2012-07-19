@@ -51,14 +51,29 @@
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (package-initialize)
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar default-packages '(
-                           ;; find-things-fast
+                           find-things-fast
+                           ;; flex-isearch
+                           ;; icicles
+                           ;; duplicate-thing
+                           autopair
+                           expand-region
+                           fastnav
+                           fill-column-indicator
                            ido-ubiquitous
+                           iedit
+                           magit
+                           move-text
                            paredit
+                           switch-window
                            undo-tree
+                           key-chord
+                           powerline
                            ))
 (dolist (p default-packages)
   (when (not (package-installed-p p))
@@ -113,13 +128,15 @@
 
 (progn
   (show-paren-mode t)                ;; Highlight matching parentheses.
-  (setq show-paren-style 'expression)
+  ;; (setq show-paren-style 'expression)
   )
 
+;; Saving sessions makes Emacs load really slowly. Enable this only if you
+;; need it.
 ;; (progn
-;;   (desktop-save-mode t)              ;; Save sessions.
-;;   (desktop-load-default)             ;; Load the desktop on startup.
-;;   (setq desktop-enable t))           ;; Automatically save desktop on exit.
+;;   (desktop-save-mode t)           ;; Save sessions.
+;;   (desktop-load-default)          ;; Load the desktop on startup.
+;;   (setq desktop-enable t))        ;; Automatically save desktop on exit.
 
 ;; ----------------------------------------------------------------------
 ;; Backups.
@@ -207,7 +224,7 @@
 ;; ----------------------------------------------------------------------
 ;; File and directory navigation.
 ;; ----------------------------------------------------------------------
-(require 'dired-x)     ;; C-x C-j jumps to current file in dired.
+;; (require 'dired-x)     ;; C-x C-j jumps to current file in dired.
 
 ;; Recent files.
 (require 'recentf)
@@ -599,6 +616,80 @@ index in STRING."
       (eval form))))
 
 ;; ======================================================================
+;; Packages
+;; ======================================================================
+;; (require 'flex-isearch)
+
+;; (require 'icicles)
+;; (icy-mode 1)
+
+;; (require 'duplicate-thing)
+;; (global-set-key (kbd "M-c") 'duplicate-thing)
+
+(require 'autopair)
+(autopair-global-mode)
+(setq autopair-autowrap t)
+
+;; Prevents: http://code.google.com/p/autopair/issues/detail?id=32
+(add-hook 'sldb-mode-hook
+          #'(lambda ()
+              (setq autopair-dont-activate t) ;; emacs < 24
+              (autopair-mode -1)              ;; emacs >= 24
+              ))
+(set-default 'autopair-dont-activate
+             #'(lambda ()
+                 (eq major-mode 'sldb-mode)))
+
+(require 'undo-tree)
+
+;; (require 'nav)
+;; (global-set-key (kbd "C-x C-a") 'nav)
+
+(require 'iedit)
+(put 'narrow-to-region 'disabled nil)
+
+(require 'magit)
+(global-set-key (kbd "C-x g") 'magit-status)
+
+(require 'move-text)
+(global-set-key [M-S-up] 'move-text-up)
+(global-set-key [M-S-down] 'move-text-down)
+
+(when window-system
+  (require 'fill-column-indicator)
+  (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+  (global-fci-mode 1))
+
+(require 'powerline)
+
+(require 'expand-region)
+(global-set-key (kbd "M-8") 'er/expand-region)
+
+(require 'fastnav)
+(global-set-key "\M-z" 'fastnav-zap-up-to-char-forward)
+(global-set-key "\M-Z" 'fastnav-zap-up-to-char-backward)
+(global-set-key "\M-s" 'fastnav-jump-to-char-forward)
+(global-set-key "\M-S" 'fastnav-jump-to-char-backward)
+(global-set-key "\M-r" 'fastnav-replace-char-forward)
+(global-set-key "\M-R" 'fastnav-replace-char-backward)
+(global-set-key "\M-i" 'fastnav-insert-at-char-forward)
+(global-set-key "\M-I" 'fastnav-insert-at-char-backward)
+(global-set-key "\M-j" 'fastnav-execute-at-char-forward)
+(global-set-key "\M-J" 'fastnav-execute-at-char-backward)
+(global-set-key "\M-k" 'fastnav-delete-char-forward)
+(global-set-key "\M-K" 'fastnav-delete-char-backward)
+(global-set-key "\M-m" 'fastnav-mark-to-char-forward)
+(global-set-key "\M-M" 'fastnav-mark-to-char-backward)
+(global-set-key "\M-p" 'fastnav-sprint-forward)
+(global-set-key "\M-P" 'fastnav-sprint-backward)
+
+;; Find things fast.
+(require 'find-things-fast)
+(global-set-key (kbd "C-x f") 'ftf-find-file)
+(global-set-key (kbd "<f6>") 'ftf-grepsource)
+
+
+;; ======================================================================
 ;; Programming-specific.
 ;; ======================================================================
 
@@ -632,10 +723,6 @@ index in STRING."
 ;; ======================================================================
 ;; Keyboard bindings.
 ;; ======================================================================
-;; ;; Find things fast.
-;; (global-set-key (kbd "C-x f") 'ftf-find-file)
-;; (global-set-key (kbd "<f6>") 'ftf-grepsource)
-
 ;; Shift region left/right.
 (global-set-key (kbd "M-]") 'goog/edit/shift-right)
 (global-set-key (kbd "M-[") 'goog/edit/shift-left)
@@ -653,6 +740,8 @@ index in STRING."
 ;; Use regex searches by default
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "\C-r") 'isearch-backward-regexp)
+;; (global-set-key (kbd "C-s") 'flex-isearch-forward)
+;; (global-set-key (kbd "\C-r") 'flex-isearch-backward)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 
@@ -682,6 +771,16 @@ index in STRING."
 
 ;; Sort lines
 (global-set-key (kbd "C-c s") 'sort-lines)
+
+;; ----------------------------------------------------------------------
+;; Key chords
+;; ----------------------------------------------------------------------
+(key-chord-define-global ",."     "<>\C-b")
+(key-chord-define-global "hj"     'undo)
+;;(key-chord-define-global [?h ?j]  'undo)  ; the same
+(key-chord-define-global "jk"     'dabbrev-expand)
+;;(key-chord-define-global "cv"     'reindent-then-newline-and-indent)
+;;(key-chord-define-global "4r"     "$")
 
 
 ;; ----------------------------------------------------------------------
