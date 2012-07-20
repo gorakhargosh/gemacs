@@ -104,6 +104,250 @@
   (when (not (package-installed-p p))
     (package-install p)))
 
+;; ----------------------------------------------------------------------
+;; Installs el-get.
+;; ----------------------------------------------------------------------
+;; El-get manages packages for GNU Emacs and can install, load, configure
+;; and uninstall packages for you easily.
+;;
+;; @see http://github.com/dimitri/el-get/
+;; @see http://www.emacswiki.org/emacs/el-get
+;; ----------------------------------------------------------------------
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(unless (require 'el-get nil t)
+  (url-retrieve
+   "https://raw.github.com/dimitri/el-get/master/el-get-install.el"
+   (lambda (s)
+     (let (el-get-master-branch)
+       (goto-char (point-max))
+       (eval-print-last-sexp)))))
+
+;; ----------------------------------------------------------------------
+;; El-get packages.
+;; ----------------------------------------------------------------------
+;; NOTE: Use el-get packages only if we do not have stable packages
+;; in elpa,melpa,marmalade.
+;; ----------------------------------------------------------------------
+(setq
+ el-get-sources
+ '(el-get
+
+   ;; (:name smex              ;; a better (ido-like) M-x
+   ;;        :after (progn
+   ;;                 (setq smex-save-file "~/.emacs.d/.smex-items")
+   ;;                 (global-set-key (kbd "M-x") 'smex)
+   ;;                 (global-set-key (kbd "M-X") 'smex-major-mode-commands)))
+
+   ;; (:name magit             ;; Git for emacs.
+   ;;        :after (progn
+   ;;                 (global-set-key (kbd "C-x g") 'magit-status)))
+
+   ;; (:name move-text         ;; text movement
+   ;;        :after (progn
+   ;;                 (global-set-key [M-S-up] 'move-text-up)
+   ;;                 (global-set-key [M-S-down] 'move-text-down)))
+
+   ;; (:name helm              ;; You need this.
+   ;;        :after (progn
+   ;;                 (require 'helm-config)
+   ;;                 (helm-mode 1)
+   ;;                 (global-set-key (kbd "<f5>") 'helm-for-files)))
+
+   ;; (:name autopair          ;; Balance parentheses; paredit is faster.
+   ;;        :type git
+   ;;        :url "git://github.com/capitaomorte/autopair.git"
+   ;;        :after (progn
+   ;;                 (require 'autopair)
+   ;;                 (autopair-global-mode)
+   ;;                 (setq autopair-autowrap t)
+
+   ;;                 ;; Prevents: http://code.google.com/p/autopair/issues/detail?id=32
+   ;;                 (add-hook 'sldb-mode-hook
+   ;;                           #'(lambda ()
+   ;;                               (setq autopair-dont-activate t) ;; emacs < 24
+   ;;                               (autopair-mode -1)              ;; emacs >= 24
+   ;;                               ))
+   ;;                 (set-default 'autopair-dont-activate
+   ;;                              #'(lambda ()
+   ;;                                  (eq major-mode 'sldb-mode)))
+   ;;                 ))
+
+   ;; (:name emacs-nav
+   ;;        :type hg
+   ;;        :website "http://code.google.com/p/emacs-nav/"
+   ;;        :description "Emacs Navigation Tool."
+   ;;        :url "https://code.google.com/p/emacs-nav/"
+   ;;        :after (progn
+   ;;                 (require 'nav)))
+
+   ;; (:name iedit             ;; More interactive find and replace.
+   ;;        :after (progn
+   ;;                 (require 'iedit)
+   ;;                 (put 'narrow-to-region 'disabled nil)))
+
+   ;; (:name paredit           ;; Automatically balance parentheses.
+   ;;        :after (progn
+   ;;                 (require 'goog-config-paredit-mode)))
+
+   ;; (:name transpose-frame
+   ;;        :after (progn
+   ;;                 (require 'transpose-frame)
+   ;;                 (global-set-key (kbd "C-x t t") 'transpose-frame)
+   ;;                 (global-set-key (kbd "C-x t h") 'flop-frame)
+   ;;                 (global-set-key (kbd "C-x t v") 'flip-frame)
+   ;;                 (global-set-key (kbd "C-x t r") 'rotate-frame-clockwise)))
+
+   ;; (:name fastnav
+   ;;        :after (progn
+   ;;                 (require 'fastnav)
+   ;;                 (global-set-key "\M-z" 'fastnav-zap-up-to-char-forward)
+   ;;                 (global-set-key "\M-Z" 'fastnav-zap-up-to-char-backward)
+   ;;                 (global-set-key "\M-s" 'fastnav-jump-to-char-forward)
+   ;;                 (global-set-key "\M-S" 'fastnav-jump-to-char-backward)
+   ;;                 (global-set-key "\M-r" 'fastnav-replace-char-forward)
+   ;;                 (global-set-key "\M-R" 'fastnav-replace-char-backward)
+   ;;                 (global-set-key "\M-i" 'fastnav-insert-at-char-forward)
+   ;;                 (global-set-key "\M-I" 'fastnav-insert-at-char-backward)
+   ;;                 (global-set-key "\M-j" 'fastnav-execute-at-char-forward)
+   ;;                 (global-set-key "\M-J" 'fastnav-execute-at-char-backward)
+   ;;                 (global-set-key "\M-k" 'fastnav-delete-char-forward)
+   ;;                 (global-set-key "\M-K" 'fastnav-delete-char-backward)
+   ;;                 (global-set-key "\M-m" 'fastnav-mark-to-char-forward)
+   ;;                 (global-set-key "\M-M" 'fastnav-mark-to-char-backward)
+   ;;                 (global-set-key "\M-p" 'fastnav-sprint-forward)
+   ;;                 (global-set-key "\M-P" 'fastnav-sprint-backward)))
+
+   ;; (:name thing-cmds
+   ;;        :after (progn
+   ;;                 (require 'thing-cmds)
+   ;;                 (thgcmd-bind-keys)))
+
+   ;; (:name expand-region
+   ;;        :after (progn
+   ;;                 (require 'expand-region)
+   ;;                 (global-set-key (kbd "M-8") 'er/expand-region)))
+
+   ;; ;; (:name js3-mode
+   ;; ;;        :website "https://github.com/thomblake/js3-mode#readme"
+   ;; ;;        :description "A chimeric fork of js2-mode and js-mode"
+   ;; ;;        :type github
+   ;; ;;        :pkgname "thomblake/js3-mode"
+   ;; ;;        :pre-init (autoload 'js3-mode "js3" nil t))
+
+   ;; (:name smart-forward
+   ;;        :website "https://github.com/magnars/smart-forward.el#readme"
+   ;;        :description "Semantic navigtation based on expand-region.el"
+   ;;        :type github
+   ;;        :depends (expand-region)
+   ;;        :pkgname "magnars/smart-forward.el"
+   ;;        :post-init (progn
+   ;;                     (require 'smart-forward)
+   ;;                     ;;(global-set-key (kbd "M-<up>") 'smart-up)
+   ;;                     ;;(global-set-key (kbd "M-<down>") 'smart-down)
+   ;;                     (global-set-key (kbd "M-<left>") 'smart-backward)
+   ;;                     (global-set-key (kbd "M-<right>") 'smart-forward)
+   ;;                     ))
+
+   ;; (:name closure-template-html-mode
+   ;;        :website "https://github.com/archimag/cl-closure-template#readme"
+   ;;        :description "Google Closure Template mode."
+   ;;        :type github
+   ;;        :pkgname "archimag/cl-closure-template"
+   ;;        :post-init (progn
+   ;;                     (require 'closure-template-html-mode)
+   ;;                     ))
+
+   ;; (:name restclient
+   ;;        :website "https://github.com/pashky/restclient.el#readme"
+   ;;        :description "HTTP REST client for Emacs."
+   ;;        :type github
+   ;;        :pkgname "pashky/restclient.el"
+   ;;        :post-init (progn
+   ;;                     (require 'restclient)))
+
+   ;; (:name js-comint
+   ;;        :after (progn
+   ;;                 (require 'js-comint)
+   ;;                 (setq inferior-js-program-command "node")
+   ;;                 ;; (setq inferior-js-program-command "/usr/bin/java org.mozilla.javascript.tools.shell.Main")
+   ;;                 (add-hook 'js-mode-hook '(lambda ()
+   ;;                                            (local-set-key "\C-x\C-e" 'js-send-last-sexp)
+   ;;                                            (local-set-key "\C-\M-x" 'js-send-last-sexp-and-go)
+   ;;                                            (local-set-key "\C-cb" 'js-send-buffer)
+   ;;                                            (local-set-key "\C-c\C-b" 'js-send-buffer-and-go)
+   ;;                                            (local-set-key "\C-cl" 'js-load-file-and-go)
+   ;;                                            ))
+   ;;                 ))
+
+   ;; (:name protobuf-mode
+   ;;        :after (progn
+   ;;                 (require 'protobuf-mode)
+   ;;                 (defconst g-protobuf-style
+   ;;                   '((c-basic-offset . 2)
+   ;;                     (indent-tabs-mode . nil)))
+   ;;                 (add-hook 'protobuf-mode-hook
+   ;;                           (lambda () (c-add-style "g-protobuf-style" g-protobuf-style t)))))
+
+   ;; ;; (:name closure-lint-mode
+   ;; ;;     :type github
+   ;; ;;     :website "https://github.com/r0man/closure-lint-mode"
+   ;; ;;     :description "Emacs support for the Closure Linter"
+   ;; ;;     :pkgname "r0man/closure-lint-mode"
+   ;; ;;     :after (progn
+   ;; ;;              (require 'closure-lint-mode)))
+
+   ;; ;; (:name closure-template-html-mode
+   ;; ;;     :type github
+   ;; ;;     :website "https://github.com/archimag/cl-closure-template"
+   ;; ;;     :description "Emacs support for Google Closure Templates"
+   ;; ;;     :pkgname "archimag/cl-closure-template"
+   ;; ;;     :after (progn
+   ;; ;;              (require 'closure-template-html-mode)))
+
+   ;; (:name rst-mode
+   ;;        :after (progn
+   ;;                 (require 'rst)
+   ;;                 (add-hook 'rst-adjust-hook 'rst-toc-update)
+   ;;                 (setq auto-mode-alist
+   ;;                       (append '(
+   ;;                                 ("\\.txt$" . rst-mode)
+   ;;                                 ("\\.rst$" . rst-mode)
+   ;;                                 ("\\.rest$" . rst-mode))
+   ;;                               auto-mode-alist))
+   ;;                 ))
+
+   ;; ;; (:name yaml-mode
+   ;; ;;        :after (progn
+   ;; ;;                 (require 'goog-config-yaml-mode)))
+
+   ;; (:name ropemacs
+   ;;        :after (progn
+   ;;                 (require 'pymacs)
+   ;;                 (autoload 'pymacs-apply "pymacs")
+   ;;                 (autoload 'pymacs-call "pymacs")
+   ;;                 (autoload 'pymacs-eval "pymacs" nil t)
+   ;;                 (autoload 'pymacs-exec "pymacs" nil t)
+   ;;                 (autoload 'pymacs-load "pymacs" nil t)
+   ;;                 (pymacs-load "ropemacs" "rope-")
+   ;;                 (setq ropemacs-enable-autoimport t)))
+   ))
+
+(setq
+ goog:el-get-packages
+ '(el-get
+   ;; pymacs
+   ))
+;; Synchronize el-get packages.
+(setq goog:el-get-packages
+      (append
+       goog:el-get-packages
+       (loop for src in el-get-sources collect (el-get-source-name src))))
+(el-get 'sync goog:el-get-packages)
+;;(el-get 'wait)
+
+
+
 ;; ======================================================================
 ;; Vanilla Emacs preferences.
 ;; ======================================================================
