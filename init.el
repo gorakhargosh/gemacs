@@ -1007,3 +1007,6 @@ compilation output."
       (goog/elisp/load-directory goog-username-dir)
       (goog/elisp/load-directory goog-os-dir)
       )))
+
+
+;;; init.el ends here.
