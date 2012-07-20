@@ -788,26 +788,29 @@ immediately."
 (defun goog/config/js-mode/setup-style ()
   "Sets the style for JavaScript."
   (setq js-indent-level 2
+        espresso-indent-level 2
+        c-basic-offset 2
         js2-basic-offset 2
         js2-indent-on-enter-key t
         js2-enter-indents-newline t
         js2-mode-squeeze-spaces nil)
   ;; JS3-specific
   ;; We're not loading js3-mode currently because it breaks a lot.
-  (setq js3-indent-level 2
-        js3-expr-indent-offset 2
-        js3-auto-indent-p t
-        js3-enter-indents-newline t
-        js3-indent-on-enter-key t
-        js3-mirror-mode nil  ;; This is crap compared with paredit/autopair.
-        js3-strict-missing-semi-warning t
-        js3-highlight-external-variables t
-        js3-highlight-level 3
-        js3-max-columns 75))
+  ;; (setq js3-indent-level 2
+  ;;       js3-expr-indent-offset 2
+  ;;       js3-auto-indent-p t
+  ;;       js3-enter-indents-newline t
+  ;;       js3-indent-on-enter-key t
+  ;;       js3-mirror-mode nil  ;; This is crap compared with paredit/autopair.
+  ;;       js3-strict-missing-semi-warning t
+  ;;       js3-highlight-external-variables t
+  ;;       js3-highlight-level 3
+  ;;       js3-max-columns 75)
+  )
 (defun goog/config/js-mode/key-chords ()
   "Sets up the key-chords for JavaScript mode."
-  (key-chord-define js3-mode-map ";;"  "\C-e;")
-  (key-chord-define js3-mode-map ",,"  "\C-e,")
+  (key-chord-define js2-mode-map ";;"  "\C-e;")
+  (key-chord-define js2-mode-map ",,"  "\C-e,")
   ;;(key-chord-define js3-mode-map "//"  "\C-a // ")
   ;;(key-chord-define c++-mode-map "{}"  "{\n\n}\C-p\t")
   )
@@ -855,20 +858,19 @@ compilation output."
 
 (defun goog/config/js-mode/setup-bindings ()
   "Sets up keyboard bindings for JavaScript modes."
-  (define-key js3-mode-map (kbd "C-c l l")
+  (define-key js2-mode-map (kbd "C-c l l")
     'goog/config/js-mode/gjslint-buffer)
-  (define-key js3-mode-map (kbd "C-c l d")
+  (define-key js2-mode-map (kbd "C-c l d")
     'goog/config/js-mode/gjslint-dir)
-  (define-key js3-mode-map (kbd "C-c l D")
+  (define-key js2-mode-map (kbd "C-c l D")
     'goog/config/js-mode/fixjsstyle-dir)
-  (define-key js3-mode-map (kbd "C-c l f")
+  (define-key js2-mode-map (kbd "C-c l f")
     'goog/config/js-mode/fixjsstyle-buffer)
-  (define-key js3-mode-map (kbd "C-c l F")
+  (define-key js2-mode-map (kbd "C-c l F")
     'goog/config/js-mode/fixjsstyle-buffer-compile)
-  (define-key js3-mode-map (kbd "C-c l h")
+  (define-key js2-mode-map (kbd "C-c l h")
     'goog/config/js-mode/jshint))
 
-(add-hook 'js-mode-hook 'goog/config/js-mode/setup-bindings)
 (add-hook 'js2-mode-hook 'goog/config/js-mode/setup-bindings)
 
 ;; ----------------------------------------------------------------------
