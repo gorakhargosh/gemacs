@@ -676,9 +676,6 @@ immediately."
 (require 'nav)
 (global-set-key (kbd "C-x C-a") 'nav)
 
-(require 'iedit)
-(put 'narrow-to-region 'disabled nil)
-
 (require 'magit)
 (global-set-key (kbd "C-x g") 'magit-status)
 
@@ -717,8 +714,29 @@ immediately."
 (global-set-key (kbd "C-x f") 'ftf-find-file)
 (global-set-key (kbd "<f6>") 'ftf-grepsource)
 
+;; ----------------------------------------------------------------------
+;; Mark and edit multiple regions.
+;; ----------------------------------------------------------------------
+(require 'iedit)
+(put 'narrow-to-region 'disabled nil)  ;; Allow narrowing to work.
+
 (require 'mark-multiple)
-;; (require 'js2-refactor)
+(require 'inline-string-rectangle)
+(global-set-key (kbd "C-x r t") 'inline-string-rectangle)
+
+(require 'mark-more-like-this)
+(global-set-key (kbd "C-<") 'mark-previous-like-this)
+(global-set-key (kbd "C->") 'mark-next-like-this)
+(global-set-key (kbd "C-M-m") 'mark-more-like-this)
+(global-set-key (kbd "C-*") 'mark-all-like-this)
+
+(require 'sgml-mode)
+(require 'rename-sgml-tag)
+(define-key sgml-mode-map (kbd "C-c C-r") 'rename-sgml-tag)
+
+;; TODO(yesudeep): (require 'js2-refactor)
+;; (require 'js2-rename-var)
+;; (define-key js2-mode-map (kbd "C-c C-r") 'js2-rename-var)
 
 ;; ======================================================================
 ;; Auto-complete and snippets.
