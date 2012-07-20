@@ -704,6 +704,8 @@ immediately."
 ;; ======================================================================
 ;; Auto-complete and snippets.
 ;; ======================================================================
+(require 'dabbrev)
+
 (require 'yasnippet)
 (setq yas/snippet-dirs
       '("~/.emacs.d/snippets"  ;; Our snippets.
