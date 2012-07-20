@@ -76,6 +76,7 @@
                            key-chord
                            magit
                            mark-multiple
+                           melpa
                            move-text
                            nav
                            paredit
