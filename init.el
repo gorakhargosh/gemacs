@@ -95,6 +95,7 @@
                            move-text
                            nav
                            paredit
+                           smooth-scroll
                            switch-window
                            undo-tree
                            yasnippet
@@ -917,6 +918,9 @@ immediately."
 ;; (require 'duplicate-thing)
 ;; (global-set-key (kbd "M-c") 'duplicate-thing)
 
+(require 'smooth-scroll)
+(smooth-scroll-mode t)
+
 (require 'autopair)
 (autopair-global-mode)
 (setq autopair-autowrap t)
@@ -943,11 +947,11 @@ immediately."
 (global-set-key [M-S-up] 'move-text-up)
 (global-set-key [M-S-down] 'move-text-down)
 
-(when window-system
-  (require 'fill-column-indicator)
-  (define-globalized-minor-mode global-fci-mode fci-mode
-    (lambda () (fci-mode 1)))
-  (global-fci-mode 1))
+;; (when window-system
+;;   (require 'fill-column-indicator)
+;;   (define-globalized-minor-mode global-fci-mode fci-mode
+;;     (lambda () (fci-mode 1)))
+;;   (global-fci-mode 1))
 
 (require 'expand-region)
 (global-set-key (kbd "M-8") 'er/expand-region)
