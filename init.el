@@ -60,6 +60,7 @@
                            ;; duplicate-thing
                            ;; flex-isearch
                            ;; icicles
+                           auto-complete
                            autopair
                            expand-region
                            fastnav
@@ -605,7 +606,7 @@ index in STRING."
     (load name)))
 
 (defun goog/elisp/reload-user-init-file ()
-  "thisandthat."
+  "Reloads the init.el module from the Emacs configuration directory."
   (interactive)
   (load-file (concat config-dir "init.el")))
 
@@ -691,6 +692,46 @@ index in STRING."
 
 (require 'mark-multiple)
 ;; (require 'js2-refactor)
+
+;; ======================================================================
+;; Auto-complete and snippets.
+;; ======================================================================
+(require 'auto-complete)
+(require 'auto-complete-config)
+(ac-config-default)
+(setq ac-ignore-case 'smart
+      ac-use-fuzzy t
+      ac-fuzz-enable t
+      ac-auto-start t)
+(define-key ac-completing-map "\t" 'ac-complete)
+(define-key ac-completing-map "\r" nil)
+(setq-default ac-sources
+              '(ac-source-dictionary
+                ac-source-abbrev
+                ac-source-words-in-buffer
+                ac-source-words-in-same-mode-buffers
+                ac-source-words-in-all-buffer))
+(add-hook 'prog-mode-common-hook
+              (lambda ()
+                (setq-default ac-sources
+                              '(ac-source-dictionary
+                                ac-source-abbrev
+                                ac-source-words-in-buffer
+                                ac-source-words-in-same-mode-buffers
+                                ac-source-words-in-all-buffer
+                                ac-source-files-in-current-dir
+                                ac-source-imenu
+                                ac-source-filename
+                                ac-source-yasnippet))
+                ))
+(dolist (mode '(magit-log-edit-mode log-edit-mode org-mode text-mode haml-mode
+                sass-mode yaml-mode csv-mode espresso-mode haskell-mode
+                html-mode nxml-mode sh-mode smarty-mode clojure-mode
+                lisp-mode textile-mode markdown-mode tuareg-mode
+                js3-mode css-mode less-css-mode))
+  (add-to-list 'ac-modes mode))
+
+
 
 ;; ======================================================================
 ;; Programming-specific.
