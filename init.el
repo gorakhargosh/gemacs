@@ -17,12 +17,12 @@
 (add-to-list 'load-path config-dir)
 
 ;; Directory paths.
-(setq third-party-dir (expand-file-name (concat config-dir "third_party")))
+(setq third-party-dir (expand-file-name (concat config-dir "site-lisp")))
 
 ;; Load-path.
 (add-to-list 'load-path third-party-dir)
 
-;; Add all subdirectories of third_party/ to load path.
+;; Add all subdirectories of site-lisp to load path.
 (let ((default-directory third-party-dir))
   (normal-top-level-add-subdirs-to-load-path))
 
