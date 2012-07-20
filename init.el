@@ -17,7 +17,8 @@
 (add-to-list 'load-path config-dir)
 
 ;; Directory paths.
-(setq goog-site-lisp-dir (expand-file-name (concat config-dir "site-lisp")))
+(setq goog-site-lisp-dir (expand-file-name
+                          (concat config-dir "site-lisp")))
 
 ;; Load-path.
 (add-to-list 'load-path goog-site-lisp-dir)
@@ -60,6 +61,7 @@
                            ;; duplicate-thing
                            ;; flex-isearch
                            ;; icicles
+                           ;; js2-refactor
                            auto-complete
                            autopair
                            expand-region
@@ -69,15 +71,14 @@
                            ido-ubiquitous
                            iedit
                            js2-mode
-                           ;; js2-refactor
                            key-chord
                            magit
                            mark-multiple
                            move-text
+                           nav
                            paredit
                            switch-window
                            undo-tree
-                           nav
                            yasnippet
                            ))
 (dolist (p default-packages)
@@ -714,7 +715,8 @@ immediately."
 (setq ac-ignore-case 'smart
       ac-use-fuzzy t
       ac-fuzz-enable t
-      ac-auto-start t)
+      ;; ac-auto-start t
+      )
 (define-key ac-completing-map "\t" 'ac-complete)
 (define-key ac-completing-map "\r" nil)
 (setq-default ac-sources
