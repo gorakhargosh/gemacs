@@ -595,7 +595,8 @@ If in a character literal, do nothing.  This prevents accidentally
 (defun goog/paredit/non-lisp ()
   "Enables paredit mode for non-lisp languages. Does not insert
 spaces before opening parentheses.  See: https://gist.github.com/879305"
-  (add-to-list (make-local-variable 'paredit-space-for-delimiter-predicates)
+  (add-to-list (make-local-variable
+                'paredit-space-for-delimiter-predicates)
                (lambda (_ _) nil))
   (enable-paredit-mode))
 
@@ -655,7 +656,8 @@ spaces before opening parentheses.  See: https://gist.github.com/879305"
 (defvar paredit-minibuffer-commands '(eval-expression
                                       pp-eval-expression
                                       eval-expression-with-eldoc)
-  "Interactive commands for which paredit should be enabled in the minibuffer.")
+  "Interactive commands for which paredit should be enabled in the
+minibuffer.")
 
 
 ;; ----------------------------------------------------------------------
@@ -753,7 +755,8 @@ if negative."
   "Sets RET to do a newline and indent."
   (local-set-key (kbd "RET") 'newline-and-indent))
 
-;; Kill entire line with C-k and use C-S-backspace for killing from beginning
+;; Kill entire line with C-k and use C-S-backspace for killing from
+;; beginning
 (defun goog/edit/kill-and-join-forward (&optional arg)
   "If at end of line, join with following; otherwise kill line.
     Deletes whitespace at join."
@@ -805,9 +808,12 @@ Toggles between: Òall lowerÓ, ÒInit CapsÓ, ÒALL CAPSÓ."
       (save-excursion
         (goto-char p1)
         (cond
-         ((looking-at "[[:lower:]][[:lower:]]") (put this-command 'state "all lower"))
-         ((looking-at "[[:upper:]][[:upper:]]") (put this-command 'state "all caps") )
-         ((looking-at "[[:upper:]][[:lower:]]") (put this-command 'state "init caps") )
+         ((looking-at "[[:lower:]][[:lower:]]")
+          (put this-command 'state "all lower"))
+         ((looking-at "[[:upper:]][[:upper:]]")
+          (put this-command 'state "all caps") )
+         ((looking-at "[[:upper:]][[:lower:]]")
+          (put this-command 'state "init caps") )
          ((looking-at "[[:lower:]]") (put this-command 'state "all lower"))
          ((looking-at "[[:upper:]]") (put this-command 'state "all caps") )
          (t (put this-command 'state "all lower") ) ) ) )
@@ -834,7 +840,8 @@ index in STRING."
                                      t nil s)))
     (upcase s)))
 
-(defun goog/edit/camelcase-to-downcased-underscore-string (s &optional sep start)
+(defun goog/edit/camelcase-to-downcased-underscore-string
+  (s &optional sep start)
   "Convert CamelCase string S to lower case with word separator SEP.
 Default for SEP is a underscore \"_\".
 
@@ -847,7 +854,8 @@ index in STRING."
                                      t nil s)))
     (downcase s)))
 
-(defun goog/edit/camelcase-to-downcased-hyphenated-string (s &optional sep start)
+(defun goog/edit/camelcase-to-downcased-hyphenated-string
+  (s &optional sep start)
   "Convert CamelCase string S to lower case with word separator SEP.
 Default for SEP is a hyphenated \"-\".
 
@@ -937,7 +945,8 @@ immediately."
 
 (when window-system
   (require 'fill-column-indicator)
-  (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+  (define-globalized-minor-mode global-fci-mode fci-mode
+    (lambda () (fci-mode 1)))
   (global-fci-mode 1))
 
 (require 'expand-region)
@@ -1023,30 +1032,28 @@ immediately."
 ;; hook AC into completion-at-point
 (defun set-auto-complete-as-completion-at-point-function ()
   (setq completion-at-point-functions '(auto-complete)))
-(add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
+(add-hook 'auto-complete-mode-hook
+          'set-auto-complete-as-completion-at-point-function)
 
 ;; Set up sources for autocompletion.
 (setq-default ac-sources
-              '(ac-source-dictionary
-                ac-source-abbrev
+              '(ac-source-abbrev
+                ac-source-dictionary
+                ac-source-filename
+                ac-source-files-in-current-dir
+                ac-source-imenu
+                ac-source-words-in-all-buffer
                 ac-source-words-in-buffer
                 ac-source-words-in-same-mode-buffers
-                ac-source-words-in-all-buffer))
-(add-hook 'prog-mode-common-hook
-              (lambda ()
-                (setq-default ac-sources
-                              '(ac-source-dictionary
-                                ac-source-abbrev
-                                ac-source-words-in-buffer
-                                ac-source-words-in-same-mode-buffers
-                                ac-source-words-in-all-buffer
-                                ac-source-files-in-current-dir
-                                ac-source-imenu
-                                ac-source-filename
-                                ac-source-yasnippet))
+                ;; ac-source-yasnippet   ;; Don't enable this.
+                                         ;; It causes problems with
+                                         ;; completion.
                 ))
-(dolist (mode '(magit-log-edit-mode log-edit-mode org-mode text-mode haml-mode
-                sass-mode yaml-mode csv-mode espresso-mode haskell-mode
+(dolist (mode '(
+                magit-log-edit-mode log-edit-mode org-mode
+                text-mode haml-mode
+                sass-mode yaml-mode csv-mode espresso-mode
+                haskell-mode
                 html-mode nxml-mode sh-mode smarty-mode clojure-mode
                 lisp-mode textile-mode markdown-mode tuareg-mode
                 js3-mode css-mode less-css-mode))
