@@ -746,7 +746,6 @@ immediately."
   (add-to-list 'ac-modes mode))
 
 
-
 ;; ======================================================================
 ;; Programming-specific.
 ;; ======================================================================
@@ -782,6 +781,115 @@ immediately."
 ;; ----------------------------------------------------------------------
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
+
+(defun goog/config/js-mode/setup-style ()
+  "Sets the style for JavaScript."
+  (setq js-indent-level 2
+        js2-basic-offset 2
+        js2-indent-on-enter-key t
+        js2-enter-indents-newline t
+        js2-mode-squeeze-spaces nil)
+  ;; JS3-specific
+  ;; We're not loading js3-mode currently because it breaks a lot.
+  (setq js3-indent-level 2
+        js3-expr-indent-offset 2
+        js3-auto-indent-p t
+        js3-enter-indents-newline t
+        js3-indent-on-enter-key t
+        js3-mirror-mode nil  ;; This is crap compared with paredit/autopair.
+        js3-strict-missing-semi-warning t
+        js3-highlight-external-variables t
+        js3-highlight-level 3
+        js3-max-columns 75))
+(defun goog/config/js-mode/key-chords ()
+  "Sets up the key-chords for JavaScript mode."
+  (key-chord-define js3-mode-map ";;"  "\C-e;")
+  (key-chord-define js3-mode-map ",,"  "\C-e,")
+  ;;(key-chord-define js3-mode-map "//"  "\C-a // ")
+  ;;(key-chord-define c++-mode-map "{}"  "{\n\n}\C-p\t")
+  )
+
+(add-hook 'js-mode-hook 'goog/config/js-mode/setup-style)
+(add-hook 'js-mode-hook 'goog/config/js-mode/key-chords)
+(add-hook 'js2-mode-hook 'goog/config/js-mode/key-chords)
+(add-hook 'js2-mode-hook 'goog/config/js-mode/setup-style)
+
+;; Tools for Javascript.
+(defun goog/config/js-mode/gjslint-buffer ()
+  "Runs gjslint in strict mode on the current buffer."
+  (interactive)
+  (compile (concat "gjslint --strict --unix_mode " buffer-file-name)))
+
+(defun goog/config/js-mode/gjslint-dir ()
+  "Runs gjslint in strict mode on the parent directory of the file in the
+current buffer."
+  (interactive)
+  (compile (concat "gjslint --strict --unix_mode -r "
+                   (file-name-directory buffer-file-name))))
+
+(defun goog/config/js-mode/fixjsstyle-buffer ()
+  "Runs fixjsstyle in strict mode on the buffer."
+  (interactive)
+  (shell-command (concat "fixjsstyle --strict " buffer-file-name)))
+
+(defun goog/config/js-mode/fixjsstyle-dir ()
+  "Runs fixjsstyle in strict mode on the parent directory of the file in
+the current buffer."
+  (interactive)
+  (compile (concat "fixjsstyle --strict -r " (file-name-directory
+                                              buffer-file-name))))
+
+(defun goog/config/js-mode/fixjsstyle-buffer-compile ()
+  "Runs fixjsstyle in strict mode on the current buffer and shows
+compilation output."
+  (interactive)
+  (compile (concat "fixjsstyle --strict " buffer-file-name)))
+
+(defun goog/config/js-mode/jshint-buffer ()
+  "Runs jshint on the current buffer."
+  (interactive)
+  (compile (concat "jshint " buffer-file-name)))
+
+(defun goog/config/js-mode/setup-bindings ()
+  "Sets up keyboard bindings for JavaScript modes."
+  (define-key js3-mode-map (kbd "C-c l l")
+    'goog/config/js-mode/gjslint-buffer)
+  (define-key js3-mode-map (kbd "C-c l d")
+    'goog/config/js-mode/gjslint-dir)
+  (define-key js3-mode-map (kbd "C-c l D")
+    'goog/config/js-mode/fixjsstyle-dir)
+  (define-key js3-mode-map (kbd "C-c l f")
+    'goog/config/js-mode/fixjsstyle-buffer)
+  (define-key js3-mode-map (kbd "C-c l F")
+    'goog/config/js-mode/fixjsstyle-buffer-compile)
+  (define-key js3-mode-map (kbd "C-c l h")
+    'goog/config/js-mode/jshint))
+
+(add-hook 'js-mode-hook 'goog/config/js-mode/setup-bindings)
+(add-hook 'js2-mode-hook 'goog/config/js-mode/setup-bindings)
+
+;; ----------------------------------------------------------------------
+;; Python.
+;; ----------------------------------------------------------------------
+(defun goog/config/python-mode/setup-style ()
+  "Defines the python coding style."
+  (setq indent-tabs-mode nil
+        require-final-newline 't
+        tab-width 2
+        python-indent-offset 2
+        python-indent 2
+        py-indent-offset 2))
+(setq auto-mode-alist
+      (append '(
+                ("\\wscript$" . python-mode)
+                ("\\SConstruct" . python-mode)
+                ("\\SConscript" . python-mode)
+                ("\\BUILD$" . python-mode))
+              auto-mode-alist))
+(add-to-list 'interpreter-mode-alist '("python" . python-mode))
+(add-hook 'python-mode-hook
+          'goog/config/python-mode/setup-style)
 
 
 ;; ======================================================================
