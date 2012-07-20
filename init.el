@@ -17,13 +17,13 @@
 (add-to-list 'load-path config-dir)
 
 ;; Directory paths.
-(setq third-party-dir (expand-file-name (concat config-dir "site-lisp")))
+(setq goog-site-lisp-dir (expand-file-name (concat config-dir "site-lisp")))
 
 ;; Load-path.
-(add-to-list 'load-path third-party-dir)
+(add-to-list 'load-path goog-site-lisp-dir)
 
 ;; Add all subdirectories of site-lisp to load path.
-(let ((default-directory third-party-dir))
+(let ((default-directory goog-site-lisp-dir))
   (normal-top-level-add-subdirs-to-load-path))
 
 ;; Network-specific configuration is loaded from goog-network-dir.
