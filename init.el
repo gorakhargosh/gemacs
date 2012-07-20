@@ -266,6 +266,14 @@
    ;;        :post-init (progn
    ;;                     (require 'restclient)))
 
+   (:name js2-refactor
+          :website "https://github.com/magnars/js2-refactor.el#readme"
+          :description "JavaScript refactoring library for Emacs."
+          :type github
+          :pkgname "magnars/js2-refactor.el"
+          :post-init (progn
+                       (require 'js2-refactor)))
+
    ;; (:name js-comint
    ;;        :after (progn
    ;;                 (require 'js-comint)
@@ -978,9 +986,7 @@ immediately."
 (require 'rename-sgml-tag)
 (define-key sgml-mode-map (kbd "C-c C-r") 'rename-sgml-tag)
 
-;; TODO(yesudeep): (require 'js2-refactor)
-;; (require 'js2-rename-var)
-;; (define-key js2-mode-map (kbd "C-c C-r") 'js2-rename-var)
+;; JS2 refactor stuff is defined in el-get load.
 
 ;; ======================================================================
 ;; Auto-complete and snippets.
