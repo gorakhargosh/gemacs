@@ -335,11 +335,9 @@ If in a character literal, do nothing.  This prevents accidentally
         ((not (paredit-in-char-p))
          (paredit-insert-pair n ?\' ?\' 'paredit-forward-for-quote))))
 
-
 (defun goog/paredit/lisp ()
   "Enables paredit mode for lisp."
   (paredit-mode +1))
-
 
 (defun goog/paredit/non-lisp ()
   "Enables paredit mode for non-lisp languages. Does not insert
