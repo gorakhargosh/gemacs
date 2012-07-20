@@ -155,6 +155,11 @@
   ;; (setq show-paren-style 'expression)
   )
 
+;; Cua mode without the nonsense.
+(setq cua-enable-cua-keys nil)       ;; Turn off Windows key bindings.
+(cua-mode t)                         ;; Rectangular selections are awesome.
+(cua-selection-mode nil)             ;; No shift-arrow style marking.
+
 ;; Saving sessions makes Emacs load really slowly. Enable this only if you
 ;; need it.
 ;; (progn
