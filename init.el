@@ -127,7 +127,7 @@
 
 (progn
   (column-number-mode 1)             ;; show column numbers in mode line.
-  (delete-selection-mode t)          ;; Overwrite selection; DWIM.
+  (delete-selection-mode 1)          ;; Overwrite selection; DWIM.
   (fset 'yes-or-no-p 'y-or-n-p)      ;; y or n is better than yes or no.
   (global-auto-revert-mode 1)        ;; Auto-reflect on-disk changes.
   (global-linum-mode 1)              ;; line numbers in left gutter.
