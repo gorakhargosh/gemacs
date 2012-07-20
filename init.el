@@ -98,6 +98,7 @@
                            switch-window
                            undo-tree
                            yasnippet
+                           zencoding-mode
                            ))
 (dolist (p default-packages)
   (when (not (package-installed-p p))
@@ -812,7 +813,8 @@ immediately."
  'html-mode-hook
  '(lambda ()
     (set (make-local-variable 'sgml-basic-offset) 2)
-    (setq indent-tabs-mode nil)))
+    (setq indent-tabs-mode nil)
+    (zencoding-mode 1)))
 
 ;; ----------------------------------------------------------------------
 ;; JavaScript
