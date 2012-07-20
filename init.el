@@ -78,6 +78,7 @@
                            switch-window
                            undo-tree
                            nav
+                           yasnippet
                            ))
 (dolist (p default-packages)
   (when (not (package-installed-p p))
@@ -116,8 +117,8 @@
       shift-select-mode nil
       uniquify-buffer-name-style 'forward
       visible-bell t
-      require-final-newline 't
-      next-line-add-newlines t
+      ;; require-final-newline 't       ;; Don't require this for snippets.
+      ;; next-line-add-newlines nil     ;; Don't add newlines past EOF.
       )
 
 (progn
@@ -244,7 +245,8 @@
 (require 'ido-ubiquitous)
 
 (defun goog/config/ibuffer-ido-find-file ()
-  "Like `ido-find-file', but default to the directory of the buffer at point."
+  "Like `ido-find-file', but default to the directory of the buffer
+at point."
   (interactive
    (let ((default-directory (let ((buf (ibuffer-current-buffer)))
                               (if (buffer-live-p buf)
@@ -406,7 +408,8 @@ there's a region, all lines that region covers will be duplicated."
       (goto-char (+ origin (* (length region) arg) arg)))))
 
 (defun goog/edit/shift-region (distance)
-  "Shift the selected region right if distance is positive; left if negative."
+  "Shift the selected region right if distance is positive; left
+if negative."
   (let ((mark (mark)))
     (save-excursion
       (indent-rigidly (region-beginning) (region-end) distance)
@@ -613,7 +616,8 @@ index in STRING."
 (defun goog/elisp/eval-after-init (form)
   "Add `(lambda () FORM)' to `after-init-hook'.
 
-    If Emacs has already finished initialization, also eval FORM immediately."
+    If Emacs has already finished initialization, also eval FORM
+immediately."
   (let ((func (list 'lambda nil form)))
     (add-hook 'after-init-hook func)
     (when after-init-time
@@ -696,6 +700,14 @@ index in STRING."
 ;; ======================================================================
 ;; Auto-complete and snippets.
 ;; ======================================================================
+(require 'yasnippet)
+(setq yas/snippet-dirs
+      '("~/.emacs.d/snippets"  ;; Our snippets.
+        ;; Add more paths here if you like.
+        ))
+(yas/global-mode 1)  ;; or M-x yas/reload-all to reload yasnippet.
+
+
 (require 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
