@@ -1,0 +1,7 @@
+# name: copyright
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# key: copyright
+# --
+Copyright ${1:`(nth 5 (decode-time))`} ${2:Google Inc}. ${3:All Rights Reserved.}
+
+$0

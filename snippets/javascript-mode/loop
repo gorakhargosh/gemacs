@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: while(true){...}
+# key: loop
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+while (${true}) {
+  $0
+}

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: (floatp ... ...)
+# key: floatp
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+(floatp $1)$0

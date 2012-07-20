@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: {<tag>}...{/<tag>}
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# key: `
+# --
+{$1}$0{/$1}

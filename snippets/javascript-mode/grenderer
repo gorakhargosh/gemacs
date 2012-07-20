@@ -1,0 +1,83 @@
+# -*- mode: snippet -*-
+# name: Google Closure custom renderer.
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+goog.provide('${1:namespace$(downcase yas/text)}.${2:ControlName}Renderer');
+
+goog.require('goog.debug.Logger');
+goog.require('goog.ui.ControlRenderer');
+goog.require('goog.dom');
+goog.require('goog.dom.DomHelper');
+goog.require('goog.dom.TagName');
+goog.require('$3');
+
+
+
+/**
+ * Renderer for {@link $1.$2}.
+ *
+ * @constructor
+ * @extends {$3}
+ */
+$1.$2Renderer = function() {
+  goog.base(this);
+};
+goog.inherits($1.$2Renderer, ${3:goog.ui.ControlRenderer});
+
+
+/**
+ * Logger for this class.
+ *
+ * @type {!goog.debug.Logger}
+ * @protected
+ */
+$1.$2Renderer.prototype.logger =
+    goog.debug.Logger.getLogger('$1.$2Renderer');
+
+
+/** @type {string} */
+$1.$2Renderer.CSS_CLASS = '$4';
+
+
+/** @override */
+$1.$2Renderer.prototype.getCssClass = function() {
+  return $1.$2Renderer.CSS_CLASS;
+};
+
+
+/**
+ * @param {$1.$2} $5 The control instance.
+ * @return {Element}
+ * @override
+ */
+$1.$2Renderer.prototype.createDom = function(${5:control}) {
+  var element = goog.base(this, 'createDom', $5);
+  var dom = $5.getDomHelper();
+
+  // TODO(${6:`user-login-name`}): Admittedly, this violates the
+  // protected visibility of setElementInternal(), but if your
+  // control needs to have a DOM before its addChild() method
+  // can be invoked, you will need to keep the following line
+  // intact.
+  $5.setElementInternal(element);
+
+  $0
+
+  return element;
+};
+
+
+/**
+ * @param {$1.$2} $5 The control instance.
+ * @param {Element} element Element to decorate.
+ * @return {Element} Decorated element.
+ * @override
+ */
+$1.$2Renderer.prototype.decorate = function($5, element) {
+  goog.base(this, 'decorate', $5, element);
+
+
+
+  return element;
+};

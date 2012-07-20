@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: (int-to-string ... ...)
+# key: itos
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+(int-to-string $1)$0

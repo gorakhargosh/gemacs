@@ -1,0 +1,33 @@
+# -*- mode: snippet -*-
+# name: implements disposeInternal()
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+/** @override */
+${1:classpath}.prototype.disposeInternal = function() {
+  goog.base(this, 'disposeInternal');
+
+  $0
+  // (1) Dispose of all goog.Disposable objects owned by this class.
+  // IMPORTANT: DONT dispose goog.Disposable objects NOT owned by this
+  // class. An object is owned by this class if this class created it.
+  // An object passed to this class that was created by another class
+  // should NOT be disposed here.
+  // goog.dispose(this.someDisposable);
+
+  // (2) Remove listeners added by this class.
+  // Ideally, you would use an EventHandler class that removes the
+  // need to manually dispose event listeners like this.
+  // this.container.removeEventListener('mouseover',
+  //                                    this.eventListener,
+  //                                    false);
+
+  // (3) Remove references to COM objects.
+  // this.xhr_ = null;       // set nullables to null.
+
+  // (4) Remove references to DOM nodes, which are COM objects in IE.
+  // delete this.container;  // delete non-nullables.
+  // this.label = null;      // set nullables to null.
+
+  // Don't forget to breathe!
+};

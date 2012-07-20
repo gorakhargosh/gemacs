@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: validateInternal(attributes)
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# expand-env: ((yas/indent-line 'fixed))
+# --
+goog.require('appkit.validate');
+
+
+/** @override */
+$1.prototype.validateInternal =
+    function(attributes) {
+  var errorContext = {};
+  var requiredFields = [
+    $1.Keys.$2
+  ];
+  appkit.validate.checkRequired(errorContext, requiredFields, attributes);
+  return errorContext;
+};

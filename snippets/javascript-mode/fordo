@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: for loop (scoped)
+# key: fordo
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+for ($1; $2; $3) {(function($4){
+    $0
+})($5);}

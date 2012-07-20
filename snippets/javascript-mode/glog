@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: ... = function (...) { ... };
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+$1.prototype.logger${2:_}.${3:fine}($0);

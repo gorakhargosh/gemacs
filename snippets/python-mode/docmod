@@ -1,0 +1,14 @@
+# -*- coding: utf-8 -*-
+# name: docmod
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+"""
+:module: $1
+:synopsis: $2
+:author: `user-mail-address` (`(user-full-name)`)
+
+"""
+
+__author__ = "`user-mail-address` (`(user-full-name)`)"
+
+$0

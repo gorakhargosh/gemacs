@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Check variable exists
+# key: ??
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+(typeof ${1:variable} !== 'undefined' && $1 !== null)$0

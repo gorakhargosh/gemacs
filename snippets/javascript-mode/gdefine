@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: /** @define */ var ... = ...;
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+/** @define {${1:type}} ${2:Short description.} */
+$3 = $0;

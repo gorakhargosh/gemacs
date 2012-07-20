@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: until
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+until [ $1 ]
+do
+  $0
+done

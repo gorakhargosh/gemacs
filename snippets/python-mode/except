@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: except
+# key: except
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+except $1:
+  $0

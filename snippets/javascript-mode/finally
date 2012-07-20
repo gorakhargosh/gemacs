@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: finally { ... }
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+finally {
+  $0
+}

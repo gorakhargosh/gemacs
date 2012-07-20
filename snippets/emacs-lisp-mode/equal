@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: (equal ... ...)
+# key: equal
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+(equal $1 $0)

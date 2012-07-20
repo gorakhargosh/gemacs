@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Google @override.
+# key: #override
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+/** @override */
+$0

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: ... !== ...
+# key: isnot
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+$1 !== $0

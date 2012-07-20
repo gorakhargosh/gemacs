@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: allows console.log(...); to work
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+/* So that we don't get errors in browsers that don't
+ * support the console object.
+ */
+if ((typeof console !== "undefined" && console !== null) &&
+    ((typeof console.log !== "undefined" && console.log !== null))){
+  console = {
+    log: function(message) {}
+  };
+}

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: (defparameter *name* ...)
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+(defparameter *${1:name}* $2
+  "${3:Description.}")$0

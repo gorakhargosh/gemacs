@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: goog.exportProperty(...);
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# key: gep
+# --
+goog.exportProperty($1, '$2', $1.$2);$0

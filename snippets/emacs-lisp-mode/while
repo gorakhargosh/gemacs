@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: (while ... ...)
+# key: while
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+(while (${1:condition})
+  $0)

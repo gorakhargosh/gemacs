@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: Google Closure Subinterface
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+goog.provide('$1');
+
+/**
+ * ${5:Short description.}
+ *
+ * @constructor
+ * @implements {$3}
+ */
+${1:ClassName} = function ($4){
+  $0
+};

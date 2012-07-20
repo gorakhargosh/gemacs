@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: (progn ... )
+# key: progn
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+(progn
+  $0)

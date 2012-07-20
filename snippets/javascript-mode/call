@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: function_call(...);
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+$1($0)

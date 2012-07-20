@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: {msg ...}{/msg}
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+{msg desc="${1:help text for translators}"}
+$0
+{/msg}

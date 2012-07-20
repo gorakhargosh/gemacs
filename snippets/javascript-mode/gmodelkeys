@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: goog enum for model keys
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+goog.provide('$1.Key');
+
+
+/**
+ * ${3:Keys for the model.}
+ *
+ * @enum {${2:string}}
+ */
+${1:name}.Key = {
+  ${4:$(upcase yas/text)}: '$4'$0
+};
+
+
+/** @type {!Array.<!$1.Key>} */
+$1.Key.values = [
+  $1.Key.${4:$(upcase yas/text)}
+];

@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: goog.scope(function(){ ... });
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+goog.provide('${2:namespace$(downcase yas/text)}');
+
+
+goog.scope(function() {
+
+var ${1:ns} = ${2:namespace};
+
+$0
+
+});  // goog.scope

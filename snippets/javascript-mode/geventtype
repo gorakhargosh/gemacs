@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: goog event type
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+goog.provide('$1.EventType');
+
+goog.require('goog.events');
+
+
+
+/** @enum {string} */
+${1:namespace}.EventType = {
+   ${2:$(upcase yas/text)}: goog.events.getUniqueId('$2')$0
+};
+
+
+/** @type {Array.<$1.EventType>} */
+$1.EventType.values = [
+  $1.EventType.${2:$(upcase yas/text)}
+];

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: goog.require(...);
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+goog.require('$1');$0

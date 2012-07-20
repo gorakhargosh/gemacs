@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: call with params
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+{call $1}
+  $0
+{/call}

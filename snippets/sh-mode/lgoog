@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: lgoog
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+#!/bin/sh
+#
+# Copyright ${2:`(nth 5 (decode-time))`} ${3:Google Inc}. ${4:All Rights Reserved.}
+#
+# Author: ${5:`user-mail-address`} (${6:`(user-full-name)`})
+
+$0

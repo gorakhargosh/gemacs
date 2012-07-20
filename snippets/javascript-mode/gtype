@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Google TypeCasting.
+# key: #type
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+/** @type {$1} */$0

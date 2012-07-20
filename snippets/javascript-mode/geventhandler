@@ -1,0 +1,53 @@
+# -*- mode: snippet -*-
+# name: Google Closure Event Handler composite.
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+goog.provide('${1:namespace$(downcase yas/text)}.${2:CustomEventHandler}');
+
+goog.require('goog.Disposable');
+goog.require('goog.events');
+goog.require('goog.events.EventHandler');
+
+
+
+/**
+ * ${7:Handles a collection of events for an event target.}
+ *
+ * @param {!${6:goog.events.EventTarget}} $4 An object that
+ *     derives from {@code goog.events.EventTarget} as it is used
+ *     as the target to listen for events from.
+ * @constructor
+ * @extends {goog.Disposable}
+ */
+$1.$2 = function(${4:eventTarget}) {
+  goog.base(this);
+
+  /**
+   * @type {!goog.events.EventHandler}
+   * @protected
+   */
+  this.handler = new goog.events.EventHandler(this);
+
+  // Listen to events from the event target.
+  this.handler.listen($4, '${5:event}', this.on${5:$(upcase-initials yas/text)}_);
+};
+goog.inherits($1.$2, goog.Disposable);
+
+
+/**
+ * @param {!goog.events.Event} e
+ * @private
+ */
+$1.$2.prototype.on${5:$(capitalize yas/text)}_ = function(e) {
+  $0
+};
+
+
+/**
+ * @override
+ */
+$1.$2.prototype.disposeInternal = function() {
+  $1.$2.superClass_.disposeInternal.call(this);
+  goog.dispose(this.handler);
+};

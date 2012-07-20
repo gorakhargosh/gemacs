@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Todo line.
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+// TODO(${1:`user-login-name`}): $0

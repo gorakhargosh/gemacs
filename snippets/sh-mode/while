@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: while
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+while [ $1 ]
+do
+  $0
+done

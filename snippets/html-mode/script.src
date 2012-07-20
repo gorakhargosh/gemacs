@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: <script type="text/javascript" src="..."></script>
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# contributor: Jimmy Wu <frozenthrone88@gmail.com>
+# --
+<script type="${1:text/javascript}" src="$2"></script>

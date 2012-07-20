@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: goog.dom.query(...)
+# key: g$
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+goog.dom.query($1)$0

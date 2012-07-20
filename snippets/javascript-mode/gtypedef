@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Google Closure type definition.
+# key: gtypedef
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+/** @typedef {$2} */
+$1;$0

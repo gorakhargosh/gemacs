@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: function arguments object.
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+var ${1:args} = 1 <= arguments.length ?
+    Array.prototype.slice.call(arguments, 0) : [];

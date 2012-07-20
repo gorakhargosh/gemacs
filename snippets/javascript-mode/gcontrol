@@ -1,0 +1,58 @@
+# -*- mode: snippet -*-
+# name: Google Closure custom control.
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+goog.provide('${1:namespace$(downcase yas/text)}.${2:ControlName}');
+
+goog.require('$1.$2Renderer');
+goog.require('goog.debug.Logger');
+goog.require('goog.ui.Control');
+goog.require('goog.dom');
+goog.require('goog.dom.DomHelper');
+goog.require('goog.dom.TagName');
+goog.require('$3');
+goog.require('$6');
+goog.require('goog.ui.registry');
+
+
+/**
+ * ${5:Short description.}
+ *
+ * @param {${6:goog.ui.ControlContent}} content Content.
+ * @param {$2Renderer=} opt_renderer Optional
+ *     renderer for this component.
+ * @param {goog.dom.DomHelper=} opt_domHelper Optional DOM helper.
+ * @constructor
+ * @extends {$3}
+ */
+$1.$2 = function(content, opt_renderer, opt_domHelper) {
+  goog.base(this, content, opt_renderer, opt_domHelper);
+};
+goog.inherits($1.$2, ${3:goog.ui.Control});
+
+
+/**
+ * Logger for this class.
+ *
+ * @type {!goog.debug.Logger}
+ * @protected
+ */
+$1.$2.prototype.logger =
+    goog.debug.Logger.getLogger('$1.$2');
+
+
+/** @override */
+$1.$2.prototype.enterDocument = function() {
+  goog.base(this, 'enterDocument');
+  // TODO(${4:`user-login-name`}): Attach listeners to elements.
+  $0
+};
+
+goog.ui.registry.setDefaultRenderer(
+    $1.$2,
+    $1.$2Renderer);
+
+goog.ui.registry.setDecoratorByClassName(
+    $1.$2Renderer.CSS_CLASS,
+    function() { return new $1.$2(); });

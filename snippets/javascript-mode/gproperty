@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: Google Getter/Setter Property.
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+/** @return {$3} $4 */
+$1.prototype.get${2:$(upcase-initials yas/text)} = function() {
+  return this.$2_;
+};
+
+
+/** @param {${3:type}} ${4:The value for this property.} */
+${1:namespace}.prototype.set${2:$(upcase-initials yas/text)} = function(${2:property}) {
+  this.$2_ = $2;
+};
+$0

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: (string-to-int ... ...)
+# key: stoi
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+(string-to-int $1)$0

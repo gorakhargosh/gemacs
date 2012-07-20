@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: goog.debug.Logger class member
+# contributor: Yesudeep Mangalapilly (yesudeep@google.com)
+# expand-env: ((yas/indent-line 'fixed))
+# --
+goog.require('goog.debug.Logger');
+
+
+/**
+ * Logger for this class.
+ *
+ * @type {!goog.debug.Logger}
+ * @protected
+ */
+$1.prototype.logger =
+    goog.debug.Logger.getLogger('$1');

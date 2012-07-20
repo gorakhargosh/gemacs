@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: function(...){...}
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+/**
+ * ${3:Documentation.}
+ */
+function ${1:name}($2) {$0}

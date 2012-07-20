@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: (when ... ...)
+# key: when
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+(when ${1:condition}
+  ($0))

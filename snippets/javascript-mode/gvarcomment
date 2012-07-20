@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Google Constant variable comment.
+# key: #v
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+/**
+ * @type {$1}
+ * ${2:$$(yas/choose-value '("@private" "@protected" " "))}
+ */$0

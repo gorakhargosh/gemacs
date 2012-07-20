@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: goog.provide(...);
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+goog.provide('$1');$0

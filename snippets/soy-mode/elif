@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: elseif
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+{elseif $1}
+  $0

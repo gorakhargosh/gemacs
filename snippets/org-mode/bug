@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Bug line
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+http://b/${1:XXXXXXX}: $0

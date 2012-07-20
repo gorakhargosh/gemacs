@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: @import "...";
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+@import "$1";$0

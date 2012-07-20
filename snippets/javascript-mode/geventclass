@@ -1,0 +1,43 @@
+# -*- mode: snippet -*-
+# name: Google Closure Event subclass.
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+goog.provide('${1:namespace$(downcase yas/text)}.${2:Custom}Event');
+
+goog.require('goog.events.Event');
+
+
+
+/**
+ * ${9:Short description of the event.}
+ *
+ * @param {!${8:goog.events.EventTarget}} $4 The target of the event.
+ * @param {$6} $5 $7
+ * @constructor
+ * @extends {goog.events.Event}
+ */
+$1.$2Event = function(${4:eventTarget}, ${5:property}) {
+  goog.base(this, $1.EventType.${2:$(upcase yas/text)}, $4);
+
+  /**
+   * ${7:Short description.}
+   *
+   * @type {${6:string}}
+   * @private
+   */
+  this.$5_ = $5;
+
+  $0
+};
+goog.inherits($1.$2Event, goog.events.Event);
+
+
+/**
+ * $7
+ *
+ * @return {$6} $7
+ */
+$1.$2Event.prototype.get${5:$(capitalize yas/text)} = function() {
+  return this.$5_;
+};

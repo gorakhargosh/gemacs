@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: goog enum
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+goog.provide('$1');
+
+
+/**
+ * ${3:Short description.}
+ *
+ * @enum {${2:number}}
+ */
+${1:name} = {
+  $4: $0
+};
+
+
+/** @type {!Array.<$1>} */
+$1.values = [
+  $1.$4
+];

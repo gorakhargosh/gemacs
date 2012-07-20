@@ -1,0 +1,10 @@
+# -*- coding: utf-8 -*-
+# name: !/usr/bin/env python
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# key: py
+# --
+#!/usr/bin/env python
+# -*- coding:utf-8;mode:python;python-indent:${1:2};indent-tabs-mode:nil -*-
+# vim: set ft=python sts=$1 ts=$1 sw=$1 et
+
+$0

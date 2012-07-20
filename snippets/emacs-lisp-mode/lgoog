@@ -1,0 +1,31 @@
+# -*- coding: utf-8 -*-
+# name: Google Licensed Module
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+;;; `(file-name-nondirectory (buffer-file-name (current-buffer)))` --- ${1:Short description.}
+;;
+;; Copyright ${2:`(nth 5 (decode-time))`} ${3:Google Inc}. All Rights Reserved.
+;;
+;; Author: ${4:`user-mail-address`} (${5:`(user-full-name)`})
+;; Keywords: $6
+;;
+;; This file is ${7:NOT }part of GNU Emacs.
+;;
+;;; Commentary:
+;;
+;; $1
+;;
+;; In order to use the functionality in this module, load it like this:
+;;
+;;     (require '$8)
+;;
+;; $9
+;;
+;;; Code:
+;;
+
+$0
+
+(provide '${8:`(file-name-sans-extension (file-name-nondirectory (buffer-file-name (current-buffer))))`})
+
+;;; `(file-name-nondirectory (buffer-file-name (current-buffer)))` ends here

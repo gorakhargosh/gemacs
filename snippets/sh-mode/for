@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: for
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+for $1
+do
+  $0
+done

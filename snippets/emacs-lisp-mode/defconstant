@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: (defconstant +name+ ...)
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+(defconstant +${1:name}+ $2
+  "${3:Description.}")$0

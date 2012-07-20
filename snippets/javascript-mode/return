@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: return ...;
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+return $0;

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Comment
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# key: ###
+# --
+/** $1 */$0

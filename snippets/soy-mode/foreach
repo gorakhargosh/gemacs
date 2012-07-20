@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: foreach
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+{foreach $1 in $2}
+  $0
+{ifempty}
+
+{/foreach}

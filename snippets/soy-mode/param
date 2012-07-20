@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: param standalone
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+{param $1: $0 /}

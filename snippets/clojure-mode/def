@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: def
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+(def ${1:name} $0)

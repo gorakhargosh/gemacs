@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: {literal}{/literal}
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+{literal}$0{/literal}

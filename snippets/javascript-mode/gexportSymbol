@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: goog.exportSymbol(...);
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# key: ges
+# --
+goog.exportSymbol('$1', $1);$0

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Meeting line
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+${1:`(nth 3 (decode-time))`}-${2:`(nth 4 (decode-time))`}-${3:`(nth 5 (decode-time))`}: with $4 about $5.

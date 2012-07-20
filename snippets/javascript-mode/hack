@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Hack line.
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+// HACK(${1:`user-login-name`}): $0

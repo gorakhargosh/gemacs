@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: switch() { ... }
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+switch ($1) {
+  case $2:
+    $0
+  default:
+    break;
+}

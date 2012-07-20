@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: (list ... ...)
+# key: list
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+(list $1)$0

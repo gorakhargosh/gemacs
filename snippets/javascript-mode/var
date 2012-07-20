@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: var ... = ...;
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+var $1 = $0;

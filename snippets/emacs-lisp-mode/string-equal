@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: (string-equal ... ...)
+# key: sequal
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+(string-equal $1 $0)

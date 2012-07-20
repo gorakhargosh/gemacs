@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: from ... import ...
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+from $1 import $0

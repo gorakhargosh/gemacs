@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: case option
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+$1 ) $0 ;;

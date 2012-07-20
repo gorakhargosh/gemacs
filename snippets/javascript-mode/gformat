@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: ... = function (...) { ... };
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+goog.string.format($0);

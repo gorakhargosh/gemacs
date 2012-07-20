@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: {case ...}
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+{case ${1:expression_list}}$0

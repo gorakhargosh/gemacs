@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: catch (err) { ... }
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+catch (${1:err}) {
+  $0
+}

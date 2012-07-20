@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: (lambda function_name ...)
+# key: lambda
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+(lambda ($1)
+  $0)

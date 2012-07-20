@@ -1,0 +1,6 @@
+# -*- Mode: snippet -*-
+# name: (provide ...)
+# key: provide
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+(provide '${1:`(file-name-sans-extension (file-name-nondirectory (buffer-file-name (current-buffer))))`})$0

@@ -1,0 +1,31 @@
+# -*- mode: snippet -*-
+# name: plovr.json file
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+// Plovr configuration.
+// For more information, see: http://plovr.com
+{
+  'id':                  '${1:appid}',
+  'paths':               '${2:js/}',
+  'inputs':              '${3:js/main.js}',
+  'output-wrapper':      '(function(){%output%})();',
+  'mode':                '${4:ADVANCED}',
+  'define': {
+    'goog.LOCALE':       '${5:en_US}'
+  },
+  'checks': {
+    // Unfortunately, the Closure Library violates these in many places.
+    // 'accessControls': 'ERROR',
+    // 'visibility':     'ERROR'
+
+    'checkRegExp':       '${6:WARNING}',
+    'checkTypes':        '${7:WARNING}',
+    'checkVars':         '${8:WARNING}',
+    'deprecated':        '${9:WARNING}',
+    'fileoverviewTags':  '${10:WARNING}',
+    'invalidCasts':      '${11:WARNING}',
+    'missingProperties': '${12:WARNING}',
+    'nonStandardJsDocs': '${13:WARNING}',
+    'undefinedVars':     '${14:WARNING}'
+  }
+}

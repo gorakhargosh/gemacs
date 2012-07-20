@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: {namespace ...}
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+{namespace ${1:name}}

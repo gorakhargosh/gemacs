@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: (defalias alias for)
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+(defalias ${1:alias} ${2:for})$0

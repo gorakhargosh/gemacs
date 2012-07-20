@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: readme.google
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+URL: ${1:http://...}
+Version: ${2:version string, <git-or-hg-hash>, rNNN, or YYYY/MM/DD}
+License: ${3:GPL v2, GPL v3, LGPL v2.1, Apache 2.0, BSD, MIT}
+License File: LICENSE
+
+Description:
+${4:Short description of the package.}
+
+Local Modifications:
+${5:No modifications.}

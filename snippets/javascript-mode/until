@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: while(!(...)){...}
+# key: until
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+while (!(${condition})) {
+  $0
+}

@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: {switch ...}...{/switch}
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+{switch ${1:expression}}
+  {case ${2:expression_list}}
+    $0
+  {default}
+
+{/switch}

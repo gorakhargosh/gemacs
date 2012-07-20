@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: echo
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+echo "$0";

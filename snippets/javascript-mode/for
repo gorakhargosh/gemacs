@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: for (...; ...; ...) { ... }
+# key: for
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+for ($1; $2; $3) {
+  $0
+}

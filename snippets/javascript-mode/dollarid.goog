@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: goog.dom.getElement(...)
+# key: g#
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+goog.dom.getElement($1)$0

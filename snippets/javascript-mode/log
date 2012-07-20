@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: console.log(...);
+# key: log
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+console.log($0);

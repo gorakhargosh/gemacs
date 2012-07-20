@@ -1,0 +1,113 @@
+# -*- mode: snippet -*-
+# name: Google Closure custom component.
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+goog.provide('${1:namespace$(downcase yas/text)}.${2:ComponentName}');
+
+goog.require('goog.debug.Logger');
+goog.require('goog.dom');
+goog.require('goog.dom.DomHelper');
+goog.require('goog.dom.TagName');
+goog.require('goog.soy');
+goog.require('$3');
+goog.require('goog.ui.Component');
+goog.require('soy');
+
+
+
+/**
+ * ${6:Short description.}
+ *
+ * @param {goog.dom.DomHelper=} opt_domHelper Optional DOM helper.
+ * @constructor
+ * @extends {$3}
+ */
+$1.$2 = function(opt_domHelper) {
+  goog.base(this, opt_domHelper);
+};
+goog.inherits($1.$2, ${3:goog.ui.Component});
+
+
+/**
+ * The base CSS class name.
+ *
+ * @type {string}
+ * @private
+ */
+$1.$2.className_ =
+    goog.getCssName('$4');
+
+
+/**
+ * Logger for this class.
+ *
+ * @type {!goog.debug.Logger}
+ * @protected
+ */
+$1.$2.prototype.logger =
+    goog.debug.Logger.getLogger('$1.$2');
+
+
+/**
+ * Id fragments for elements.
+ *
+ * @enum {string}
+ */
+$1.$2.IdFragment = {
+
+};
+
+
+/**
+ * Returns the CSS class associated with this object.
+ *
+ * @return {string} The CSS class associated with this object.
+ */
+$1.$2.prototype.getCssClass = function() {
+  return $1.$2.className_;
+};
+
+
+/** @override */
+$1.$2.prototype.createDom = function() {
+  var el = goog.dom.createDom(goog.dom.TagName.DIV,
+                              goog.getCssName(this.getCssClass(),
+                                              'wrapper'));
+  var ids = this.makeIds($1.$2.IdFragment);
+
+  $0
+
+  this.setElementInternal(el);
+};
+
+
+/** @override */
+$1.$2.prototype.canDecorate = function(element) {
+  return ${5:false};
+};
+
+
+/** @override */
+$1.$2.prototype.decorateInternal = function(element) {
+  // Remove this call and set canDecorate to return true if impl.
+  goog.base(this, 'decorateInternal', element);
+};
+
+
+/** @override */
+$1.$2.prototype.enterDocument = function() {
+  goog.base(this, 'enterDocument');
+};
+
+
+/** @override */
+$1.$2.prototype.exitDocument = function() {
+  goog.base(this, 'exitDocument');
+};
+
+
+/** @override */
+$1.$2.prototype.disposeInternal = function() {
+  goog.base(this, 'disposeInternal');
+};

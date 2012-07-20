@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Anonymous function (lambda)
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+function($1) {$0}
