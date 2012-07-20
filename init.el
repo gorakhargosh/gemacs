@@ -1,3 +1,5 @@
+;;; init.el -- Emacs configuration in a single file.
+;;
 ;; Copyright 2012 Google Inc. All Rights Reserved.
 ;;
 ;; Author: yesudeep@google.com (Yesudeep Mangalapilly)
