@@ -718,12 +718,27 @@ immediately."
 (require 'auto-complete-config)
 (ac-config-default)
 (setq ac-ignore-case 'smart
-      ac-use-fuzzy t
-      ac-fuzz-enable t
+      ;; ac-use-fuzzy t
+      ;; ac-fuzz-enable t
       ;; ac-auto-start t
+      ac-dwim t
       )
-(define-key ac-completing-map "\t" 'ac-complete)
-(define-key ac-completing-map "\r" nil)
+;; Don't use tab to cycle. It's irritating.
+;; (define-key ac-completing-map "\t" 'ac-complete)
+;; (define-key ac-completing-map "\r" nil)
+(define-key ac-completing-map (kbd "C-n") 'ac-next)
+(define-key ac-completing-map (kbd "C-p") 'ac-previous)
+
+;; Use Emacs' built-in TAB completion hooks to trigger AC (Emacs >= 23.2)
+(setq tab-always-indent 'complete)  ;; use 'complete when auto-complete
+                                    ;; is disabled
+(add-to-list 'completion-styles 'initials t)
+;; hook AC into completion-at-point
+(defun set-auto-complete-as-completion-at-point-function ()
+  (setq completion-at-point-functions '(auto-complete)))
+(add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
+
+;; Set up sources for autocompletion.
 (setq-default ac-sources
               '(ac-source-dictionary
                 ac-source-abbrev
