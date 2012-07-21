@@ -83,6 +83,7 @@
                            fastnav
                            fill-column-indicator
                            find-things-fast
+                           flex-isearch
                            ido-ubiquitous
                            iedit
                            js2-mode
@@ -917,13 +918,9 @@ immediately."
 ;; ======================================================================
 ;; Packages
 ;; ======================================================================
-;; (require 'flex-isearch)
 
-;; (require 'icicles)
-;; (icy-mode 1)
-
-;; (require 'duplicate-thing)
-;; (global-set-key (kbd "M-c") 'duplicate-thing)
+(require 'flex-isearch)
+(global-flex-isearch-mode)
 
 ;; (require 'smooth-scroll)
 ;; (smooth-scroll-mode t)
@@ -1010,11 +1007,6 @@ immediately."
 
 (require 'perspective)
 (persp-mode)
-
-;; (require 'smex)
-;; (setq smex-save-file "~/.emacs.d/.smex-items")
-;; (global-set-key (kbd "M-x") 'smex)
-;; (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 
 
 ;; ======================================================================
@@ -1247,10 +1239,10 @@ compilation output."
                                ))
 
 ;; Use regex searches by default
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "\C-r") 'isearch-backward-regexp)
-;; (global-set-key (kbd "C-s") 'flex-isearch-forward)
-;; (global-set-key (kbd "\C-r") 'flex-isearch-backward)
+;; (global-set-key (kbd "C-s") 'isearch-forward-regexp)
+;; (global-set-key (kbd "\C-r") 'isearch-backward-regexp)
+(global-set-key (kbd "C-s") 'flex-isearch-forward)
+(global-set-key (kbd "\C-r") 'flex-isearch-backward)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 
