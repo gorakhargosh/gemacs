@@ -75,10 +75,7 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar default-packages '(
-                           ;; duplicate-thing
-                           ;; flex-isearch
-                           ;; icicles
-                           ;; js2-refactor
+                           ;; smooth-scroll
                            auto-complete
                            autopair
                            expand-region
@@ -95,7 +92,7 @@
                            move-text
                            nav
                            paredit
-                           ;; smooth-scroll
+                           perspective
                            switch-window
                            undo-tree
                            yasnippet
@@ -1004,6 +1001,9 @@ immediately."
 (define-key sgml-mode-map (kbd "C-c C-r") 'rename-sgml-tag)
 
 ;; JS2 refactor stuff is defined in el-get load.
+
+(require 'perspective)
+(persp-mode)
 
 ;; ======================================================================
 ;; Auto-complete and snippets.
