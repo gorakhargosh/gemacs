@@ -84,6 +84,7 @@
                            fill-column-indicator
                            find-things-fast
                            flex-isearch
+                           helm
                            ido-ubiquitous
                            iedit
                            js2-mode
@@ -1008,6 +1009,9 @@ immediately."
 (require 'perspective)
 (persp-mode)
 
+(require 'helm-config)
+(helm-mode 1)
+(global-set-key (kbd "M-F") 'helm-for-files)
 
 ;; ======================================================================
 ;; Auto-complete and snippets.
