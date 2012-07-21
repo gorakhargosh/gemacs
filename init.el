@@ -541,6 +541,11 @@ at point."
       ido-use-filename-at-point 'guess
       ido-enable-flex-matching t)
 
+;; Display ido results vertically, rather than horizontally.
+;; From the Emacs wiki.
+(setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
+(defun ido-disable-line-trucation () (set (make-local-variable 'truncate-lines) nil))
+(add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
 
 ;; ======================================================================
 ;; goog/paredit
