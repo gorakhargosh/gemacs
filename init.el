@@ -75,6 +75,7 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar default-packages '(
+                           ;; smex   ;; Dont' use this one. The one in el-get works.
                            ;; smooth-scroll
                            auto-complete
                            autopair
@@ -131,11 +132,11 @@
  el-get-sources
  '(el-get
 
-   ;; (:name smex              ;; a better (ido-like) M-x
-   ;;        :after (progn
-   ;;                 (setq smex-save-file "~/.emacs.d/.smex-items")
-   ;;                 (global-set-key (kbd "M-x") 'smex)
-   ;;                 (global-set-key (kbd "M-X") 'smex-major-mode-commands)))
+   (:name smex              ;; a better (ido-like) M-x
+          :after (progn
+                   (setq smex-save-file "~/.emacs.d/.smex-items")
+                   (global-set-key (kbd "M-x") 'smex)
+                   (global-set-key (kbd "M-X") 'smex-major-mode-commands)))
 
    ;; (:name magit             ;; Git for emacs.
    ;;        :after (progn
@@ -1004,6 +1005,12 @@ immediately."
 
 (require 'perspective)
 (persp-mode)
+
+;; (require 'smex)
+;; (setq smex-save-file "~/.emacs.d/.smex-items")
+;; (global-set-key (kbd "M-x") 'smex)
+;; (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+
 
 ;; ======================================================================
 ;; Auto-complete and snippets.
