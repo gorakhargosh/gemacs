@@ -95,7 +95,7 @@
                            move-text
                            nav
                            paredit
-                           smooth-scroll
+                           ;; smooth-scroll
                            switch-window
                            undo-tree
                            yasnippet
@@ -922,8 +922,8 @@ immediately."
 ;; (require 'duplicate-thing)
 ;; (global-set-key (kbd "M-c") 'duplicate-thing)
 
-(require 'smooth-scroll)
-(smooth-scroll-mode t)
+;; (require 'smooth-scroll)
+;; (smooth-scroll-mode t)
 
 (require 'autopair)
 (autopair-global-mode)
@@ -1332,6 +1332,5 @@ compilation output."
       (goog/elisp/load-directory goog-username-dir)
       (goog/elisp/load-directory goog-os-dir)
       )))
-
 
 ;;; init.el ends here.
