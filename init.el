@@ -952,6 +952,8 @@ immediately."
 (global-set-key [M-S-up] 'move-text-up)
 (global-set-key [M-S-down] 'move-text-down)
 
+(require 'switch-window)
+
 ;; (when window-system
 ;;   (require 'fill-column-indicator)
 ;;   (define-globalized-minor-mode global-fci-mode fci-mode
@@ -1061,7 +1063,7 @@ immediately."
                 ac-source-words-in-all-buffer
                 ac-source-words-in-buffer
                 ac-source-words-in-same-mode-buffers
-                ;; ac-source-yasnippet   ;; Don't enable this.
+                ac-source-yasnippet   ;; Don't enable this.
                                          ;; It causes problems with
                                          ;; completion.
                 ))
