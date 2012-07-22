@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: parseInt(..., 10)
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# key: int
+# --
+parseInt($1, ${2:10})$0
