@@ -75,6 +75,7 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar default-packages '(
+                           ;; flex-isearch
                            ;; smex   ;; Dont' use this one. The one in el-get works.
                            ;; smooth-scroll
                            auto-complete
@@ -83,7 +84,6 @@
                            fastnav
                            fill-column-indicator
                            find-things-fast
-                           flex-isearch
                            helm
                            ido-ubiquitous
                            iedit
@@ -925,6 +925,11 @@ immediately."
 
 ;; (require 'smooth-scroll)
 ;; (smooth-scroll-mode t)
+
+;; Let the power to type multiple keys at the same time be yours.
+(require 'key-chord)
+(key-chord-mode 1)
+(setq key-chord-two-keys-delay 0.05)
 
 (require 'autopair)
 (autopair-global-mode)
