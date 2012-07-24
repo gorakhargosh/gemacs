@@ -463,7 +463,7 @@
 ;; ----------------------------------------------------------------------
 ;; Editing
 ;; ----------------------------------------------------------------------
-(setq-default fill-column 75)     ;; right margin and fill column.
+(setq-default fill-column 80)     ;; right margin and fill column.
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 ;; Use whitespace mode. Cleans up trailing spaces, shows tabs, unnecessary
@@ -474,7 +474,7 @@
 (setq whitespace-style
       '(face empty indentation lines-tail newline tabs trailing)
       whitespace-action '(auto-cleanup warn-read-only)
-      whitespace-line-column 75)
+      whitespace-line-column 80)
 
 ;; Whitespace-aware kill-line.
 (defadvice kill-line (after kill-line-cleanup-whitespace activate compile)
@@ -1136,7 +1136,7 @@ immediately."
   ;;       js3-strict-missing-semi-warning t
   ;;       js3-highlight-external-variables t
   ;;       js3-highlight-level 3
-  ;;       js3-max-columns 75)
+  ;;       js3-max-columns 80)
   )
 (defun goog/config/js-mode/key-chords ()
   "Sets up the key-chords for JavaScript mode."
