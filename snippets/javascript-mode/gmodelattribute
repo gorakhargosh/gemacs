@@ -7,11 +7,8 @@
  * @param {$3=} opt_val Default value if none is found.
  * @return {$3} $4
  */
-$1.prototype.get${2:$(upcase-initials yas/text)} =
-    function(opt_val) {
-  return /** @type {$3} */ (this.get(
-      $1.Key.${2:$(goog/edit/camelcase-to-upcased-underscore-string yas/text)},
-      opt_val));
+$1.prototype.get${2:$(upcase-initials yas/text)} = function(opt_val) {
+  return /** @type {$3} */ (this.get($1.Key.${2:$(goog/edit/camelcase-to-upcased-underscore-string yas/text)}, opt_val));
 };
 
 
@@ -20,9 +17,7 @@ $1.prototype.get${2:$(upcase-initials yas/text)} =
  * @param {boolean=} opt_silent true if change events
  *     should not be fired; false otherwise.
  */
-${1:namespace}.prototype.set${2:$(upcase-initials yas/text)} =
-    function(${2:attribute}, opt_silent) {
-  this.set($1.Key.${2:$(goog/edit/camelcase-to-upcased-underscore-string yas/text)},
-           $2, opt_silent);
+${1:namespace}.prototype.set${2:$(upcase-initials yas/text)} = function(${2:attribute}, opt_silent) {
+  this.set($1.Key.${2:$(goog/edit/camelcase-to-upcased-underscore-string yas/text)}, $2, opt_silent);
 };
 $0
