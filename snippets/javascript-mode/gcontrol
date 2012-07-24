@@ -38,8 +38,7 @@ goog.inherits($1.$2, ${3:goog.ui.Control});
  * @type {!goog.debug.Logger}
  * @protected
  */
-$1.$2.prototype.logger =
-    goog.debug.Logger.getLogger('$1.$2');
+$1.$2.prototype.logger = goog.debug.Logger.getLogger('$1.$2');
 
 
 /** @override */

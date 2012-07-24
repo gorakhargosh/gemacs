@@ -34,8 +34,7 @@ goog.inherits($1.$2, ${3:goog.ui.Component});
  * @type {string}
  * @private
  */
-$1.$2.className_ =
-    goog.getCssName('$4');
+$1.$2.className_ = goog.getCssName('$4');
 
 
 /**
@@ -44,8 +43,7 @@ $1.$2.className_ =
  * @type {!goog.debug.Logger}
  * @protected
  */
-$1.$2.prototype.logger =
-    goog.debug.Logger.getLogger('$1.$2');
+$1.$2.prototype.logger = goog.debug.Logger.getLogger('$1.$2');
 
 
 /**
@@ -71,8 +69,7 @@ $1.$2.prototype.getCssClass = function() {
 /** @override */
 $1.$2.prototype.createDom = function() {
   var el = goog.dom.createDom(goog.dom.TagName.DIV,
-                              goog.getCssName(this.getCssClass(),
-                                              'wrapper'));
+      goog.getCssName(this.getCssClass(), 'wrapper'));
   var ids = this.makeIds($1.$2.IdFragment);
 
   $0
