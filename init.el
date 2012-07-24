@@ -920,8 +920,8 @@ immediately."
 ;; Packages
 ;; ======================================================================
 
-(require 'flex-isearch)
-(global-flex-isearch-mode)
+;; (require 'flex-isearch)
+;; (global-flex-isearch-mode)
 
 ;; (require 'smooth-scroll)
 ;; (smooth-scroll-mode t)
