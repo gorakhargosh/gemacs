@@ -1236,8 +1236,8 @@ compilation output."
 ;; Keyboard bindings.
 ;; ======================================================================
 ;; Shift region left/right.
-(global-set-key (kbd "M-]") 'goog/edit/shift-right)
-(global-set-key (kbd "M-[") 'goog/edit/shift-left)
+(global-set-key (kbd "s-]") 'goog/edit/shift-right)
+(global-set-key (kbd "s-[") 'goog/edit/shift-left)
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; Increase/decrease/reset font size.
