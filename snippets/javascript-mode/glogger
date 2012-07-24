@@ -12,5 +12,4 @@ goog.require('goog.debug.Logger');
  * @type {!goog.debug.Logger}
  * @protected
  */
-$1.prototype.logger =
-    goog.debug.Logger.getLogger('$1');
+$1.prototype.logger = goog.debug.Logger.getLogger('$1');
