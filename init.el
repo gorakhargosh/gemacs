@@ -519,25 +519,6 @@
 ;; ----------------------------------------------------------------------
 ;; (require 'dired-x)     ;; C-x C-j jumps to current file in dired.
 
-;; Recent files.
-(require 'recentf)
-;; Disable before we start recentf for tramp.
-(setq recentf-auto-cleanup 'never)
-(recentf-mode t)
-(setq recentf-max-saved-items 50)
-(defun ido-recentf-open ()
-  "Use `ido-completing-read' to \\[find-file] a recent file"
-  (interactive)
-  (if (find-file (ido-completing-read "Find recent file: " recentf-list))
-      (message "Opening file...")
-    (message "Aborting")))
-;; get rid of `find-file-read-only' and replace it with something
-;; more useful.
-(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
-
-;; ======================================================================
-;; goog/ido
-;; ======================================================================
 (require 'ido)
 (require 'ido-ubiquitous)
 
@@ -556,13 +537,34 @@ at point."
 (ido-ubiquitous t)
 (setq ido-save-directory-list-file (concat config-dir ".ido.last")
       ido-use-filename-at-point 'guess
-      ido-enable-flex-matching t)
+      ido-enable-flex-matching t
+      confirm-nonexistent-file-or-buffer nil
+      ido-create-new-buffer 'always)
+
 
 ;; Display ido results vertically, rather than horizontally.
 ;; From the Emacs wiki.
 (setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
 (defun ido-disable-line-trucation () (set (make-local-variable 'truncate-lines) nil))
 (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
+
+(global-set-key (kbd "M-i") 'ido-goto-symbol)
+
+;; Recent files.
+(require 'recentf)
+;; Disable before we start recentf for tramp.
+(setq recentf-auto-cleanup 'never)
+(recentf-mode t)
+(setq recentf-max-saved-items 50)
+(defun ido-recentf-open ()
+  "Use `ido-completing-read' to \\[find-file] a recent file"
+  (interactive)
+  (if (find-file (ido-completing-read "Find recent file: " recentf-list))
+      (message "Opening file...")
+    (message "Aborting")))
+;; get rid of `find-file-read-only' and replace it with something
+;; more useful.
+(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
 
 ;; ======================================================================
 ;; goog/paredit
