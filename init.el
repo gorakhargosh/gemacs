@@ -579,7 +579,7 @@ at point."
       ido-use-filename-at-point 'guess
       ido-enable-flex-matching t
       confirm-nonexistent-file-or-buffer nil
-      ido-create-new-buffer 'always)
+      ido-create-new-buffer 'never)  ;; I almost never create new buffers.
 
 
 ;; Display ido results vertically, rather than horizontally.
