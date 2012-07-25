@@ -1061,7 +1061,7 @@ immediately."
       ac-dwim t
       )
 ;; Don't use tab to cycle. It's irritating.
-;; (define-key ac-completing-map "\t" 'ac-complete)
+(define-key ac-completing-map "\t" 'ac-complete)
 ;; (define-key ac-completing-map "\r" nil)
 (define-key ac-completing-map (kbd "C-n") 'ac-next)
 (define-key ac-completing-map (kbd "C-p") 'ac-previous)
@@ -1086,18 +1086,32 @@ immediately."
                 ac-source-words-in-all-buffer
                 ac-source-words-in-buffer
                 ac-source-words-in-same-mode-buffers
-                ac-source-yasnippet   ;; Don't enable this.
-                                         ;; It causes problems with
-                                         ;; completion.
+                ac-source-yasnippet
                 ))
 (dolist (mode '(
-                magit-log-edit-mode log-edit-mode org-mode
-                text-mode haml-mode
-                sass-mode yaml-mode csv-mode espresso-mode
+                clojure-mode
+                css-mode
+                csv-mode
+                espresso-mode
+                haml-mode
                 haskell-mode
-                html-mode nxml-mode sh-mode smarty-mode clojure-mode
-                lisp-mode textile-mode markdown-mode tuareg-mode
-                js3-mode css-mode less-css-mode))
+                html-mode
+                js3-mode
+                less-css-mode
+                lisp-mode
+                log-edit-mode
+                magit-log-edit-mode
+                markdown-mode
+                nxml-mode
+                org-mode
+                sass-mode
+                sh-mode
+                smarty-mode
+                text-mode
+                textile-mode
+                tuareg-mode
+                yaml-mode
+                ))
   (add-to-list 'ac-modes mode))
 
 
