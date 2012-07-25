@@ -377,7 +377,7 @@
 (when window-system
   (blink-cursor-mode nil)
   (global-font-lock-mode 1)
-  (global-hl-line-mode)
+  ;; (global-hl-line-mode)
   (mouse-wheel-mode t)
   (scroll-bar-mode -1)
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
