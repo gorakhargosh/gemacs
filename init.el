@@ -75,14 +75,14 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar default-packages '(
+                           ;; fill-column-indicator
                            ;; flex-isearch
-                           ;; smex   ;; Dont' use this one. The one in el-get works.
+                           ;; smex   ;; Don't use this one. el-get works.
                            ;; smooth-scroll
                            auto-complete
                            autopair
                            expand-region
                            fastnav
-                           ;; fill-column-indicator
                            find-things-fast
                            helm
                            ido-ubiquitous
@@ -229,6 +229,7 @@
    ;;                 (require 'expand-region)
    ;;                 (global-set-key (kbd "M-8") 'er/expand-region)))
 
+   ;; Don't enable this. Breaks autocomplete and snippets.
    ;; ;; (:name js3-mode
    ;; ;;        :website "https://github.com/thomblake/js3-mode#readme"
    ;; ;;        :description "A chimeric fork of js2-mode and js-mode"
