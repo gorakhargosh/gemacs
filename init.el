@@ -24,7 +24,8 @@
 ;;; This file is NOT a part of GNU Emacs.
 ;;
 
-(require 'cl)
+(eval-when-compile
+  (require 'cl))
 
 ;; ======================================================================
 ;; Initial configuration.
@@ -476,7 +477,7 @@
 
 
 ;; ----------------------------------------------------------------------
-;; Editing
+;; Editing and searching.
 ;; ----------------------------------------------------------------------
 (setq-default fill-column 80)     ;; right margin and fill column.
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
@@ -512,6 +513,30 @@
                      (lambda ()
                        (not (eq (get-text-property (point) 'face)
                                 'font-lock-comment-face))))))
+
+;; ----------------------------------------------------------------------
+;; Occur.
+;; ----------------------------------------------------------------------
+(defun get-buffers-matching-mode (mode)
+  "Returns a list of buffers where their major-mode is equal to MODE"
+  (let ((buffer-mode-matches '()))
+   (dolist (buf (buffer-list))
+     (with-current-buffer buf
+       (if (eq mode major-mode)
+           (add-to-list 'buffer-mode-matches buf))))
+   buffer-mode-matches))
+
+(defun multi-occur-in-this-mode ()
+  "Show all lines matching REGEXP in buffers with this major mode."
+  (interactive)
+  (multi-occur
+   (get-buffers-matching-mode major-mode)
+   (car (occur-read-primary-args))))
+
+;; Global key for `multi-occur-in-this-mode'.
+;; (global-set-key (kbd "<f6>") 'occur)
+(global-set-key (kbd "<f7>") 'multi-occur-in-this-mode)
+
 
 ;; ----------------------------------------------------------------------
 ;; OS Clipboard.
