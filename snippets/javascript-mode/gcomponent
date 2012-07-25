@@ -11,7 +11,6 @@ goog.require('goog.dom.DomHelper');
 goog.require('goog.dom.TagName');
 goog.require('goog.soy');
 goog.require('$3');
-goog.require('soy');
 
 
 
@@ -29,12 +28,13 @@ goog.inherits($1.$2, ${3:goog.ui.Component});
 
 
 /**
- * The base CSS class name.
+ * The base CSS class name for the component.
  *
  * @type {string}
+ * @const
  * @private
  */
-$1.$2.className_ = goog.getCssName('$4');
+$1.$2.CSS_NAME_ = goog.getCssName('$4');
 
 
 /**
@@ -62,7 +62,7 @@ $1.$2.IdFragment = {
  * @return {string} The CSS class associated with this object.
  */
 $1.$2.prototype.getCssClass = function() {
-  return $1.$2.className_;
+  return $1.$2.CSS_NAME_;
 };
 
 
