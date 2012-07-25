@@ -1283,10 +1283,10 @@ compilation output."
                                ))
 
 ;; Use regex searches by default
-;; (global-set-key (kbd "C-s") 'isearch-forward-regexp)
-;; (global-set-key (kbd "\C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "C-s") 'flex-isearch-forward)
-(global-set-key (kbd "\C-r") 'flex-isearch-backward)
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-set-key (kbd "\C-r") 'isearch-backward-regexp)
+;; (global-set-key (kbd "C-s") 'flex-isearch-forward)
+;; (global-set-key (kbd "\C-r") 'flex-isearch-backward)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 
@@ -1324,7 +1324,7 @@ compilation output."
 (key-chord-define-global "hj" 'undo)
 ;;(key-chord-define-global [?h ?j]  'undo)  ; the same
 (key-chord-define-global "jk" 'dabbrev-expand)
-(key-chord-define-global "dd" "\C-a\C-k")
+(key-chord-define-global "zx" "\C-a\C-k")
 ;; (key-chord-define-global "pp" 'yank)
 ;; (key-chord-define-global "xx" 'kill-region)
 ;; (key-chord-define-global "cc" 'kill-ring-save)
