@@ -82,7 +82,7 @@
                            autopair
                            expand-region
                            fastnav
-                           fill-column-indicator
+                           ;; fill-column-indicator
                            find-things-fast
                            helm
                            ido-ubiquitous
@@ -977,11 +977,11 @@ immediately."
 (require 'switch-window)
 
 ;; Need to test this properly.
-(when window-system
-  (require 'fill-column-indicator)
-  (define-globalized-minor-mode global-fci-mode fci-mode
-    (lambda () (fci-mode 1)))
-  (global-fci-mode 1))
+;; (when window-system
+;;   (require 'fill-column-indicator)
+;;   (define-globalized-minor-mode global-fci-mode fci-mode
+;;     (lambda () (fci-mode 1)))
+;;   (global-fci-mode 1))
 
 (require 'expand-region)
 (global-set-key (kbd "M-8") 'er/expand-region)
