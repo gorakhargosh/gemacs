@@ -32,9 +32,8 @@ goog.inherits($1.$2, ${3:goog.ui.Component});
  *
  * @type {string}
  * @const
- * @private
  */
-$1.$2.CSS_NAME_ = goog.getCssName('$4');
+$1.$2.CSS_CLASS = goog.getCssName('$4');
 
 
 /**
@@ -62,7 +61,7 @@ $1.$2.IdFragment = {
  * @return {string} The CSS class associated with this object.
  */
 $1.$2.prototype.getCssClass = function() {
-  return $1.$2.CSS_NAME_;
+  return $1.$2.CSS_CLASS;
 };
 
 
