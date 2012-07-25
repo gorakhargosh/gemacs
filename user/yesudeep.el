@@ -4,6 +4,5 @@
   ;; (require 'monokai-theme)
   ;; (require 'github-theme)
   (require 'tango-2-theme)
-  (global-hl-line-mode)
   )
 (provide 'yesudeep)
