@@ -100,6 +100,19 @@
                            undo-tree
                            yasnippet
                            zencoding-mode
+
+                           ;; Themes.
+                           github-theme
+                           django-theme
+                           tron-theme
+                           ujelly-theme
+                           monokai-theme
+                           inkpot-theme
+                           ir-black-theme
+                           ir_black-theme
+                           underwater-theme
+                           tango-2-theme
+                           twilight-theme
                            ))
 (dolist (p default-packages)
   (when (not (package-installed-p p))
@@ -460,6 +473,7 @@
   (defun track-mouse (e))
   (setq mouse-sel-mode t)
   )
+
 
 ;; ----------------------------------------------------------------------
 ;; Editing
@@ -1387,3 +1401,15 @@ compilation output."
       )))
 
 ;;; init.el ends here.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("f38dd27d6462c0dac285aa95ae28aeb7df7e545f8930688c18960aeaf4e807ed" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
