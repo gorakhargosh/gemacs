@@ -4,6 +4,9 @@
 # contributor: Yesudeep Mangalapilly <yesudeep@google.com>
 # --
 goog.provide('${1:namespace$(downcase yas/text)}.${2:ComponentName}');
+goog.provide('$1.$2.Caption');
+goog.provide('$1.$2.CssClassNames');
+goog.provide('$1.$2.IdFragment');
 
 goog.require('goog.debug.Logger');
 goog.require('goog.dom');
@@ -37,22 +40,42 @@ $1.$2.CSS_CLASS = goog.getCssName('$4');
 
 
 /**
- * Logger for this class.
+ * Captions for the component.
  *
- * @type {!goog.debug.Logger}
- * @protected
+ * @enum {string}
  */
-$1.$2.prototype.logger = goog.debug.Logger.getLogger('$1.$2');
+$1.$2.Caption = {
+
+};
 
 
 /**
- * Id fragments for elements.
+ * ID fragments for elements.
  *
  * @enum {string}
  */
 $1.$2.IdFragment = {
 
 };
+
+
+/**
+ * CSS class names used in the component.
+ *
+ * @enum {string}
+ */
+$1.$2.CssClassNames = {
+  WRAPPER: goog.getCssName($1.$2.CSS_CLASS, 'wrapper')
+};
+
+
+/**
+ * Logger for this class.
+ *
+ * @type {!goog.debug.Logger}
+ * @protected
+ */
+$1.$2.prototype.logger = goog.debug.Logger.getLogger('$1.$2');
 
 
 /**
@@ -68,7 +91,7 @@ $1.$2.prototype.getCssClass = function() {
 /** @override */
 $1.$2.prototype.createDom = function() {
   var el = goog.dom.createDom(goog.dom.TagName.DIV,
-      goog.getCssName(this.getCssClass(), 'wrapper'));
+      $1.$2.CssClassNames.WRAPPER);
   var ids = this.makeIds($1.$2.IdFragment);
 
   $0
