@@ -992,8 +992,13 @@ immediately."
 ;; JavaScript
 ;; ----------------------------------------------------------------------
 (autoload 'js2-mode "js2-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
+(eval-after-load "js2-mode"
+  '(progn
+     (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+     (add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
+     (add-hook 'js2-mode-hook 'goog/config/js-mode/key-chords)
+     (add-hook 'js2-mode-hook 'goog/config/js-mode/setup-bindings)
+     (add-hook 'js2-mode-hook 'goog/config/js-mode/setup-style)))
 
 (defun goog/config/js-mode/setup-style ()
   "Sets the style for JavaScript."
@@ -1001,34 +1006,20 @@ immediately."
         espresso-indent-level 2
         c-basic-offset 2
         js2-basic-offset 2
-        js2-indent-on-enter-key t
+        js2-indent-on-enter-key nil
         js2-enter-indents-newline t
-        js2-mode-squeeze-spaces nil)
-  ;; JS3-specific
-  ;; We're not loading js3-mode currently because it breaks a lot.
-  ;; (setq js3-indent-level 2
-  ;;       js3-expr-indent-offset 2
-  ;;       js3-auto-indent-p t
-  ;;       js3-enter-indents-newline t
-  ;;       js3-indent-on-enter-key t
-  ;;       js3-mirror-mode nil  ;; This is crap compared with paredit/autopair.
-  ;;       js3-strict-missing-semi-warning t
-  ;;       js3-highlight-external-variables t
-  ;;       js3-highlight-level 3
-  ;;       js3-max-columns 80)
-  )
+        js2-mode-squeeze-spaces nil
+        js2-bounce-indent-p t
+        js2-auto-indent-p t))
+
 (defun goog/config/js-mode/key-chords ()
   "Sets up the key-chords for JavaScript mode."
   (key-chord-define js2-mode-map ";;"  "\C-e;")
   (key-chord-define js2-mode-map ",,"  "\C-e,")
-  ;;(key-chord-define js3-mode-map "//"  "\C-a // ")
-  ;;(key-chord-define c++-mode-map "{}"  "{\n\n}\C-p\t")
   )
 
 (add-hook 'js-mode-hook 'goog/config/js-mode/setup-style)
 (add-hook 'js-mode-hook 'goog/config/js-mode/key-chords)
-(add-hook 'js2-mode-hook 'goog/config/js-mode/key-chords)
-(add-hook 'js2-mode-hook 'goog/config/js-mode/setup-style)
 
 ;; Tools for Javascript.
 (defun goog/config/js-mode/gjslint-buffer ()
@@ -1080,8 +1071,6 @@ compilation output."
     'goog/config/js-mode/fixjsstyle-buffer-compile)
   (define-key js2-mode-map (kbd "C-c l h")
     'goog/config/js-mode/jshint))
-
-(add-hook 'js2-mode-hook 'goog/config/js-mode/setup-bindings)
 
 ;; ----------------------------------------------------------------------
 ;; Python.
