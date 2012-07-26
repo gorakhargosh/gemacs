@@ -103,17 +103,18 @@
                            zencoding-mode
 
                            ;; Themes.
-                           tango-2-theme
-                           github-theme
                            django-theme
-                           tron-theme
-                           ujelly-theme
-                           monokai-theme
+                           github-theme
                            inkpot-theme
                            ir-black-theme
                            ir_black-theme
-                           underwater-theme
+                           monokai-theme
+                           tango-2-theme
+                           tron-theme
                            twilight-theme
+                           ujelly-theme
+                           underwater-theme
+                           zenburn-theme
                            ))
 (dolist (p default-packages)
   (when (not (package-installed-p p))
