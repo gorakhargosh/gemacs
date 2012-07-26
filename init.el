@@ -475,8 +475,7 @@
                                (interactive)
                                (scroll-up 1)))
   (defun track-mouse (e))
-  (setq mouse-sel-mode t)
-  )
+  (setq mouse-sel-mode t))
 
 ;; ----------------------------------------------------------------------
 ;; Tabs.
