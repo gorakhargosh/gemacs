@@ -1133,8 +1133,8 @@ compilation output."
 (global-set-key (kbd "C-c s") 'sort-lines)
 
 ;; Jump easily between beginning and end of defuns.
-(global-set-key (kbd "s-<left>") 'beginning-of-defun)
-(global-set-key (kbd "s-<right>") 'end-of-defun)
+(global-set-key (kbd "s-<up>") 'beginning-of-defun)
+(global-set-key (kbd "s-<down>") 'end-of-defun)
 
 ;; Parentheses matching.
 (global-set-key (kbd "M-0") 'goto-match-paren)
@@ -1151,6 +1151,10 @@ compilation output."
 
 ;; Transpose parameters.
 (global-set-key (kbd "s-t") 'transpose-params)
+
+;; Perspectives.
+(global-set-key (kbd "s-<left>") 'persp-prev)
+(global-set-key (kbd "s-<right>") 'persp-next)
 
 ;; ----------------------------------------------------------------------
 ;; Key chords

@@ -324,6 +324,22 @@ index in STRING."
           (replace-string (concat "\\" old-quotes) old-quotes nil start end)))
     (error "Point isn't in a string")))
 
+;; Perspectives.
+(defun persp-curr-position (offset)
+  (+ offset
+     (position (persp-name persp-curr)
+               (persp-all-names))))
+
+(defun persp-next ()
+  "Switch to next perspective"
+  (interactive)
+  (persp-switch (nth (persp-curr-position -1) (persp-all-names))))
+
+(defun persp-prev ()
+  "Switch to previous perspective"
+  (interactive)
+  (persp-switch (nth (persp-curr-position +1) (persp-all-names))))
+
 (provide 'goog-defuns)
 
 ;;; goog-defuns.el ends here.
