@@ -51,6 +51,21 @@
  '(link ((t (:foreground "#729fcf"))))
  '(link-visited ((t (:foreground "#ad7fa8"))))
 
+ ;; ----------------------------------------------------------------------
+ ;; js2-mode
+ ;; ----------------------------------------------------------------------
+ ;; Function parameters and their js-doc names should match.
+ ;; '(js2-jsdoc-value-face ((t (:foreground "#32cd32"))))
+ ;; '(js2-function-param-face ((t (:foreground "#32cd32"))))
+ '(js2-jsdoc-value-face ((t (:foreground "#28a428"))))
+ '(js2-function-param-face ((t (:foreground "#28a428"))))
+
+ '(js2-jsdoc-tag-face ((t (:foreground "#699bc4"))))
+ '(js2-jsdoc-type-face ((t (:foreground "SteelBlue"))))
+
+ ;; ----------------------------------------------------------------------
+ ;; Flyspell.
+ ;; ----------------------------------------------------------------------
  '(flyspell-duplicate ((t (:foreground "#fcaf3e"))))
  '(flyspell-incorrect ((t (:foreground "#cc0000"))))
 
