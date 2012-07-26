@@ -23,6 +23,9 @@
 (eval-when-compile
   (require 'cl))
 
+;; Dear Emacs, please don't make me wait at startup.
+(modify-frame-parameters nil '((wait-for-wm . nil)))
+
 ;; ======================================================================
 ;; Initial configuration.
 ;; ======================================================================
@@ -94,6 +97,7 @@
                            paredit
                            perspective
                            switch-window
+                           ;; tabbar  ;; This looks like shit.
                            undo-tree
                            yasnippet
                            zencoding-mode
@@ -474,6 +478,10 @@
   (setq mouse-sel-mode t)
   )
 
+;; ----------------------------------------------------------------------
+;; Tabs.
+;; ----------------------------------------------------------------------
+;; (require 'tabbar)
 
 ;; ----------------------------------------------------------------------
 ;; Editing and searching.
