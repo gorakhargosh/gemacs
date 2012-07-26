@@ -17,10 +17,6 @@
 ;;
 ;; Author: yesudeep@google.com (Yesudeep Mangalapilly)
 ;;
-;; Description:
-;;   All of the configuration has been placed into a single file
-;;   to load it extremely quickly even when using NFS.
-;;
 ;;; This file is NOT a part of GNU Emacs.
 ;;
 
