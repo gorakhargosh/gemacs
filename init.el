@@ -371,6 +371,9 @@
 ;;(el-get 'wait)
 
 
+;; Load our definitions.
+(require 'goog-defuns)
+
 
 ;; ======================================================================
 ;; Vanilla Emacs preferences.
@@ -402,7 +405,7 @@
       read-file-name-completion-ignore-case 't
       save-place-file (concat user-emacs-directory "places")
       sentence-end-double-space nil
-      shift-select-mode nil
+      shift-select-mode t            ;; Some of my users want this.
       uniquify-buffer-name-style 'forward
       visible-bell t
       ;; require-final-newline 't       ;; Don't require this for snippets.
@@ -515,30 +518,6 @@
                                 'font-lock-comment-face))))))
 
 ;; ----------------------------------------------------------------------
-;; Occur.
-;; ----------------------------------------------------------------------
-(defun get-buffers-matching-mode (mode)
-  "Returns a list of buffers where their major-mode is equal to MODE"
-  (let ((buffer-mode-matches '()))
-   (dolist (buf (buffer-list))
-     (with-current-buffer buf
-       (if (eq mode major-mode)
-           (add-to-list 'buffer-mode-matches buf))))
-   buffer-mode-matches))
-
-(defun multi-occur-in-this-mode ()
-  "Show all lines matching REGEXP in buffers with this major mode."
-  (interactive)
-  (multi-occur
-   (get-buffers-matching-mode major-mode)
-   (car (occur-read-primary-args))))
-
-;; Global key for `multi-occur-in-this-mode'.
-;; (global-set-key (kbd "<f6>") 'occur)
-(global-set-key (kbd "<f7>") 'multi-occur-in-this-mode)
-
-
-;; ----------------------------------------------------------------------
 ;; OS Clipboard.
 ;; ----------------------------------------------------------------------
 (setq x-select-enable-clipboard t) ;; <3 clipboard copy-paste.
@@ -562,7 +541,7 @@
 (require 'ido)
 (require 'ido-ubiquitous)
 
-(defun goog/config/ibuffer-ido-find-file ()
+(defun ibuffer-ido-find-file ()
   "Like `ido-find-file', but default to the directory of the buffer
 at point."
   (interactive
@@ -579,16 +558,17 @@ at point."
       ido-use-filename-at-point 'guess
       ido-enable-flex-matching t
       confirm-nonexistent-file-or-buffer nil
-      ido-create-new-buffer 'never)  ;; I almost never create new buffers.
+      ido-create-new-buffer 'always)
 
 
 ;; Display ido results vertically, rather than horizontally.
 ;; From the Emacs wiki.
 (setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
-(defun ido-disable-line-trucation () (set (make-local-variable 'truncate-lines) nil))
+(defun ido-disable-line-trucation ()
+  (set (make-local-variable 'truncate-lines) nil))
 (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
 
-(global-set-key (kbd "M-i") 'ido-goto-symbol)
+;; (global-set-key (kbd "M-i") 'ido-goto-symbol)
 
 ;; Recent files.
 (require 'recentf)
@@ -602,9 +582,6 @@ at point."
   (if (find-file (ido-completing-read "Find recent file: " recentf-list))
       (message "Opening file...")
     (message "Aborting")))
-;; get rid of `find-file-read-only' and replace it with something
-;; more useful.
-(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
 
 ;; ======================================================================
 ;; goog/paredit
@@ -730,210 +707,13 @@ minibuffer.")
 ;; ----------------------------------------------------------------------
 ;; goog/edit
 ;; ----------------------------------------------------------------------
-;; @see http://tuxicity.se/emacs/elisp/2010/03/11/duplicate-current-line-or-region-in-emacs.html
-(defun goog/edit/duplicate-current-line-or-region (arg)
-  "Duplicates the current line or region ARG times.
-If there's no region, the current line will be duplicated. However, if
-there's a region, all lines that region covers will be duplicated."
-  (interactive "p")
-  (let (beg end (origin (point)))
-    (if (and mark-active (> (point) (mark)))
-        (exchange-point-and-mark))
-    (setq beg (line-beginning-position))
-    (if mark-active
-        (exchange-point-and-mark))
-    (setq end (line-end-position))
-    (let ((region (buffer-substring-no-properties beg end)))
-      (dotimes (i arg)
-        (goto-char end)
-        (newline)
-        (insert region)
-        (setq end (point)))
-      (goto-char (+ origin (* (length region) arg) arg)))))
-
-(defun goog/edit/shift-region (distance)
-  "Shift the selected region right if distance is positive; left
-if negative."
-  (let ((mark (mark)))
-    (save-excursion
-      (indent-rigidly (region-beginning) (region-end) distance)
-      (push-mark mark t t)
-      ;; Tell the command loop not to deactivate the mark
-      ;; for transient mark mode
-      (setq deactivate-mark nil))))
-
-(defun goog/edit/shift-right ()
-  "Shifts the selection toward the right."
-  (interactive)
-  (goog/edit/shift-region 1))
-
-(defun goog/edit/shift-left ()
-  "Shifts the selection toward the left."
-  (interactive)
-  (goog/edit/shift-region -1))
-
-(defun goog/edit/untabify-buffer ()
-  "Untabify the entire buffer."
-  (interactive)
-  (untabify (point-min) (point-max)))
-
-(defun goog/edit/tabify-buffer ()
-  "Tabify the entire buffer."
-  (interactive)
-  (tabify (point-min) (point-max)))
-
-(defun goog/edit/indent-buffer ()
-  "Properly indent the entire buffer."
-  (interactive)
-  (indent-region (point-min) (point-max)))
-
-(defun goog/edit/tidy-buffer ()
-  "Indent, untabify, and clean up trailing whitespace from a buffer."
-  (interactive)
-  (goog/edit/indent-buffer)
-  (goog/edituntabify-buffer)
-  (delete-trailing-whitespace))
-
-;; Line insertion
-(defun goog/edit/insert-blank-line-below ()
-  "Inserts blank line below current line."
-  (interactive)
-  (move-end-of-line nil)
-  (open-line 1)
-  (next-line 1))
-
-(defun goog/edit/insert-blank-line-above ()
-  "Inserts blank line above current line."
-  (interactive)
-  (previous-line 1)
-  (move-end-of-line nil)
-  (open-line 1)
-  (next-line 1))
-
-(defun goog/edit/insert-blank-line-below-next-line ()
-  "Inserts an empty line below the next line."
-  (interactive)
-  (next-line 1)
-  (move-end-of-line nil)
-  (open-line 1)
-  (next-line 1))
 
 (defun goog/edit/set-newline-and-indent ()
   "Sets RET to do a newline and indent."
   (local-set-key (kbd "RET") 'newline-and-indent))
 
-;; Kill entire line with C-k and use C-S-backspace for killing from
-;; beginning
-(defun goog/edit/kill-and-join-forward (&optional arg)
-  "If at end of line, join with following; otherwise kill line.
-    Deletes whitespace at join."
-  (interactive "P")
-  (if (and (eolp) (not (bolp)))
-      (delete-indentation t)
-    (kill-line arg)))
-
-;; From: https://www.bunkus.org/blog/2009/12/switching-identifier-naming-style-between-camel-case-and-c-style-in-emacs/
-(defun goog/edit/toggle-identifier-naming-style ()
-  "Toggles the symbol at point between C-style naming,
-e.g. `hello_world_string', and camel case,
-e.g. `HelloWorldString'."
-  (interactive)
-  (let* ((symbol-pos (bounds-of-thing-at-point 'symbol))
-         case-fold-search symbol-at-point cstyle regexp func)
-    (unless symbol-pos
-      (error "No symbol at point"))
-    (save-excursion
-      (narrow-to-region (car symbol-pos) (cdr symbol-pos))
-      (setq cstyle (string-match-p "_" (buffer-string))
-            regexp (if cstyle "\\(?:\\_<\\|_\\)\\(\\w\\)" "\\([A-Z]\\)")
-            func (if cstyle
-                     'capitalize
-                   (lambda (s)
-                     (concat (if (= (match-beginning 1)
-                                    (car symbol-pos))
-                                 ""
-                               "_")
-                             (downcase s)))))
-      (goto-char (point-min))
-      (while (re-search-forward regexp nil t)
-        (replace-match (funcall func (match-string 1))
-                       t nil))
-      (widen))))
 
 ;; Alphabet case
-(defun goog/edit/toggle-letter-case ()
-  "Toggle the letter case of current word or text selection.
-Toggles between: Òall lowerÓ, ÒInit CapsÓ, ÒALL CAPSÓ."
-  (interactive)
-  (let (p1 p2 (deactivate-mark nil) (case-fold-search nil))
-    (if (region-active-p)
-        (setq p1 (region-beginning) p2 (region-end))
-      (let ((bds (bounds-of-thing-at-point 'word) ) )
-        (setq p1 (car bds) p2 (cdr bds)) ) )
-
-    (when (not (eq last-command this-command))
-      (save-excursion
-        (goto-char p1)
-        (cond
-         ((looking-at "[[:lower:]][[:lower:]]")
-          (put this-command 'state "all lower"))
-         ((looking-at "[[:upper:]][[:upper:]]")
-          (put this-command 'state "all caps") )
-         ((looking-at "[[:upper:]][[:lower:]]")
-          (put this-command 'state "init caps") )
-         ((looking-at "[[:lower:]]") (put this-command 'state "all lower"))
-         ((looking-at "[[:upper:]]") (put this-command 'state "all caps") )
-         (t (put this-command 'state "all lower") ) ) ) )
-
-    (cond
-     ((string= "all lower" (get this-command 'state))
-      (upcase-initials-region p1 p2) (put this-command 'state "init caps"))
-     ((string= "init caps" (get this-command 'state))
-      (upcase-region p1 p2) (put this-command 'state "all caps"))
-     ((string= "all caps" (get this-command 'state))
-      (downcase-region p1 p2) (put this-command 'state "all lower")) )
-    ))
-
-(defun goog/edit/camelcase-to-upcased-underscore-string (s &optional sep start)
-  "Convert CamelCase string S to upper case with word separator SEP.
-Default for SEP is a underscore \"_\".
-
-If third argument START is non-nil, convert words after that
-index in STRING."
-  (let ((case-fold-search nil))
-    (while (string-match "[A-Z]" s (or start 1))
-      (setq s (replace-match (concat (or sep "_")
-                                             (downcase (match-string 0 s)))
-                                     t nil s)))
-    (upcase s)))
-
-(defun goog/edit/camelcase-to-downcased-underscore-string
-  (s &optional sep start)
-  "Convert CamelCase string S to lower case with word separator SEP.
-Default for SEP is a underscore \"_\".
-
-If third argument START is non-nil, convert words after that
-index in STRING."
-  (let ((case-fold-search nil))
-    (while (string-match "[A-Z]" s (or start 1))
-      (setq s (replace-match (concat (or sep "_")
-                                             (downcase (match-string 0 s)))
-                                     t nil s)))
-    (downcase s)))
-
-(defun goog/edit/camelcase-to-downcased-hyphenated-string
-  (s &optional sep start)
-  "Convert CamelCase string S to lower case with word separator SEP.
-Default for SEP is a hyphenated \"-\".
-
-If third argument START is non-nil, convert words after that
-index in STRING."
-  (let ((case-fold-search nil))
-    (while (string-match "[A-Z]" s (or start 1))
-      (setq s (replace-match (concat (or sep "-")
-                                             (downcase (match-string 0 s)))
-                                     t nil s)))
-    (downcase s)))
 
 (defun goog/edit/watchwords ()
   (font-lock-add-keywords
@@ -1308,8 +1088,8 @@ compilation output."
 ;; Keyboard bindings.
 ;; ======================================================================
 ;; Shift region left/right.
-(global-set-key (kbd "s-]") 'goog/edit/shift-right)
-(global-set-key (kbd "s-[") 'goog/edit/shift-left)
+(global-set-key (kbd "s-]") 'shift-right)
+(global-set-key (kbd "s-[") 'shift-left)
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; Increase/decrease/reset font size.
@@ -1334,27 +1114,43 @@ compilation output."
 (define-key global-map (kbd "M-<delete>") 'kill-word)
 ;; (global-set-key (kbd "C-k") 'kill-whole-line)
 ;; (global-set-key (kbd "C-S-<backspace>")
-;;                 'goog/edit/kill-and-join-forward)
+;;                 'kill-and-join-forward)
 
 ;; Line insertion
-(global-set-key (kbd "S-<return>") 'goog/edit/insert-blank-line-below)
-(global-set-key (kbd "M-S-<return>") 'goog/edit/insert-blank-line-above)
+(global-set-key (kbd "S-<return>") 'insert-blank-line-below)
+(global-set-key (kbd "M-S-<return>") 'insert-blank-line-above)
 (global-set-key (kbd "s-<return>")
-                'goog/edit/insert-blank-line-below-next-line)
+                'insert-blank-line-below-next-line)
 
 ;; Line or region duplication.
-(global-set-key (kbd "C-c C-d")
-                'goog/edit/duplicate-current-line-or-region)
+(global-set-key (kbd "C-c C-d") 'duplicate-current-line-or-region)
 
 ;; Toggle identifier case.
 (global-set-key (kbd "C-x t c")
-                'goog/edit/toggle-identifier-naming-style)
-
-;; Refill mode.
-(global-set-key (kbd "C-c q") 'refill-mode)
+                'toggle-identifier-naming-style)
 
 ;; Sort lines
 (global-set-key (kbd "C-c s") 'sort-lines)
+
+;; Jump easily between beginning and end of defuns.
+(global-set-key (kbd "s-<left>") 'beginning-of-defun)
+(global-set-key (kbd "s-<right>") 'end-of-defun)
+
+;; Parentheses matching.
+(global-set-key (kbd "M-0") 'goto-match-paren)
+
+;; Open recently opened files quickly.
+(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
+
+;; Occur.
+;; (global-set-key (kbd "<f6>") 'occur)
+(global-set-key (kbd "<f7>") 'multi-occur-in-this-mode)
+
+;; Quotes.
+(global-set-key (kbd "C-'") 'toggle-quotes)
+
+;; Transpose parameters.
+(global-set-key (kbd "s-t") 'transpose-params)
 
 ;; ----------------------------------------------------------------------
 ;; Key chords
@@ -1426,15 +1222,3 @@ compilation output."
       )))
 
 ;;; init.el ends here.
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("f38dd27d6462c0dac285aa95ae28aeb7df7e545f8930688c18960aeaf4e807ed" default))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
