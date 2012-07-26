@@ -103,6 +103,7 @@
                            zencoding-mode
 
                            ;; Themes.
+                           tango-2-theme
                            github-theme
                            django-theme
                            tron-theme
@@ -112,7 +113,6 @@
                            ir-black-theme
                            ir_black-theme
                            underwater-theme
-                           tango-2-theme
                            twilight-theme
                            ))
 (dolist (p default-packages)
