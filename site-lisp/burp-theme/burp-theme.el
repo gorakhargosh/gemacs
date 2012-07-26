@@ -27,7 +27,7 @@
 
 (custom-theme-set-faces
  'burp
- '(default ((t (:background "#2c2c2c" :foreground "#eeeeec"))))
+ '(default ((t (:background "#1a1a1a" :foreground "#eeeeec"))))
  '(cursor ((t (:foreground "#888888"))))
  '(region ((t (:background "#555753"))))
  '(highlight ((t (:background "#444444"))))
