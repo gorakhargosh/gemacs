@@ -4,7 +4,6 @@
 # contributor: Yesudeep Mangalapilly <yesudeep@google.com>
 # --
 goog.provide('${1:namespace$(downcase yas/text)}.${2:ComponentName}');
-goog.provide('$1.$2.Caption');
 goog.provide('$1.$2.CssClassNames');
 goog.provide('$1.$2.IdFragment');
 
@@ -37,16 +36,6 @@ goog.inherits($1.$2, ${3:goog.ui.Component});
  * @const
  */
 $1.$2.CSS_CLASS = goog.getCssName('$4');
-
-
-/**
- * Captions for the component.
- *
- * @enum {string}
- */
-$1.$2.Caption = {
-
-};
 
 
 /**
