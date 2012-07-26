@@ -521,6 +521,9 @@
                        (not (eq (get-text-property (point) 'face)
                                 'font-lock-comment-face))))))
 
+(require 're-builder)
+(setq reb-re-syntax 'string)
+
 ;; ----------------------------------------------------------------------
 ;; OS Clipboard.
 ;; ----------------------------------------------------------------------
@@ -542,9 +545,6 @@
 ;; ----------------------------------------------------------------------
 ;; (require 'dired-x)     ;; C-x C-j jumps to current file in dired.
 
-(require 'ido)
-(require 'ido-ubiquitous)
-
 (defun ibuffer-ido-find-file ()
   "Like `ido-find-file', but default to the directory of the buffer
 at point."
@@ -556,28 +556,34 @@ at point."
                                 default-directory))))
      (ido-find-file-in-dir default-directory))))
 
-(ido-mode t)
-(ido-ubiquitous t)
-(setq ido-save-directory-list-file (concat config-dir ".ido.last")
-      ido-use-filename-at-point 'guess
-      ido-enable-flex-matching t
-      confirm-nonexistent-file-or-buffer nil
-      ido-create-new-buffer 'always)
+;; (require 'ido)
+;; (require 'ido-ubiquitous)
+(eval-after-load "ido"
+  '(progn
+     (ido-mode t)
+     (eval-after-load "ido-ubiquitous"
+       '(progn
+          (ido-ubiquitous t)
+          ))
+     (setq ido-save-directory-list-file (concat config-dir ".ido.last")
+           ido-use-filename-at-point 'guess
+           ido-enable-flex-matching t
+           confirm-nonexistent-file-or-buffer nil
+           ido-create-new-buffer 'always)
 
-
-;; Display ido results vertically, rather than horizontally.
-;; From the Emacs wiki.
-(setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
-(defun ido-disable-line-trucation ()
-  (set (make-local-variable 'truncate-lines) nil))
-(add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
+     ;; Display ido results vertically, rather than horizontally.
+     ;; From the Emacs wiki.
+     (setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
+     (defun ido-disable-line-trucation ()
+       (set (make-local-variable 'truncate-lines) nil))
+     (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
+     ))
 
 ;; (global-set-key (kbd "M-i") 'ido-goto-symbol)
 
 ;; Recent files.
 (require 'recentf)
-;; Disable before we start recentf for tramp.
-(setq recentf-auto-cleanup 'never)
+(setq recentf-auto-cleanup 'never) ;; Disable before we start recentf for tramp.
 (recentf-mode t)
 (setq recentf-max-saved-items 50)
 (defun ido-recentf-open ()
@@ -586,6 +592,7 @@ at point."
   (if (find-file (ido-completing-read "Find recent file: " recentf-list))
       (message "Opening file...")
     (message "Aborting")))
+
 
 ;; ======================================================================
 ;; goog/paredit
