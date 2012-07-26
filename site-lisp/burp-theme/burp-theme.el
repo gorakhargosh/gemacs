@@ -44,6 +44,8 @@
  '(font-lock-type-face ((t (:foreground "#c17d11"))))
  '(font-lock-variable-name-face ((t (:foreground "#fce94f"))))
  '(font-lock-warning-face ((t (:bold t :foreground "#cc0000"))))
+ '(font-lock-doc-face ((t (:foreground "#888a85"))))
+ ;; '(font-lock-doc-face ((t (:foreground "#5aa411")))) ;; A little darker green
  '(isearch ((t (:background "#f57900" :foreground "#2e3436"))))
  '(lazy-highlight ((t (:background "#e9b96e" :foreground "#2e3436"))))
  '(link ((t (:foreground "#729fcf"))))
