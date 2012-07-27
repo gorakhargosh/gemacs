@@ -1009,7 +1009,7 @@ immediately."
         js2-indent-on-enter-key nil
         js2-enter-indents-newline t
         js2-mode-squeeze-spaces nil
-        js2-bounce-indent-p t
+        ;; js2-bounce-indent-p t
         js2-auto-indent-p t))
 
 (defun goog/config/js-mode/key-chords ()
