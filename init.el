@@ -362,6 +362,7 @@
  goog:el-get-packages
  '(el-get
    ;; pymacs
+   powerline
    ))
 ;; Synchronize el-get packages.
 (setq goog:el-get-packages
