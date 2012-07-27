@@ -34,7 +34,7 @@
  ;; '(modeline ((t (:background "#2e3436" :foreground "#eeeeec"))))
  ;; '(modeline-inactive ((t (:background "#111111" :foreground "#cccddd"))))
  '(mode-line ((t (:bold t :foreground "#000000" :background "#63a216" :box nil))))
- '(mode-line-inactive ((t (:foreground "#f9f9f9" :background "#232323" :box nil))))
+ '(mode-line-inactive ((t (:foreground "#f9f9f9" :background "#222222" :box nil))))
  '(fringe ((t (:background "#111111"))))
  '(minibuffer-prompt ((t (:foreground "#729fcf"))))
  '(font-lock-builtin-face ((t (:foreground "#729fcf"))))
