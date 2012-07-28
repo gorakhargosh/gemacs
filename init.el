@@ -389,8 +389,10 @@
 ;; ======================================================================
 
 ;; Maximize the Emacs frame on startup.
-;; (require 'maxframe)
-;; (add-hook 'window-setup-hook 'maximize-frame t)
+;; TODO(yesudeep): resolve a bug where it hides the first line of every buffer.
+;;(require 'maxframe)
+;;(add-hook 'window-setup-hook 'maximize-frame t)
+
 
 ;; Next code work with Emacs 21.4, 22.3, 23.1.
 ;; (when window-system
