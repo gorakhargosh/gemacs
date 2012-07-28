@@ -77,10 +77,12 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar default-packages '(
-                           fill-column-indicator
+                           ;; fill-column-indicator
                            ;; flex-isearch
                            ;; smex   ;; Don't use this one. el-get works.
                            ;; smooth-scroll
+                           ;; tabbar  ;; This looks like shit.
+                           ac-slime
                            auto-complete
                            autopair
                            expand-region
@@ -93,19 +95,19 @@
                            key-chord
                            magit
                            mark-multiple
+                           maxframe
                            melpa
                            move-text
                            nav
                            paredit
                            perspective
+                           rainbow-mode
+                           slime
+                           slime-js
                            switch-window
-                           ;; tabbar  ;; This looks like shit.
                            undo-tree
                            yasnippet
                            zencoding-mode
-                           rainbow-mode
-                           slime
-                           ac-slime
 
                            ;; Themes.
                            django-theme
@@ -367,7 +369,6 @@
  goog:el-get-packages
  '(el-get
    ;; pymacs
-   ;; fill-column-indicator
    powerline
    ))
 ;; Synchronize el-get packages.
@@ -386,6 +387,28 @@
 ;; ======================================================================
 ;; Vanilla Emacs preferences.
 ;; ======================================================================
+
+;; Maximize the Emacs frame on startup.
+(require 'maxframe)
+(add-hook 'window-setup-hook 'maximize-frame t)
+
+;; Next code work with Emacs 21.4, 22.3, 23.1.
+;; (when window-system
+;;   (let (
+;;         (px (display-pixel-width))
+;;         (py (display-pixel-height))
+;;         (fx (frame-char-width))
+;;         (fy (frame-char-height))
+;;         tx ty
+;;         )
+;;     ;; Next formulas discovered empiric on Windows host with default font.
+;;     (setq tx (- (/ px fx) 7))
+;;     (setq ty (- (/ py fy) 4))
+;;     (setq initial-frame-alist '((top . 2) (left . 2)))
+;;     (add-to-list 'initial-frame-alist (cons 'width tx))
+;;     (add-to-list 'initial-frame-alist (cons 'height ty))
+;;     ) )
+
 (when window-system
   (blink-cursor-mode nil)
   (global-font-lock-mode 1)
@@ -1084,6 +1107,12 @@ compilation output."
     'goog/config/js-mode/fixjsstyle-buffer-compile)
   (define-key js2-mode-map (kbd "C-c l h")
     'goog/config/js-mode/jshint))
+
+;; Load swank-js.
+(add-hook 'after-init-hook
+          #'(lambda ()
+              (when (locate-library "slime-js")
+                (require 'setup-slime-js))))
 
 ;; ----------------------------------------------------------------------
 ;; Python.
