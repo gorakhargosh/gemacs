@@ -48,8 +48,6 @@
  '(font-lock-warning-face ((t (:bold t :foreground "#cc0000"))))
  '(font-lock-doc-face ((t (:foreground "#888a85"))))
  ;; '(font-lock-doc-face ((t (:foreground "#5aa411")))) ;; A little darker green
- '(isearch ((t (:background "#f57900" :foreground "#2e3436"))))
- '(lazy-highlight ((t (:background "#e9b96e" :foreground "#2e3436"))))
  '(link ((t (:foreground "#729fcf"))))
  '(link-visited ((t (:foreground "#ad7fa8"))))
 
@@ -82,8 +80,9 @@
 
  '(comint-highlight-input ((t (:italic t :bold t))))
  '(comint-highlight-prompt ((t (:foreground "#8ae234"))))
- '(isearch ((t (:background "#f57900" :foreground "#2e3436"))))
- '(isearch-lazy-highlight-face ((t (:foreground "#2e3436" :background "#e9b96e"))))
+ '(isearch ((t (:background "#ffcc00" :foreground "#2e3436"))))
+ '(lazy-highlight ((t (:inherit isearch))))
+ '(isearch-lazy-highlight-face ((t (:inherit isearch))))
  '(paren-face-match ((t (:inherit show-paren-match-face))))
  '(paren-face-match-light ((t (:inherit show-paren-match-face))))
  '(paren-face-mismatch ((t (:inherit show-paren-mismatch-face))))
