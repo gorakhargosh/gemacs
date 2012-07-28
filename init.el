@@ -104,6 +104,8 @@
                            yasnippet
                            zencoding-mode
                            rainbow-mode
+                           slime
+                           ac-slime
 
                            ;; Themes.
                            django-theme
