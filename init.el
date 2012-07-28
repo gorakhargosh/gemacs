@@ -78,7 +78,7 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar default-packages '(
-                           ;; fill-column-indicator
+                           fill-column-indicator
                            ;; flex-isearch
                            ;; smex   ;; Don't use this one. el-get works.
                            ;; smooth-scroll
@@ -365,6 +365,7 @@
  goog:el-get-packages
  '(el-get
    ;; pymacs
+   ;; fill-column-indicator
    powerline
    ))
 ;; Synchronize el-get packages.
