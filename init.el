@@ -999,6 +999,27 @@ immediately."
 ;; Programming-specific.
 ;; ======================================================================
 
+;; Additional faces.
+(defvar font-lock-operator-face 'font-lock-operator-face)
+(defface font-lock-operator-face
+  '((((type tty) (class color)) nil)
+    (((class color) (background light))
+     (:foreground "dark red"))
+    (t nil))
+  "Used for operators."
+  :group 'font-lock-faces)
+(defvar font-lock-end-statement-face 'font-lock-end-statement-face)
+(defface font-lock-end-statement-face
+  '((((type tty) (class color)) nil)
+    (((class color) (background light))
+     (:foreground "DarkSlateBlue"))
+    (t nil))
+  "Used for end statement symbols."
+  :group 'font-lock-faces)
+(defvar font-lock-operator-keywords
+  '(("\\([][|!.+=&/%*,<>(){}:^~-]+\\)" 1 font-lock-operator-face)
+    (";" 0 font-lock-end-statement-face)))
+
 ;; Automatically set executable permissions on executable script files.
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
@@ -1036,7 +1057,12 @@ immediately."
      (add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
      (add-hook 'js2-mode-hook 'goog/config/js-mode/key-chords)
      (add-hook 'js2-mode-hook 'goog/config/js-mode/setup-bindings)
-     (add-hook 'js2-mode-hook 'goog/config/js-mode/setup-style)))
+     (add-hook 'js2-mode-hook 'goog/config/js-mode/setup-style)
+     (add-hook 'js2-mode-hook
+               '(lambda ()
+                  (font-lock-add-keywords nil font-lock-operator-keywords t))
+               t t)
+     ))
 
 (defun goog/config/js-mode/setup-style ()
   "Sets the style for JavaScript."
@@ -1138,6 +1164,10 @@ compilation output."
 (add-hook 'python-mode-hook
           'goog/config/python-mode/setup-style)
 
+(font-lock-add-keywords 'python-mode
+    '(("\\<\\(object\\|str\\|else\\|except\\|finally\\|try\\|\\)\\>" 0 py-builtins-face)  ; adds object and str and fixes it so that keywords that often appear with : are assigned as builtin-face
+    ("\\<[\\+-]?[0-9]+\\(.[0-9]+\\)?\\>" 0 'font-lock-constant-face) ; FIXME: negative or positive prefixes do not highlight to this regexp but does to one below
+    ("\\([][{}()~^<>:=,.\\+*/%-]\\)" 0 'widget-inactive-face)))
 
 ;; ======================================================================
 ;; Keyboard bindings.
