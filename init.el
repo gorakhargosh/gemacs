@@ -104,6 +104,7 @@
                            undo-tree
                            yasnippet
                            zencoding-mode
+                           rainbow-mode
 
                            ;; Themes.
                            django-theme
@@ -528,6 +529,7 @@
 
 (require 're-builder)
 (setq reb-re-syntax 'string)
+
 
 ;; ----------------------------------------------------------------------
 ;; OS Clipboard.
