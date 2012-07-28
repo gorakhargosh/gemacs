@@ -85,6 +85,7 @@
                            ac-slime
                            auto-complete
                            autopair
+                           evil-numbers
                            expand-region
                            fastnav
                            find-things-fast
@@ -1243,6 +1244,10 @@ compilation output."
 
 ;; Helm.
 (global-set-key (kbd "C-c h") 'helm-mini)
+
+;; Evil numbers.
+(global-set-key (kbd "M-_") 'evil-numbers/dec-at-pt)
+(global-set-key (kbd "M-+") 'evil-numbers/inc-at-pt)
 
 
 ;; ----------------------------------------------------------------------
