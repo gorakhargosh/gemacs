@@ -619,6 +619,7 @@ at point."
      (defun ido-disable-line-trucation ()
        (set (make-local-variable 'truncate-lines) nil))
      (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
+     (global-set-key [(control tab)] 'ido-switch-buffer)
      ))
 
 ;; (global-set-key (kbd "M-i") 'ido-goto-symbol)
