@@ -1288,11 +1288,13 @@ compilation output."
 ;; ----------------------------------------------------------------------
 ;; Key chords
 ;; ----------------------------------------------------------------------
-(key-chord-define-global ",."     "<>\C-b")
 (key-chord-define-global "hj" 'undo)
 ;;(key-chord-define-global [?h ?j]  'undo)  ; the same
 (key-chord-define-global "jk" 'dabbrev-expand)
 (key-chord-define-global "zx" "\C-a\C-k")
+(key-chord-define-global ";'" 'ido-recentf-open)
+(key-chord-define-global ",." 'ido-find-file)
+
 ;; (key-chord-define-global "pp" 'yank)
 ;; (key-chord-define-global "xx" 'kill-region)
 ;; (key-chord-define-global "cc" 'kill-ring-save)
