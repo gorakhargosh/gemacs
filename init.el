@@ -111,6 +111,7 @@
                            undo-tree
                            yasnippet
                            zencoding-mode
+                           less-css-mode
 
                            ;; Themes.
                            django-theme
@@ -1049,6 +1050,37 @@ immediately."
     (set (make-local-variable 'sgml-basic-offset) 2)
     (setq indent-tabs-mode nil)
     (zencoding-mode 1)))
+
+
+
+;; ----------------------------------------------------------------------
+;; CSS mode.
+;; ----------------------------------------------------------------------
+(require 'less-css-mode)
+(defun goog/config/css-mode/setup-style ()
+  "Sets up the style for css-mode."
+  (setq less-css-indent-level 2
+        css-indent-offset 2
+        indent-tabs-mode nil
+        require-final-newline 't
+        tab-width 2))
+(defun goog/config/css-mode/setup-auto-complete ()
+  "Sets up autocomplete configuration for css-mode."
+  (setq ac-sources '(
+                      ac-source-words-in-buffer
+                      ac-source-abbrev
+                      ac-source-symbols
+                      ac-source-variables
+                      ac-source-words-in-same-mode-buffers
+                      ac-source-yasnippet
+                      )))
+(add-hook 'css-mode-hook 'goog/config/css-mode/setup-style)
+(add-hook 'css-mode-hook 'goog/config/css-mode/setup-auto-complete)
+(add-hook 'less-css-mode-hook 'goog/config/css-mode/setup-style)
+(add-hook 'less-css-mode-hook 'goog/config/css-mode/setup-auto-complete)
+;; TODO(yesudeep): Use gss-mode after developing it.
+(add-to-list 'auto-mode-alist '("\\.gss" . css-mode))
+
 
 ;; ----------------------------------------------------------------------
 ;; JavaScript
