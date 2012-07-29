@@ -64,7 +64,7 @@
  ;; Search.
  ;; ----------------------------------------------------------------------
  '(isearch ((t (:background "#ffcc00" :foreground "#121212"))))
- '(highlight-symbol-face ((t (:inherit isearch))))
+ '(highlight-symbol-face ((t (:foreground "#d8ad00"))))
  '(lazy-highlight ((t (:inherit isearch))))
  '(isearch-lazy-highlight-face ((t (:inherit isearch))))
 
