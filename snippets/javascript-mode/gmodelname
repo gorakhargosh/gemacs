@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: Appkit Model Name.
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+/**
+ * The name of the model.
+ *
+ * @type {string}
+ * @const
+ */
+$1.MODEL_NAME = $0;
+
+
+/**
+ * Returns the name of the model.
+ *
+ * @return {string} The name of the model.
+ */
+$1.prototype.getModelName = function() {
+  return $1.MODEL_NAME;
+};
