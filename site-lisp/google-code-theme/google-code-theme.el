@@ -43,8 +43,6 @@
  '(font-lock-doc-face ((t (:inherit font-lock-comment-face))))
  '(font-lock-doc-string-face ((t (:inherit font-lock-comment-face))))
 
- '(isearch ((t (:background "#f57900" :foreground "#2e3436"))))
- '(lazy-highlight ((t (:background "#e9b96e" :foreground "#2e3436"))))
  '(link ((t (:foreground "#729fcf"))))
  '(link-visited ((t (:foreground "#ad7fa8"))))
 
@@ -62,6 +60,13 @@
  '(js2-instance-member-face ((t (:inherit font-lock-function-name-face))))
  '(js2-private-member-face ((t (:inherit font-lock-function-name-face))))
 
+ ;; ----------------------------------------------------------------------
+ ;; Search.
+ ;; ----------------------------------------------------------------------
+ '(isearch ((t (:background "#ffcc00" :foreground "#121212"))))
+ '(highlight-symbol-face ((t (:inherit isearch))))
+ '(lazy-highlight ((t (:inherit isearch))))
+ '(isearch-lazy-highlight-face ((t (:inherit isearch))))
 
  ;; ----------------------------------------------------------------------
  ;; Flyspell.

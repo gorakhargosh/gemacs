@@ -62,6 +62,14 @@
  '(js2-jsdoc-type-face ((t (:foreground "SteelBlue"))))
 
  ;; ----------------------------------------------------------------------
+ ;; Search.
+ ;; ----------------------------------------------------------------------
+ '(isearch ((t (:background "#ffcc00" :foreground "#121212"))))
+ '(highlight-symbol-face ((t (:inherit isearch))))
+ '(lazy-highlight ((t (:inherit isearch))))
+ '(isearch-lazy-highlight-face ((t (:inherit isearch))))
+
+ ;; ----------------------------------------------------------------------
  ;; Flyspell.
  ;; ----------------------------------------------------------------------
  '(flyspell-duplicate ((t (:foreground "#fcaf3e"))))
@@ -79,6 +87,7 @@
  '(comint-highlight-input ((t (:italic t :bold t))))
  '(comint-highlight-prompt ((t (:foreground "#8ae234"))))
  '(isearch ((t (:background "#ffcc00" :foreground "#121212"))))
+ '(highlight-symbol-face ((t (:inherit isearch))))
  '(lazy-highlight ((t (:inherit isearch))))
  '(isearch-lazy-highlight-face ((t (:inherit isearch))))
  '(paren-face-match ((t (:inherit show-paren-match-face))))

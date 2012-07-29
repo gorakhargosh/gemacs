@@ -92,10 +92,12 @@
                            fastnav
                            find-things-fast
                            helm
+                           highlight-symbol
                            ido-ubiquitous
                            iedit
                            js2-mode
                            key-chord
+                           less-css-mode
                            magit
                            mark-multiple
                            maxframe
@@ -111,21 +113,20 @@
                            undo-tree
                            yasnippet
                            zencoding-mode
-                           less-css-mode
 
                            ;; Themes.
-                           django-theme
-                           github-theme
-                           inkpot-theme
-                           ir-black-theme
-                           ir_black-theme
-                           monokai-theme
-                           tango-2-theme
-                           tron-theme
-                           twilight-theme
-                           ujelly-theme
-                           underwater-theme
-                           zenburn-theme
+                           ;; django-theme
+                           ;; github-theme
+                           ;; inkpot-theme
+                           ;; ir-black-theme
+                           ;; ir_black-theme
+                           ;; monokai-theme
+                           ;; tango-2-theme
+                           ;; tron-theme
+                           ;; twilight-theme
+                           ;; ujelly-theme
+                           ;; underwater-theme
+                           ;; zenburn-theme
                            ))
 (dolist (p default-packages)
   (when (not (package-installed-p p))
@@ -598,6 +599,7 @@ at point."
                                 default-directory))))
      (ido-find-file-in-dir default-directory))))
 
+(setq find-file-wildcards t)
 ;; (require 'ido)
 ;; (require 'ido-ubiquitous)
 (eval-after-load "ido"
@@ -611,7 +613,8 @@ at point."
            ido-use-filename-at-point 'guess
            ido-enable-flex-matching t
            confirm-nonexistent-file-or-buffer nil
-           ido-create-new-buffer 'always)
+           ido-create-new-buffer 'always
+           )
 
      ;; Display ido results vertically, rather than horizontally.
      ;; From the Emacs wiki.
@@ -882,6 +885,17 @@ immediately."
 (require 'find-things-fast)
 (global-set-key (kbd "C-x f") 'ftf-find-file)
 (global-set-key (kbd "<f6>") 'ftf-grepsource)
+
+;; Highlight current symbol.
+(require 'highlight-symbol)
+(defun goog/config/highlight-symbol-mode/setup ()
+  (when window-system
+    (highlight-symbol-mode)
+    (setq highlight-symbol-idle-delay 0)))
+(add-hook 'text-mode-hook 'goog/config/highlight-symbol-mode/setup)
+(add-hook 'prog-mode-hook 'goog/config/highlight-symbol-mode/setup)
+;; Why does js2-mode not inherit from prog-mode?
+(add-hook 'js2-mode-hook 'goog/config/highlight-symbol-mode/setup)
 
 ;; ----------------------------------------------------------------------
 ;; Mark and edit multiple regions.
@@ -1283,6 +1297,12 @@ compilation output."
 ;; Evil numbers.
 (global-set-key (kbd "M-_") 'evil-numbers/dec-at-pt)
 (global-set-key (kbd "M-+") 'evil-numbers/inc-at-pt)
+
+;; I don't use F2 much, so binding it here to highlight symbol.
+(global-set-key [(control f2)] 'highlight-symbol-at-point)
+(global-set-key [f2] 'highlight-symbol-next)
+(global-set-key [(shift f2)] 'highlight-symbol-prev)
+(global-set-key [(meta f2)] 'highlight-symbol-prev)
 
 
 ;; ----------------------------------------------------------------------
