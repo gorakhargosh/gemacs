@@ -628,7 +628,7 @@ at point."
 (require 'recentf)
 (setq recentf-auto-cleanup 'never) ;; Disable before we start recentf for tramp.
 (recentf-mode t)
-(setq recentf-max-saved-items 50)
+(setq recentf-max-saved-items 400)
 (defun ido-recentf-open ()
   "Use `ido-completing-read' to \\[find-file] a recent file"
   (interactive)
