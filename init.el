@@ -28,6 +28,8 @@
 ;; Dear Emacs, please don't make me wait at startup.
 (modify-frame-parameters nil '((wait-for-wm . nil)))
 
+(setq redisplay-dont-pause t)
+
 ;; ======================================================================
 ;; Initial configuration.
 ;; ======================================================================
