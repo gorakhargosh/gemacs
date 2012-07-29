@@ -9,14 +9,10 @@
  * @type {string}
  * @const
  */
-$1.MODEL_NAME = $0;
+$1.MODEL_NAME = $0$2;
 
 
-/**
- * Returns the name of the model.
- *
- * @return {string} The name of the model.
- */
+/** @override */
 $1.prototype.getModelName = function() {
   return $1.MODEL_NAME;
 };

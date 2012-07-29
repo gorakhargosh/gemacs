@@ -35,7 +35,7 @@ goog.inherits($1.$2, ${3:goog.ui.Component});
  * @type {string}
  * @const
  */
-$1.$2.CSS_CLASS = goog.getCssName('$4');
+$1.$2.BASE_CSS_NAME = goog.getCssName('$4');
 
 
 /**
@@ -54,7 +54,7 @@ $1.$2.IdFragment = {
  * @enum {string}
  */
 $1.$2.CssClassNames = {
-  WRAPPER: goog.getCssName($1.$2.CSS_CLASS, 'wrapper')
+  WRAPPER: goog.getCssName($1.$2.BASE_CSS_NAME, 'wrapper')
 };
 
 
@@ -73,7 +73,7 @@ $1.$2.prototype.logger = goog.debug.Logger.getLogger('$1.$2');
  * @return {string} The CSS class associated with this object.
  */
 $1.$2.prototype.getCssClass = function() {
-  return $1.$2.CSS_CLASS;
+  return $1.$2.BASE_CSS_NAME;
 };
 
 
