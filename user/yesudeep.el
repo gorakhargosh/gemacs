@@ -6,8 +6,8 @@
     ;; (require 'monokai-theme)
     ;; (require 'github-theme)
     ;; (require 'tango-2-theme)
-    ;; (require 'burp-theme)
-    (require 'cloud-theme)
+    (require 'burp-theme)
+    ;; (require 'cloud-theme)
     ;; (require 'google-code-theme)
     )
 
