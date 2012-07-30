@@ -374,8 +374,8 @@
  goog:el-get-packages
  '(el-get
    ;; pymacs
+   fill-column-indicator
    powerline
-   ;; tellicopy
    ))
 ;; Synchronize el-get packages.
 (setq goog:el-get-packages
@@ -877,11 +877,11 @@ immediately."
 (require 'switch-window)
 
 ;; Need to test this properly.
-;; (when window-system
-;;   (require 'fill-column-indicator)
-;;   (define-globalized-minor-mode global-fci-mode fci-mode
-;;     (lambda () (fci-mode 1)))
-;;   (global-fci-mode 1))
+(when window-system
+  (require 'fill-column-indicator)
+  (define-globalized-minor-mode global-fci-mode fci-mode
+    (lambda () (fci-mode 1)))
+  (global-fci-mode 1))
 
 (require 'expand-region)
 (global-set-key (kbd "M-8") 'er/expand-region)
