@@ -375,6 +375,7 @@
  '(el-get
    ;; pymacs
    powerline
+   tellicopy
    ))
 ;; Synchronize el-get packages.
 (setq goog:el-get-packages
