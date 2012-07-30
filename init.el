@@ -375,7 +375,7 @@
  '(el-get
    ;; pymacs
    powerline
-   tellicopy
+   ;; tellicopy
    ))
 ;; Synchronize el-get packages.
 (setq goog:el-get-packages
@@ -574,7 +574,7 @@
 
 
 ;; ----------------------------------------------------------------------
-;; OS Clipboard.
+;; Clipboard and kill-ring.
 ;; ----------------------------------------------------------------------
 (setq x-select-enable-clipboard t) ;; <3 clipboard copy-paste.
 ;; https://github.com/bbatsov/emacs-prelude/commit/d26924894b31d5dc3a8b2813719579baccc2b433
@@ -588,6 +588,23 @@
         (process-send-eof proc))))
   (setq interprogram-cut-function 'goog/clipboard/paste-to-osx
         interprogram-paste-function 'goog/clipboard/copy-from-osx))
+
+;; Makes the kill commands work on the line if nothing is selected.
+(defadvice kill-ring-save (before slick-copy activate compile)
+  "When called interactively with no active region, copy the current line."
+  (interactive
+   (if mark-active
+       (list (region-beginning) (region-end))
+     (progn
+       (message "Current line is copied.")
+       (list (line-beginning-position) (line-beginning-position 2)) ) ) ))
+(defadvice kill-region (before slick-copy activate compile)
+  "When called interactively with no active region, cut the current line."
+  (interactive
+   (if mark-active
+       (list (region-beginning) (region-end))
+     (progn
+       (list (line-beginning-position) (line-beginning-position 2)) ) ) ))
 
 ;; ----------------------------------------------------------------------
 ;; File and directory navigation.
@@ -1316,14 +1333,8 @@ compilation output."
 (key-chord-define-global "hj" 'undo)
 ;;(key-chord-define-global [?h ?j]  'undo)  ; the same
 (key-chord-define-global "jk" 'dabbrev-expand)
-(key-chord-define-global "zx" "\C-a\C-k")
 (key-chord-define-global ";'" 'ido-recentf-open)
 (key-chord-define-global ",." 'ido-find-file)
-
-;; (key-chord-define-global "pp" 'yank)
-;; (key-chord-define-global "xx" 'kill-region)
-;; (key-chord-define-global "cc" 'kill-ring-save)
-
 ;;(key-chord-define-global "cv"     'reindent-then-newline-and-indent)
 ;;(key-chord-define-global "4r"     "$")
 
