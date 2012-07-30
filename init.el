@@ -589,7 +589,7 @@
   (setq interprogram-cut-function 'goog/clipboard/paste-to-osx
         interprogram-paste-function 'goog/clipboard/copy-from-osx))
 
-;; Makes the kill commands work on the line if nothing is selected.
+;; SlickCopy. Makes the kill commands work on the line if nothing is selected.
 (defadvice kill-ring-save (before slick-copy activate compile)
   "When called interactively with no active region, copy the current line."
   (interactive
