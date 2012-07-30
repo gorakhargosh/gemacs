@@ -478,6 +478,10 @@
   (setq desktop-enable t
         desktop-restore-eager 5))
 
+;; Better buffer names.
+(require 'uniquify)
+;; (setq uniquify-buffer-name-style 'reverse)
+
 ;; ----------------------------------------------------------------------
 ;; Backups.
 ;; ----------------------------------------------------------------------
