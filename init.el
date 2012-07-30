@@ -1216,8 +1216,7 @@ compilation output."
                 ("\\BUILD$" . python-mode))
               auto-mode-alist))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
-(add-hook 'python-mode-hook
-          'goog/config/python-mode/setup-style)
+(add-hook 'python-mode-hook 'goog/config/python-mode/setup-style)
 
 (font-lock-add-keywords 'python-mode
     '(("\\<\\(object\\|str\\|else\\|except\\|finally\\|try\\|\\)\\>" 0 py-builtins-face)  ; adds object and str and fixes it so that keywords that often appear with : are assigned as builtin-face
