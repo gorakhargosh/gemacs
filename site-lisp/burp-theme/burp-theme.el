@@ -61,7 +61,7 @@
  '(js2-function-param-face ((t (:foreground "#28a428"))))
 
  '(js2-jsdoc-tag-face ((t (:foreground "#699bc4"))))
- '(js2-jsdoc-type-face ((t (:foreground "SteelBlue"))))
+ '(js2-jsdoc-type-face ((t (:foreground "#699bc4"))))
 
  ;; ----------------------------------------------------------------------
  ;; Search.
