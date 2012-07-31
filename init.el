@@ -548,12 +548,6 @@
         (newline-mark ?\n   [?\xB6 ?\n] [?$ ?\n])   ; end-of-line
         ))
 
-;; Whitespace-aware kill-line.
-(defadvice kill-line (after kill-line-cleanup-whitespace activate compile)
-  "cleanup whitespace on kill-line"
-  (if (not (bolp))
-      (delete-region (point) (progn (skip-chars-forward " \t") (point)))))
-
 ;; Autofill mode.
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'prog-mode-common-hook
@@ -605,6 +599,11 @@
        (list (region-beginning) (region-end))
      (progn
        (list (line-beginning-position) (line-beginning-position 2)) ) ) ))
+;; ;; Whitespace-aware kill-line.
+;; (defadvice kill-line (after kill-line-cleanup-whitespace activate compile)
+;;   "cleanup whitespace on kill-line"
+;;   (if (not (bolp))
+;;       (delete-region (point) (progn (skip-chars-forward " \t") (point)))))
 
 ;; ----------------------------------------------------------------------
 ;; File and directory navigation.
@@ -877,11 +876,12 @@ immediately."
 (require 'switch-window)
 
 ;; Need to test this properly.
-(when window-system
-  (require 'fill-column-indicator)
-  (define-globalized-minor-mode global-fci-mode fci-mode
-    (lambda () (fci-mode 1)))
-  (global-fci-mode 1))
+;; Disabled because it causes Emacs to hang.
+;; (when window-system
+;;   (require 'fill-column-indicator)
+;;   (define-globalized-minor-mode global-fci-mode fci-mode
+;;     (lambda () (fci-mode 1)))
+;;   (global-fci-mode 1))
 
 (require 'expand-region)
 (global-set-key (kbd "M-8") 'er/expand-region)
