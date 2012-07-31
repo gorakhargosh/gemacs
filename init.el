@@ -643,8 +643,7 @@ at point."
            ido-use-filename-at-point 'guess
            ido-enable-flex-matching t
            confirm-nonexistent-file-or-buffer nil
-           ido-create-new-buffer 'always
-           )
+           ido-create-new-buffer 'always)
 
      ;; Display ido results vertically, rather than horizontally.
      ;; From the Emacs wiki.
@@ -849,6 +848,10 @@ immediately."
 
 ;; (require 'smooth-scroll)
 ;; (smooth-scroll-mode t)
+
+;; Git integration.
+(add-to-list 'auto-mode-alist '("\\(?:\\.gitconfig\\|\\.gitmodules\\|config\\)$" . conf-mode))
+(setq magit-completing-read-function 'magit-ido-completing-read)
 
 ;; Let the power to type multiple keys at the same time be yours.
 (require 'key-chord)
