@@ -357,6 +357,14 @@
    ;; ;; (:name yaml-mode
    ;; ;;        :after (progn
    ;; ;;                 (require 'goog-config-yaml-mode)))
+   (:name monky
+          :description "Magit for Hg"
+          :type github
+          :pkgname "ananthakumaran/monky"
+          :features monky
+          :after (progn
+                   (require 'monky)
+                   (setq monky-process-type 'cmdserver)))
 
    ;; (:name ropemacs
    ;;        :after (progn
