@@ -18,9 +18,7 @@
 ;; Author: yesudeep@google.com (Yesudeep Mangalapilly)
 ;;
 ;;; This file is NOT a part of GNU Emacs.
-;;
-;;
-;; TODO(yesudeep): Make a theme like code.google.com uses.
+
 
 (eval-when-compile
   (require 'cl))
