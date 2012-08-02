@@ -1,21 +1,20 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8; mode: snippet -*-
 # name: lgoog
 # contributor: Yesudeep Mangalapilly <yesudeep@google.com>
-# key: lgoog
 # --
 #!/usr/bin/env python
 #
-# Copyright ${2:`(nth 5 (decode-time))`} ${3:Google Inc}. ${4:All Rights Reserved.}
+# Copyright ${1:`(nth 5 (decode-time))`} ${2:Google Inc}. ${3:All Rights Reserved.}
 
 
-"""${5:A one line summary of the module or script, terminated by a period}."""
+"""${4:A one line summary of the module or script, terminated by a period}."""
 
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import with_statement
 
 
-__author__ = '${7:`user-mail-address`} (${8:`(user-full-name)`})'
+__author__ = '${5:`user-mail-address`} (${6:`(user-full-name)`})'
 
 
 $0

@@ -2,4 +2,4 @@
 # name: __author__
 # contributor: Yesudeep Mangalapilly <yesudeep@google.com>
 # --
-__author__ = '`user-mail-address` (`(user-full-name)`)'$0
+__author__ = '${1:`user-mail-address`} (${2:`(user-full-name)`})'$0
