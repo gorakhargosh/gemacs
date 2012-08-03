@@ -92,7 +92,17 @@
  '(paren-face-mismatch ((t (:inherit show-paren-mismatch-face))))
  '(persp-selected-face ((t (:foreground "#729fcf"))))
  '(show-paren-match-face ((t (:background "#729fcf" :foreground "#eeeeec"))))
- '(show-paren-mismatch-face ((t (:background "#ad7fa8" :foreground "#2e3436")))))
+ '(show-paren-mismatch-face ((t (:background "#ad7fa8" :foreground "#2e3436"))))
+
+ ;; ----------------------------------------------------------------------
+ ;; Diff mode.
+ ;; ----------------------------------------------------------------------
+ '(diff-added ((t (:foreground "#4e9a06"))))
+ '(diff-changed ((t (:foreground "#edd400"))))
+ '(diff-removed ((t (:foreground "#ef2929"))))
+ '(diff-header ((t (:foreground "#729fcf"))))
+ '(diff-file-header ((t (:foreground "#729fcf"))))
+ )
 
 ;;;###autoload
 (when load-file-name

@@ -103,6 +103,7 @@
  '(diff-changed ((t (:foreground "#edd400"))))
  '(diff-removed ((t (:foreground "#ef2929"))))
  '(diff-header ((t (:foreground "#729fcf"))))
+ '(diff-file-header ((t (:foreground "#729fcf"))))
  )
 
 
