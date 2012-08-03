@@ -651,6 +651,12 @@ at point."
        (set (make-local-variable 'truncate-lines) nil))
      (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
      (global-set-key [(control tab)] 'ido-switch-buffer)
+
+     ;; Make up and down arrow keys work with ido results.
+     (add-hook 'ido-setup-hook
+               (lambda ()
+                 (define-key ido-completion-map (kbd "<up>") 'ido-prev-match)
+                 (define-key ido-completion-map (kbd "<down>") 'ido-next-match)))
      ))
 
 ;; (global-set-key (kbd "M-i") 'ido-goto-symbol)
