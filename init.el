@@ -216,13 +216,13 @@
    ;;        :after (progn
    ;;                 (require 'goog-config-paredit-mode)))
 
-   ;; (:name transpose-frame
-   ;;        :after (progn
-   ;;                 (require 'transpose-frame)
-   ;;                 (global-set-key (kbd "C-x t t") 'transpose-frame)
-   ;;                 (global-set-key (kbd "C-x t h") 'flop-frame)
-   ;;                 (global-set-key (kbd "C-x t v") 'flip-frame)
-   ;;                 (global-set-key (kbd "C-x t r") 'rotate-frame-clockwise)))
+   (:name transpose-frame
+          :after (progn
+                   (require 'transpose-frame)
+                   (global-set-key (kbd "C-x t t") 'transpose-frame)
+                   (global-set-key (kbd "C-x t h") 'flop-frame)
+                   (global-set-key (kbd "C-x t v") 'flip-frame)
+                   (global-set-key (kbd "C-x t r") 'rotate-frame-clockwise)))
 
    ;; (:name fastnav
    ;;        :after (progn
@@ -484,7 +484,9 @@
   (desktop-save-mode t)           ;; Save sessions.
   (desktop-load-default)          ;; Load the desktop on startup.
   (setq desktop-enable t
-        desktop-restore-eager 5))
+        desktop-restore-eager 5
+        ;; desktop-save 'if-exists   ;; Automatically save desktop if it exists.
+        ))
 
 ;; Better buffer names.
 (require 'uniquify)
@@ -884,6 +886,7 @@ immediately."
 
 (require 'magit)
 (global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key [(f9)] 'magit-status)
 
 (require 'move-text)
 (global-set-key [M-S-up] 'move-text-up)
@@ -1284,6 +1287,9 @@ compilation output."
 (global-set-key (kbd "s-]") 'shift-right)
 (global-set-key (kbd "s-[") 'shift-left)
 (define-key global-map (kbd "RET") 'newline-and-indent)
+
+;; ibuffer.
+(global-set-key [(f8)] 'ibuffer)
 
 ;; Increase/decrease/reset font size.
 (global-set-key (kbd "C-+") 'text-scale-increase)
