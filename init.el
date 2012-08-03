@@ -83,7 +83,7 @@
                            ;; smooth-scroll
                            ;; tabbar  ;; This looks like shit.
                            ac-slime
-                           auto-complete
+                           ;; auto-complete
                            autopair
                            evil-numbers
                            expand-region
@@ -382,6 +382,7 @@
    ;; pymacs
    fill-column-indicator
    powerline
+   auto-complete
    ))
 ;; Synchronize el-get packages.
 (setq goog:el-get-packages
@@ -426,7 +427,7 @@
 (when window-system
   (blink-cursor-mode nil)
   (global-font-lock-mode 1)
-  ;; (global-hl-line-mode)
+  (global-hl-line-mode)
   (mouse-wheel-mode t)
   (scroll-bar-mode -1)
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
@@ -977,8 +978,8 @@ immediately."
 (setq ac-ignore-case 'smart
       ;; ac-use-fuzzy t
       ;; ac-fuzz-enable t
-      ;; ac-auto-start t
-      ac-dwim t
+      ;; ac-auto-show-menu nil
+      ;; ac-dwim t
       )
 ;; Don't use tab to cycle. It's irritating.
 (define-key ac-completing-map "\t" 'ac-complete)

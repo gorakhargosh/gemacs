@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name : for ... in ... : ...
+# name: Todo line.
 # contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# key: TODO
 # --
-for ${var} in ${collection}:
-  $0
+# TODO(${1:`user-login-name`}): $0

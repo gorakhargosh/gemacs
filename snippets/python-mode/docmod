@@ -9,6 +9,6 @@
 
 """
 
-__author__ = "`user-mail-address` (`(user-full-name)`)"
+__author__ = '`user-mail-address` (`(user-full-name)`)'
 
 $0
