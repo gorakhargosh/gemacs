@@ -1291,17 +1291,12 @@ compilation output."
 ;; Use regex searches by default
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "\C-r") 'isearch-backward-regexp)
-;; (global-set-key (kbd "C-s") 'flex-isearch-forward)
-;; (global-set-key (kbd "\C-r") 'flex-isearch-backward)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 
 ;; Killing and yanking.
 (define-key global-map (kbd "<delete>") 'delete-char)
 (define-key global-map (kbd "M-<delete>") 'kill-word)
-;; (global-set-key (kbd "C-k") 'kill-whole-line)
-;; (global-set-key (kbd "C-S-<backspace>")
-;;                 'kill-and-join-forward)
 
 ;; Line insertion
 (global-set-key (kbd "S-<return>") 'insert-blank-line-below)
@@ -1330,7 +1325,6 @@ compilation output."
 (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
 
 ;; Occur.
-;; (global-set-key (kbd "<f6>") 'occur)
 (global-set-key (kbd "<f7>") 'multi-occur-in-this-mode)
 
 ;; Quotes.
@@ -1361,12 +1355,9 @@ compilation output."
 ;; Key chords
 ;; ----------------------------------------------------------------------
 (key-chord-define-global "hj" 'undo)
-;;(key-chord-define-global [?h ?j]  'undo)  ; the same
 (key-chord-define-global "jk" 'dabbrev-expand)
 (key-chord-define-global ";'" 'ido-recentf-open)
 (key-chord-define-global ",." 'ido-find-file)
-;;(key-chord-define-global "cv"     'reindent-then-newline-and-indent)
-;;(key-chord-define-global "4r"     "$")
 
 
 ;; ----------------------------------------------------------------------
