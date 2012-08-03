@@ -1,6 +1,6 @@
 ;;; burp-theme.el --- Burp color theme for GNU Emacs 24
-;; Author: Yesudeep Mangalapilly
-;; Version: 1.0.0
+;;
+;; Copyright 2012 Google Inc. All Rights Reserved.
 ;;
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
@@ -16,6 +16,9 @@
 ;; License along with this program; if not, write to the Free
 ;; Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 ;; MA 02111-1307 USA
+;;
+;; Author: Yesudeep Mangalapilly
+;; Version: 1.0.0
 
 (deftheme burp
   "Burp color theme")
