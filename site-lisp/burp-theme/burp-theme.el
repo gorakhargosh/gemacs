@@ -102,6 +102,7 @@
  '(diff-removed ((t (:foreground "#ef2929"))))
  '(diff-header ((t (:foreground "#729fcf"))))
  '(diff-file-header ((t (:foreground "#729fcf"))))
+ ;; TODO(yesudeep): Fix ediff colors.
  )
 
 
