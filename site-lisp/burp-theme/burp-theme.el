@@ -30,7 +30,7 @@
  '(default ((t (:background "#1a1a1a" :foreground "#eeeeec"))))
  '(cursor ((t (:foreground "#888888"))))
  '(region ((t (:background "#555753"))))
- '(highlight ((t (:background "#444444"))))
+ '(highlight ((t (:background "#121212"))))
  ;; '(modeline ((t (:background "#2e3436" :foreground "#eeeeec"))))
  ;; '(modeline-inactive ((t (:background "#111111" :foreground "#cccddd"))))
  '(mode-line ((t (:bold t :foreground "#000000" :background "#63a216" :box nil))))
