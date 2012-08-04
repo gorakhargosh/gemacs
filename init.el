@@ -615,7 +615,6 @@ at point."
 ;; Non lispy languages.
 (setq goog/paredit/non-lisp-modes '(
 ;;                                    js
-;;                                    js3
 ;;                                    js2
 ;;                                    javascript
 ;;                                    python
@@ -722,13 +721,9 @@ minibuffer.")
 ;; ----------------------------------------------------------------------
 ;; goog/edit
 ;; ----------------------------------------------------------------------
-
 (defun goog/edit/set-newline-and-indent ()
   "Sets RET to do a newline and indent."
   (local-set-key (kbd "RET") 'newline-and-indent))
-
-
-;; Alphabet case
 
 (defun goog/edit/watchwords ()
   (font-lock-add-keywords
