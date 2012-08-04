@@ -77,14 +77,13 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar default-packages '(
-                           ;; fill-column-indicator
-                           ;; flex-isearch
+                           ;; slime
+                           ;; slime-js
+                           ;; slime-repl
                            ;; smex   ;; Don't use this one. el-get works.
-                           ;; smooth-scroll
-                           ;; tabbar  ;; This looks like shit.
                            ac-slime
-                           ;; auto-complete
-                           ;; autopair
+                           auto-complete
+                           clojure-mode
                            evil-numbers
                            expand-region
                            fastnav
@@ -93,10 +92,10 @@
                            highlight-symbol
                            ido-ubiquitous
                            iedit
-                           ;; js2-mode
+                           js2-mode
                            key-chord
                            less-css-mode
-                           ;; magit
+                           magit
                            mark-multiple
                            maxframe
                            melpa
@@ -104,9 +103,8 @@
                            nav
                            paredit
                            perspective
+                           powerline
                            rainbow-mode
-                           slime
-                           slime-js
                            switch-window
                            undo-tree
                            yasnippet
@@ -165,9 +163,9 @@
                    (global-set-key (kbd "M-x") 'smex)
                    (global-set-key (kbd "M-X") 'smex-major-mode-commands)))
 
-   (:name magit             ;; Git for emacs.
-          :after (progn
-                   (global-set-key (kbd "C-x g") 'magit-status)))
+   ;; (:name magit             ;; Git for emacs.
+   ;;        :after (progn
+   ;;                 (global-set-key (kbd "C-x g") 'magit-status)))
 
    ;; (:name move-text         ;; text movement
    ;;        :after (progn
@@ -180,23 +178,23 @@
    ;;                 (helm-mode 1)
    ;;                 (global-set-key (kbd "<f5>") 'helm-for-files)))
 
-   (:name autopair          ;; Balance parentheses; paredit is faster.
-          :type git
-          :url "git://github.com/capitaomorte/autopair.git"
-          :after (progn
-                   (require 'autopair)
-                   (autopair-global-mode)
-                   (setq autopair-autowrap t)
-                   ;; Prevents: http://code.google.com/p/autopair/issues/detail?id=32
-                   (add-hook 'sldb-mode-hook
-                             #'(lambda ()
-                                 (setq autopair-dont-activate t) ;; emacs < 24
-                                 (autopair-mode -1)              ;; emacs >= 24
-                                 ))
-                   (set-default 'autopair-dont-activate
-                                #'(lambda ()
-                                    (eq major-mode 'sldb-mode)))
-                   ))
+   ;; (:name autopair          ;; Balance parentheses; paredit is faster.
+   ;;        :type git
+   ;;        :url "git://github.com/capitaomorte/autopair.git"
+   ;;        :after (progn
+   ;;                 (require 'autopair)
+   ;;                 (autopair-global-mode)
+   ;;                 (setq autopair-autowrap t)
+   ;;                 ;; Prevents: http://code.google.com/p/autopair/issues/detail?id=32
+   ;;                 (add-hook 'sldb-mode-hook
+   ;;                           #'(lambda ()
+   ;;                               (setq autopair-dont-activate t) ;; emacs < 24
+   ;;                               (autopair-mode -1)              ;; emacs >= 24
+   ;;                               ))
+   ;;                 (set-default 'autopair-dont-activate
+   ;;                              #'(lambda ()
+   ;;                                  (eq major-mode 'sldb-mode)))
+   ;;                 ))
 
    ;; (:name emacs-nav
    ;;        :type hg
@@ -379,11 +377,11 @@
  goog:el-get-packages
  '(el-get
    ;; pymacs
-   fill-column-indicator
-   powerline
-   auto-complete
-   clojure-mode
-   js2-mode
+   ;; auto-complete
+   ;; clojure-mode
+   ;; fill-column-indicator
+   ;; js2-mode
+   ;; powerline
    ))
 ;; Synchronize el-get packages.
 (setq goog:el-get-packages
@@ -530,11 +528,6 @@
                                (scroll-up 1)))
   (defun track-mouse (e))
   (setq mouse-sel-mode t))
-
-;; ----------------------------------------------------------------------
-;; Tabs.
-;; ----------------------------------------------------------------------
-;; (require 'tabbar)
 
 ;; ----------------------------------------------------------------------
 ;; Editing and searching.
@@ -851,12 +844,6 @@ immediately."
 ;; Packages
 ;; ======================================================================
 
-;; (require 'flex-isearch)
-;; (global-flex-isearch-mode)
-
-;; (require 'smooth-scroll)
-;; (smooth-scroll-mode t)
-
 ;; Git integration.
 (add-to-list 'auto-mode-alist '("\\(?:\\.gitconfig\\|\\.gitmodules\\|config\\)$" . conf-mode))
 (setq magit-completing-read-function 'magit-ido-completing-read)
@@ -866,19 +853,19 @@ immediately."
 (key-chord-mode 1)
 (setq key-chord-two-keys-delay 0.05)
 
-;; (require 'autopair)
-;; (autopair-global-mode)
-;; (setq autopair-autowrap t)
+(require 'autopair)
+(autopair-global-mode)
+(setq autopair-autowrap t)
 
 ;; Prevents: http://code.google.com/p/autopair/issues/detail?id=32
-;; (add-hook 'sldb-mode-hook
-;;           #'(lambda ()
-;;               (setq autopair-dont-activate t) ;; emacs < 24
-;;               (autopair-mode -1)              ;; emacs >= 24
-;;               ))
-;; (set-default 'autopair-dont-activate
-;;              #'(lambda ()
-;;                  (eq major-mode 'sldb-mode)))
+(add-hook 'sldb-mode-hook
+          #'(lambda ()
+              (setq autopair-dont-activate t) ;; emacs < 24
+              (autopair-mode -1)              ;; emacs >= 24
+              ))
+(set-default 'autopair-dont-activate
+             #'(lambda ()
+                 (eq major-mode 'sldb-mode)))
 
 (require 'undo-tree)
 
@@ -1246,10 +1233,10 @@ compilation output."
     'goog/config/js-mode/jshint))
 
 ;; Load swank-js.
-(add-hook 'after-init-hook
-          #'(lambda ()
-              (when (locate-library "slime-js")
-                (require 'setup-slime-js))))
+;; (add-hook 'after-init-hook
+;;           #'(lambda ()
+;;               (when (locate-library "slime-js")
+;;                 (require 'setup-slime-js))))
 
 ;; ----------------------------------------------------------------------
 ;; Python.
@@ -1280,6 +1267,16 @@ compilation output."
       ;; but does to one below
       ("\\<[\\+-]?[0-9]+\\(.[0-9]+\\)?\\>" 0 'font-lock-constant-face)
       ("\\([][{}()~^<>:=,.\\+*/%-]\\)" 0 'widget-inactive-face)))
+
+
+;; ----------------------------------------------------------------------
+;; Clojure.
+;; ----------------------------------------------------------------------
+(add-hook 'slime-repl-mode-hook
+          (defun clojure-mode-slime-font-lock ()
+            (require 'clojure-mode)
+            (let (font-lock-mode)
+              (clojure-mode-font-lock-setup))))
 
 ;; ======================================================================
 ;; Keyboard bindings.
