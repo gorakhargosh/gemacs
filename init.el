@@ -846,35 +846,40 @@ immediately."
 
 ;; Git integration.
 (add-to-list 'auto-mode-alist '("\\(?:\\.gitconfig\\|\\.gitmodules\\|config\\)$" . conf-mode))
-(setq magit-completing-read-function 'magit-ido-completing-read)
+(autoload 'magit-status "magit" nil t)
+(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key [(f9)] 'magit-status)
+(eval-after-load "magit"
+  '(progn
+     (setq magit-completing-read-function 'magit-ido-completing-read)
+     ))
 
-;; Let the power to type multiple keys at the same time be yours.
-(require 'key-chord)
-(key-chord-mode 1)
-(setq key-chord-two-keys-delay 0.05)
+(eval-after-load "autopair-autoloads"
+  '(progn
+     (require 'autopair)))
+(eval-after-load "autopair"
+  '(progn
+     (autopair-global-mode)
+     (setq autopair-autowrap t)
 
-(require 'autopair)
-(autopair-global-mode)
-(setq autopair-autowrap t)
+     ;; Prevents: http://code.google.com/p/autopair/issues/detail?id=32
+     (add-hook 'sldb-mode-hook
+               #'(lambda ()
+                   (setq autopair-dont-activate t) ;; emacs < 24
+                   (autopair-mode -1)              ;; emacs >= 24
+                   ))
+     (set-default 'autopair-dont-activate
+                  #'(lambda ()
+                      (eq major-mode 'sldb-mode)))
+     ))
+;; (require 'autopair)
 
-;; Prevents: http://code.google.com/p/autopair/issues/detail?id=32
-(add-hook 'sldb-mode-hook
-          #'(lambda ()
-              (setq autopair-dont-activate t) ;; emacs < 24
-              (autopair-mode -1)              ;; emacs >= 24
-              ))
-(set-default 'autopair-dont-activate
-             #'(lambda ()
-                 (eq major-mode 'sldb-mode)))
 
 (require 'undo-tree)
 
-(require 'nav)
-(global-set-key (kbd "C-x C-a") 'nav)
 
-(require 'magit)
-(global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key [(f9)] 'magit-status)
+(autoload 'nav "nav" nil t)
+(global-set-key (kbd "C-x C-a") 'nav)
 
 (require 'move-text)
 (global-set-key [M-S-up] 'move-text-up)
@@ -890,8 +895,9 @@ immediately."
 ;;     (lambda () (fci-mode 1)))
 ;;   (global-fci-mode 1))
 
-(require 'expand-region)
+(autoload 'expand-region "expand-region" nil t)
 (global-set-key (kbd "M-8") 'er/expand-region)
+
 
 (require 'fastnav)
 (global-set-key "\M-z" 'fastnav-zap-up-to-char-forward)
@@ -912,7 +918,9 @@ immediately."
 (global-set-key "\M-P" 'fastnav-sprint-backward)
 
 ;; Find things fast.
-(require 'find-things-fast)
+;; (require 'find-things-fast)
+(autoload 'ftf-find-file "find-things-fast" nil t)
+(autoload 'ftf-grepsource "find-things-fast" nil t)
 (global-set-key (kbd "C-x f") 'ftf-find-file)
 (global-set-key (kbd "<f6>") 'ftf-grepsource)
 
@@ -967,7 +975,6 @@ immediately."
         ;; Add more paths here if you like.
         ))
 (yas/global-mode 1)  ;; or M-x yas/reload-all to reload yasnippet.
-
 
 (require 'auto-complete)
 (require 'auto-complete-config)
@@ -1364,6 +1371,11 @@ compilation output."
 ;; ----------------------------------------------------------------------
 ;; Key chords
 ;; ----------------------------------------------------------------------
+;; Let the power to type multiple keys at the same time be yours.
+(require 'key-chord)
+(key-chord-mode 1)
+(setq key-chord-two-keys-delay 0.05)
+
 (key-chord-define-global "hj" 'undo)
 (key-chord-define-global "jk" 'dabbrev-expand)
 (key-chord-define-global ";'" 'ido-recentf-open)
