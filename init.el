@@ -82,6 +82,7 @@
                            ;; slime-repl
                            ;; smex   ;; Don't use this one. el-get works.
                            ac-slime
+                           autopair
                            auto-complete
                            clojure-mode
                            evil-numbers
@@ -103,7 +104,6 @@
                            nav
                            paredit
                            perspective
-                           powerline
                            rainbow-mode
                            switch-window
                            undo-tree
@@ -381,7 +381,7 @@
    ;; clojure-mode
    ;; fill-column-indicator
    ;; js2-mode
-   ;; powerline
+   powerline
    ))
 ;; Synchronize el-get packages.
 (setq goog:el-get-packages
