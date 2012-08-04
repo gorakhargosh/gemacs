@@ -383,6 +383,7 @@
    fill-column-indicator
    powerline
    auto-complete
+   clojure-mode
    ))
 ;; Synchronize el-get packages.
 (setq goog:el-get-packages
