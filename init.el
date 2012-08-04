@@ -82,8 +82,8 @@
                            ;; slime-repl
                            ;; smex   ;; Don't use this one. el-get works.
                            ac-slime
-                           autopair
                            auto-complete
+                           autopair
                            clojure-mode
                            evil-numbers
                            expand-region
@@ -172,12 +172,6 @@
    ;;                 (global-set-key [M-S-up] 'move-text-up)
    ;;                 (global-set-key [M-S-down] 'move-text-down)))
 
-   ;; (:name helm              ;; You need this.
-   ;;        :after (progn
-   ;;                 (require 'helm-config)
-   ;;                 (helm-mode 1)
-   ;;                 (global-set-key (kbd "<f5>") 'helm-for-files)))
-
    ;; (:name autopair          ;; Balance parentheses; paredit is faster.
    ;;        :type git
    ;;        :url "git://github.com/capitaomorte/autopair.git"
@@ -196,23 +190,6 @@
    ;;                                  (eq major-mode 'sldb-mode)))
    ;;                 ))
 
-   ;; (:name emacs-nav
-   ;;        :type hg
-   ;;        :website "http://code.google.com/p/emacs-nav/"
-   ;;        :description "Emacs Navigation Tool."
-   ;;        :url "https://code.google.com/p/emacs-nav/"
-   ;;        :after (progn
-   ;;                 (require 'nav)))
-
-   ;; (:name iedit             ;; More interactive find and replace.
-   ;;        :after (progn
-   ;;                 (require 'iedit)
-   ;;                 (put 'narrow-to-region 'disabled nil)))
-
-   ;; (:name paredit           ;; Automatically balance parentheses.
-   ;;        :after (progn
-   ;;                 (require 'goog-config-paredit-mode)))
-
    (:name transpose-frame
           :after (progn
                    (require 'transpose-frame)
@@ -220,58 +197,6 @@
                    (global-set-key (kbd "C-x t h") 'flop-frame)
                    (global-set-key (kbd "C-x t v") 'flip-frame)
                    (global-set-key (kbd "C-x t r") 'rotate-frame-clockwise)))
-
-   ;; (:name fastnav
-   ;;        :after (progn
-   ;;                 (require 'fastnav)
-   ;;                 (global-set-key "\M-z" 'fastnav-zap-up-to-char-forward)
-   ;;                 (global-set-key "\M-Z" 'fastnav-zap-up-to-char-backward)
-   ;;                 (global-set-key "\M-s" 'fastnav-jump-to-char-forward)
-   ;;                 (global-set-key "\M-S" 'fastnav-jump-to-char-backward)
-   ;;                 (global-set-key "\M-r" 'fastnav-replace-char-forward)
-   ;;                 (global-set-key "\M-R" 'fastnav-replace-char-backward)
-   ;;                 (global-set-key "\M-i" 'fastnav-insert-at-char-forward)
-   ;;                 (global-set-key "\M-I" 'fastnav-insert-at-char-backward)
-   ;;                 (global-set-key "\M-j" 'fastnav-execute-at-char-forward)
-   ;;                 (global-set-key "\M-J" 'fastnav-execute-at-char-backward)
-   ;;                 (global-set-key "\M-k" 'fastnav-delete-char-forward)
-   ;;                 (global-set-key "\M-K" 'fastnav-delete-char-backward)
-   ;;                 (global-set-key "\M-m" 'fastnav-mark-to-char-forward)
-   ;;                 (global-set-key "\M-M" 'fastnav-mark-to-char-backward)
-   ;;                 (global-set-key "\M-p" 'fastnav-sprint-forward)
-   ;;                 (global-set-key "\M-P" 'fastnav-sprint-backward)))
-
-   ;; (:name thing-cmds
-   ;;        :after (progn
-   ;;                 (require 'thing-cmds)
-   ;;                 (thgcmd-bind-keys)))
-
-   ;; (:name expand-region
-   ;;        :after (progn
-   ;;                 (require 'expand-region)
-   ;;                 (global-set-key (kbd "M-8") 'er/expand-region)))
-
-   ;; Don't enable this. Breaks autocomplete and snippets.
-   ;; ;; (:name js3-mode
-   ;; ;;        :website "https://github.com/thomblake/js3-mode#readme"
-   ;; ;;        :description "A chimeric fork of js2-mode and js-mode"
-   ;; ;;        :type github
-   ;; ;;        :pkgname "thomblake/js3-mode"
-   ;; ;;        :pre-init (autoload 'js3-mode "js3" nil t))
-
-   ;; (:name smart-forward
-   ;;        :website "https://github.com/magnars/smart-forward.el#readme"
-   ;;        :description "Semantic navigtation based on expand-region.el"
-   ;;        :type github
-   ;;        :depends (expand-region)
-   ;;        :pkgname "magnars/smart-forward.el"
-   ;;        :post-init (progn
-   ;;                     (require 'smart-forward)
-   ;;                     ;;(global-set-key (kbd "M-<up>") 'smart-up)
-   ;;                     ;;(global-set-key (kbd "M-<down>") 'smart-down)
-   ;;                     (global-set-key (kbd "M-<left>") 'smart-backward)
-   ;;                     (global-set-key (kbd "M-<right>") 'smart-forward)
-   ;;                     ))
 
    ;; (:name closure-template-html-mode
    ;;        :website "https://github.com/archimag/cl-closure-template#readme"
@@ -352,14 +277,15 @@
    ;; ;; (:name yaml-mode
    ;; ;;        :after (progn
    ;; ;;                 (require 'goog-config-yaml-mode)))
-   (:name monky
-          :description "Magit for Hg"
-          :type github
-          :pkgname "ananthakumaran/monky"
-          :features monky
-          :after (progn
-                   (require 'monky)
-                   (setq monky-process-type 'cmdserver)))
+
+   ;; (:name monky
+   ;;        :description "Magit for Hg"
+   ;;        :type github
+   ;;        :pkgname "ananthakumaran/monky"
+   ;;        :features monky
+   ;;        :after (progn
+   ;;                 (require 'monky)
+   ;;                 (setq monky-process-type 'cmdserver)))
 
    ;; (:name ropemacs
    ;;        :after (progn
@@ -394,7 +320,6 @@
 
 ;; Load our definitions.
 (require 'goog-defuns)
-
 
 ;; ======================================================================
 ;; Vanilla Emacs preferences.
@@ -657,8 +582,10 @@ at point."
 
 ;; (global-set-key (kbd "M-i") 'ido-goto-symbol)
 
+;; ----------------------------------------------------------------------
 ;; Recent files.
-(require 'recentf)
+;; ----------------------------------------------------------------------
+(autoload 'recentf "recentf" t)
 (setq recentf-auto-cleanup 'never) ;; Disable before we start recentf for tramp.
 (recentf-mode t)
 (setq recentf-max-saved-items 400)
@@ -668,6 +595,7 @@ at point."
   (if (find-file (ido-completing-read "Find recent file: " recentf-list))
       (message "Opening file...")
     (message "Aborting")))
+(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
 
 
 ;; ======================================================================
@@ -872,16 +800,15 @@ immediately."
                   #'(lambda ()
                       (eq major-mode 'sldb-mode)))
      ))
-;; (require 'autopair)
 
 
 (require 'undo-tree)
 
-
 (autoload 'nav "nav" nil t)
 (global-set-key (kbd "C-x C-a") 'nav)
 
-(require 'move-text)
+(autoload 'move-text-up "move-text" nil t)
+(autoload 'move-text-down "move-text" nil t)
 (global-set-key [M-S-up] 'move-text-up)
 (global-set-key [M-S-down] 'move-text-down)
 
@@ -942,7 +869,8 @@ immediately."
 (put 'narrow-to-region 'disabled nil)  ;; Allow narrowing to work.
 
 (require 'mark-multiple)
-(require 'inline-string-rectangle)
+
+(autoload 'inline-string-rectangle "inline-string-rectangle" nil t)
 (global-set-key (kbd "C-x r t") 'inline-string-rectangle)
 
 (require 'mark-more-like-this)
@@ -952,10 +880,9 @@ immediately."
 (global-set-key (kbd "C-*") 'mark-all-like-this)
 
 (require 'sgml-mode)
-(require 'rename-sgml-tag)
+;; (require 'rename-sgml-tag)
+(autoload 'rename-sgml-tag "rename-sgml-tag" nil t)
 (define-key sgml-mode-map (kbd "C-c C-r") 'rename-sgml-tag)
-
-;; JS2 refactor stuff is defined in el-get load.
 
 (require 'perspective)
 (persp-mode)
@@ -1338,9 +1265,6 @@ compilation output."
 ;; Parentheses matching.
 (global-set-key (kbd "M-0") 'goto-match-paren)
 
-;; Open recently opened files quickly.
-(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
-
 ;; Occur.
 (global-set-key (kbd "<f7>") 'multi-occur-in-this-mode)
 
@@ -1380,7 +1304,6 @@ compilation output."
 (key-chord-define-global "jk" 'dabbrev-expand)
 (key-chord-define-global ";'" 'ido-recentf-open)
 (key-chord-define-global ",." 'ido-find-file)
-
 
 ;; ----------------------------------------------------------------------
 ;; Now load host, os, network-specific configuration.
