@@ -86,7 +86,6 @@
                            autopair
                            clojure-mode
                            evil-numbers
-                           expand-region
                            fastnav
                            find-things-fast
                            helm
@@ -308,6 +307,7 @@
    ;; fill-column-indicator
    ;; js2-mode
    powerline
+   expand-region
    ))
 ;; Synchronize el-get packages.
 (setq goog:el-get-packages
@@ -316,7 +316,6 @@
        (loop for src in el-get-sources collect (el-get-source-name src))))
 (el-get 'sync goog:el-get-packages)
 ;;(el-get 'wait)
-
 
 ;; Load our definitions.
 (require 'goog-defuns)
@@ -329,24 +328,6 @@
 ;; TODO(yesudeep): resolve a bug where it hides the first line of every buffer.
 ;;(require 'maxframe)
 ;;(add-hook 'window-setup-hook 'maximize-frame t)
-
-
-;; Next code work with Emacs 21.4, 22.3, 23.1.
-;; (when window-system
-;;   (let (
-;;         (px (display-pixel-width))
-;;         (py (display-pixel-height))
-;;         (fx (frame-char-width))
-;;         (fy (frame-char-height))
-;;         tx ty
-;;         )
-;;     ;; Next formulas discovered empiric on Windows host with default font.
-;;     (setq tx (- (/ px fx) 7))
-;;     (setq ty (- (/ py fy) 4))
-;;     (setq initial-frame-alist '((top . 2) (left . 2)))
-;;     (add-to-list 'initial-frame-alist (cons 'width tx))
-;;     (add-to-list 'initial-frame-alist (cons 'height ty))
-;;     ) )
 
 (when window-system
   (blink-cursor-mode nil)
@@ -543,8 +524,6 @@ at point."
      (ido-find-file-in-dir default-directory))))
 
 (setq find-file-wildcards t)
-;; (require 'ido)
-;; (require 'ido-ubiquitous)
 (eval-after-load "ido"
   '(progn
      (ido-mode t)
@@ -617,17 +596,17 @@ at point."
 (defun goog/paredit/singlequote (&optional n)
   "Insert a pair of single-quotes.
 With a prefix argument N, wrap the following N S-expressions in
-  single-quotes, escaping intermediate characters if necessary.
-If the region is active, `transient-mark-mode' is enabled, and the
-  region's start and end fall in the same parenthesis depth, insert a
-  pair of single-quotes around the region, again escaping intermediate
-  characters if necessary.
-Inside a comment, insert a literal single-quote.
-At the end of a string, move past the closing single-quote.
-In the middle of a string, insert a backslash-escaped single-quote.
-If in a character literal, do nothing.  This prevents accidentally
-  changing a what was in the character literal to become a meaningful
-  delimiter unintentionally."
+single-quotes, escaping intermediate characters if necessary. If
+the region is active, `transient-mark-mode' is enabled, and the
+region's start and end fall in the same parenthesis depth, insert
+a pair of single-quotes around the region, again escaping
+intermediate characters if necessary. Inside a comment, insert a
+literal single-quote. At the end of a string, move past the
+closing single-quote. In the middle of a string, insert a
+backslash-escaped single-quote. If in a character literal, do
+nothing. This prevents accidentally changing a what was in the
+character literal to become a meaningful delimiter
+unintentionally."
   (interactive "P")
   (cond ((paredit-in-string-p)
          (if (eq (cdr (paredit-string-start+end-points))
@@ -645,7 +624,8 @@ If in a character literal, do nothing.  This prevents accidentally
 
 (defun goog/paredit/non-lisp ()
   "Enables paredit mode for non-lisp languages. Does not insert
-spaces before opening parentheses.  See: https://gist.github.com/879305"
+spaces before opening parentheses. See:
+https://gist.github.com/879305"
   (add-to-list (make-local-variable
                 'paredit-space-for-delimiter-predicates)
                (lambda (_ _) nil))
@@ -707,8 +687,8 @@ spaces before opening parentheses.  See: https://gist.github.com/879305"
 (defvar paredit-minibuffer-commands '(eval-expression
                                       pp-eval-expression
                                       eval-expression-with-eldoc)
-  "Interactive commands for which paredit should be enabled in the
-minibuffer.")
+  "Interactive commands for which paredit should be enabled in
+the minibuffer.")
 
 
 ;; ----------------------------------------------------------------------
