@@ -84,7 +84,7 @@
                            ;; tabbar  ;; This looks like shit.
                            ac-slime
                            ;; auto-complete
-                           autopair
+                           ;; autopair
                            evil-numbers
                            expand-region
                            fastnav
@@ -93,10 +93,10 @@
                            highlight-symbol
                            ido-ubiquitous
                            iedit
-                           js2-mode
+                           ;; js2-mode
                            key-chord
                            less-css-mode
-                           magit
+                           ;; magit
                            mark-multiple
                            maxframe
                            melpa
@@ -165,9 +165,9 @@
                    (global-set-key (kbd "M-x") 'smex)
                    (global-set-key (kbd "M-X") 'smex-major-mode-commands)))
 
-   ;; (:name magit             ;; Git for emacs.
-   ;;        :after (progn
-   ;;                 (global-set-key (kbd "C-x g") 'magit-status)))
+   (:name magit             ;; Git for emacs.
+          :after (progn
+                   (global-set-key (kbd "C-x g") 'magit-status)))
 
    ;; (:name move-text         ;; text movement
    ;;        :after (progn
@@ -180,24 +180,23 @@
    ;;                 (helm-mode 1)
    ;;                 (global-set-key (kbd "<f5>") 'helm-for-files)))
 
-   ;; (:name autopair          ;; Balance parentheses; paredit is faster.
-   ;;        :type git
-   ;;        :url "git://github.com/capitaomorte/autopair.git"
-   ;;        :after (progn
-   ;;                 (require 'autopair)
-   ;;                 (autopair-global-mode)
-   ;;                 (setq autopair-autowrap t)
-
-   ;;                 ;; Prevents: http://code.google.com/p/autopair/issues/detail?id=32
-   ;;                 (add-hook 'sldb-mode-hook
-   ;;                           #'(lambda ()
-   ;;                               (setq autopair-dont-activate t) ;; emacs < 24
-   ;;                               (autopair-mode -1)              ;; emacs >= 24
-   ;;                               ))
-   ;;                 (set-default 'autopair-dont-activate
-   ;;                              #'(lambda ()
-   ;;                                  (eq major-mode 'sldb-mode)))
-   ;;                 ))
+   (:name autopair          ;; Balance parentheses; paredit is faster.
+          :type git
+          :url "git://github.com/capitaomorte/autopair.git"
+          :after (progn
+                   (require 'autopair)
+                   (autopair-global-mode)
+                   (setq autopair-autowrap t)
+                   ;; Prevents: http://code.google.com/p/autopair/issues/detail?id=32
+                   (add-hook 'sldb-mode-hook
+                             #'(lambda ()
+                                 (setq autopair-dont-activate t) ;; emacs < 24
+                                 (autopair-mode -1)              ;; emacs >= 24
+                                 ))
+                   (set-default 'autopair-dont-activate
+                                #'(lambda ()
+                                    (eq major-mode 'sldb-mode)))
+                   ))
 
    ;; (:name emacs-nav
    ;;        :type hg
@@ -384,6 +383,7 @@
    powerline
    auto-complete
    clojure-mode
+   js2-mode
    ))
 ;; Synchronize el-get packages.
 (setq goog:el-get-packages
@@ -866,19 +866,19 @@ immediately."
 (key-chord-mode 1)
 (setq key-chord-two-keys-delay 0.05)
 
-(require 'autopair)
-(autopair-global-mode)
-(setq autopair-autowrap t)
+;; (require 'autopair)
+;; (autopair-global-mode)
+;; (setq autopair-autowrap t)
 
 ;; Prevents: http://code.google.com/p/autopair/issues/detail?id=32
-(add-hook 'sldb-mode-hook
-          #'(lambda ()
-              (setq autopair-dont-activate t) ;; emacs < 24
-              (autopair-mode -1)              ;; emacs >= 24
-              ))
-(set-default 'autopair-dont-activate
-             #'(lambda ()
-                 (eq major-mode 'sldb-mode)))
+;; (add-hook 'sldb-mode-hook
+;;           #'(lambda ()
+;;               (setq autopair-dont-activate t) ;; emacs < 24
+;;               (autopair-mode -1)              ;; emacs >= 24
+;;               ))
+;; (set-default 'autopair-dont-activate
+;;              #'(lambda ()
+;;                  (eq major-mode 'sldb-mode)))
 
 (require 'undo-tree)
 
