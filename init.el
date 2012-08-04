@@ -459,6 +459,13 @@
 ;; ----------------------------------------------------------------------
 (setq-default fill-column 80)     ;; right margin and fill column.
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
+(add-hook 'prog-mode-common-hook
+              (lambda ()
+                (auto-fill-mode 1)
+                (set (make-local-variable 'fill-nobreak-predicate)
+                     (lambda ()
+                       (not (eq (get-text-property (point) 'face)
+                                'font-lock-comment-face))))))
 
 ;; Use whitespace mode. Cleans up trailing spaces, shows tabs, unnecessary
 ;; whitespace, end of file newline, bad indentation, text overrunning the
@@ -476,24 +483,11 @@
         (newline-mark ?\n   [?\xB6 ?\n] [?$ ?\n])   ; end-of-line
         ))
 
-;; Autofill mode.
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
-(add-hook 'prog-mode-common-hook
-              (lambda ()
-                (auto-fill-mode 1)
-                (set (make-local-variable 'fill-nobreak-predicate)
-                     (lambda ()
-                       (not (eq (get-text-property (point) 'face)
-                                'font-lock-comment-face))))))
-
 (require 're-builder)
 (setq reb-re-syntax 'string)
 
-
-(add-hook 'prog-mode-hook
-          '(lambda ()
-             (rainbow-mode)))
-
+;; Enable this if you need it.
+;; (add-hook 'prog-mode-hook '(lambda () (rainbow-mode)))
 
 ;; ----------------------------------------------------------------------
 ;; Clipboard and kill-ring.
@@ -527,17 +521,16 @@
        (list (region-beginning) (region-end))
      (progn
        (list (line-beginning-position) (line-beginning-position 2)) ) ) ))
-;; ;; Whitespace-aware kill-line.
-;; (defadvice kill-line (after kill-line-cleanup-whitespace activate compile)
-;;   "cleanup whitespace on kill-line"
-;;   (if (not (bolp))
-;;       (delete-region (point) (progn (skip-chars-forward " \t") (point)))))
+
+;; Whitespace-aware kill-line.
+(defadvice kill-line (after kill-line-cleanup-whitespace activate compile)
+  "cleanup whitespace on kill-line"
+  (if (not (bolp))
+      (delete-region (point) (progn (skip-chars-forward " \t") (point)))))
 
 ;; ----------------------------------------------------------------------
 ;; File and directory navigation.
 ;; ----------------------------------------------------------------------
-;; (require 'dired-x)     ;; C-x C-j jumps to current file in dired.
-
 (defun ibuffer-ido-find-file ()
   "Like `ido-find-file', but default to the directory of the buffer
 at point."
@@ -818,8 +811,9 @@ immediately."
 ;;   (global-fci-mode 1))
 
 (autoload 'expand-region "expand-region" nil t)
+(autoload 'contract-region "expand-region" nil t)
 (global-set-key (kbd "M-8") 'er/expand-region)
-
+(global-set-key (kbd "M-7") 'er/contract-region)
 
 (require 'fastnav)
 (global-set-key "\M-z" 'fastnav-zap-up-to-char-forward)
