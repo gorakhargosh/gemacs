@@ -308,6 +308,7 @@
    ;; js2-mode
    powerline
    expand-region
+   auto-async-byte-compile
    ))
 ;; Synchronize el-get packages.
 (setq goog:el-get-packages
@@ -868,6 +869,13 @@ immediately."
 ;; Auto-complete and snippets.
 ;; ======================================================================
 (require 'dabbrev)
+
+;; Conflicts bindings with iedit.
+;; (add-hook 'prog-mode-common-hook (lambda ()
+;;                                    (flyspell-prog-mode)))
+;; (add-hook 'js2-mode-hook (lambda ()
+;;                            (flyspell-prog-mode)))
+;; (setq flyspell-issue-message-flag nil)
 
 (require 'yasnippet)
 (setq yas/snippet-dirs
