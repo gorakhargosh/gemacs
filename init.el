@@ -826,7 +826,7 @@ immediately."
 (defun goog/config/highlight-symbol-mode/setup ()
   (when window-system
     (highlight-symbol-mode)
-    (setq highlight-symbol-idle-delay 0)))
+    (setq highlight-symbol-idle-delay 0.01)))
 (add-hook 'text-mode-hook 'goog/config/highlight-symbol-mode/setup)
 (add-hook 'prog-mode-hook 'goog/config/highlight-symbol-mode/setup)
 ;; Why does js2-mode not inherit from prog-mode?
