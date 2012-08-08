@@ -42,7 +42,7 @@
                (setq imenu--index-alist nil)
                (ido-goto-symbol (imenu--make-index-alist))
                (setq selected-symbol
-                     (ido-completing-read "Symbol? " symbol-names))
+                     (ido-completing-read "Symbol: " symbol-names))
                (string= (car imenu--rescan-item) selected-symbol)))
       (unless (and (boundp 'mark-active) mark-active)
         (push-mark nil t nil))
@@ -69,8 +69,6 @@
                     (string= (car imenu--rescan-item) name))
           (add-to-list 'symbol-names name)
           (add-to-list 'name-and-pos (cons name position))))))))
-
-;; (global-set-key "\C-ci" 'ido-goto-symbol) ; or any key you see fit
 
 ;; ----------------------------------------------------------------------
 ;; Buffers.
