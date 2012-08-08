@@ -308,7 +308,8 @@
    ;; js2-mode
    powerline
    expand-region
-   auto-async-byte-compile
+   ;; auto-async-byte-compile ;; This is nothing but trouble.
+   ;; ioccur
    ))
 ;; Synchronize el-get packages.
 (setq goog:el-get-packages
