@@ -6,5 +6,5 @@
     ;; (require 'github-theme)
     ;; (require 'tango-2-theme)
     (require 'burp-theme)
-  )
+  ))
 (provide 'shubhangi)
