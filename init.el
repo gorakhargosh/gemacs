@@ -191,13 +191,13 @@
    ;;                                  (eq major-mode 'sldb-mode)))
    ;;                 ))
 
-   (:name transpose-frame
-          :after (progn
-                   (require 'transpose-frame)
-                   (global-set-key (kbd "C-x t t") 'transpose-frame)
-                   (global-set-key (kbd "C-x t h") 'flop-frame)
-                   (global-set-key (kbd "C-x t v") 'flip-frame)
-                   (global-set-key (kbd "C-x t r") 'rotate-frame-clockwise)))
+   ;; (:name transpose-frame
+   ;;        :after (progn
+   ;;                 (require 'transpose-frame)
+   ;;                 (global-set-key (kbd "C-x t t") 'transpose-frame)
+   ;;                 (global-set-key (kbd "C-x t h") 'flop-frame)
+   ;;                 (global-set-key (kbd "C-x t v") 'flip-frame)
+   ;;                 (global-set-key (kbd "C-x t r") 'rotate-frame-clockwise)))
 
    ;; (:name closure-template-html-mode
    ;;        :website "https://github.com/archimag/cl-closure-template#readme"
