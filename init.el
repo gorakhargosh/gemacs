@@ -108,6 +108,8 @@
                            undo-tree
                            yasnippet
                            zencoding-mode
+                           loccur
+                           ioccur
 
                            ;; Themes.
                            ;; django-theme
@@ -553,8 +555,6 @@ at point."
                  (define-key ido-completion-map (kbd "<up>") 'ido-prev-match)
                  (define-key ido-completion-map (kbd "<down>") 'ido-next-match)))
      ))
-
-;; (global-set-key (kbd "M-i") 'ido-goto-symbol)
 
 ;; ----------------------------------------------------------------------
 ;; Recent files.
@@ -1247,8 +1247,6 @@ compilation output."
 ;; Parentheses matching.
 (global-set-key (kbd "M-0") 'goto-match-paren)
 
-;; Occur.
-(global-set-key (kbd "<f7>") 'multi-occur-in-this-mode)
 
 ;; Quotes.
 (global-set-key (kbd "C-'") 'toggle-quotes)
@@ -1272,6 +1270,17 @@ compilation output."
 (global-set-key [f2] 'highlight-symbol-next)
 (global-set-key [(shift f2)] 'highlight-symbol-prev)
 (global-set-key [(meta f2)] 'highlight-symbol-prev)
+
+;; Search, search, search.
+(require 'loccur)
+(global-set-key [(f7)] 'multi-occur-in-this-mode) ;; Find in all buffers.
+;; (global-set-key [(meta o)] 'loccur-current)              ;; Current word.
+(global-set-key [(meta o)] 'ido-goto-symbol)     ;; Jump to symbol.
+(global-set-key [(meta shift o)] 'ioccur)                ;; Interactive occur.
+;; ;; defines shortcut for the interactive loccur command
+;; (global-set-key [(meta shift o)] 'loccur)
+;; ;; ;; defines shortcut for the loccur of the previously found word
+;; (global-set-key [(control shift o)] 'loccur-previous-match)
 
 
 ;; ----------------------------------------------------------------------
