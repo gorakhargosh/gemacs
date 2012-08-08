@@ -1274,8 +1274,8 @@ compilation output."
 ;; Search, search, search.
 (require 'loccur)
 (global-set-key [(f7)] 'multi-occur-in-this-mode) ;; Find in all buffers.
-;; (global-set-key [(meta o)] 'loccur-current)              ;; Current word.
 (global-set-key [(meta o)] 'ido-goto-symbol)     ;; Jump to symbol.
+(global-set-key [(control meta o)] 'loccur-current)              ;; Current word.
 (global-set-key [(meta shift o)] 'ioccur)                ;; Interactive occur.
 ;; ;; defines shortcut for the interactive loccur command
 ;; (global-set-key [(meta shift o)] 'loccur)
