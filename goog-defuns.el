@@ -22,17 +22,67 @@
                          (backward-char 1)))
                   ))))))
 
+(defun ido-goto-symbol (&optional symbol-list)
+  "Refresh imenu and jump to a place in the buffer using Ido."
+  (interactive)
+  (unless (featurep 'imenu)
+    (require 'imenu nil t))
+  (cond
+   ((not symbol-list)
+    (let ((ido-mode ido-mode)
+          (ido-enable-flex-matching
+           (if (boundp 'ido-enable-flex-matching)
+               ido-enable-flex-matching t))
+          name-and-pos symbol-names position)
+      (unless ido-mode
+        (ido-mode 1)
+        (setq ido-enable-flex-matching t))
+      (while (progn
+               (imenu--cleanup)
+               (setq imenu--index-alist nil)
+               (ido-goto-symbol (imenu--make-index-alist))
+               (setq selected-symbol
+                     (ido-completing-read "Symbol? " symbol-names))
+               (string= (car imenu--rescan-item) selected-symbol)))
+      (unless (and (boundp 'mark-active) mark-active)
+        (push-mark nil t nil))
+      (setq position (cdr (assoc selected-symbol name-and-pos)))
+      (cond
+       ((overlayp position)
+        (goto-char (overlay-start position)))
+       (t
+        (goto-char position)))))
+   ((listp symbol-list)
+    (dolist (symbol symbol-list)
+      (let (name position)
+        (cond
+         ((and (listp symbol) (imenu--subalist-p symbol))
+          (ido-goto-symbol symbol))
+         ((listp symbol)
+          (setq name (car symbol))
+          (setq position (cdr symbol)))
+         ((stringp symbol)
+          (setq name symbol)
+          (setq position
+                (get-text-property 1 'org-imenu-marker symbol))))
+        (unless (or (null position) (null name)
+                    (string= (car imenu--rescan-item) name))
+          (add-to-list 'symbol-names name)
+          (add-to-list 'name-and-pos (cons name position))))))))
+
+;; (global-set-key "\C-ci" 'ido-goto-symbol) ; or any key you see fit
+
 ;; ----------------------------------------------------------------------
 ;; Buffers.
 ;; ----------------------------------------------------------------------
 (defun get-buffers-matching-mode (mode)
   "Returns a list of buffers where their major-mode is equal to MODE"
   (let ((buffer-mode-matches '()))
-   (dolist (buf (buffer-list))
-     (with-current-buffer buf
-       (if (eq mode major-mode)
-           (add-to-list 'buffer-mode-matches buf))))
-   buffer-mode-matches))
+    (dolist (buf (buffer-list))
+      (with-current-buffer buf
+        (if (eq mode major-mode)
+            (add-to-list 'buffer-mode-matches buf))))
+    buffer-mode-matches))
 
 ;; ----------------------------------------------------------------------
 ;; Search.
@@ -257,8 +307,8 @@ index in STRING."
   (let ((case-fold-search nil))
     (while (string-match "[A-Z]" s (or start 1))
       (setq s (replace-match (concat (or sep "_")
-                                             (downcase (match-string 0 s)))
-                                     t nil s)))
+                                     (downcase (match-string 0 s)))
+                             t nil s)))
     (upcase s)))
 
 (defun goog/edit/camelcase-to-downcased-underscore-string
@@ -271,8 +321,8 @@ index in STRING."
   (let ((case-fold-search nil))
     (while (string-match "[A-Z]" s (or start 1))
       (setq s (replace-match (concat (or sep "_")
-                                             (downcase (match-string 0 s)))
-                                     t nil s)))
+                                     (downcase (match-string 0 s)))
+                             t nil s)))
     (downcase s)))
 
 (defun goog/edit/camelcase-to-downcased-hyphenated-string
@@ -285,8 +335,8 @@ index in STRING."
   (let ((case-fold-search nil))
     (while (string-match "[A-Z]" s (or start 1))
       (setq s (replace-match (concat (or sep "-")
-                                             (downcase (match-string 0 s)))
-                                     t nil s)))
+                                     (downcase (match-string 0 s)))
+                             t nil s)))
     (downcase s)))
 
 ;; Toggle quotes.
