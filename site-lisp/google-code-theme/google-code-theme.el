@@ -91,6 +91,16 @@
  '(persp-selected-face ((t (:foreground "#729fcf"))))
  '(show-paren-match-face ((t (:background "#729fcf" :foreground "#eeeeec"))))
  '(show-paren-mismatch-face ((t (:background "#ad7fa8" :foreground "#2e3436"))))
+
+ ;; ----------------------------------------------------------------------
+ ;; Diff mode.
+ ;; ----------------------------------------------------------------------
+ '(diff-added ((t (:foreground "#008800"))))
+ '(diff-changed ((t (:foreground "#edd400"))))
+ '(diff-removed ((t (:foreground "#880000"))))
+ '(diff-header ((t (:foreground "#000088"))))
+ '(diff-file-header ((t (:foreground "#000088"))))
+ ;; TODO(yesudeep): Fix ediff colors.
  )
 
 ;;;###autoload
