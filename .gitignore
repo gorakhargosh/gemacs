@@ -21,3 +21,5 @@ places
 session.*
 tramp
 url/cookies
+/.emacs.desktop.lock
+
