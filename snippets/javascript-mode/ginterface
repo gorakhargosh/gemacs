@@ -9,6 +9,6 @@ goog.provide('$1');
  *
  * @interface
  */
-${1:InterfaceName} = function ($2) {
+${1:InterfaceName} = function($2) {
   $0
 };
