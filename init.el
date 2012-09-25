@@ -85,9 +85,12 @@
                            auto-complete
                            autopair
                            clojure-mode
+                           clojure-test-mode
+                           clojurescript-mode
                            evil-numbers
                            fastnav
                            find-things-fast
+                           go-mode
                            helm
                            highlight-symbol
                            ido-ubiquitous
@@ -101,6 +104,7 @@
                            melpa
                            move-text
                            nav
+                           nrepl
                            paredit
                            perspective
                            rainbow-mode
@@ -584,7 +588,8 @@ at point."
                                 lisp
                                 lisp-interaction
                                 scheme
-                                clojure))
+                                clojure
+                                clojurescript))
 
 ;; Non lispy languages.
 (setq goog/paredit/non-lisp-modes '(
@@ -925,6 +930,7 @@ immediately."
                 ))
 (dolist (mode '(
                 clojure-mode
+                clojurescript-mode
                 css-mode
                 csv-mode
                 espresso-mode
@@ -1061,6 +1067,12 @@ end of the line."
 
 
 ;; ----------------------------------------------------------------------
+;; Go.
+;; ----------------------------------------------------------------------
+(autoload 'go-mode "go-mode" nil t)
+
+
+;; ----------------------------------------------------------------------
 ;; JavaScript
 ;; ----------------------------------------------------------------------
 (autoload 'js2-mode "js2-mode" nil t)
@@ -1189,6 +1201,8 @@ compilation output."
 ;; ----------------------------------------------------------------------
 ;; Clojure.
 ;; ----------------------------------------------------------------------
+(add-hook 'nrepl-interaction-mode-hook
+          'nrepl-turn-on-eldoc-mode)
 (add-hook 'slime-repl-mode-hook
           (defun clojure-mode-slime-font-lock ()
             (require 'clojure-mode)
@@ -1273,11 +1287,12 @@ compilation output."
 (global-set-key [(meta f2)] 'highlight-symbol-prev)
 
 ;; Search, search, search.
-(require 'loccur)
+;; (require 'loccur)
 (global-set-key [(f7)] 'multi-occur-in-this-mode) ;; Find in all buffers.
 (global-set-key [(meta o)] 'ido-goto-symbol)     ;; Jump to symbol.
-(global-set-key [(control meta o)] 'loccur-current)              ;; Current word.
-(global-set-key [(meta shift o)] 'ioccur)                ;; Interactive occur.
+;; (global-set-key [(control meta o)] 'loccur-current)              ;; Current word.
+;; (global-set-key [(meta shift o)] 'ioccur)                ;; Interactive occur.
+
 ;; ;; defines shortcut for the interactive loccur command
 ;; (global-set-key [(meta shift o)] 'loccur)
 ;; ;; ;; defines shortcut for the loccur of the previously found word
