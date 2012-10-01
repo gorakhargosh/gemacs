@@ -25,7 +25,7 @@
  '(default ((t (:background "#ffffff" :foreground "#000000"))))
  '(cursor ((t (:foreground "#000000"))))
  ;; '(region ((t (:background "#555753"))))
- ;; '(highlight ((t (:background "#444444"))))
+ '(highlight ((t (:background "#d3d7cf"))))
  '(mode-line ((t (:bold t :foreground "#000000" :background "#63a216" :box nil))))
  '(mode-line-inactive ((t (:foreground "#f9f9f9" :background "#222222" :box nil))))
  ;; '(fringe ((t (:background "#111111"))))
