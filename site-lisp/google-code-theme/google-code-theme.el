@@ -22,7 +22,7 @@
 
 (custom-theme-set-faces
  'google-code
- '(default ((t (:background "#eeeeee" :foreground "#000000"))))
+ '(default ((t (:background "#ffffff" :foreground "#000000"))))
  '(cursor ((t (:foreground "#000000"))))
  ;; '(region ((t (:background "#555753"))))
  ;; '(highlight ((t (:background "#444444"))))
