@@ -1070,8 +1070,24 @@ end of the line."
 ;; Go.
 ;; ----------------------------------------------------------------------
 (autoload 'go-mode "go-mode" nil t)
+(defun goog/config/go-mode/execute-buffer ()
+  "Compiles and executes the Go code in the current buffer."
+  (interactive)
+  (compile (concat "go run " buffer-file-name)))
+
+(defun goog/config/go-mode/fixstyle-buffer ()
+  "Runs gofmt on the buffer."
+  (interactive)
+  (shell-command (concat "go fmt " buffer-file-name)))
+
 (add-hook 'go-mode-hook (lambda ()
                           (setq tab-width 2)))
+(add-hook 'go-mode-hook (lambda ()
+                          (define-key go-mode-map (kbd "C-c l f")
+                            'goog/config/go-mode/fixstyle-buffer)
+                          (define-key go-mode-map (kbd "C-c C-e")
+                            'goog/config/go-mode/execute-buffer)))
+
 
 ;; ----------------------------------------------------------------------
 ;; JavaScript
