@@ -1081,7 +1081,9 @@ end of the line."
   (shell-command (concat "go fmt " buffer-file-name)))
 
 (add-hook 'go-mode-hook (lambda ()
-                          (setq tab-width 2)))
+                          (setq tab-width 2)
+                          (push '(?" . ?")
+                                (getf autopair-extra-pairs :code))))
 (add-hook 'go-mode-hook (lambda ()
                           (define-key go-mode-map (kbd "C-c l f")
                             'goog/config/go-mode/fixstyle-buffer)
@@ -1131,13 +1133,13 @@ end of the line."
 (defun goog/config/js-mode/gjslint-buffer ()
   "Runs gjslint in strict mode on the current buffer."
   (interactive)
-  (compile (concat "gjslint --strict --unix_mode " buffer-file-name)))
+  (compile (concat "gjslint --strict --unix_mode --closurized_namespaces=goog,appkit,jfk,bulletin " buffer-file-name)))
 
 (defun goog/config/js-mode/gjslint-dir ()
   "Runs gjslint in strict mode on the parent directory of the file in the
 current buffer."
   (interactive)
-  (compile (concat "gjslint --strict --unix_mode -r "
+  (compile (concat "gjslint --strict --unix_mode --closurized_namespaces=goog,appkit,jfk,bulletin -r "
                    (file-name-directory buffer-file-name))))
 
 (defun goog/config/js-mode/fixjsstyle-buffer ()
