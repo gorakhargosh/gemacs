@@ -934,6 +934,7 @@ immediately."
                 css-mode
                 csv-mode
                 espresso-mode
+                go-mode
                 haml-mode
                 haskell-mode
                 html-mode
@@ -1073,6 +1074,7 @@ end of the line."
 (defun goog/config/go-mode/execute-buffer ()
   "Compiles and executes the Go code in the current buffer."
   (interactive)
+  (gofmt)
   (save-buffer)
   (compile (concat "go run " buffer-file-name)))
 
