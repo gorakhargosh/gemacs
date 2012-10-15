@@ -1073,11 +1073,13 @@ end of the line."
 (defun goog/config/go-mode/execute-buffer ()
   "Compiles and executes the Go code in the current buffer."
   (interactive)
+  (save-buffer)
   (compile (concat "go run " buffer-file-name)))
 
 (defun goog/config/go-mode/fixstyle-buffer ()
   "Runs gofmt on the buffer."
   (interactive)
+  (save-buffer)
   (shell-command (concat "go fmt " buffer-file-name)))
 
 (add-hook 'go-mode-hook (lambda ()
