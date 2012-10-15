@@ -1084,6 +1084,7 @@ end of the line."
 
 (add-hook 'go-mode-hook (lambda ()
                           (setq tab-width 2)
+                          (add-hook 'before-save-hook 'gofmt-before-save)
                           (push '(?" . ?")
                                 (getf autopair-extra-pairs :code))))
 (add-hook 'go-mode-hook (lambda ()
