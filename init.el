@@ -1082,19 +1082,15 @@ end of the line."
   (save-buffer)
   (shell-command (concat "go fmt " buffer-file-name)))
 
-(add-hook 'after-save-hook
-          (lambda ()
-            (if (eq major-mode 'go-mode)
-                (save-excursion (shell-command (concat "go fmt " buffer-file-name))))))
-
+(add-hook 'before-save-hook 'gofmt-before-save)
 (add-hook 'go-mode-hook (lambda ()
                           (setq tab-width 2)
-                          ;; (add-hook 'before-save-hook 'gofmt-before-save)
                           (push '(?" . ?")
                                 (getf autopair-extra-pairs :code))))
 (add-hook 'go-mode-hook (lambda ()
-                          (define-key go-mode-map (kbd "C-c l f")
-                            'goog/config/go-mode/fixstyle-buffer)
+                          ;; (define-key go-mode-map (kbd "C-c l f")
+                          ;;   'goog/config/go-mode/fixstyle-buffer)
+                          (define-key go-mode-map (kbd "C-c l f") 'gofmt)
                           (define-key go-mode-map (kbd "C-c C-e")
                             'goog/config/go-mode/execute-buffer)))
 
