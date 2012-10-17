@@ -350,7 +350,10 @@
 
 (setq-default indent-tabs-mode nil
               indicate-empty-lines t
-              indicate-buffer-boundaries (quote left))
+              indicate-buffer-boundaries (quote left)
+              require-final-newline t
+              ;; next-line-add-newlines nil     ;; Don't add newlines past EOF.
+              )
 
 (setq
       auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
@@ -367,9 +370,12 @@
       shift-select-mode t            ;; Some of my users want this.
       uniquify-buffer-name-style 'forward
       visible-bell t
-      ;; require-final-newline 't       ;; Don't require this for snippets.
-      ;; next-line-add-newlines nil     ;; Don't add newlines past EOF.
       )
+
+
+(add-hook 'snippet-mode-hook (lambda ()
+                               (setq require-final-newline nil) ;; Don't enable this for snippets.
+                               ))
 
 (progn
   (column-number-mode 1)             ;; show column numbers in mode line.
