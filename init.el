@@ -1084,6 +1084,13 @@ end of the line."
   (save-buffer)
   (compile (concat "go run " buffer-file-name)))
 
+(defun goog/config/go-mode/build-buffer ()
+  "Compiles the Go code in the current buffer."
+  (interactive)
+  (gofmt)
+  (save-buffer)
+  (compile (concat "go build " buffer-file-name)))
+
 (defun goog/config/go-mode/fixstyle-buffer ()
   "Runs gofmt on the buffer."
   (interactive)
@@ -1100,7 +1107,9 @@ end of the line."
                           ;;   'goog/config/go-mode/fixstyle-buffer)
                           (define-key go-mode-map (kbd "C-c l f") 'gofmt)
                           (define-key go-mode-map (kbd "C-c C-e")
-                            'goog/config/go-mode/execute-buffer)))
+                            'goog/config/go-mode/execute-buffer)
+                          (define-key go-mode-map (kbd "C-c l b")
+                            'goog/config/go-mode/build-buffer)))
 
 
 ;; ----------------------------------------------------------------------
