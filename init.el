@@ -1108,7 +1108,7 @@ end of the line."
                           (define-key go-mode-map (kbd "C-c l f") 'gofmt)
                           (define-key go-mode-map (kbd "C-c C-e")
                             'goog/config/go-mode/execute-buffer)
-                          (define-key go-mode-map (kbd "C-c l b")
+                          (define-key go-mode-map (kbd "C-c C-b")
                             'goog/config/go-mode/build-buffer)))
 
 
