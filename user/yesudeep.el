@@ -3,6 +3,8 @@
         user-mail-address "yesudeep@google.com")
 
   (when window-system
+    ;; (set-face-font 'default "Ubuntu Mono-18")
+    (set-face-font 'default "Consolas-16")
     ;; (require 'monokai-theme)
     ;; (require 'github-theme)
     ;; (require 'tango-2-theme)
