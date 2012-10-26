@@ -908,6 +908,7 @@ immediately."
 
 (require 'auto-complete)
 (require 'auto-complete-config)
+(require 'go-autocomplete)
 (ac-config-default)
 (setq ac-ignore-case 'smart
       ;; ac-use-fuzzy t
@@ -920,6 +921,7 @@ immediately."
 ;; (define-key ac-completing-map "\r" nil)
 (define-key ac-completing-map (kbd "C-n") 'ac-next)
 (define-key ac-completing-map (kbd "C-p") 'ac-previous)
+(define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
 
 ;; ;; Use Emacs' built-in TAB completion hooks to trigger AC (Emacs >= 23.2)
 ;; (setq tab-always-indent 'complete)  ;; use 'complete when auto-complete
