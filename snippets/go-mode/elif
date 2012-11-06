@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: else if
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+else if $1 {
+   $0
+}

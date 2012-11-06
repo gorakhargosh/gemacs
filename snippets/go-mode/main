@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: main
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+func main() {
+   $0
+}

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Interface type
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+type $1 interface {
+     $0
+}

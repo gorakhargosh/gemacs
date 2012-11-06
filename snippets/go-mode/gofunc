@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: go func(){...}()
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+go func($1) {
+   $0
+}($2)

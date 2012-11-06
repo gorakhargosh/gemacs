@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Function (type method)
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+func (${1:t} ${2:Type}) $3($4) $5 {
+     $0
+}

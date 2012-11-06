@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: case (fallthrough) statement
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+case $1:
+     $0
+     fallthrough

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: select case statement
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+select {
+case $2:
+     $0
+}
