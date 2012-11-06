@@ -1117,9 +1117,11 @@ end of the line."
                           ;; (define-key go-mode-map (kbd "C-c l f")
                           ;;   'goog/config/go-mode/fixstyle-buffer)
                           (define-key go-mode-map (kbd "C-c l f") 'gofmt)
+                          (define-key go-mode-map (kbd "C-x C-e")
+                            'goog/config/go-mode/execute-buffer)
                           (define-key go-mode-map (kbd "C-c C-e")
                             'goog/config/go-mode/execute-buffer)
-                          (define-key go-mode-map (kbd "C-c C-b")
+                          (define-key go-mode-map (kbd "C-x C-b")
                             'goog/config/go-mode/build-buffer)))
 
 
