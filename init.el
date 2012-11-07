@@ -87,6 +87,7 @@
                            clojure-mode
                            clojure-test-mode
                            clojurescript-mode
+                           fill-column-indicator
                            evil-numbers
                            fastnav
                            find-things-fast
@@ -383,7 +384,8 @@
 
 
 (add-hook 'snippet-mode-hook (lambda ()
-                               (setq require-final-newline nil) ;; Don't enable this for snippets.
+                               (setq require-final-newline nil)
+                               ;; Don't enable this for snippets.
                                ))
 
 (progn
@@ -806,11 +808,11 @@ immediately."
 
 ;; Need to test this properly.
 ;; Disabled because it causes Emacs to hang.
-;; (when window-system
-;;   (require 'fill-column-indicator)
-;;   (define-globalized-minor-mode global-fci-mode fci-mode
-;;     (lambda () (fci-mode 1)))
-;;   (global-fci-mode 1))
+(when window-system
+  (require 'fill-column-indicator)
+  (define-globalized-minor-mode global-fci-mode fci-mode
+    (lambda () (fci-mode 1)))
+  (global-fci-mode 1))
 
 (autoload 'expand-region "expand-region" nil t)
 (autoload 'contract-region "expand-region" nil t)
@@ -1029,7 +1031,8 @@ end of the line."
   (interactive "*P")
   (comment-normalize-vars)
   (if (and (not (region-active-p)) (not (looking-at "[ \t]*$")))
-      (comment-or-uncomment-region (line-beginning-position) (line-end-position))
+      (comment-or-uncomment-region (line-beginning-position)
+                                   (line-end-position))
     (comment-dwim arg)))
 (global-set-key "\M-;" 'comment-dwim-line)
 
@@ -1343,8 +1346,8 @@ compilation output."
 ;; (require 'loccur)
 (global-set-key [(f7)] 'multi-occur-in-this-mode) ;; Find in all buffers.
 (global-set-key [(meta o)] 'ido-goto-symbol)     ;; Jump to symbol.
-;; (global-set-key [(control meta o)] 'loccur-current)              ;; Current word.
-;; (global-set-key [(meta shift o)] 'ioccur)                ;; Interactive occur.
+;; (global-set-key [(control meta o)] 'loccur-current)     ;; Current word.
+;; (global-set-key [(meta shift o)] 'ioccur)               ;; Interactive occur.
 
 ;; ;; defines shortcut for the interactive loccur command
 ;; (global-set-key [(meta shift o)] 'loccur)
