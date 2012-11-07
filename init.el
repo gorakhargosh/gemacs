@@ -220,21 +220,21 @@
    ;;        :post-init (progn
    ;;                     (require 'restclient)))
 
-   (:name bang
-          :website "https://github.com/magnars/bang.el#readme"
-          :description "CL replacement for Emacs."
-          :type github
-          :pkgname "magnars/bang.el"
-          :post-init (progn
-                       (require 'bang)))
+   ;; (:name bang
+   ;;        :website "https://github.com/magnars/bang.el#readme"
+   ;;        :description "CL replacement for Emacs."
+   ;;        :type github
+   ;;        :pkgname "magnars/bang.el"
+   ;;        :post-init (progn
+   ;;                     (require 'bang)))
 
-   (:name js2-refactor
-          :website "https://github.com/magnars/js2-refactor.el#readme"
-          :description "JavaScript refactoring library for Emacs."
-          :type github
-          :pkgname "magnars/js2-refactor.el"
-          :post-init (progn
-                       (require 'js2-refactor)))
+   ;; (:name js2-refactor
+   ;;        :website "https://github.com/magnars/js2-refactor.el#readme"
+   ;;        :description "JavaScript refactoring library for Emacs."
+   ;;        :type github
+   ;;        :pkgname "magnars/js2-refactor.el"
+   ;;        :post-init (progn
+   ;;                     (require 'js2-refactor)))
 
 
    ;; (:name js-comint
