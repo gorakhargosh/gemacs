@@ -14,7 +14,7 @@ ${1:namespace}.EventType = {
 };
 
 
-/** @type {Array.<$1.EventType>} */
+/** @type {!Array.<!$1.EventType>} */
 $1.EventType.values = [
   $1.EventType.${2:$(upcase yas/text)}
 ];
