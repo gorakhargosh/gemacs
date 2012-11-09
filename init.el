@@ -87,18 +87,21 @@
                            clojure-mode
                            clojure-test-mode
                            clojurescript-mode
-                           fill-column-indicator
+                           dart-mode
                            evil-numbers
                            fastnav
+                           fill-column-indicator
                            find-things-fast
                            go-mode
                            helm
                            highlight-symbol
                            ido-ubiquitous
                            iedit
+                           ioccur
                            js2-mode
                            key-chord
                            less-css-mode
+                           loccur
                            magit
                            mark-multiple
                            maxframe
@@ -113,8 +116,6 @@
                            undo-tree
                            yasnippet
                            zencoding-mode
-                           loccur
-                           ioccur
 
                            ;; Themes.
                            ;; django-theme
@@ -808,11 +809,11 @@ immediately."
 
 ;; Need to test this properly.
 ;; Disabled because it causes Emacs to hang.
-(when window-system
-  (require 'fill-column-indicator)
-  (define-globalized-minor-mode global-fci-mode fci-mode
-    (lambda () (fci-mode 1)))
-  (global-fci-mode 1))
+;; (when window-system
+;;   (require 'fill-column-indicator)
+;;   (define-globalized-minor-mode global-fci-mode fci-mode
+;;     (lambda () (fci-mode 1)))
+;;   (global-fci-mode 1))
 
 (autoload 'expand-region "expand-region" nil t)
 (autoload 'contract-region "expand-region" nil t)
@@ -849,7 +850,7 @@ immediately."
 (defun goog/config/highlight-symbol-mode/setup ()
   (when window-system
     (highlight-symbol-mode)
-    (setq highlight-symbol-idle-delay 0.025)
+    ;; (setq highlight-symbol-idle-delay 0.025)
     ))
 (add-hook 'text-mode-hook 'goog/config/highlight-symbol-mode/setup)
 (add-hook 'prog-mode-hook 'goog/config/highlight-symbol-mode/setup)
@@ -1085,6 +1086,13 @@ end of the line."
 (add-hook 'less-css-mode-hook 'goog/config/css-mode/setup-auto-complete)
 ;; TODO(yesudeep): Use gss-mode after developing it.
 (add-to-list 'auto-mode-alist '("\\.gss" . css-mode))
+
+
+;; ----------------------------------------------------------------------
+;; Dart.
+;; ----------------------------------------------------------------------
+(autoload 'dart-mode "dart-mode" "Edit Dart code." t)
+(add-to-list 'auto-mode-alist '("\\.dart$" . dart-mode))
 
 
 ;; ----------------------------------------------------------------------
