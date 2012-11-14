@@ -746,10 +746,11 @@ the minibuffer.")
   (when (file-exists-p name)
     (load name)))
 
-(defun goog/elisp/reload-user-init-file ()
+(defun goog/elisp/reload-configuration ()
   "Reloads the init.el module from the Emacs configuration directory."
   (interactive)
-  (load-file (concat config-dir "init.el")))
+  (load-file (concat config-dir "init.el"))
+  (yas/reload-all))
 
 (defun goog/elisp/eval-after-init (form)
   "Add `(lambda () FORM)' to `after-init-hook'.
@@ -1276,6 +1277,9 @@ compilation output."
 ;; ======================================================================
 ;; Keyboard bindings.
 ;; ======================================================================
+;; Reload the user init file.
+(global-set-key (kbd "C-.") 'goog/elisp/reload-configuration)
+
 ;; Shift region left/right.
 (global-set-key (kbd "s-]") 'shift-right)
 (global-set-key (kbd "s-[") 'shift-left)
