@@ -82,7 +82,7 @@
                            ;; slime-repl
                            ;; smex   ;; Don't use this one. el-get works.
                            ac-slime
-                           auto-complete
+                           ;; auto-complete
                            autopair
                            clojure-mode
                            clojure-test-mode
@@ -319,7 +319,7 @@
  goog:el-get-packages
  '(el-get
    ;; pymacs
-   ;; auto-complete
+   auto-complete
    ;; clojure-mode
    ;; fill-column-indicator
    ;; js2-mode
@@ -914,12 +914,12 @@ immediately."
 (require 'auto-complete-config)
 (require 'go-autocomplete)
 (ac-config-default)
-(setq ac-ignore-case 'smart
-      ;; ac-use-fuzzy t
-      ;; ac-fuzz-enable t
-      ;; ac-auto-show-menu nil
-      ;; ac-dwim t
-      )
+(setq ac-ignore-case t
+      ac-use-fuzzy t
+      ac-auto-start t
+      ac-auto-show-menu 0.2
+      ac-expand-on-auto-complete nil
+      ac-dwim t)
 ;; Don't use tab to cycle. It's irritating.
 (define-key ac-completing-map "\t" 'ac-complete)
 ;; (define-key ac-completing-map "\r" nil)
