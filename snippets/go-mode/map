@@ -1,7 +1,5 @@
 # -*- mode: snippet -*-
-# name: Interface type
+# name: map type definition
 # contributor: Yesudeep Mangalapilly <yesudeep@google.com>
 # --
-interface {
-     $0
-}
+map[$1]$0
