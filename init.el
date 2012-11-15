@@ -917,7 +917,7 @@ immediately."
 (ac-config-default)
 (setq ac-ignore-case t
       ac-use-fuzzy t
-      ac-auto-start t
+      ac-auto-start 0
       ac-auto-show-menu 0.2
       ac-expand-on-auto-complete nil
       ac-dwim t)
