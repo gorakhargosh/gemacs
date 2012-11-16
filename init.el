@@ -882,10 +882,19 @@ immediately."
 ;; (global-set-key (kbd "C-*") 'mark-all-like-this)
 
 (require 'multiple-cursors)
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+;; From active region to multiple cursors:
+(global-set-key (kbd "C-, C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C-, C-e") 'mc/edit-ends-of-lines)
+(global-set-key (kbd "C-, C-a") 'mc/edit-beginnings-of-lines)
+
+;; Rectangular region mode
+(global-set-key (kbd "C-, C-,") 'set-rectangular-region-anchor)
+
+;; Mark more like this.
+(global-set-key (kbd "C-, C-.") 'mc/mark-all-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-thikey)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-, C-;") 'mc/mark-all-in-region)
 
 (require 'sgml-mode)
 ;; (require 'rename-sgml-tag)
