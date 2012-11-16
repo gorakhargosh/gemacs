@@ -240,6 +240,14 @@
    ;;        :post-init (progn
    ;;                     (require 'js2-refactor)))
 
+   (:name smart-forward
+          :website "https://github.com/magnars/smart-forward.el#readme"
+          :description "Smarter movement forwards and backwards."
+          :type github
+          :pkgname "magnars/smart-forward.el"
+          :depends (expand-region)
+          :post-init (progn
+                       (require 'smart-forward)))
 
    ;; (:name js-comint
    ;;        :after (progn
@@ -327,6 +335,7 @@
    ;; js2-mode
    powerline
    expand-region
+   smart-forward
    jedi ;; Python autocompletion using jedi, python-epc, and autocomplete.
    ;; auto-async-byte-compile ;; This is nothing but trouble.
    ;; ioccur
@@ -823,6 +832,12 @@ immediately."
 (autoload 'contract-region "expand-region" nil t)
 (global-set-key (kbd "M-8") 'er/expand-region)
 (global-set-key (kbd "M-7") 'er/contract-region)
+
+(autoload 'smart-forward "smart-forward" nil t)
+(global-set-key (kbd "M-<up>") 'smart-up)
+(global-set-key (kbd "M-<down>") 'smart-down)
+(global-set-key (kbd "M-<right>") 'smart-forward)
+(global-set-key (kbd "M-<left>") 'smart-backward)
 
 (require 'ace-jump-mode)
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
