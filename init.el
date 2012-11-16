@@ -1025,7 +1025,7 @@ immediately."
                 ))
   (add-to-list 'ac-modes mode))
 
-(defun ielm-auto-complete ()
+(defun goog/config/ielm-mode/setup-auto-complete ()
   "Enables `auto-complete' support in \\[ielm]."
   (setq ac-sources '(ac-source-functions
                      ac-source-variables
@@ -1034,7 +1034,7 @@ immediately."
                      ac-source-words-in-same-mode-buffers))
   (add-to-list 'ac-modes 'inferior-emacs-lisp-mode)
   (auto-complete-mode 1))
-(add-hook 'ielm-mode-hook 'ielm-auto-complete)
+(add-hook 'ielm-mode-hook 'goog/config/ielm-mode/setup-auto-complete)
 
 
 ;; ======================================================================
