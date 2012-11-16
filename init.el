@@ -81,6 +81,7 @@
                            ;; slime-js
                            ;; slime-repl
                            ;; smex   ;; Don't use this one. el-get works.
+                           ace-jump-mode
                            ac-slime
                            ;; auto-complete
                            autopair
@@ -822,6 +823,9 @@ immediately."
 (autoload 'contract-region "expand-region" nil t)
 (global-set-key (kbd "M-8") 'er/expand-region)
 (global-set-key (kbd "M-7") 'er/contract-region)
+
+(require 'ace-jump-mode)
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 (require 'fastnav)
 (global-set-key "\M-z" 'fastnav-zap-up-to-char-forward)
