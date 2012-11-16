@@ -326,6 +326,7 @@
    ;; js2-mode
    powerline
    expand-region
+   jedi ;; Python autocompletion using jedi, python-epc, and autocomplete.
    ;; auto-async-byte-compile ;; This is nothing but trouble.
    ;; ioccur
    ))
@@ -852,7 +853,7 @@ immediately."
 (defun goog/config/highlight-symbol-mode/setup ()
   (when window-system
     (highlight-symbol-mode)
-    ;; (setq highlight-symbol-idle-delay 0.025)
+    (setq highlight-symbol-idle-delay 0.025)
     ))
 (add-hook 'text-mode-hook 'goog/config/highlight-symbol-mode/setup)
 (add-hook 'prog-mode-hook 'goog/config/highlight-symbol-mode/setup)
@@ -925,7 +926,7 @@ immediately."
 (ac-config-default)
 (setq ac-ignore-case t
       ac-use-fuzzy t
-      ac-auto-start t
+      ac-auto-start 0
       ac-auto-show-menu 0.2
       ac-expand-on-auto-complete nil
       ac-dwim t)
@@ -1252,6 +1253,9 @@ compilation output."
         python-indent-offset 2
         python-indent 2
         py-indent-offset 2))
+(defun goog/config/python-mode/setup-ac ()
+  (setq ac-auto-start 0)
+  )
 (setq auto-mode-alist
       (append '(
                 ("\\wscript$" . python-mode)
@@ -1260,6 +1264,10 @@ compilation output."
                 ("\\BUILD$" . python-mode))
               auto-mode-alist))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
+(setq jedi:setup-keys t
+      jedi:complete-on-dot t)
+(add-hook 'python-mode-hook 'jedi:setup)
+(add-hook 'python-mode-hook 'goog/config/python-mode/setup-ac)
 (add-hook 'python-mode-hook 'goog/config/python-mode/setup-style)
 
 (font-lock-add-keywords 'python-mode
