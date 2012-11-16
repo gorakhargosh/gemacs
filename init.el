@@ -103,10 +103,11 @@
                            less-css-mode
                            loccur
                            magit
-                           mark-multiple
+                           ;; mark-multiple
                            maxframe
                            melpa
                            move-text
+                           multiple-cursors
                            nav
                            nrepl
                            paredit
@@ -864,20 +865,26 @@ immediately."
 (require 'iedit)
 (put 'narrow-to-region 'disabled nil)  ;; Allow narrowing to work.
 
-(require 'mark-multiple)
+;; (require 'mark-multiple)
 
-(autoload 'inline-string-rectangle "inline-string-rectangle" nil t)
-(global-set-key (kbd "C-x r t") 'inline-string-rectangle)
+;; (autoload 'inline-string-rectangle "inline-string-rectangle" nil t)
+;; (global-set-key (kbd "C-x r t") 'inline-string-rectangle)
 
 ;; (require 'mark-more-like-this)
-(autoload 'mark-previous-like-this "mark-more-like-this" nil t)
-(autoload 'mark-next-like-this "mark-more-like-this" nil t)
-(autoload 'mark-more-like-this "mark-more-like-this" nil t)
-(autoload 'mark-all-like-this "mark-more-like-this" nil t)
-(global-set-key (kbd "C-<") 'mark-previous-like-this)
-(global-set-key (kbd "C->") 'mark-next-like-this)
-(global-set-key (kbd "C-M-m") 'mark-more-like-this)
-(global-set-key (kbd "C-*") 'mark-all-like-this)
+;; (autoload 'mark-previous-like-this "mark-more-like-this" nil t)
+;; (autoload 'mark-next-like-this "mark-more-like-this" nil t)
+;; (autoload 'mark-more-like-this "mark-more-like-this" nil t)
+;; (autoload 'mark-all-like-this "mark-more-like-this" nil t)
+;; (global-set-key (kbd "C-<") 'mark-previous-like-this)
+;; (global-set-key (kbd "C->") 'mark-next-like-this)
+;; (global-set-key (kbd "C-M-m") 'mark-more-like-this)
+;; (global-set-key (kbd "C-*") 'mark-all-like-this)
+
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-thikey)
 
 (require 'sgml-mode)
 ;; (require 'rename-sgml-tag)
@@ -890,6 +897,8 @@ immediately."
 (require 'helm-config)
 (helm-mode 1)
 (global-set-key (kbd "M-F") 'helm-for-files)
+
+
 
 ;; ======================================================================
 ;; Auto-complete and snippets.
