@@ -968,6 +968,16 @@ immediately."
       ac-auto-show-menu 0.2
       ac-expand-on-auto-complete nil
       ac-dwim t)
+
+;; (global-auto-complete-mode t)
+;; Dirty fix for having AC everywhere without bothering about the ac-modes list.
+(define-globalized-minor-mode real-global-auto-complete-mode
+  auto-complete-mode (lambda ()
+                       (if (not (minibufferp (current-buffer)))
+                         (auto-complete-mode 1))
+                       ))
+(real-global-auto-complete-mode t)
+
 ;; Don't use tab to cycle. It's irritating.
 (define-key ac-completing-map "\t" 'ac-complete)
 ;; (define-key ac-completing-map "\r" nil)
@@ -992,7 +1002,7 @@ immediately."
                 ac-source-filename
                 ac-source-files-in-current-dir
                 ac-source-imenu
-                ac-source-words-in-all-buffer
+                ;; ac-source-words-in-all-buffer
                 ac-source-words-in-buffer
                 ac-source-words-in-same-mode-buffers
                 ac-source-yasnippet
