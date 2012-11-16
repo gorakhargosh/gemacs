@@ -1002,6 +1002,7 @@ immediately."
                 clojurescript-mode
                 css-mode
                 csv-mode
+                erc-mode
                 espresso-mode
                 go-mode
                 haml-mode
