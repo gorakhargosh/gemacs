@@ -883,7 +883,7 @@ immediately."
 
 (require 'multiple-cursors)
 ;; From active region to multiple cursors:
-(global-set-key (kbd "C-, C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C-, C-l") 'mc/edit-lines)
 (global-set-key (kbd "C-, C-e") 'mc/edit-ends-of-lines)
 (global-set-key (kbd "C-, C-a") 'mc/edit-beginnings-of-lines)
 
