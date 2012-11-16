@@ -249,6 +249,18 @@
           :post-init (progn
                        (require 'smart-forward)))
 
+   ;; (:name change-inner
+   ;;        :website "https://github.com/magnars/change-inner.el#readme"
+   ;;        :description "Emacs version of Vim's ci and co commands."
+   ;;        :type github
+   ;;        :pkgname "magnars/change-inner.el"
+   ;;        :depends (expand-region)
+   ;;        :post-init (progn
+   ;;                     (require 'change-inner)
+   ;;                     (global-set-key (kbd "C-c C-i") 'change-inner)
+   ;;                     (global-set-key (kbd "C-c C-o") 'change-outer)
+   ;;                     ))
+
    ;; (:name js-comint
    ;;        :after (progn
    ;;                 (require 'js-comint)
@@ -335,7 +347,6 @@
    ;; js2-mode
    powerline
    expand-region
-   smart-forward
    jedi ;; Python autocompletion using jedi, python-epc, and autocomplete.
    ;; auto-async-byte-compile ;; This is nothing but trouble.
    ;; ioccur
