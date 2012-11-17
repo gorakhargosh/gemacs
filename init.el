@@ -489,6 +489,9 @@
 ;; ----------------------------------------------------------------------
 (setq-default fill-column 80)     ;; right margin and fill column.
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
+(add-hook 'text-mode-hook 'turn-on-watchwords)
+(add-hook 'prog-mode-hook 'turn-on-watchwords)
+
 (defun goog/prog-mode-common/setup ()
   "Applies settings common to all programming language modes."
   (auto-fill-mode 1)
@@ -742,19 +745,6 @@ https://gist.github.com/879305"
   "Interactive commands for which paredit should be enabled in
 the minibuffer.")
 
-
-;; ----------------------------------------------------------------------
-;; goog/edit
-;; ----------------------------------------------------------------------
-(defun goog/edit/set-newline-and-indent ()
-  "Sets RET to do a newline and indent."
-  (local-set-key (kbd "RET") 'newline-and-indent))
-
-(defun goog/edit/watchwords ()
-  (font-lock-add-keywords
-   nil '(("\\<\\(FIX\\(ME\\)?\\|NOTE\\|WARNING\\(S\\)?\\|CAUTION\\|TODO\\|HACK\\|REFACTOR\\|NOCOMMIT\\)"
-          1 font-lock-warning-face t))))
-
 ;; ----------------------------------------------------------------------
 ;; goog/elisp
 ;; ----------------------------------------------------------------------
@@ -776,7 +766,8 @@ the minibuffer.")
 (defun goog/elisp/reload-configuration ()
   "Reloads the init.el module from the Emacs configuration directory."
   (interactive)
-  (load-file (concat config-dir "init.el"))
+  ;; (load-file (concat config-dir "init.el"))
+  (load-file "~/.emacs.d/init.el")
   (yas/reload-all))
 
 (defun goog/elisp/eval-after-init (form)
@@ -836,7 +827,7 @@ immediately."
 (require 'switch-window)
 
 ;; Need to test this properly.
-;; Disabled because it causes Emacs to hang.
+;; Disabled because it causes Emacs to hang or misbehave.
 ;; (when window-system
 ;;   (require 'fill-column-indicator)
 ;;   (define-globalized-minor-mode global-fci-mode fci-mode
@@ -876,7 +867,6 @@ immediately."
 (global-set-key "\M-P" 'fastnav-sprint-backward)
 
 ;; Find things fast.
-;; (require 'find-things-fast)
 (autoload 'ftf-find-file "find-things-fast" nil t)
 (autoload 'ftf-grepsource "find-things-fast" nil t)
 (global-set-key (kbd "C-x f") 'ftf-find-file)
@@ -887,8 +877,7 @@ immediately."
 (defun goog/config/highlight-symbol-mode/setup ()
   (when window-system
     (highlight-symbol-mode)
-    (setq highlight-symbol-idle-delay 0.025)
-    ))
+    (setq highlight-symbol-idle-delay 0.025)))
 (add-hook 'text-mode-hook 'goog/config/highlight-symbol-mode/setup)
 (add-hook 'prog-mode-hook 'goog/config/highlight-symbol-mode/setup)
 ;; Why does js2-mode not inherit from prog-mode?
@@ -899,21 +888,6 @@ immediately."
 ;; ----------------------------------------------------------------------
 (require 'iedit)
 (put 'narrow-to-region 'disabled nil)  ;; Allow narrowing to work.
-
-;; (require 'mark-multiple)
-
-;; (autoload 'inline-string-rectangle "inline-string-rectangle" nil t)
-;; (global-set-key (kbd "C-x r t") 'inline-string-rectangle)
-
-;; (require 'mark-more-like-this)
-;; (autoload 'mark-previous-like-this "mark-more-like-this" nil t)
-;; (autoload 'mark-next-like-this "mark-more-like-this" nil t)
-;; (autoload 'mark-more-like-this "mark-more-like-this" nil t)
-;; (autoload 'mark-all-like-this "mark-more-like-this" nil t)
-;; (global-set-key (kbd "C-<") 'mark-previous-like-this)
-;; (global-set-key (kbd "C->") 'mark-next-like-this)
-;; (global-set-key (kbd "C-M-m") 'mark-more-like-this)
-;; (global-set-key (kbd "C-*") 'mark-all-like-this)
 
 (require 'multiple-cursors)
 ;; From active region to multiple cursors:
@@ -931,7 +905,6 @@ immediately."
 (global-set-key (kbd "C-, C-;") 'mc/mark-all-in-region)
 
 (require 'sgml-mode)
-;; (require 'rename-sgml-tag)
 (autoload 'rename-sgml-tag "rename-sgml-tag" nil t)
 (define-key sgml-mode-map (kbd "C-c C-r") 'rename-sgml-tag)
 
@@ -940,7 +913,6 @@ immediately."
 
 (require 'helm-config)
 (helm-mode 1)
-(global-set-key (kbd "M-F") 'helm-for-files)
 
 
 ;; ======================================================================
@@ -974,7 +946,7 @@ immediately."
       ac-dwim t)
 
 ;; (global-auto-complete-mode t)
-;; Dirty fix for having AC everywhere without bothering about the ac-modes list.
+;; Dirty fix to enable AC everywhere without bothering about the ac-modes list.
 (define-globalized-minor-mode real-global-auto-complete-mode
   auto-complete-mode (lambda ()
                        (if (not (minibufferp (current-buffer)))
@@ -1040,17 +1012,6 @@ immediately."
                 ))
   (add-to-list 'ac-modes mode))
 
-(defun ielm-auto-complete ()
-  "Enables `auto-complete' support in \\[ielm]."
-  (setq ac-sources '(ac-source-functions
-                     ac-source-variables
-                     ac-source-features
-                     ac-source-symbols
-                     ac-source-words-in-same-mode-buffers))
-  (add-to-list 'ac-modes 'inferior-emacs-lisp-mode)
-  (auto-complete-mode 1))
-(add-hook 'ielm-mode-hook 'ielm-auto-complete)
-
 
 ;; ======================================================================
 ;; Programming-specific.
@@ -1081,25 +1042,20 @@ immediately."
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
 
-;; Highlight watchwords.
-(add-hook 'prog-mode-hook 'goog/edit/watchwords)
+;; ----------------------------------------------------------------------
+;; IELM.
+;; ----------------------------------------------------------------------
+(defun goog/config/ielm-mode/setup-autocomplete ()
+  "Enables `auto-complete' support in \\[ielm]."
+  (setq ac-sources '(ac-source-functions
+                     ac-source-variables
+                     ac-source-features
+                     ac-source-symbols
+                     ac-source-words-in-same-mode-buffers))
+  (add-to-list 'ac-modes 'inferior-emacs-lisp-mode)
+  (auto-complete-mode 1))
+(add-hook 'ielm-mode-hook 'goog/config/ielm-mode/setup-autocomplete)
 
-;; Comment what I really really really mean.
-;; Original idea from
-;; http://www.opensubscriber.com/message/emacs-devel@gnu.org/10971693.html
-(defun comment-dwim-line (&optional arg)
-  "Replacement for the comment-dwim command.
-If no region is selected and current line is not blank and we are
-not at the end of the line, then comment current line. Replaces
-default behaviour of comment-dwim, when it inserts comment at the
-end of the line."
-  (interactive "*P")
-  (comment-normalize-vars)
-  (if (and (not (region-active-p)) (not (looking-at "[ \t]*$")))
-      (comment-or-uncomment-region (line-beginning-position)
-                                   (line-end-position))
-    (comment-dwim arg)))
-(global-set-key "\M-;" 'comment-dwim-line)
 
 ;; ----------------------------------------------------------------------
 ;; sh-mode
@@ -1350,6 +1306,9 @@ compilation output."
 ;; Open recent files using `ido-mode'.
 (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
 
+;; Helm find files.
+(global-set-key (kbd "M-F") 'helm-for-files)
+
 ;; Shift region left or right.
 (global-set-key (kbd "s-]") 'shift-right)
 (global-set-key (kbd "s-[") 'shift-left)
@@ -1386,6 +1345,9 @@ compilation output."
 ;; Toggle identifier case.
 (global-set-key (kbd "C-x t c") 'toggle-identifier-naming-style)
 
+;; Comment what I really mean.
+(global-set-key (kbd "M-;") 'comment-dwim-line)
+
 ;; Sort lines
 (global-set-key (kbd "C-c s") 'sort-lines)
 
@@ -1395,7 +1357,6 @@ compilation output."
 
 ;; Parentheses matching.
 (global-set-key (kbd "M-0") 'goto-match-paren)
-
 
 ;; Quotes.
 (global-set-key (kbd "C-'") 'toggle-quotes)
