@@ -1193,7 +1193,7 @@ end of the line."
   (define-key go-mode-map (kbd "C-x C-b") 'goog/config/go-mode/build-buffer))
 
 (add-hook 'before-save-hook 'gofmt-before-save)
-(add-hook 'go-mode-hook goog/config/go-mode/setup-style)
+(add-hook 'go-mode-hook 'goog/config/go-mode/setup-style)
 (add-hook 'go-mode-hook 'goog/config/go-mode/setup-bindings)
 
 
