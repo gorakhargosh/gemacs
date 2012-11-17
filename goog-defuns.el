@@ -372,6 +372,12 @@ index in STRING."
           (replace-string (concat "\\" old-quotes) old-quotes nil start end)))
     (error "Point isn't in a string")))
 
+;; View.
+(defun text-scale-reset ()
+  "Resets the text scale back to 0."
+  (interactive)
+  (text-scale-set 0))
+
 ;; Perspectives.
 (defun persp-curr-position (offset)
   (+ offset
