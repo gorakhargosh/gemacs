@@ -116,6 +116,7 @@
                            switch-window
                            undo-tree
                            yasnippet
+                           yaml-mode
                            zencoding-mode
 
                            ;; Themes.
@@ -1040,6 +1041,16 @@ immediately."
 ;; Automatically set executable permissions on executable script files.
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
+
+
+;; ----------------------------------------------------------------------
+;; YAML.
+;; ----------------------------------------------------------------------
+(setq auto-mode-alist
+      (append '(
+                ("\\yaml$" . yaml-mode)
+                ("\\yml" . yaml-mode))
+              auto-mode-alist))
 
 ;; ----------------------------------------------------------------------
 ;; IELM.
