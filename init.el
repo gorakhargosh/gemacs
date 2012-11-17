@@ -1143,6 +1143,7 @@ end of the line."
                       ac-source-variables
                       ac-source-words-in-same-mode-buffers
                       ac-source-yasnippet
+                      ac-source-css-property
                       )))
 (add-hook 'css-mode-hook 'goog/config/css-mode/setup-style)
 (add-hook 'css-mode-hook 'goog/config/css-mode/setup-auto-complete)
