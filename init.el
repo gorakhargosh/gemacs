@@ -83,7 +83,7 @@
                            ;; smex   ;; Don't use this one. el-get works.
                            ace-jump-mode
                            ac-slime
-                           ;; auto-complete
+                           ;; auto-complete ;; Use the el-get version.
                            autopair
                            clojure-mode
                            clojure-test-mode
@@ -104,7 +104,6 @@
                            less-css-mode
                            loccur
                            magit
-                           ;; mark-multiple
                            maxframe
                            melpa
                            move-text
