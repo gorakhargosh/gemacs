@@ -1128,14 +1128,14 @@ end of the line."
 ;; ----------------------------------------------------------------------
 (require 'less-css-mode)
 (defun goog/config/css-mode/setup-style ()
-  "Sets up the style for css-mode."
+  "Sets up the style for `css-mode'."
   (setq less-css-indent-level 2
         css-indent-offset 2
         indent-tabs-mode nil
         require-final-newline 't
         tab-width 2))
 (defun goog/config/css-mode/setup-auto-complete ()
-  "Sets up autocomplete configuration for css-mode."
+  "Sets up autocomplete for `css-mode'."
   (setq ac-sources '(
                       ac-source-words-in-buffer
                       ac-source-abbrev
