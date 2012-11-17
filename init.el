@@ -512,9 +512,9 @@
       whitespace-line-column 80)
 ;; Disabled space-mark newline-mark because it makes code very hard to read.
 (setq whitespace-display-mappings
-      '((space-mark   ?\    [?\xB7]     [?.])       ; space
-        (space-mark   ?\xA0 [?\xA4]     [?_])       ; hard space
-        (newline-mark ?\n   [?\xB6 ?\n] [?$ ?\n])   ; end-of-line
+      '((space-mark   ?\    [?\xB7]     [?.])       ;; space
+        (space-mark   ?\xA0 [?\xA4]     [?_])       ;; hard space
+        (newline-mark ?\n   [?\xB6 ?\n] [?$ ?\n])   ;; end-of-line
         ))
 
 (require 're-builder)
