@@ -55,13 +55,13 @@
 ;; Platform detection.
 ;; ======================================================================
 (defun goog/platform/is-darwin-p ()
+  "Determines whether the system is darwin-based (Mac OS X)"
   (interactive)
-  "Return true if system is darwin-based (Mac OS X)"
   (string-equal system-type "darwin"))
 
 (defun goog/platform/is-linux-p ()
+  "Determines whether the system is GNU/Linux-based."
   (interactive)
-  "Return true if system is GNU/Linux-based."
   (string-equal system-type "gnu/linux"))
 
 
@@ -83,7 +83,7 @@
                            ;; smex   ;; Don't use this one. el-get works.
                            ace-jump-mode
                            ac-slime
-                           ;; auto-complete
+                           ;; auto-complete ;; Use the el-get version.
                            autopair
                            clojure-mode
                            clojure-test-mode
@@ -104,7 +104,6 @@
                            less-css-mode
                            loccur
                            magit
-                           ;; mark-multiple
                            maxframe
                            melpa
                            move-text
@@ -116,7 +115,8 @@
                            rainbow-mode
                            switch-window
                            undo-tree
-                           yasnippet
+                           ;; yasnippet
+                           yaml-mode
                            zencoding-mode
 
                            ;; Themes.
@@ -342,6 +342,7 @@
  '(el-get
    ;; pymacs
    auto-complete
+   yasnippet
    ;; clojure-mode
    ;; fill-column-indicator
    ;; js2-mode
@@ -481,7 +482,7 @@
   (global-set-key [mouse-5] '(lambda ()
                                (interactive)
                                (scroll-up 1)))
-  (defun track-mouse (e))
+  ;; (defun track-mouse (e))
   (setq mouse-sel-mode t))
 
 ;; ----------------------------------------------------------------------
@@ -489,13 +490,17 @@
 ;; ----------------------------------------------------------------------
 (setq-default fill-column 80)     ;; right margin and fill column.
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
-(add-hook 'prog-mode-common-hook
-              (lambda ()
-                (auto-fill-mode 1)
-                (set (make-local-variable 'fill-nobreak-predicate)
-                     (lambda ()
-                       (not (eq (get-text-property (point) 'face)
-                                'font-lock-comment-face))))))
+(add-hook 'text-mode-hook 'turn-on-watchwords)
+(add-hook 'prog-mode-hook 'turn-on-watchwords)
+
+(defun goog/prog-mode-common/setup ()
+  "Applies settings common to all programming language modes."
+  (auto-fill-mode 1)
+  (set (make-local-variable 'fill-nobreak-predicate)
+       (lambda ()
+         (not (eq (get-text-property (point) 'face)
+                  'font-lock-comment-face)))))
+(add-hook 'prog-mode-common-hook 'goog/prog-mode-common/setup)
 
 ;; Use whitespace mode. Cleans up trailing spaces, shows tabs, unnecessary
 ;; whitespace, end of file newline, bad indentation, text overrunning the
@@ -508,9 +513,9 @@
       whitespace-line-column 80)
 ;; Disabled space-mark newline-mark because it makes code very hard to read.
 (setq whitespace-display-mappings
-      '((space-mark   ?\    [?\xB7]     [?.])       ; space
-        (space-mark   ?\xA0 [?\xA4]     [?_])       ; hard space
-        (newline-mark ?\n   [?\xB6 ?\n] [?$ ?\n])   ; end-of-line
+      '((space-mark   ?\    [?\xB7]     [?.])       ;; space
+        (space-mark   ?\xA0 [?\xA4]     [?_])       ;; hard space
+        (newline-mark ?\n   [?\xB6 ?\n] [?$ ?\n])   ;; end-of-line
         ))
 
 (require 're-builder)
@@ -526,8 +531,10 @@
 ;; https://github.com/bbatsov/emacs-prelude/commit/d26924894b31d5dc3a8b2813719579baccc2b433
 (when (goog/platform/is-darwin-p)
   (defun goog/clipboard/copy-from-osx ()
+    "Pastes from the OS X clipboard."
     (shell-command-to-string "pbpaste"))
   (defun goog/clipboard/paste-to-osx (text &optional push)
+    "Copies text into the OS X clipboard."
     (let ((process-connection-type nil))
       (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
         (process-send-string proc text)
@@ -544,6 +551,7 @@
      (progn
        (message "Current line is copied.")
        (list (line-beginning-position) (line-beginning-position 2)) ) ) ))
+
 (defadvice kill-region (before slick-copy activate compile)
   "When called interactively with no active region, cut the current line."
   (interactive
@@ -554,7 +562,7 @@
 
 ;; Whitespace-aware kill-line.
 (defadvice kill-line (after kill-line-cleanup-whitespace activate compile)
-  "cleanup whitespace on kill-line"
+  "Cleans up whitespace on `kill-line'."
   (if (not (bolp))
       (delete-region (point) (progn (skip-chars-forward " \t") (point)))))
 
@@ -589,16 +597,17 @@ at point."
      ;; Display ido results vertically, rather than horizontally.
      ;; From the Emacs wiki.
      (setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
-     (defun ido-disable-line-trucation ()
+     (defun goog/config/ido-mode/disable-line-trucation ()
        (set (make-local-variable 'truncate-lines) nil))
-     (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
+     (add-hook 'ido-minibuffer-setup-hook 'goog/config/ido-mode/disable-line-trucation)
      (global-set-key [(control tab)] 'ido-switch-buffer)
 
-     ;; Make up and down arrow keys work with ido results.
-     (add-hook 'ido-setup-hook
-               (lambda ()
-                 (define-key ido-completion-map (kbd "<up>") 'ido-prev-match)
-                 (define-key ido-completion-map (kbd "<down>") 'ido-next-match)))
+     (defun goog/config/ido-mode/cycle-with-up-and-down-arrow-keys ()
+       "Allow the up and down arrow keys to cycle through `ido-mode' results."
+       (define-key ido-completion-map (kbd "<up>") 'ido-prev-match)
+       (define-key ido-completion-map (kbd "<down>") 'ido-next-match)
+       )
+     (add-hook 'ido-setup-hook 'goog/config/ido-mode/cycle-with-up-and-down-arrow-keys)
      ))
 
 ;; ----------------------------------------------------------------------
@@ -614,7 +623,6 @@ at point."
   (if (find-file (ido-completing-read "Find recent file: " recentf-list))
       (message "Opening file...")
     (message "Aborting")))
-(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
 
 
 ;; ======================================================================
@@ -738,19 +746,6 @@ https://gist.github.com/879305"
   "Interactive commands for which paredit should be enabled in
 the minibuffer.")
 
-
-;; ----------------------------------------------------------------------
-;; goog/edit
-;; ----------------------------------------------------------------------
-(defun goog/edit/set-newline-and-indent ()
-  "Sets RET to do a newline and indent."
-  (local-set-key (kbd "RET") 'newline-and-indent))
-
-(defun goog/edit/watchwords ()
-  (font-lock-add-keywords
-   nil '(("\\<\\(FIX\\(ME\\)?\\|NOTE\\|WARNING\\(S\\)?\\|CAUTION\\|TODO\\|HACK\\|REFACTOR\\|NOCOMMIT\\)"
-          1 font-lock-warning-face t))))
-
 ;; ----------------------------------------------------------------------
 ;; goog/elisp
 ;; ----------------------------------------------------------------------
@@ -772,7 +767,8 @@ the minibuffer.")
 (defun goog/elisp/reload-configuration ()
   "Reloads the init.el module from the Emacs configuration directory."
   (interactive)
-  (load-file (concat config-dir "init.el"))
+  ;; (load-file (concat config-dir "init.el"))
+  (load-file "~/.emacs.d/init.el")
   (yas/reload-all))
 
 (defun goog/elisp/eval-after-init (form)
@@ -832,7 +828,7 @@ immediately."
 (require 'switch-window)
 
 ;; Need to test this properly.
-;; Disabled because it causes Emacs to hang.
+;; Disabled because it causes Emacs to hang or misbehave.
 ;; (when window-system
 ;;   (require 'fill-column-indicator)
 ;;   (define-globalized-minor-mode global-fci-mode fci-mode
@@ -872,7 +868,6 @@ immediately."
 (global-set-key "\M-P" 'fastnav-sprint-backward)
 
 ;; Find things fast.
-;; (require 'find-things-fast)
 (autoload 'ftf-find-file "find-things-fast" nil t)
 (autoload 'ftf-grepsource "find-things-fast" nil t)
 (global-set-key (kbd "C-x f") 'ftf-find-file)
@@ -883,8 +878,7 @@ immediately."
 (defun goog/config/highlight-symbol-mode/setup ()
   (when window-system
     (highlight-symbol-mode)
-    (setq highlight-symbol-idle-delay 0.025)
-    ))
+    (setq highlight-symbol-idle-delay 0.025)))
 (add-hook 'text-mode-hook 'goog/config/highlight-symbol-mode/setup)
 (add-hook 'prog-mode-hook 'goog/config/highlight-symbol-mode/setup)
 ;; Why does js2-mode not inherit from prog-mode?
@@ -896,38 +890,22 @@ immediately."
 (require 'iedit)
 (put 'narrow-to-region 'disabled nil)  ;; Allow narrowing to work.
 
-;; (require 'mark-multiple)
+;; (require 'multiple-cursors)
+;; ;; From active region to multiple cursors:
+;; (global-set-key (kbd "C-, C-l") 'mc/edit-lines)
+;; (global-set-key (kbd "C-, C-e") 'mc/edit-ends-of-lines)
+;; (global-set-key (kbd "C-, C-a") 'mc/edit-beginnings-of-lines)
 
-;; (autoload 'inline-string-rectangle "inline-string-rectangle" nil t)
-;; (global-set-key (kbd "C-x r t") 'inline-string-rectangle)
+;; ;; Rectangular region mode
+;; (global-set-key (kbd "C-, C-,") 'set-rectangular-region-anchor)
 
-;; (require 'mark-more-like-this)
-;; (autoload 'mark-previous-like-this "mark-more-like-this" nil t)
-;; (autoload 'mark-next-like-this "mark-more-like-this" nil t)
-;; (autoload 'mark-more-like-this "mark-more-like-this" nil t)
-;; (autoload 'mark-all-like-this "mark-more-like-this" nil t)
-;; (global-set-key (kbd "C-<") 'mark-previous-like-this)
-;; (global-set-key (kbd "C->") 'mark-next-like-this)
-;; (global-set-key (kbd "C-M-m") 'mark-more-like-this)
-;; (global-set-key (kbd "C-*") 'mark-all-like-this)
-
-(require 'multiple-cursors)
-;; From active region to multiple cursors:
-(global-set-key (kbd "C-, C-l") 'mc/edit-lines)
-(global-set-key (kbd "C-, C-e") 'mc/edit-ends-of-lines)
-(global-set-key (kbd "C-, C-a") 'mc/edit-beginnings-of-lines)
-
-;; Rectangular region mode
-(global-set-key (kbd "C-, C-,") 'set-rectangular-region-anchor)
-
-;; Mark more like this.
-(global-set-key (kbd "C-, C-.") 'mc/mark-all-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-, C-;") 'mc/mark-all-in-region)
+;; ;; Mark more like this.
+;; (global-set-key (kbd "C-, C-.") 'mc/mark-all-like-this)
+;; (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+;; (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+;; (global-set-key (kbd "C-, C-;") 'mc/mark-all-in-region)
 
 (require 'sgml-mode)
-;; (require 'rename-sgml-tag)
 (autoload 'rename-sgml-tag "rename-sgml-tag" nil t)
 (define-key sgml-mode-map (kbd "C-c C-r") 'rename-sgml-tag)
 
@@ -936,7 +914,6 @@ immediately."
 
 (require 'helm-config)
 (helm-mode 1)
-(global-set-key (kbd "M-F") 'helm-for-files)
 
 
 ;; ======================================================================
@@ -968,6 +945,16 @@ immediately."
       ac-auto-show-menu 0.2
       ac-expand-on-auto-complete nil
       ac-dwim t)
+
+;; (global-auto-complete-mode t)
+;; Dirty fix to enable AC everywhere without bothering about the ac-modes list.
+(define-globalized-minor-mode real-global-auto-complete-mode
+  auto-complete-mode (lambda ()
+                       (if (not (minibufferp (current-buffer)))
+                         (auto-complete-mode 1))
+                       ))
+(real-global-auto-complete-mode t)
+
 ;; Don't use tab to cycle. It's irritating.
 (define-key ac-completing-map "\t" 'ac-complete)
 ;; (define-key ac-completing-map "\r" nil)
@@ -992,7 +979,7 @@ immediately."
                 ac-source-filename
                 ac-source-files-in-current-dir
                 ac-source-imenu
-                ac-source-words-in-all-buffer
+                ;; ac-source-words-in-all-buffer
                 ac-source-words-in-buffer
                 ac-source-words-in-same-mode-buffers
                 ac-source-yasnippet
@@ -1002,6 +989,7 @@ immediately."
                 clojurescript-mode
                 css-mode
                 csv-mode
+                erc-mode
                 espresso-mode
                 go-mode
                 haml-mode
@@ -1036,7 +1024,6 @@ immediately."
   (auto-complete-mode 1))
 (add-hook 'ielm-mode-hook 'goog/config/ielm-mode/setup-auto-complete)
 
-
 ;; ======================================================================
 ;; Programming-specific.
 ;; ======================================================================
@@ -1066,25 +1053,30 @@ immediately."
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
 
-;; Highlight watchwords.
-(add-hook 'prog-mode-hook 'goog/edit/watchwords)
 
-;; Comment what I really really really mean.
-;; Original idea from
-;; http://www.opensubscriber.com/message/emacs-devel@gnu.org/10971693.html
-(defun comment-dwim-line (&optional arg)
-  "Replacement for the comment-dwim command.
-If no region is selected and current line is not blank and we are
-not at the end of the line, then comment current line. Replaces
-default behaviour of comment-dwim, when it inserts comment at the
-end of the line."
-  (interactive "*P")
-  (comment-normalize-vars)
-  (if (and (not (region-active-p)) (not (looking-at "[ \t]*$")))
-      (comment-or-uncomment-region (line-beginning-position)
-                                   (line-end-position))
-    (comment-dwim arg)))
-(global-set-key "\M-;" 'comment-dwim-line)
+;; ----------------------------------------------------------------------
+;; YAML.
+;; ----------------------------------------------------------------------
+(setq auto-mode-alist
+      (append '(
+                ("\\yaml$" . yaml-mode)
+                ("\\yml" . yaml-mode))
+              auto-mode-alist))
+
+;; ----------------------------------------------------------------------
+;; IELM.
+;; ----------------------------------------------------------------------
+(defun goog/config/ielm-mode/setup-autocomplete ()
+  "Enables `auto-complete' support in \\[ielm]."
+  (setq ac-sources '(ac-source-functions
+                     ac-source-variables
+                     ac-source-features
+                     ac-source-symbols
+                     ac-source-words-in-same-mode-buffers))
+  (add-to-list 'ac-modes 'inferior-emacs-lisp-mode)
+  (auto-complete-mode 1))
+(add-hook 'ielm-mode-hook 'goog/config/ielm-mode/setup-autocomplete)
+
 
 ;; ----------------------------------------------------------------------
 ;; sh-mode
@@ -1113,14 +1105,14 @@ end of the line."
 ;; ----------------------------------------------------------------------
 (require 'less-css-mode)
 (defun goog/config/css-mode/setup-style ()
-  "Sets up the style for css-mode."
+  "Sets up the style for `css-mode'."
   (setq less-css-indent-level 2
         css-indent-offset 2
         indent-tabs-mode nil
         require-final-newline 't
         tab-width 2))
 (defun goog/config/css-mode/setup-auto-complete ()
-  "Sets up autocomplete configuration for css-mode."
+  "Sets up autocomplete for `css-mode'."
   (setq ac-sources '(
                       ac-source-words-in-buffer
                       ac-source-abbrev
@@ -1128,6 +1120,7 @@ end of the line."
                       ac-source-variables
                       ac-source-words-in-same-mode-buffers
                       ac-source-yasnippet
+                      ac-source-css-property
                       )))
 (add-hook 'css-mode-hook 'goog/config/css-mode/setup-style)
 (add-hook 'css-mode-hook 'goog/config/css-mode/setup-auto-complete)
@@ -1148,41 +1141,37 @@ end of the line."
 ;; Go.
 ;; ----------------------------------------------------------------------
 (autoload 'go-mode "go-mode" nil t)
+
 (defun goog/config/go-mode/execute-buffer ()
-  "Compiles and executes the Go code in the current buffer."
+  "Formats, compiles and executes the Go code in the current buffer."
   (interactive)
   (gofmt)
   (save-buffer)
   (compile (concat "go run " buffer-file-name)))
 
 (defun goog/config/go-mode/build-buffer ()
-  "Compiles the Go code in the current buffer."
+  "Formats and compiles the Go code in the current buffer."
   (interactive)
   (gofmt)
   (save-buffer)
   (compile (concat "go build " buffer-file-name)))
 
-(defun goog/config/go-mode/fixstyle-buffer ()
-  "Runs gofmt on the buffer."
-  (interactive)
-  (save-buffer)
-  (shell-command (concat "go fmt " buffer-file-name)))
+(defun goog/config/go-mode/setup-style ()
+  "Defines style and editing for `go-mode.'"
+  (setq tab-width 2)
+  (push '(?' . ?') (getf autopair-extra-pairs :code))
+  (push '(?" . ?") (getf autopair-extra-pairs :code)))
+
+(defun goog/config/go-mode/setup-bindings ()
+  "Sets up the keyboard bindings for `go-mode' buffers."
+  (define-key go-mode-map (kbd "C-c l f") 'gofmt)
+  (define-key go-mode-map (kbd "C-x C-e") 'goog/config/go-mode/execute-buffer)
+  (define-key go-mode-map (kbd "C-c C-e") 'goog/config/go-mode/execute-buffer)
+  (define-key go-mode-map (kbd "C-x C-b") 'goog/config/go-mode/build-buffer))
 
 (add-hook 'before-save-hook 'gofmt-before-save)
-(add-hook 'go-mode-hook (lambda ()
-                          (setq tab-width 2)
-                          (push '(?" . ?")
-                                (getf autopair-extra-pairs :code))))
-(add-hook 'go-mode-hook (lambda ()
-                          ;; (define-key go-mode-map (kbd "C-c l f")
-                          ;;   'goog/config/go-mode/fixstyle-buffer)
-                          (define-key go-mode-map (kbd "C-c l f") 'gofmt)
-                          (define-key go-mode-map (kbd "C-x C-e")
-                            'goog/config/go-mode/execute-buffer)
-                          (define-key go-mode-map (kbd "C-c C-e")
-                            'goog/config/go-mode/execute-buffer)
-                          (define-key go-mode-map (kbd "C-x C-b")
-                            'goog/config/go-mode/build-buffer)))
+(add-hook 'go-mode-hook 'goog/config/go-mode/setup-style)
+(add-hook 'go-mode-hook 'goog/config/go-mode/setup-bindings)
 
 
 ;; ----------------------------------------------------------------------
@@ -1284,7 +1273,7 @@ compilation output."
 ;; Python.
 ;; ----------------------------------------------------------------------
 (defun goog/config/python-mode/setup-style ()
-  "Defines the python coding style."
+  "Defines `python-mode' coding style."
   (setq indent-tabs-mode nil
         require-final-newline 't
         tab-width 2
@@ -1292,8 +1281,8 @@ compilation output."
         python-indent 2
         py-indent-offset 2))
 (defun goog/config/python-mode/setup-ac ()
-  (setq ac-auto-start 0)
-  )
+  "Sets up `auto-complete-mode' completion for `python-mode'."
+  (setq ac-auto-start 0))
 (setq auto-mode-alist
       (append '(
                 ("\\wscript$" . python-mode)
@@ -1335,10 +1324,17 @@ compilation output."
 ;; Reload the user init file.
 (global-set-key (kbd "C-.") 'goog/elisp/reload-configuration)
 
-;; Shift region left/right.
+;; Open recent files using `ido-mode'.
+(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
+
+;; Helm find files.
+(global-set-key (kbd "M-F") 'helm-for-files)
+
+;; Shift region left or right.
 (global-set-key (kbd "s-]") 'shift-right)
 (global-set-key (kbd "s-[") 'shift-left)
-(define-key global-map (kbd "RET") 'newline-and-indent)
+(global-set-key (kbd "RET") 'newline-and-indent)
+;; (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; ibuffer.
 (global-set-key [(f8)] 'ibuffer)
@@ -1347,10 +1343,7 @@ compilation output."
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C-=") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
-(global-set-key (kbd "C-0") '(lambda ()
-                               (interactive)
-                               (text-scale-set 0)
-                               ))
+(global-set-key (kbd "C-0") 'text-scale-reset)
 
 ;; Use regex searches by default
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
@@ -1359,21 +1352,22 @@ compilation output."
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 
 ;; Killing and yanking.
-(define-key global-map (kbd "<delete>") 'delete-char)
-(define-key global-map (kbd "M-<delete>") 'kill-word)
+(global-set-key (kbd "<delete>") 'delete-char)
+(global-set-key (kbd "M-<delete>") 'kill-word)
 
 ;; Line insertion
 (global-set-key (kbd "S-<return>") 'insert-blank-line-below)
 (global-set-key (kbd "M-S-<return>") 'insert-blank-line-above)
-(global-set-key (kbd "s-<return>")
-                'insert-blank-line-below-next-line)
+(global-set-key (kbd "s-<return>") 'insert-blank-line-below-next-line)
 
 ;; Line or region duplication.
 (global-set-key (kbd "C-c C-d") 'duplicate-current-line-or-region)
 
 ;; Toggle identifier case.
-(global-set-key (kbd "C-x t c")
-                'toggle-identifier-naming-style)
+(global-set-key (kbd "C-x t c") 'toggle-identifier-naming-style)
+
+;; Comment what I really mean.
+(global-set-key (kbd "M-;") 'comment-dwim-line)
 
 ;; Sort lines
 (global-set-key (kbd "C-c s") 'sort-lines)
@@ -1384,7 +1378,6 @@ compilation output."
 
 ;; Parentheses matching.
 (global-set-key (kbd "M-0") 'goto-match-paren)
-
 
 ;; Quotes.
 (global-set-key (kbd "C-'") 'toggle-quotes)

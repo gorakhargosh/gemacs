@@ -1,5 +1,10 @@
 ;;; goog-defuns.el --- Extra functionality.
 
+(defun turn-on-watchwords ()
+  (font-lock-add-keywords
+   nil '(("\\<\\(FIX\\(ME\\)?\\|NOTE\\|WARNING\\(S\\)?\\|CAUTION\\|TODO\\|HACK\\|REFACTOR\\|NOCOMMIT\\)"
+          1 font-lock-warning-face t))))
+
 ;; ----------------------------------------------------------------------
 ;; Navigation.
 ;; ----------------------------------------------------------------------
@@ -371,6 +376,28 @@ index in STRING."
           (replace-string new-quotes (concat "\\" new-quotes) nil start end)
           (replace-string (concat "\\" old-quotes) old-quotes nil start end)))
     (error "Point isn't in a string")))
+
+;; Comment what I really really really mean.
+;; Original idea from
+;; http://www.opensubscriber.com/message/emacs-devel@gnu.org/10971693.html
+(defun comment-dwim-line (&optional arg)
+  "Replacement for the `comment-dwim' command.
+If no region is selected and current line is not blank and we are
+not at the end of the line, then comment current line. Replaces
+default behaviour of `comment-dwim', when it inserts comment at the
+end of the line."
+  (interactive "*P")
+  (comment-normalize-vars)
+  (if (and (not (region-active-p)) (not (looking-at "[ \t]*$")))
+      (comment-or-uncomment-region (line-beginning-position)
+                                   (line-end-position))
+    (comment-dwim arg)))
+
+;; View.
+(defun text-scale-reset ()
+  "Resets the text scale back to 0."
+  (interactive)
+  (text-scale-set 0))
 
 ;; Perspectives.
 (defun persp-curr-position (offset)
