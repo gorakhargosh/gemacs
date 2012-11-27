@@ -107,7 +107,7 @@
                            maxframe
                            melpa
                            move-text
-                           multiple-cursors
+                           ;; multiple-cursors
                            nav
                            nrepl
                            paredit
@@ -351,6 +351,7 @@
    jedi ;; Python autocompletion using jedi, python-epc, and autocomplete.
    ;; auto-async-byte-compile ;; This is nothing but trouble.
    ;; ioccur
+   multiple-cursors
    ))
 ;; Synchronize el-get packages.
 (setq goog:el-get-packages
@@ -897,13 +898,17 @@ immediately."
 (global-set-key (kbd "C-, C-a") 'mc/edit-beginnings-of-lines)
 
 ;; Rectangular region mode
-(global-set-key (kbd "C-, C-,") 'set-rectangular-region-anchor)
+;; (global-set-key (kbd "C-, C-,") 'set-rectangular-region-anchor)
 
 ;; Mark more like this.
-(global-set-key (kbd "C-, C-.") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-, C-;") 'mc/mark-all-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-, C-;") 'mc/mark-all-in-region)
+(global-set-key (kbd "C-, C-h") 'mc/mark-all-symbols-like-this)
+(global-set-key (kbd "C-, C-d") 'mc/mark-all-symbols-like-this-in-defun)
+(global-set-key (kbd "C-, C-,") 'mc/mark-all-like-this-dwim)
+(global-set-key (kbd "C-, C-r") 'mc/mark-all-in-region)
+
 
 (require 'sgml-mode)
 (autoload 'rename-sgml-tag "rename-sgml-tag" nil t)
