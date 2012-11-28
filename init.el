@@ -160,85 +160,16 @@
 ;; El-get packages.
 ;; ----------------------------------------------------------------------
 ;; NOTE: Use el-get packages only if we do not have stable packages
-;; in elpa,melpa,marmalade.
+;; in elpa, melpa, marmalade.
 ;; ----------------------------------------------------------------------
 (setq
  el-get-sources
  '(el-get
-
    (:name smex              ;; a better (ido-like) M-x
           :after (progn
                    (setq smex-save-file "~/.emacs.d/.smex-items")
                    (global-set-key (kbd "M-x") 'smex)
                    (global-set-key (kbd "M-X") 'smex-major-mode-commands)))
-
-   ;; (:name magit             ;; Git for emacs.
-   ;;        :after (progn
-   ;;                 (global-set-key (kbd "C-x g") 'magit-status)))
-
-   ;; (:name move-text         ;; text movement
-   ;;        :after (progn
-   ;;                 (global-set-key [M-S-up] 'move-text-up)
-   ;;                 (global-set-key [M-S-down] 'move-text-down)))
-
-   ;; (:name autopair          ;; Balance parentheses; paredit is faster.
-   ;;        :type git
-   ;;        :url "git://github.com/capitaomorte/autopair.git"
-   ;;        :after (progn
-   ;;                 (require 'autopair)
-   ;;                 (autopair-global-mode)
-   ;;                 (setq autopair-autowrap t)
-   ;;                 ;; Prevents: http://code.google.com/p/autopair/issues/detail?id=32
-   ;;                 (add-hook 'sldb-mode-hook
-   ;;                           #'(lambda ()
-   ;;                               (setq autopair-dont-activate t) ;; emacs < 24
-   ;;                               (autopair-mode -1)              ;; emacs >= 24
-   ;;                               ))
-   ;;                 (set-default 'autopair-dont-activate
-   ;;                              #'(lambda ()
-   ;;                                  (eq major-mode 'sldb-mode)))
-   ;;                 ))
-
-   ;; (:name transpose-frame
-   ;;        :after (progn
-   ;;                 (require 'transpose-frame)
-   ;;                 (global-set-key (kbd "C-x t t") 'transpose-frame)
-   ;;                 (global-set-key (kbd "C-x t h") 'flop-frame)
-   ;;                 (global-set-key (kbd "C-x t v") 'flip-frame)
-   ;;                 (global-set-key (kbd "C-x t r") 'rotate-frame-clockwise)))
-
-   ;; (:name closure-template-html-mode
-   ;;        :website "https://github.com/archimag/cl-closure-template#readme"
-   ;;        :description "Google Closure Template mode."
-   ;;        :type github
-   ;;        :pkgname "archimag/cl-closure-template"
-   ;;        :post-init (progn
-   ;;                     (require 'closure-template-html-mode)
-   ;;                     ))
-
-   ;; (:name restclient
-   ;;        :website "https://github.com/pashky/restclient.el#readme"
-   ;;        :description "HTTP REST client for Emacs."
-   ;;        :type github
-   ;;        :pkgname "pashky/restclient.el"
-   ;;        :post-init (progn
-   ;;                     (require 'restclient)))
-
-   ;; (:name bang
-   ;;        :website "https://github.com/magnars/bang.el#readme"
-   ;;        :description "CL replacement for Emacs."
-   ;;        :type github
-   ;;        :pkgname "magnars/bang.el"
-   ;;        :post-init (progn
-   ;;                     (require 'bang)))
-
-   ;; (:name js2-refactor
-   ;;        :website "https://github.com/magnars/js2-refactor.el#readme"
-   ;;        :description "JavaScript refactoring library for Emacs."
-   ;;        :type github
-   ;;        :pkgname "magnars/js2-refactor.el"
-   ;;        :post-init (progn
-   ;;                     (require 'js2-refactor)))
 
    (:name smart-forward
           :website "https://github.com/magnars/smart-forward.el#readme"
@@ -248,93 +179,6 @@
           :depends (expand-region)
           :post-init (progn
                        (require 'smart-forward)))
-
-   ;; (:name change-inner
-   ;;        :website "https://github.com/magnars/change-inner.el#readme"
-   ;;        :description "Emacs version of Vim's ci and co commands."
-   ;;        :type github
-   ;;        :pkgname "magnars/change-inner.el"
-   ;;        :depends (expand-region)
-   ;;        :post-init (progn
-   ;;                     (require 'change-inner)
-   ;;                     (global-set-key (kbd "C-c C-i") 'change-inner)
-   ;;                     (global-set-key (kbd "C-c C-o") 'change-outer)
-   ;;                     ))
-
-   ;; (:name js-comint
-   ;;        :after (progn
-   ;;                 (require 'js-comint)
-   ;;                 (setq inferior-js-program-command "node")
-   ;;                 ;; (setq inferior-js-program-command "/usr/bin/java org.mozilla.javascript.tools.shell.Main")
-   ;;                 (add-hook 'js-mode-hook '(lambda ()
-   ;;                                            (local-set-key "\C-x\C-e" 'js-send-last-sexp)
-   ;;                                            (local-set-key "\C-\M-x" 'js-send-last-sexp-and-go)
-   ;;                                            (local-set-key "\C-cb" 'js-send-buffer)
-   ;;                                            (local-set-key "\C-c\C-b" 'js-send-buffer-and-go)
-   ;;                                            (local-set-key "\C-cl" 'js-load-file-and-go)
-   ;;                                            ))
-   ;;                 ))
-
-   ;; (:name protobuf-mode
-   ;;        :after (progn
-   ;;                 (require 'protobuf-mode)
-   ;;                 (defconst g-protobuf-style
-   ;;                   '((c-basic-offset . 2)
-   ;;                     (indent-tabs-mode . nil)))
-   ;;                 (add-hook 'protobuf-mode-hook
-   ;;                           (lambda () (c-add-style "g-protobuf-style" g-protobuf-style t)))))
-
-   ;; ;; (:name closure-lint-mode
-   ;; ;;     :type github
-   ;; ;;     :website "https://github.com/r0man/closure-lint-mode"
-   ;; ;;     :description "Emacs support for the Closure Linter"
-   ;; ;;     :pkgname "r0man/closure-lint-mode"
-   ;; ;;     :after (progn
-   ;; ;;              (require 'closure-lint-mode)))
-
-   ;; ;; (:name closure-template-html-mode
-   ;; ;;     :type github
-   ;; ;;     :website "https://github.com/archimag/cl-closure-template"
-   ;; ;;     :description "Emacs support for Google Closure Templates"
-   ;; ;;     :pkgname "archimag/cl-closure-template"
-   ;; ;;     :after (progn
-   ;; ;;              (require 'closure-template-html-mode)))
-
-   ;; (:name rst-mode
-   ;;        :after (progn
-   ;;                 (require 'rst)
-   ;;                 (add-hook 'rst-adjust-hook 'rst-toc-update)
-   ;;                 (setq auto-mode-alist
-   ;;                       (append '(
-   ;;                                 ("\\.txt$" . rst-mode)
-   ;;                                 ("\\.rst$" . rst-mode)
-   ;;                                 ("\\.rest$" . rst-mode))
-   ;;                               auto-mode-alist))
-   ;;                 ))
-
-   ;; ;; (:name yaml-mode
-   ;; ;;        :after (progn
-   ;; ;;                 (require 'goog-config-yaml-mode)))
-
-   ;; (:name monky
-   ;;        :description "Magit for Hg"
-   ;;        :type github
-   ;;        :pkgname "ananthakumaran/monky"
-   ;;        :features monky
-   ;;        :after (progn
-   ;;                 (require 'monky)
-   ;;                 (setq monky-process-type 'cmdserver)))
-
-   ;; (:name ropemacs
-   ;;        :after (progn
-   ;;                 (require 'pymacs)
-   ;;                 (autoload 'pymacs-apply "pymacs")
-   ;;                 (autoload 'pymacs-call "pymacs")
-   ;;                 (autoload 'pymacs-eval "pymacs" nil t)
-   ;;                 (autoload 'pymacs-exec "pymacs" nil t)
-   ;;                 (autoload 'pymacs-load "pymacs" nil t)
-   ;;                 (pymacs-load "ropemacs" "rope-")
-   ;;                 (setq ropemacs-enable-autoimport t)))
    ))
 
 (setq
