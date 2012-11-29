@@ -187,6 +187,7 @@
    ;; pymacs
    auto-complete
    yasnippet
+   coffee-mode
    ;; clojure-mode
    ;; fill-column-indicator
    ;; js2-mode
