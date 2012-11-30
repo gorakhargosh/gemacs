@@ -657,6 +657,11 @@ immediately."
      (set-default 'autopair-dont-activate
                   #'(lambda ()
                       (eq major-mode 'sldb-mode)))
+     (add-hook 'go-mode-hook
+               #'(lambda ()
+                   (push '(?' . ?') (getf autopair-extra-pairs :code))
+                   (push '(?" . ?") (getf autopair-extra-pairs :code))
+                   ))
      ))
 
 
@@ -1030,8 +1035,6 @@ immediately."
   "Configures `go-mode'."
   ;; Set up coding style.
   (setq tab-width 2)
-  (push '(?' . ?') (getf autopair-extra-pairs :code))
-  (push '(?" . ?") (getf autopair-extra-pairs :code))
 
   ;; Keyboard bindings.
   (define-key go-mode-map (kbd "C-c l f") 'gofmt)
