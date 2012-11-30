@@ -937,6 +937,7 @@ immediately."
                      ac-source-words-in-same-mode-buffers))
   (add-to-list 'ac-modes 'inferior-emacs-lisp-mode)
   (auto-complete-mode 1))
+
 (add-hook 'ielm-mode-hook 'goog/config/ielm-mode/setup)
 
 
@@ -952,17 +953,21 @@ immediately."
 
 (add-hook 'sh-mode-hook 'goog/config/sh-mode/setup)
 
+
 ;; ----------------------------------------------------------------------
 ;; html-mode
 ;; ----------------------------------------------------------------------
-;; Don't use tabs when indenting in HTML mode.
-(add-hook
- 'html-mode-hook
- '(lambda ()
-    (set (make-local-variable 'sgml-basic-offset) 2)
-    (setq indent-tabs-mode nil)
-    (zencoding-mode 1)))
+(defun goog/config/html-mode/setup ()
+  "Configures `html-mode'."
 
+  ;; Coding style.
+  (set (make-local-variable 'sgml-basic-offset) 2)
+  (setq indent-tabs-mode nil)  ;; Don't use tabs to indent.
+
+  ;; Autocompletion.
+  (zencoding-mode 1))
+
+(add-hook 'html-mode-hook 'goog/config/html-mode/setup)
 
 
 ;; ----------------------------------------------------------------------
