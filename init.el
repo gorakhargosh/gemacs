@@ -795,15 +795,6 @@ immediately."
       ac-expand-on-auto-complete nil
       ac-dwim t)
 
-;; (global-auto-complete-mode t)
-;; Dirty fix to enable AC everywhere without bothering about the ac-modes list.
-(define-globalized-minor-mode real-global-auto-complete-mode
-  auto-complete-mode (lambda ()
-                       (if (not (minibufferp (current-buffer)))
-                         (auto-complete-mode 1))
-                       ))
-(real-global-auto-complete-mode t)
-
 ;; Don't use tab to cycle. It's irritating.
 (define-key ac-completing-map "\t" 'ac-complete)
 ;; (define-key ac-completing-map "\r" nil)
@@ -833,34 +824,45 @@ immediately."
                 ac-source-words-in-same-mode-buffers
                 ac-source-yasnippet
                 ))
-(dolist (mode '(
-                clojure-mode
-                clojurescript-mode
-                css-mode
-                csv-mode
-                erc-mode
-                espresso-mode
-                go-mode
-                haml-mode
-                haskell-mode
-                html-mode
-                js3-mode
-                less-css-mode
-                lisp-mode
-                log-edit-mode
-                magit-log-edit-mode
-                markdown-mode
-                nxml-mode
-                org-mode
-                sass-mode
-                sh-mode
-                smarty-mode
-                text-mode
-                textile-mode
-                tuareg-mode
-                yaml-mode
-                ))
-  (add-to-list 'ac-modes mode))
+
+;; (global-auto-complete-mode t)
+;; Dirty fix to enable AC everywhere without bothering about the ac-modes list.
+(define-globalized-minor-mode real-global-auto-complete-mode
+  auto-complete-mode (lambda ()
+                       (if (not (minibufferp (current-buffer)))
+                         (auto-complete-mode 1))
+                       ))
+(real-global-auto-complete-mode t)
+
+;; Not required since we've enabled auto-complete-mode above globally.
+;; (dolist (mode '(
+;;                 clojure-mode
+;;                 clojurescript-mode
+;;                 css-mode
+;;                 csv-mode
+;;                 erc-mode
+;;                 espresso-mode
+;;                 go-mode
+;;                 haml-mode
+;;                 haskell-mode
+;;                 html-mode
+;;                 js3-mode
+;;                 less-css-mode
+;;                 lisp-mode
+;;                 log-edit-mode
+;;                 magit-log-edit-mode
+;;                 markdown-mode
+;;                 nxml-mode
+;;                 org-mode
+;;                 sass-mode
+;;                 sh-mode
+;;                 smarty-mode
+;;                 text-mode
+;;                 textile-mode
+;;                 tuareg-mode
+;;                 yaml-mode
+;;                 ))
+;;   (add-to-list 'ac-modes mode))
 
 
 ;; ======================================================================
@@ -1056,7 +1058,7 @@ immediately."
 (add-hook 'js-mode-hook 'goog/config/js-mode/setup)
 
 (defun goog/config/js-mode/setup ()
-  "Sets up configuration for js-mode."
+  "Configures `js-mode' and `js2-mode'."
 
   ;; Coding style.
   (setq js-indent-level 2
@@ -1309,6 +1311,9 @@ compilation output."
   (setq goog-username-dir (concat goog-local-users-dir user-login-name))
 
   ;; ~/.emacs.d/os/<os-type>/*.el
+  ;; TODO(yesudeep): os-type needs to be normalized from system-type. For
+  ;; example, Linux is represented by "gnu/linux" which cannot be a reliably
+  ;; valid directory name.
   (setq goog-os-dir (concat goog-local-os-dir (format "%s" system-type)))
 
   (goog/elisp/eval-after-init
