@@ -658,10 +658,10 @@ immediately."
                   #'(lambda ()
                       (eq major-mode 'sldb-mode)))
      (add-hook 'go-mode-hook
-               #'(lambda ()
-                   (push '(?' . ?') (getf autopair-extra-pairs :code))
-                   (push '(?" . ?") (getf autopair-extra-pairs :code))
-                   ))
+               '(lambda ()
+                  (push '(?' . ?') (getf autopair-extra-pairs :code))
+                  (push '(?" . ?") (getf autopair-extra-pairs :code))
+                  ))
      ))
 
 
