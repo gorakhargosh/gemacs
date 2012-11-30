@@ -1052,7 +1052,8 @@ immediately."
 
 (defun goog/config/js-mode/setup ()
   "Sets up configuration for js-mode."
-  ;; Set up the style of code.
+
+  ;; Coding style.
   (setq js-indent-level 2
         espresso-indent-level 2
         c-basic-offset 2
@@ -1063,7 +1064,7 @@ immediately."
         ;; js2-bounce-indent-p t
         js2-auto-indent-p t)
 
-  ;; Define js-mode specific keyboard bindings.
+  ;; Keyboard bindings.
   (define-key js2-mode-map (kbd "C-c l l")
     'goog/config/js-mode/gjslint-buffer)
   (define-key js2-mode-map (kbd "C-c l d")
@@ -1077,7 +1078,7 @@ immediately."
   (define-key js2-mode-map (kbd "C-c l h")
     'goog/config/js-mode/jshint)
 
-  ;; Configure keychords.
+  ;; Keychords.
   (key-chord-define js2-mode-map ";;"  "\C-e;")
   (key-chord-define js2-mode-map ",,"  "\C-e,"))
 
