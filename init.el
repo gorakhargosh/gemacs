@@ -914,6 +914,10 @@ immediately."
                 ("\\SConscript" . python-mode)
                 ("\\BUILD$" . python-mode)
 
+                ;; JavaScript.
+                ("\\.js$" . js2-mode)
+                ("\\.json$" . js2-mode)
+
                 ;; Configuration files.
                 ("\\(?:\\.gitconfig\\|\\.gitmodules\\|config\\)$" . conf-mode)
                 )
@@ -1038,8 +1042,6 @@ immediately."
 (autoload 'js2-mode "js2-mode" nil t)
 (eval-after-load "js2-mode"
   '(progn
-     (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-     (add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
      (add-hook 'js2-mode-hook 'goog/config/js-mode/setup)
      (add-hook 'js2-mode-hook
                '(lambda ()
