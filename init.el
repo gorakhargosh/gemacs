@@ -171,14 +171,14 @@
                    (global-set-key (kbd "M-x") 'smex)
                    (global-set-key (kbd "M-X") 'smex-major-mode-commands)))
 
-   (:name smart-forward
-          :website "https://github.com/magnars/smart-forward.el#readme"
-          :description "Smarter movement forwards and backwards."
-          :type github
-          :pkgname "magnars/smart-forward.el"
-          :depends (expand-region)
-          :post-init (progn
-                       (require 'smart-forward)))
+   ;; (:name smart-forward
+   ;;        :website "https://github.com/magnars/smart-forward.el#readme"
+   ;;        :description "Smarter movement forwards and backwards."
+   ;;        :type github
+   ;;        :pkgname "magnars/smart-forward.el"
+   ;;        :depends (expand-region)
+   ;;        :post-init (progn
+   ;;                     (require 'smart-forward)))
    ))
 
 (setq
@@ -796,6 +796,18 @@ immediately."
       ac-expand-on-auto-complete nil
       ac-dwim t)
 
+;; Use TAB to complete, not cycle.
+(define-key ac-completing-map "\t" 'ac-complete)
+;; Disable RET completion.
+(define-key ac-completing-map "\r" nil)
+
+(setq ac-use-menu-map t)
+(define-key ac-menu-map (kbd "C-n") 'ac-next)
+(define-key ac-menu-map (kbd "C-p") 'ac-previous)
+
+(define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
+
+
 ;; (global-auto-complete-mode t)
 ;; Dirty fix to enable AC everywhere without bothering about the ac-modes list.
 (define-globalized-minor-mode real-global-auto-complete-mode
@@ -804,13 +816,6 @@ immediately."
                          (auto-complete-mode 1))
                        ))
 (real-global-auto-complete-mode t)
-
-;; Don't use tab to cycle. It's irritating.
-(define-key ac-completing-map "\t" 'ac-complete)
-;; (define-key ac-completing-map "\r" nil)
-(define-key ac-completing-map (kbd "C-n") 'ac-next)
-(define-key ac-completing-map (kbd "C-p") 'ac-previous)
-(define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
 
 ;; ;; Use Emacs' built-in TAB completion hooks to trigger AC (Emacs >= 23.2)
 ;; (setq tab-always-indent 'complete)  ;; use 'complete when auto-complete
