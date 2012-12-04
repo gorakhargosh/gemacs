@@ -632,7 +632,6 @@ immediately."
 ;; ======================================================================
 
 ;; Git integration.
-(add-to-list 'auto-mode-alist '("\\(?:\\.gitconfig\\|\\.gitmodules\\|config\\)$" . conf-mode))
 (autoload 'magit-status "magit" nil t)
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key [(f9)] 'magit-status)
@@ -658,6 +657,11 @@ immediately."
      (set-default 'autopair-dont-activate
                   #'(lambda ()
                       (eq major-mode 'sldb-mode)))
+     (add-hook 'go-mode-hook
+               '(lambda ()
+                  (push '(?' . ?') (getf autopair-extra-pairs :code))
+                  (push '(?" . ?") (getf autopair-extra-pairs :code))
+                  ))
      ))
 
 
@@ -686,11 +690,11 @@ immediately."
 (global-set-key (kbd "M-8") 'er/expand-region)
 (global-set-key (kbd "M-7") 'er/contract-region)
 
-(autoload 'smart-forward "smart-forward" nil t)
-(global-set-key (kbd "M-<up>") 'smart-up)
-(global-set-key (kbd "M-<down>") 'smart-down)
-(global-set-key (kbd "M-<right>") 'smart-forward)
-(global-set-key (kbd "M-<left>") 'smart-backward)
+;; (autoload 'smart-forward "smart-forward" nil t)
+;; (global-set-key (kbd "M-<up>") 'smart-up)
+;; (global-set-key (kbd "M-<down>") 'smart-down)
+;; (global-set-key (kbd "M-<right>") 'smart-forward)
+;; (global-set-key (kbd "M-<left>") 'smart-backward)
 
 (require 'ace-jump-mode)
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
@@ -789,7 +793,7 @@ immediately."
 (require 'auto-complete-config)
 (require 'go-autocomplete)
 (ac-config-default)
-(setq ac-ignore-case t
+(setq ac-ignore-case 'smart
       ac-use-fuzzy t
       ac-auto-start 0
       ac-auto-show-menu 0.2
@@ -839,45 +843,46 @@ immediately."
                 ac-source-words-in-same-mode-buffers
                 ac-source-yasnippet
                 ))
-(dolist (mode '(
-                clojure-mode
-                clojurescript-mode
-                css-mode
-                csv-mode
-                erc-mode
-                espresso-mode
-                go-mode
-                haml-mode
-                haskell-mode
-                html-mode
-                js3-mode
-                less-css-mode
-                lisp-mode
-                log-edit-mode
-                magit-log-edit-mode
-                markdown-mode
-                nxml-mode
-                org-mode
-                sass-mode
-                sh-mode
-                smarty-mode
-                text-mode
-                textile-mode
-                tuareg-mode
-                yaml-mode
-                ))
-  (add-to-list 'ac-modes mode))
 
-(defun goog/config/ielm-mode/setup-auto-complete ()
-  "Enables `auto-complete' support in \\[ielm]."
-  (setq ac-sources '(ac-source-functions
-                     ac-source-variables
-                     ac-source-features
-                     ac-source-symbols
-                     ac-source-words-in-same-mode-buffers))
-  (add-to-list 'ac-modes 'inferior-emacs-lisp-mode)
-  (auto-complete-mode 1))
-(add-hook 'ielm-mode-hook 'goog/config/ielm-mode/setup-auto-complete)
+;; (global-auto-complete-mode t)
+;; Dirty fix to enable AC everywhere without bothering about the ac-modes list.
+(define-globalized-minor-mode real-global-auto-complete-mode
+  auto-complete-mode (lambda ()
+                       (if (not (minibufferp (current-buffer)))
+                         (auto-complete-mode 1))
+                       ))
+(real-global-auto-complete-mode t)
+
+;; Not required since we've enabled auto-complete-mode above globally.
+;; (dolist (mode '(
+;;                 clojure-mode
+;;                 clojurescript-mode
+;;                 css-mode
+;;                 csv-mode
+;;                 erc-mode
+;;                 espresso-mode
+;;                 go-mode
+;;                 haml-mode
+;;                 haskell-mode
+;;                 html-mode
+;;                 js3-mode
+;;                 less-css-mode
+;;                 lisp-mode
+;;                 log-edit-mode
+;;                 magit-log-edit-mode
+;;                 markdown-mode
+;;                 nxml-mode
+;;                 org-mode
+;;                 sass-mode
+;;                 sh-mode
+;;                 smarty-mode
+;;                 text-mode
+;;                 textile-mode
+;;                 tuareg-mode
+;;                 yaml-mode
+;;                 ))
+;;   (add-to-list 'ac-modes mode))
+
 
 ;; ======================================================================
 ;; Programming-specific.
@@ -910,19 +915,42 @@ immediately."
 
 
 ;; ----------------------------------------------------------------------
-;; YAML.
+;; Define automatic mode detection for file types.
 ;; ----------------------------------------------------------------------
 (setq auto-mode-alist
       (append '(
-                ("\\yaml$" . yaml-mode)
-                ("\\yml" . yaml-mode))
+                ;; YAML.
+                ("\\.yaml$" . yaml-mode)
+                ("\\.yml" . yaml-mode)
+
+                ;; CSS.
+                ("\\.gss" . css-mode)
+
+                ;; Dart lang.
+                ("\\.dart$" . dart-mode)
+
+                ;; Python.
+                ("\\wscript$" . python-mode)
+                ("\\SConstruct" . python-mode)
+                ("\\SConscript" . python-mode)
+                ("\\BUILD$" . python-mode)
+
+                ;; JavaScript.
+                ("\\.js$" . js2-mode)
+                ("\\.json$" . js2-mode)
+
+                ;; Configuration files.
+                ("\\(?:\\.gitconfig\\|\\.gitmodules\\|config\\)$" . conf-mode)
+                )
               auto-mode-alist))
 
 ;; ----------------------------------------------------------------------
 ;; IELM.
 ;; ----------------------------------------------------------------------
-(defun goog/config/ielm-mode/setup-autocomplete ()
-  "Enables `auto-complete' support in \\[ielm]."
+(defun goog/config/ielm-mode/setup ()
+  "Configures \\[ielm]."
+
+  ;; Autocomplete.
   (setq ac-sources '(ac-source-functions
                      ac-source-variables
                      ac-source-features
@@ -930,66 +958,72 @@ immediately."
                      ac-source-words-in-same-mode-buffers))
   (add-to-list 'ac-modes 'inferior-emacs-lisp-mode)
   (auto-complete-mode 1))
-(add-hook 'ielm-mode-hook 'goog/config/ielm-mode/setup-autocomplete)
+
+(add-hook 'ielm-mode-hook 'goog/config/ielm-mode/setup)
 
 
 ;; ----------------------------------------------------------------------
 ;; sh-mode
 ;; ----------------------------------------------------------------------
-(defun goog/config/sh-mode/setup-style ()
-  "Sets up the style for sh-mode."
+(defun goog/config/sh-mode/setup ()
+  "Configures `sh-mode'."
+
+  ;; Coding style.
   (setq sh-basic-offset 2
         sh-indentation 2))
-(add-hook 'sh-mode-hook 'goog/config/sh-mode/setup-style)
+
+(add-hook 'sh-mode-hook 'goog/config/sh-mode/setup)
+
 
 ;; ----------------------------------------------------------------------
 ;; html-mode
 ;; ----------------------------------------------------------------------
-;; Don't use tabs when indenting in HTML mode.
-(add-hook
- 'html-mode-hook
- '(lambda ()
-    (set (make-local-variable 'sgml-basic-offset) 2)
-    (setq indent-tabs-mode nil)
-    (zencoding-mode 1)))
+(defun goog/config/html-mode/setup ()
+  "Configures `html-mode'."
 
+  ;; Coding style.
+  (set (make-local-variable 'sgml-basic-offset) 2)
+  (setq indent-tabs-mode nil)  ;; Don't use tabs to indent.
+
+  ;; Autocompletion.
+  (zencoding-mode 1))
+
+(add-hook 'html-mode-hook 'goog/config/html-mode/setup)
 
 
 ;; ----------------------------------------------------------------------
 ;; CSS mode.
 ;; ----------------------------------------------------------------------
+
 (require 'less-css-mode)
-(defun goog/config/css-mode/setup-style ()
-  "Sets up the style for `css-mode'."
+(defun goog/config/css-mode/setup ()
+  "Configures `css-mode'."
+
+  ;; Coding style.
   (setq less-css-indent-level 2
         css-indent-offset 2
         indent-tabs-mode nil
         require-final-newline 't
-        tab-width 2))
-(defun goog/config/css-mode/setup-auto-complete ()
-  "Sets up autocomplete for `css-mode'."
+        tab-width 2)
+
+  ;; Autocomplete.
   (setq ac-sources '(
-                      ac-source-words-in-buffer
-                      ac-source-abbrev
-                      ac-source-symbols
-                      ac-source-variables
-                      ac-source-words-in-same-mode-buffers
-                      ac-source-yasnippet
-                      ac-source-css-property
-                      )))
-(add-hook 'css-mode-hook 'goog/config/css-mode/setup-style)
-(add-hook 'css-mode-hook 'goog/config/css-mode/setup-auto-complete)
-(add-hook 'less-css-mode-hook 'goog/config/css-mode/setup-style)
-(add-hook 'less-css-mode-hook 'goog/config/css-mode/setup-auto-complete)
-;; TODO(yesudeep): Use gss-mode after developing it.
-(add-to-list 'auto-mode-alist '("\\.gss" . css-mode))
+                     ac-source-words-in-buffer
+                     ac-source-abbrev
+                     ac-source-symbols
+                     ac-source-variables
+                     ac-source-words-in-same-mode-buffers
+                     ac-source-yasnippet
+                     ac-source-css-property
+                     )))
+(add-hook 'css-mode-hook 'goog/config/css-mode/setup)
+(add-hook 'less-css-mode-hook 'goog/config/css-mode/setup)
 
 
 ;; ----------------------------------------------------------------------
 ;; Dart.
 ;; ----------------------------------------------------------------------
 (autoload 'dart-mode "dart-mode" "Edit Dart code." t)
-(add-to-list 'auto-mode-alist '("\\.dart$" . dart-mode))
 
 
 ;; ----------------------------------------------------------------------
@@ -1011,22 +1045,19 @@ immediately."
   (save-buffer)
   (compile (concat "go build " buffer-file-name)))
 
-(defun goog/config/go-mode/setup-style ()
-  "Defines style and editing for `go-mode.'"
+(defun goog/config/go-mode/setup ()
+  "Configures `go-mode'."
+  ;; Set up coding style.
   (setq tab-width 2)
-  (push '(?' . ?') (getf autopair-extra-pairs :code))
-  (push '(?" . ?") (getf autopair-extra-pairs :code)))
 
-(defun goog/config/go-mode/setup-bindings ()
-  "Sets up the keyboard bindings for `go-mode' buffers."
+  ;; Keyboard bindings.
   (define-key go-mode-map (kbd "C-c l f") 'gofmt)
   (define-key go-mode-map (kbd "C-x C-e") 'goog/config/go-mode/execute-buffer)
   (define-key go-mode-map (kbd "C-c C-e") 'goog/config/go-mode/execute-buffer)
-  (define-key go-mode-map (kbd "C-x C-b") 'goog/config/go-mode/build-buffer))
+  (define-key go-mode-map (kbd "C-x C-b") 'goog/config/go-mode/build-buffer)  )
 
 (add-hook 'before-save-hook 'gofmt-before-save)
-(add-hook 'go-mode-hook 'goog/config/go-mode/setup-style)
-(add-hook 'go-mode-hook 'goog/config/go-mode/setup-bindings)
+(add-hook 'go-mode-hook 'goog/config/go-mode/setup)
 
 
 ;; ----------------------------------------------------------------------
@@ -1035,19 +1066,18 @@ immediately."
 (autoload 'js2-mode "js2-mode" nil t)
 (eval-after-load "js2-mode"
   '(progn
-     (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-     (add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
-     (add-hook 'js2-mode-hook 'goog/config/js-mode/key-chords)
-     (add-hook 'js2-mode-hook 'goog/config/js-mode/setup-bindings)
-     (add-hook 'js2-mode-hook 'goog/config/js-mode/setup-style)
+     (add-hook 'js2-mode-hook 'goog/config/js-mode/setup)
      (add-hook 'js2-mode-hook
                '(lambda ()
                   (font-lock-add-keywords nil font-lock-operator-keywords t))
                t t)
      ))
+(add-hook 'js-mode-hook 'goog/config/js-mode/setup)
 
-(defun goog/config/js-mode/setup-style ()
-  "Sets the style for JavaScript."
+(defun goog/config/js-mode/setup ()
+  "Configures `js-mode' and `js2-mode'."
+
+  ;; Coding style.
   (setq js-indent-level 2
         espresso-indent-level 2
         c-basic-offset 2
@@ -1056,16 +1086,25 @@ immediately."
         js2-enter-indents-newline t
         js2-mode-squeeze-spaces nil
         ;; js2-bounce-indent-p t
-        js2-auto-indent-p t))
+        js2-auto-indent-p t)
 
-(defun goog/config/js-mode/key-chords ()
-  "Sets up the key-chords for JavaScript mode."
+  ;; Keyboard bindings.
+  (define-key js2-mode-map (kbd "C-c l l")
+    'goog/config/js-mode/gjslint-buffer)
+  (define-key js2-mode-map (kbd "C-c l d")
+    'goog/config/js-mode/gjslint-dir)
+  (define-key js2-mode-map (kbd "C-c l D")
+    'goog/config/js-mode/fixjsstyle-dir)
+  (define-key js2-mode-map (kbd "C-c l f")
+    'goog/config/js-mode/fixjsstyle-buffer)
+  (define-key js2-mode-map (kbd "C-c l F")
+    'goog/config/js-mode/fixjsstyle-buffer-compile)
+  (define-key js2-mode-map (kbd "C-c l h")
+    'goog/config/js-mode/jshint)
+
+  ;; Keychords.
   (key-chord-define js2-mode-map ";;"  "\C-e;")
-  (key-chord-define js2-mode-map ",,"  "\C-e,")
-  )
-
-(add-hook 'js-mode-hook 'goog/config/js-mode/setup-style)
-(add-hook 'js-mode-hook 'goog/config/js-mode/key-chords)
+  (key-chord-define js2-mode-map ",,"  "\C-e,"))
 
 ;; Tools for Javascript.
 (defun goog/config/js-mode/gjslint-buffer ()
@@ -1103,64 +1142,44 @@ compilation output."
   (interactive)
   (compile (concat "jshint " buffer-file-name)))
 
-(defun goog/config/js-mode/setup-bindings ()
-  "Sets up keyboard bindings for JavaScript modes."
-  (define-key js2-mode-map (kbd "C-c l l")
-    'goog/config/js-mode/gjslint-buffer)
-  (define-key js2-mode-map (kbd "C-c l d")
-    'goog/config/js-mode/gjslint-dir)
-  (define-key js2-mode-map (kbd "C-c l D")
-    'goog/config/js-mode/fixjsstyle-dir)
-  (define-key js2-mode-map (kbd "C-c l f")
-    'goog/config/js-mode/fixjsstyle-buffer)
-  (define-key js2-mode-map (kbd "C-c l F")
-    'goog/config/js-mode/fixjsstyle-buffer-compile)
-  (define-key js2-mode-map (kbd "C-c l h")
-    'goog/config/js-mode/jshint))
-
 ;; Load swank-js.
 ;; (add-hook 'after-init-hook
 ;;           #'(lambda ()
 ;;               (when (locate-library "slime-js")
 ;;                 (require 'setup-slime-js))))
 
+
 ;; ----------------------------------------------------------------------
 ;; Python.
 ;; ----------------------------------------------------------------------
-(defun goog/config/python-mode/setup-style ()
-  "Defines `python-mode' coding style."
+(setq jedi:setup-keys t
+      jedi:complete-on-dot t)
+(add-to-list 'interpreter-mode-alist '("python" . python-mode))
+(add-hook 'python-mode-hook 'goog/config/python-mode/setup)
+(font-lock-add-keywords
+ 'python-mode
+ '(;; Adds object and str and fixes it so that keywords that often appear
+   ;; with : are assigned as builtin-face
+   ("\\<\\(object\\|str\\|else\\|except\\|finally\\|try\\|\\)\\>" 0 py-builtins-face)
+   ;; FIXME: negative or positive prefixes do not highlight to this regexp
+   ;; but does to one below
+   ("\\<[\\+-]?[0-9]+\\(.[0-9]+\\)?\\>" 0 'font-lock-constant-face)
+   ("\\([][{}()~^<>:=,.\\+*/%-]\\)" 0 'widget-inactive-face)))
+
+(defun goog/config/python-mode/setup ()
+  "Configures `python-mode'."
   (setq indent-tabs-mode nil
         require-final-newline 't
         tab-width 2
         python-indent-offset 2
         python-indent 2
-        py-indent-offset 2))
-(defun goog/config/python-mode/setup-ac ()
-  "Sets up `auto-complete-mode' completion for `python-mode'."
-  (setq ac-auto-start 0))
-(setq auto-mode-alist
-      (append '(
-                ("\\wscript$" . python-mode)
-                ("\\SConstruct" . python-mode)
-                ("\\SConscript" . python-mode)
-                ("\\BUILD$" . python-mode))
-              auto-mode-alist))
-(add-to-list 'interpreter-mode-alist '("python" . python-mode))
-(setq jedi:setup-keys t
-      jedi:complete-on-dot t)
-(add-hook 'python-mode-hook 'jedi:setup)
-(add-hook 'python-mode-hook 'goog/config/python-mode/setup-ac)
-(add-hook 'python-mode-hook 'goog/config/python-mode/setup-style)
+        py-indent-offset 2)
 
-(font-lock-add-keywords 'python-mode
-    '(;; Adds object and str and fixes it so that keywords that often appear
-      ;; with : are assigned as builtin-face
-      ("\\<\\(object\\|str\\|else\\|except\\|finally\\|try\\|\\)\\>" 0 py-builtins-face)
-      ;; FIXME: negative or positive prefixes do not highlight to this regexp
-      ;; but does to one below
-      ("\\<[\\+-]?[0-9]+\\(.[0-9]+\\)?\\>" 0 'font-lock-constant-face)
-      ("\\([][{}()~^<>:=,.\\+*/%-]\\)" 0 'widget-inactive-face)))
+  ;; Auto-complete configuration.
+  (setq ac-auto-start 0)
 
+  ;; Configure jedi.
+  (jedi:setup))
 
 ;; ----------------------------------------------------------------------
 ;; Clojure.
@@ -1309,6 +1328,9 @@ compilation output."
   (setq goog-username-dir (concat goog-local-users-dir user-login-name))
 
   ;; ~/.emacs.d/os/<os-type>/*.el
+  ;; TODO(yesudeep): os-type needs to be normalized from system-type. For
+  ;; example, Linux is represented by "gnu/linux" which cannot be a reliably
+  ;; valid directory name.
   (setq goog-os-dir (concat goog-local-os-dir (format "%s" system-type)))
 
   (goog/elisp/eval-after-init
