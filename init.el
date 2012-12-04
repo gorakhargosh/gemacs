@@ -807,6 +807,7 @@ immediately."
 (define-key ac-completing-map "\t" 'ac-complete)
 ;; Disable RET completion.
 (define-key ac-completing-map "\r" nil)
+(define-key ac-completing-map [return] nil)
 
 (setq ac-use-menu-map t)
 (define-key ac-menu-map (kbd "C-n") 'ac-next)
