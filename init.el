@@ -280,12 +280,17 @@
 (cua-selection-mode nil)             ;; No shift-arrow style marking.
 
 (progn
+  (setq desktop-dirname config-dir
+
+        desktop-enable t
+        desktop-restore-eager 5
+        desktop-load-locked-desktop t
+        desktop-files-not-to-save "^$"  ;; Reload tramp paths.
+        desktop-save 'if-exists
+        )
   (desktop-save-mode t)           ;; Save sessions.
   (desktop-load-default)          ;; Load the desktop on startup.
-  (setq desktop-enable t
-        desktop-restore-eager 5
-        ;; desktop-save 'if-exists   ;; Automatically save desktop if it exists.
-        ))
+  )
 
 ;; Better buffer names.
 (require 'uniquify)
