@@ -279,8 +279,6 @@
 (cua-mode t)                         ;; Rectangular selections are awesome.
 (cua-selection-mode nil)             ;; No shift-arrow style marking.
 
-;; Saving sessions makes Emacs load really slowly. Enable this only if you
-;; need it.
 (progn
   (desktop-save-mode t)           ;; Save sessions.
   (desktop-load-default)          ;; Load the desktop on startup.
