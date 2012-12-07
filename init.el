@@ -796,7 +796,7 @@ immediately."
 (require 'auto-complete-config)
 (require 'go-autocomplete)
 (ac-config-default)
-(setq ac-ignore-case 'smart
+(setq ac-ignore-case t
       ac-use-fuzzy t
       ac-auto-start 0
       ac-auto-show-menu 0.2
@@ -1182,6 +1182,10 @@ compilation output."
   ;; Auto-complete configuration.
   (setq ac-auto-start 0)
 
+  ;; Autopairing triple quotes.
+  (setq autopair-handle-action-fns
+        (list #'autopair-default-handle-action
+              #'autopair-python-triple-quote-action))
   ;; Configure jedi.
   (jedi:setup))
 
