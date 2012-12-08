@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: init
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+func init() {
+   $0
+}

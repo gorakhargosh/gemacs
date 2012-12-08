@@ -171,14 +171,14 @@
                    (global-set-key (kbd "M-x") 'smex)
                    (global-set-key (kbd "M-X") 'smex-major-mode-commands)))
 
-   (:name smart-forward
-          :website "https://github.com/magnars/smart-forward.el#readme"
-          :description "Smarter movement forwards and backwards."
-          :type github
-          :pkgname "magnars/smart-forward.el"
-          :depends (expand-region)
-          :post-init (progn
-                       (require 'smart-forward)))
+   ;; (:name smart-forward
+   ;;        :website "https://github.com/magnars/smart-forward.el#readme"
+   ;;        :description "Smarter movement forwards and backwards."
+   ;;        :type github
+   ;;        :pkgname "magnars/smart-forward.el"
+   ;;        :depends (expand-region)
+   ;;        :post-init (progn
+   ;;                     (require 'smart-forward)))
    ))
 
 (setq
@@ -279,15 +279,18 @@
 (cua-mode t)                         ;; Rectangular selections are awesome.
 (cua-selection-mode nil)             ;; No shift-arrow style marking.
 
-;; Saving sessions makes Emacs load really slowly. Enable this only if you
-;; need it.
 (progn
+  (setq desktop-dirname config-dir
+
+        desktop-enable t
+        desktop-restore-eager 5
+        desktop-load-locked-desktop t
+        desktop-files-not-to-save "^$"  ;; Reload tramp paths.
+        desktop-save 'if-exists
+        )
   (desktop-save-mode t)           ;; Save sessions.
   (desktop-load-default)          ;; Load the desktop on startup.
-  (setq desktop-enable t
-        desktop-restore-eager 5
-        ;; desktop-save 'if-exists   ;; Automatically save desktop if it exists.
-        ))
+  )
 
 ;; Better buffer names.
 (require 'uniquify)
@@ -690,11 +693,11 @@ immediately."
 (global-set-key (kbd "M-8") 'er/expand-region)
 (global-set-key (kbd "M-7") 'er/contract-region)
 
-(autoload 'smart-forward "smart-forward" nil t)
-(global-set-key (kbd "M-<up>") 'smart-up)
-(global-set-key (kbd "M-<down>") 'smart-down)
-(global-set-key (kbd "M-<right>") 'smart-forward)
-(global-set-key (kbd "M-<left>") 'smart-backward)
+;; (autoload 'smart-forward "smart-forward" nil t)
+;; (global-set-key (kbd "M-<up>") 'smart-up)
+;; (global-set-key (kbd "M-<down>") 'smart-down)
+;; (global-set-key (kbd "M-<right>") 'smart-forward)
+;; (global-set-key (kbd "M-<left>") 'smart-backward)
 
 (require 'ace-jump-mode)
 (define-key global-map (kbd "C-c C-SPC") 'ace-jump-mode)
@@ -793,19 +796,34 @@ immediately."
 (require 'auto-complete-config)
 (require 'go-autocomplete)
 (ac-config-default)
-(setq ac-ignore-case 'smart
+(setq ac-ignore-case t
       ac-use-fuzzy t
       ac-auto-start 0
       ac-auto-show-menu 0.2
       ac-expand-on-auto-complete nil
       ac-dwim t)
 
-;; Don't use tab to cycle. It's irritating.
+;; Use TAB to complete, not cycle.
 (define-key ac-completing-map "\t" 'ac-complete)
-;; (define-key ac-completing-map "\r" nil)
-(define-key ac-completing-map (kbd "C-n") 'ac-next)
-(define-key ac-completing-map (kbd "C-p") 'ac-previous)
+;; Disable RET completion.
+(define-key ac-completing-map "\r" nil)
+(define-key ac-completing-map [return] nil)
+
+(setq ac-use-menu-map t)
+(define-key ac-menu-map (kbd "C-n") 'ac-next)
+(define-key ac-menu-map (kbd "C-p") 'ac-previous)
+
 (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
+
+
+;; (global-auto-complete-mode t)
+;; Dirty fix to enable AC everywhere without bothering about the ac-modes list.
+(define-globalized-minor-mode real-global-auto-complete-mode
+  auto-complete-mode (lambda ()
+                       (if (not (minibufferp (current-buffer)))
+                         (auto-complete-mode 1))
+                       ))
+(real-global-auto-complete-mode t)
 
 ;; ;; Use Emacs' built-in TAB completion hooks to trigger AC (Emacs >= 23.2)
 ;; (setq tab-always-indent 'complete)  ;; use 'complete when auto-complete
@@ -1164,6 +1182,10 @@ compilation output."
   ;; Auto-complete configuration.
   (setq ac-auto-start 0)
 
+  ;; Autopairing triple quotes.
+  (setq autopair-handle-action-fns
+        (list #'autopair-default-handle-action
+              #'autopair-python-triple-quote-action))
   ;; Configure jedi.
   (jedi:setup))
 
