@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Jinja2 block
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+{% block ${1:name} %}$0{% endblock %}

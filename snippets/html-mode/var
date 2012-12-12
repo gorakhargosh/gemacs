@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Jinja2 variable expansion
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+{{ $0 }}
