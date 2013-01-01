@@ -1058,7 +1058,7 @@ immediately."
   (define-key go-mode-map (kbd "C-c l f") 'gofmt)
   (define-key go-mode-map (kbd "C-x C-e") 'goog/config/go-mode/execute-buffer)
   (define-key go-mode-map (kbd "C-c C-e") 'goog/config/go-mode/execute-buffer)
-  (define-key go-mode-map (kbd "C-x C-b") 'goog/config/go-mode/build-buffer)  )
+  (define-key go-mode-map (kbd "C-c C-b") 'goog/config/go-mode/build-buffer)  )
 
 (add-hook 'before-save-hook 'gofmt-before-save)
 (add-hook 'go-mode-hook 'goog/config/go-mode/setup)
@@ -1157,7 +1157,7 @@ compilation output."
 ;; Python.
 ;; ----------------------------------------------------------------------
 (setq jedi:setup-keys t
-      jedi:complete-on-dot t)
+      jedi:complete-on-dot nil)
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 (add-hook 'python-mode-hook 'goog/config/python-mode/setup)
 (font-lock-add-keywords
