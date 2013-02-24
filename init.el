@@ -223,6 +223,8 @@
    ;; auto-async-byte-compile ;; This is nothing but trouble.
    ;; ioccur
    multiple-cursors
+   js2-refactor
+   pydoc-info
    ))
 ;; Synchronize el-get packages.
 (setq goog:el-get-packages
@@ -1201,7 +1203,7 @@ compilation output."
 ;; Python.
 ;; ----------------------------------------------------------------------
 (setq jedi:setup-keys t
-      jedi:complete-on-dot nil)
+      jedi:complete-on-dot t)
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 (add-hook 'python-mode-hook 'goog/config/python-mode/setup)
 (font-lock-add-keywords
