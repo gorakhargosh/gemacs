@@ -108,7 +108,7 @@
                            magit
                            maxframe
                            melpa
-                           move-text
+                           ;; move-text
                            ;; multiple-cursors
                            nav
                            nrepl
