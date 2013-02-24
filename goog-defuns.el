@@ -415,7 +415,7 @@ end of the line."
   (interactive)
   (persp-switch (nth (persp-curr-position +1) (persp-all-names))))
 
-
+;; http://stackoverflow.com/questions/2423834/move-line-region-up-and-down-in-emacs
 (defun move-text-internal (arg)
   (cond
    ((and mark-active transient-mark-mode)
