@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: For each loop.
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+for $1, $2 := range $3 {
+  $0
+}
