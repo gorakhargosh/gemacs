@@ -93,7 +93,7 @@
                            fastnav
                            fill-column-indicator
                            find-things-fast
-                           go-mode
+                           ;; go-mode
                            helm
                            highlight-symbol
                            ido-ubiquitous
@@ -179,6 +179,29 @@
    ;;        :depends (expand-region)
    ;;        :post-init (progn
    ;;                     (require 'smart-forward)))
+
+   (:name go-mode
+          :website "http://github.com/dominikh/go-mode.el#readme"
+          :description "An improved go-mode."
+          :type github
+          :pkgname "dominikh/go-mode.el"
+          :post-init (progn
+                       (require 'go-mode)))
+
+   ;; (:name emacs-git-gutter
+   ;;        :website "https://github.com/syohex/emacs-git-gutter#readme"
+   ;;        :description "Show git diff status for a buffer in the gutter."
+   ;;        :type github
+   ;;        :pkgname "syohex/emacs-git-gutter"
+   ;;        :depends (fringe-helper)
+   ;;        :post-init (progn
+   ;;                     (require 'git-gutter)
+   ;;                     ;; (require 'git-gutter-fringe) ;; If you want the fringe version.
+   ;;                     (add-hook 'after-save-hook
+   ;;                               (lambda ()
+   ;;                                 (if (zerop (call-process-shell-command "git rev-parse --show-toplevel"))
+   ;;                                     (git-gutter))))
+   ;;                     ))
    ))
 
 (setq
@@ -320,6 +343,7 @@
 
 ;; Scroll faster.
 (setq mouse-wheel-scroll-amount '(7 ((shift) . 1) ((control) . nil)))
+
 
 ;; Enables mouse support scrolling when using Emacs in the terminal.
 (unless window-system
@@ -929,6 +953,11 @@ immediately."
 
                 ;; CSS.
                 ("\\.gss" . css-mode)
+
+                ;; HTML.
+                ("\\.tmpl" . html-mode)  ;; Server-side template extension.
+                ("\\.mustache" . html-mode)  ;; Mustache template extension.
+                ("\\.ng" . html-mode)    ;; Angular templates.
 
                 ;; Dart lang.
                 ("\\.dart$" . dart-mode)

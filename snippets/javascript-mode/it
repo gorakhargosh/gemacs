@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: jasmine it()
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+it('$1', function() {
+  $0
+});
