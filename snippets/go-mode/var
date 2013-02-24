@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: case statement
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+var (
+    $0
+)
