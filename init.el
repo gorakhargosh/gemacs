@@ -114,6 +114,7 @@
                            nrepl
                            paredit
                            perspective
+                           projectile
                            rainbow-mode
                            switch-window
                            undo-tree
@@ -440,6 +441,13 @@
   "Cleans up whitespace on `kill-line'."
   (if (not (bolp))
       (delete-region (point) (progn (skip-chars-forward " \t") (point)))))
+
+;; ----------------------------------------------------------------------
+;; Project navigation.
+;; ----------------------------------------------------------------------
+(require 'projectile)
+(projectile-global-mode) ;; Enable in all buffers.
+;; (set projectile-enable-caching t) ;; It's not automatic.
 
 ;; ----------------------------------------------------------------------
 ;; File and directory navigation.
@@ -774,6 +782,11 @@ immediately."
 (global-set-key (kbd "C-, C-l") 'mc/edit-lines)
 (global-set-key (kbd "C-, C-e") 'mc/edit-ends-of-lines)
 (global-set-key (kbd "C-, C-a") 'mc/edit-beginnings-of-lines)
+
+;; Cursor at mouse down.
+;; (global-unset-key (kbd "M-<down-mouse-1>"))
+;; (global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click)
+;; (global-set-key (kbd "s-<mouse-1>") 'mc/add-cursor-on-click)
 
 ;; Rectangular region mode
 ;; (global-set-key (kbd "C-, C-,") 'set-rectangular-region-anchor)
