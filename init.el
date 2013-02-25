@@ -759,8 +759,8 @@ immediately."
 ;; Find things fast.
 (autoload 'ftf-find-file "find-things-fast" nil t)
 (autoload 'ftf-grepsource "find-things-fast" nil t)
-;; (global-set-key (kbd "C-x f") 'ftf-find-file)
-(global-set-key (kbd "C-x f") 'projectile-find-file)
+(global-set-key (kbd "C-x f") 'ftf-find-file)
+;; (global-set-key (kbd "C-x f") 'projectile-find-file)
 (global-set-key (kbd "<f6>") 'ftf-grepsource)
 
 ;; Highlight current symbol.

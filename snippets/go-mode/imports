@@ -1,5 +1,7 @@
 # -*- mode: snippet -*-
-# name: import statement
+# name: multiple imports statement
 # contributor: Yesudeep Mangalapilly <yesudeep@google.com>
 # --
-import "$1"$0
+import (
+  $0
+)
