@@ -224,7 +224,7 @@
    ;; ioccur
    multiple-cursors
    js2-refactor
-   pydoc-info
+   ;; pydoc-info
    ))
 ;; Synchronize el-get packages.
 (setq goog:el-get-packages
