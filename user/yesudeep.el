@@ -11,9 +11,9 @@
     ;; (require 'monokai-theme)
     ;; (require 'github-theme)
     ;; (require 'tango-2-theme)
-    (require 'burp-theme)
+    ;; (require 'burp-theme)
     ;; (require 'cloud-theme)
-    ;; (require 'google-code-theme)
+    (require 'google-code-theme)
     )
 
   (setq gnus-select-method '(nnimap "gmail"

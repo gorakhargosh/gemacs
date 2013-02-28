@@ -1,4 +1,4 @@
-;;; burp-theme.el --- Burp color theme for GNU Emacs 24
+;;; google-code.el --- Google Code theme for GNU Emacs 24
 ;; Author: Yesudeep Mangalapilly
 ;; Version: 1.0.0
 ;;
@@ -22,7 +22,7 @@
 
 (custom-theme-set-faces
  'google-code
- '(default ((t (:background "#ffffff" :foreground "#000000"))))
+ '(default ((t (:background "#fcfcfc" :foreground "#000000"))))
  '(cursor ((t (:foreground "#000000"))))
  ;; '(region ((t (:background "#555753"))))
  '(highlight ((t (:background "#d3d7cf"))))
@@ -32,7 +32,7 @@
  ;; '(minibuffer-prompt ((t (:foreground "#729fcf"))))
 
  '(font-lock-builtin-face ((t (:foreground "#000000"))))
- '(font-lock-comment-face ((t (:foreground "#880000"))))
+ '(font-lock-comment-face ((t (:foreground "#550000"))))
  '(font-lock-constant-face ((t (:foreground "#006666"))))
  '(font-lock-function-name-face ((t (:foreground "#660066"))))
  '(font-lock-keyword-face ((t (:foreground "#000088"))))
@@ -97,7 +97,7 @@
  ;; ----------------------------------------------------------------------
  '(diff-added ((t (:foreground "#008800"))))
  '(diff-changed ((t (:foreground "#edd400"))))
- '(diff-removed ((t (:foreground "#880000"))))
+ '(diff-removed ((t (:foreground "#550000"))))
  '(diff-header ((t (:foreground "#000088"))))
  '(diff-file-header ((t (:foreground "#000088"))))
  ;; TODO(yesudeep): Fix ediff colors.
@@ -110,4 +110,4 @@
 
 (provide-theme 'google-code)
 
-;;; burp-theme.el ends here
+;;; google-code.el ends here

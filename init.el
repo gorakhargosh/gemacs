@@ -114,7 +114,6 @@
                            nrepl
                            paredit
                            perspective
-                           projectile
                            rainbow-mode
                            switch-window
                            undo-tree
@@ -225,6 +224,7 @@
    multiple-cursors
    js2-refactor
    ;; pydoc-info
+   projectile
    ))
 ;; Synchronize el-get packages.
 (setq goog:el-get-packages
@@ -334,7 +334,13 @@
 ;;       kept-new-versions 6
 ;;       kept-old-versions 2
 ;;       version-control t)              ;; use versioned backups
-(setq make-backup-files nil)             ;; No backup files ~
+;; (setq backup-directory-alist `(("." . "~/.saves")))
+;; (setq backup-by-copying nil)
+;; (setq make-backup-files nil)             ;; No backup files ~
+(setq backup-directory-alist
+          `((".*" . "~/.emacs.d/saves")))
+(setq auto-save-file-name-transforms
+      `((".*" "~/.emacs.d/saves" t)))
 
 ;; ----------------------------------------------------------------------
 ;; Fonts
