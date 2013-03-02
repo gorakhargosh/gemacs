@@ -190,6 +190,16 @@
           :post-init (progn
                        (require 'go-mode)))
 
+
+   ;; (:name emacs-git-gutter-fringe
+   ;;        :website "https://github.com/syohex/emacs-git-gutter-fringe#readme"
+   ;;        :description "Fringe version of git-gutter."
+   ;;        :type github
+   ;;        :depends (git-gutter fringe-helper)
+   ;;        :pkgname "syohex/emacs-git-gutter-fringe"
+   ;;        :post-init (progn
+   ;;                     (require 'git-gutter-fringe)))
+
    ;; (:name emacs-git-gutter
    ;;        :website "https://github.com/syohex/emacs-git-gutter#readme"
    ;;        :description "Show git diff status for a buffer in the gutter."
