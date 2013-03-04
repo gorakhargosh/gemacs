@@ -86,7 +86,7 @@
                            ace-jump-mode
                            ac-slime
                            ;; auto-complete ;; Use the el-get version.
-                           autopair
+                           ;; autopair
                            clojure-mode
                            clojure-test-mode
                            clojurescript-mode
@@ -220,6 +220,7 @@
  goog:el-get-packages
  '(el-get
    ;; pymacs
+   autopair
    auto-complete
    yasnippet
    coffee-mode
