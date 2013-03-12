@@ -753,7 +753,7 @@ immediately."
 ;; (global-set-key (kbd "M-<left>") 'smart-backward)
 
 (require 'ace-jump-mode)
-(define-key global-map (kbd "C-c C-SPC") 'ace-jump-mode)
+(define-key global-map (kbd "C-.") 'ace-jump-mode)
 
 (require 'fastnav)
 (global-set-key "\M-z" 'fastnav-zap-up-to-char-forward)
@@ -1268,7 +1268,7 @@ compilation output."
 ;; Keyboard bindings.
 ;; ======================================================================
 ;; Reload the user init file.
-(global-set-key (kbd "C-.") 'goog/elisp/reload-configuration)
+;; (global-set-key (kbd "C-.") 'goog/elisp/reload-configuration)
 
 ;; Open recent files using `ido-mode'.
 (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
