@@ -6,20 +6,17 @@
         autopair-insert-opening
         autopair-insert-or-skip-quote
         autopair-skip-close-maybe
-        c-electric-brace
         comment-dwim-line
         cua-cut-region
         cua-paste
         delete-indentation
+        go-mode-insert-and-indent
         insert-blank-line-below
         isearch-forward-regexp
         isearch-printing-char
         keyboard-escape-quit
         mc/add-cursor-on-click
         move-text-up
-        paredit-close-square
-        paredit-open-round
-        paredit-open-square
         paredit-splice-sexp-killing-backward
         yas-expand
         ))
