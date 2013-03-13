@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: benchmark case
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+func Benchmark$1(b *testing.B) {
+     $0
+}

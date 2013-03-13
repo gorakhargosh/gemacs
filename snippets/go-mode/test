@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: test case
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+func Test$1(t *testing.T) {
+     $0
+}
