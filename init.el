@@ -1178,13 +1178,13 @@ immediately."
 (defun goog/config/js-mode/gjslint-buffer ()
   "Runs gjslint in strict mode on the current buffer."
   (interactive)
-  (compile (concat "gjslint --strict --unix_mode --closurized_namespaces=goog,appkit,jfk,bulletin,tvt " buffer-file-name)))
+  (compile (concat "gjslint --strict --unix_mode --closurized_namespaces=goog,appkit,jfk,bulletin,tvt --custom_jsdoc_tags=ngInject" buffer-file-name)))
 
 (defun goog/config/js-mode/gjslint-dir ()
   "Runs gjslint in strict mode on the parent directory of the file in the
 current buffer."
   (interactive)
-  (compile (concat "gjslint --strict --unix_mode --closurized_namespaces=goog,appkit,jfk,bulletin,tvt -r "
+  (compile (concat "gjslint --strict --unix_mode --closurized_namespaces=goog,appkit,jfk,bulletin,tvt --custom_jsdoc_tags=ngInject -r "
                    (file-name-directory buffer-file-name))))
 
 (defun goog/config/js-mode/fixjsstyle-buffer ()
