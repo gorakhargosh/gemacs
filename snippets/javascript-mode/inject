@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: $inject attribute
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+/** @expose */
+$1.$inject = [$0];
