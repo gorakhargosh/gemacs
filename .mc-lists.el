@@ -12,6 +12,7 @@
         delete-indentation
         go-mode-insert-and-indent
         insert-blank-line-below
+        isearch-exit
         isearch-forward-regexp
         isearch-printing-char
         keyboard-escape-quit
