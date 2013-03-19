@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Google Closure @expose.
+# key: #expose
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+/** @expose */
+$0
