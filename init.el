@@ -93,8 +93,8 @@
                            dart-mode
                            evil-numbers
                            fastnav
-                           fill-column-indicator
                            find-things-fast
+                           flycheck
                            ;; go-mode
                            helm
                            highlight-symbol
@@ -225,7 +225,7 @@
    yasnippet
    coffee-mode
    ;; clojure-mode
-   ;; fill-column-indicator
+   fill-column-indicator
    ;; js2-mode
    powerline
    expand-region
@@ -977,6 +977,11 @@ immediately."
 ;; Automatically set executable permissions on executable script files.
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
+
+;; Static analysis.
+(add-hook 'prog-mode-hook 'flycheck-mode)
+(add-hook 'go-mode-hook 'flycheck-mode)
+(add-hook 'text-mode-hook 'flycheck-mode)
 
 
 ;; ----------------------------------------------------------------------
