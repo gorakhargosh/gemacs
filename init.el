@@ -190,7 +190,6 @@
           :post-init (progn
                        (require 'go-mode)))
 
-
    ;; (:name emacs-git-gutter-fringe
    ;;        :website "https://github.com/syohex/emacs-git-gutter-fringe#readme"
    ;;        :description "Fringe version of git-gutter."
@@ -735,11 +734,11 @@ immediately."
 
 ;; Need to test this properly.
 ;; Disabled because it causes Emacs to hang or misbehave.
-;; (when window-system
-;;   (require 'fill-column-indicator)
-;;   (define-globalized-minor-mode global-fci-mode fci-mode
-;;     (lambda () (fci-mode 1)))
-;;   (global-fci-mode 1))
+(when window-system
+  (require 'fill-column-indicator)
+  (define-globalized-minor-mode global-fci-mode fci-mode
+    (lambda () (fci-mode 1)))
+  (global-fci-mode 1))
 
 (autoload 'expand-region "expand-region" nil t)
 (autoload 'contract-region "expand-region" nil t)
@@ -979,9 +978,9 @@ immediately."
           'executable-make-buffer-file-executable-if-script-p)
 
 ;; Static analysis.
-(add-hook 'prog-mode-hook 'flycheck-mode)
-(add-hook 'go-mode-hook 'flycheck-mode)
-(add-hook 'text-mode-hook 'flycheck-mode)
+;; (add-hook 'prog-mode-hook 'flycheck-mode)
+;; (add-hook 'go-mode-hook 'flycheck-mode)
+;; (add-hook 'text-mode-hook 'flycheck-mode)
 
 
 ;; ----------------------------------------------------------------------
