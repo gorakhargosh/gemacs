@@ -813,10 +813,10 @@ immediately."
 
 ;; Mark more like this.
 (global-set-key (kbd "C-, C-;") 'mc/mark-all-like-this)
-;; (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-;; (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-word-like-this)
-(global-set-key (kbd "C->") 'mc/mark-next-word-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+;; (global-set-key (kbd "C-<") 'mc/mark-previous-word-like-this)
+;; (global-set-key (kbd "C->") 'mc/mark-next-word-like-this)
 (global-set-key (kbd "C-, C-h") 'mc/mark-all-symbols-like-this)
 (global-set-key (kbd "C-, C-d") 'mc/mark-all-symbols-like-this-in-defun)
 (global-set-key (kbd "C-, C-,") 'mc/mark-all-like-this-dwim)

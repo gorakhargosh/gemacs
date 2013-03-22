@@ -18,6 +18,7 @@
         keyboard-escape-quit
         mc/add-cursor-on-click
         move-text-up
+        paredit-newline
         paredit-semicolon
         paredit-splice-sexp-killing-backward
         yas-expand
