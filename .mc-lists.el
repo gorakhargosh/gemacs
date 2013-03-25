@@ -7,6 +7,7 @@
         autopair-insert-or-skip-quote
         autopair-skip-close-maybe
         comment-dwim-line
+        cua-copy-region
         cua-cut-region
         cua-paste
         delete-indentation
