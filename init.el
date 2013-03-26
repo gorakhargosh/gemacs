@@ -118,7 +118,7 @@
                            switch-window
                            undo-tree
                            ;; yasnippet
-                           web-mode
+                           ;; web-mode
                            yaml-mode
                            zencoding-mode
 
@@ -983,7 +983,7 @@ immediately."
 (add-hook 'go-mode-hook 'flycheck-mode)
 (add-hook 'text-mode-hook 'flycheck-mode)
 
-(require 'web-mode)
+;; (require 'web-mode)
 
 ;; ----------------------------------------------------------------------
 ;; Define automatic mode detection for file types.
@@ -998,9 +998,9 @@ immediately."
                 ("\\.gss" . css-mode)
 
                 ;; HTML.
-                ("\\.tmpl" . web-mode)  ;; Server-side template extension.
-                ("\\.mustache" . web-mode)  ;; Mustache template extension.
-                ("\\.ng" . web-mode)    ;; Angular templates.
+                ("\\.tmpl" . html-mode)  ;; Server-side template extension.
+                ("\\.mustache" . html-mode)  ;; Mustache template extension.
+                ("\\.ng" . html-mode)    ;; Angular templates.
 
                 ;; Dart lang.
                 ("\\.dart$" . dart-mode)
