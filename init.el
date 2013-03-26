@@ -847,11 +847,11 @@ immediately."
 ;; (setq flyspell-issue-message-flag nil)
 
 (require 'yasnippet)
-(setq yas/snippet-dirs
+(setq yas-snippet-dirs
       '("~/.emacs.d/snippets"  ;; Our snippets.
         ;; Add more paths here if you like.
         ))
-(yas/global-mode 1)  ;; or M-x yas/reload-all to reload yasnippet.
+(yas-global-mode 1)  ;; or M-x yas/reload-all to reload yasnippet.
 
 (require 'auto-complete)
 (require 'auto-complete-config)
