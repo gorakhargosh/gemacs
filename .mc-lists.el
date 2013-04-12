@@ -22,6 +22,7 @@
         paredit-newline
         paredit-semicolon
         paredit-splice-sexp-killing-backward
+        text-scale-decrease
         yas-expand
         ))
 
