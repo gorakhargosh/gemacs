@@ -83,6 +83,7 @@
                            ;; slime-js
                            ;; slime-repl
                            ;; smex   ;; Don't use this one. el-get works.
+                           auto-compile
                            ace-jump-mode
                            ac-slime
                            ;; auto-complete ;; Use the el-get version.
@@ -244,6 +245,11 @@
        (loop for src in el-get-sources collect (el-get-source-name src))))
 (el-get 'sync goog:el-get-packages)
 ;;(el-get 'wait)
+
+(add-to-list 'load-path "~/.emacs.d")
+(require 'auto-compile)
+(auto-compile-on-load-mode 1)
+(auto-compile-on-save-mode 1)
 
 ;; Load our definitions.
 (require 'goog-defuns)
