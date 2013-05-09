@@ -9,10 +9,12 @@
         comment-dwim-line
         cua-copy-region
         cua-cut-region
+        cua-delete-region
         cua-paste
         delete-indentation
         go-mode-insert-and-indent
         insert-blank-line-below
+        isearch-delete-char
         isearch-exit
         isearch-forward-regexp
         isearch-printing-char
@@ -22,6 +24,7 @@
         paredit-newline
         paredit-semicolon
         paredit-splice-sexp-killing-backward
+        sh-assignment
         yas-expand
         ))
 
