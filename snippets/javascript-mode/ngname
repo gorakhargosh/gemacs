@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: NG_NAME property.
+# contributor: Yesudeep Mangalapilly (yesudeep@google.com)
+# expand-env: ((yas/indent-line 'fixed))
+# --
+/**
+ * Name used by dependency injector.
+ *
+ * @type {string}
+ * @const
+ */
+$1.NG_NAME = '$2';
