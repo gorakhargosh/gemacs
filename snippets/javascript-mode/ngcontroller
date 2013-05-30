@@ -30,4 +30,4 @@ ${1:ns}.${2:$$(capitalize yas/text)} = function($scope) {
  * @type {string}
  * @const
  */
-$1.NG_NAME = '$2';
+$1.NG_NAME = '$2Ctrl';
