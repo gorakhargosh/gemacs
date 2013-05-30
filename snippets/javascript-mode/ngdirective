@@ -1,0 +1,69 @@
+# -*- mode: snippet -*-
+# name: AngularJS directive.
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+goog.provide('$1.$2');
+
+
+
+/**
+ * ${4:A short description.}
+ *
+ * @constructor
+ * @ngInject
+ */
+${1:ns}.${2:$$(capitalize yas/text)} = function() {
+  return {
+    'priority': 0,
+    'restrict': 'EAMC',
+    'replace': true,
+    'transclude': true,
+    'scope': {
+      'attribute1': '@',
+      'attribute2': '=',
+      'handler': '&'
+    },
+    'template': '<span ng-transclude></span>',
+    'compile': $1.$2.compile_,
+    'link': $1.$2.link_
+  };
+};
+
+
+/**
+ * Name used by dependency injector.
+ *
+ * @type {string}
+ * @const
+ */
+$1.$2.NG_NAME = '$2';
+
+
+/**
+ * Links the DOM to its scope for the directive.
+ *
+ * @param {!angular.Scope} scope The scope of the directive.
+ * @param {!Object} element The element wrapped by AngularJS.
+ * @param {!Object.<string,string>} attributes The attributes available to the
+ *     directive.
+ * @param {Function} controller The controller associated with the directive.
+ * @private
+ */
+$1.$2.link_ = function(scope, element, attributes) {
+
+};
+
+
+/**
+ * Compiles the DOM from the template for the directive.
+ *
+ * @param {!Object} tElement The template element wrapped by AngularJS.
+ * @param {!Object.<string,string>} tAttributes The template attributes
+ *     available to the directive during the compilation phase.
+ * @param {Function} transclude A transclude linking function.
+ * @private
+ */
+$1.$2.compile_ = function(tElement, tAttributes, transclude) {
+
+};
