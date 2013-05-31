@@ -50,7 +50,7 @@ $1.$2.NG_NAME = '$2';
  * @param {Function} controller The controller associated with the directive.
  * @private
  */
-$1.$2.link_ = function(scope, element, attributes) {
+$1.$2.link_ = function(scope, element, attributes, controller) {
 
 };
 
