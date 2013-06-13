@@ -8,6 +8,9 @@
       ;; (set-face-font 'default "Consolas-14")
       (set-face-font 'default "Monaco-10")
       )
+    (when (goog/platform/is-darwin-p)
+      (set-face-font 'default "Monaco-13")
+      )
     ;; (require 'monokai-theme)
     ;; (require 'github-theme)
     ;; (require 'tango-2-theme)
@@ -54,4 +57,5 @@
   ;;           (define-key css-mode-map "\M-\C-x" 'slime-js-refresh-css)
   ;;           (define-key css-mode-map "\C-c\C-r" 'slime-js-embed-css)))
   )
+
 (provide 'yesudeep)
