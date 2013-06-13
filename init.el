@@ -1374,6 +1374,8 @@ compilation output."
 ;; ;; ;; defines shortcut for the loccur of the previously found word
 ;; (global-set-key [(control shift o)] 'loccur-previous-match)
 
+;; Transparency.
+(global-set-key (kbd "C-c t") 'toggle-transparency)
 
 ;; ----------------------------------------------------------------------
 ;; Key chords
