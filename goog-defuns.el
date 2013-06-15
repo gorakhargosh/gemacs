@@ -461,7 +461,7 @@ end of the line."
        (cadr (frame-parameter nil 'alpha))
        100)
       (set-frame-parameter nil 'alpha '(100 100))
-    (set-frame-parameter nil 'alpha '(85 80))))
+    (set-frame-parameter nil 'alpha '(85 70))))
 
 ;; Set transparency of emacs
 (defun transparency (value)
