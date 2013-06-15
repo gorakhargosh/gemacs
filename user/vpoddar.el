@@ -2,14 +2,15 @@
   (setq user-full-name "Vivek Poddar"
         user-mail-address "vpoddar@google.com")
   (when window-system
+    ;; Transparency. Set this before setting up your theme. The theme may
+    ;; configure itself to use better colors for transparency.
+    ;;(set-frame-parameter (selected-frame) 'alpha '(<aemctive> [<inactive>]))
+    (set-frame-parameter (selected-frame) 'alpha '(85 70))
+    (add-to-list 'default-frame-alist '(alpha 85 70))
+
     (require 'burp-theme)
     ;; (require 'cloud-theme)
     ;; (require 'google-code-theme)
-
-    ;; Transparency.
-    ;;(set-frame-parameter (selected-frame) 'alpha '(<active> [<inactive>]))
-    (set-frame-parameter (selected-frame) 'alpha '(85 80))
-    (add-to-list 'default-frame-alist '(alpha 85 80))
     )
   )
 (provide 'vpoddar)
