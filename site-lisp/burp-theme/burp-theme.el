@@ -105,6 +105,12 @@
  ;; TODO(yesudeep): Fix ediff colors.
  )
 
+;; When Emacs is using transparency, darken the background to increase contrast.
+(let ((value (nth 1 (frame-parameter nil 'alpha))))
+  (if (and value (/= value 100))
+      (custom-theme-set-faces
+       'burp
+       '(default ((t (:background "#000000" :foreground "#eeeeec")))))))
 
 ;;;###autoload
 (when load-file-name
