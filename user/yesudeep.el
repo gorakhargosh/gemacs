@@ -17,8 +17,8 @@
 
     ;; Transparency.
     ;;(set-frame-parameter (selected-frame) 'alpha '(<active> [<inactive>]))
-    (set-frame-parameter (selected-frame) 'alpha '(85 80))
-    (add-to-list 'default-frame-alist '(alpha 85 80))
+    ;; (set-frame-parameter (selected-frame) 'alpha '(85 80))
+    ;; (add-to-list 'default-frame-alist '(alpha 85 80))
     )
 
   (setq gnus-select-method '(nnimap "gmail"
