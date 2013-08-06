@@ -6,7 +6,6 @@
 /**
  * Name used by dependency injector.
  *
- * @type {string}
- * @const
+ * @const {string}
  */
 $1.NG_NAME = '$2';

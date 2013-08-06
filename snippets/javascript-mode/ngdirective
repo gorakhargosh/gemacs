@@ -34,8 +34,7 @@ ${1:ns}.${2:$$(capitalize yas/text)} = function() {
 /**
  * Name used by dependency injector.
  *
- * @type {string}
- * @const
+ * @const {string}
  */
 $1.$2.NG_NAME = '$2';
 
