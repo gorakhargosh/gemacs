@@ -15,9 +15,9 @@ goog.provide('$1.$2');
  * @ngInject
  */
 ${1:ns}.${2:$$(capitalize yas/text)} = function($scope) {
+
   /**
-   * @type {!angular.Scope}
-   * @private
+   * @private {!angular.Scope}
    */
   this.scope_ = $scope;
 };
@@ -26,7 +26,6 @@ ${1:ns}.${2:$$(capitalize yas/text)} = function($scope) {
 /**
  * Name used by dependency injector.
  *
- * @type {string}
- * @const
+ * @const {string}
  */
 $1.$2.NG_NAME = '$2Ctrl';

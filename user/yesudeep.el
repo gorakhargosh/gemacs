@@ -8,6 +8,16 @@
       ;; (set-face-font 'default "Consolas-14")
       (set-face-font 'default "Monaco-10")
       )
+    (when (goog/platform/is-darwin-p)
+      (set-face-font 'default "Monaco-13")
+      )
+
+    ;; Transparency. Set this before setting up your theme. The theme may
+    ;; configure itself to use better colors for transparency.
+    ;;(set-frame-parameter (selected-frame) 'alpha '(<aemctive> [<inactive>]))
+    (set-frame-parameter (selected-frame) 'alpha '(85 70))
+    (add-to-list 'default-frame-alist '(alpha 85 70))
+
     ;; (require 'monokai-theme)
     ;; (require 'github-theme)
     ;; (require 'tango-2-theme)
@@ -59,4 +69,5 @@
   ;;           (define-key css-mode-map "\M-\C-x" 'slime-js-refresh-css)
   ;;           (define-key css-mode-map "\C-c\C-r" 'slime-js-embed-css)))
   )
+
 (provide 'yesudeep)
