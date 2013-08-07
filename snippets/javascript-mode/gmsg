@@ -5,6 +5,5 @@
 # --
 /**
  * @desc $3
- * @type {string}
  */
 ${1:ns}.MSG_${2:$$(upcase yas/text)} = goog.getMsg('${3:}');
