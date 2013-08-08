@@ -32,11 +32,20 @@ ${1:ns}.${2:$$(capitalize yas/text)} = function() {
 
 
 /**
- * Name used by dependency injector.
+ * Name used by AngularJS dependency injector.
  *
  * @const {string}
  */
 $1.$2.NG_NAME = '$2';
+
+
+/**
+ * Module used by AngularJS dependency injector.
+ *
+ * @const {!angular.Module}
+ */
+$1.$2.NG_MODULE = angular.module($1.$2.NG_NAME, []).
+    directive($1.$2.NG_NAME, $1.$2);
 
 
 /**
