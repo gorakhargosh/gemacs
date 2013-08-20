@@ -1186,7 +1186,9 @@ immediately."
 
   ;; Keychords.
   (key-chord-define js2-mode-map ";;"  "\C-e;")
-  (key-chord-define js2-mode-map ",,"  "\C-e,"))
+  (key-chord-define js2-mode-map ",,"  "\C-e,")
+
+  (js2r-add-keybindings-with-prefix "C-c C-m"))
 
 ;; Tools for Javascript.
 (defun goog/config/js-mode/gjslint-buffer ()
