@@ -3,11 +3,11 @@
         user-mail-address "yesudeep@google.com")
 
   (when window-system
-    (when (goog/platform/is-linux-p)
-      ;; (set-face-font 'default "Ubuntu Mono-18")
-      ;; (set-face-font 'default "Consolas-14")
-      (set-face-font 'default "Monaco-10")
-      )
+    ;; (when (goog/platform/is-linux-p)
+    ;;   ;; (set-face-font 'default "Ubuntu Mono-18")
+    ;;   ;; (set-face-font 'default "Consolas-14")
+    ;;   (set-face-font 'default "Monaco-10")
+    ;;   )
     (when (goog/platform/is-darwin-p)
       (set-face-font 'default "Monaco-13")
       )
