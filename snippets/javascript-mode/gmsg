@@ -3,7 +3,5 @@
 # expand-env: ((yas/indent-line 'fixed))
 # contributor: Yesudeep Mangalapilly <yesudeep@google.com>
 # --
-/**
- * @desc $3
- */
+/** @desc $3 */
 ${1:ns}.MSG_${2:$$(upcase yas/text)} = goog.getMsg('${3:}');
