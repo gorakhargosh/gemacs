@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: goog.exportProperty(angular);
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+goog.exportProperty(${1:$scope}, '$2', goog.bind(this.$2_, this));$0
