@@ -230,7 +230,7 @@
    ;; js2-mode
    powerline
    expand-region
-   jedi ;; Python autocompletion using jedi, python-epc, and autocomplete.
+   ;; jedi ;; Python autocompletion using jedi, python-epc, and autocomplete.
    ;; auto-async-byte-compile ;; This is nothing but trouble.
    ;; ioccur
    multiple-cursors
