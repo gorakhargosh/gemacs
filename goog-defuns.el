@@ -1,6 +1,11 @@
 ;;; goog-defuns.el --- Extra functionality.
+;;
+;;; Commentary:
+;;
+;;; Code:
 
 (defun turn-on-watchwords ()
+  "Turn on watchwords in the buffer."
   (font-lock-add-keywords
    nil '(("\\<\\(FIX\\(ME\\)?\\|NOTE\\|WARNING\\(S\\)?\\|CAUTION\\|TODO\\|HACK\\|REFACTOR\\|NOCOMMIT\\)"
           1 font-lock-warning-face t))))
@@ -9,8 +14,8 @@
 ;; Navigation.
 ;; ----------------------------------------------------------------------
 (defun goto-match-paren (arg)
-  "Go to the matching parenthesis if on parenthesis. Else go to the
-   opening parenthesis one level up."
+  "Use ARG to go to the matching parenthesis if on parenthesis.
+Otherwise, go to the opening parenthesis one level up."
   (interactive "p")
   (cond ((looking-at "\\s\(") (forward-list 1))
         (t
@@ -28,7 +33,11 @@
                   ))))))
 
 (defun ido-goto-symbol (&optional symbol-list)
-  "Refresh imenu and jump to a place in the buffer using Ido."
+  "Refresh imenu and jump to a place in the buffer using Ido.
+
+Params:
+
+SYMBOL-LIST."
   (interactive)
   (unless (featurep 'imenu)
     (require 'imenu nil t))
@@ -79,7 +88,7 @@
 ;; Buffers.
 ;; ----------------------------------------------------------------------
 (defun get-buffers-matching-mode (mode)
-  "Returns a list of buffers where their major-mode is equal to MODE"
+  "Return a list of buffers where their `major-mode` is equal to MODE."
   (let ((buffer-mode-matches '()))
     (dolist (buf (buffer-list))
       (with-current-buffer buf
@@ -103,14 +112,14 @@
 
 ;; Line insertion and duplication.
 (defun insert-blank-line-below ()
-  "Inserts blank line below current line."
+  "Insert blank line below current line."
   (interactive)
   (move-end-of-line nil)
   (open-line 1)
   (next-line 1))
 
 (defun insert-blank-line-above ()
-  "Inserts blank line above current line."
+  "Insert blank line above current line."
   (interactive)
   (previous-line 1)
   (move-end-of-line nil)
@@ -118,7 +127,7 @@
   (next-line 1))
 
 (defun insert-blank-line-below-next-line ()
-  "Inserts an empty line below the next line."
+  "Insert an empty line below the next line."
   (interactive)
   (next-line 1)
   (move-end-of-line nil)
@@ -126,9 +135,10 @@
   (next-line 1))
 
 (defun duplicate-current-line-or-region (arg)
-  "Duplicates the current line or region ARG times.
-If there's no region, the current line will be duplicated. However, if
-there's a region, all lines that region covers will be duplicated."
+  "Duplicate the current line or region ARG times.
+If there's no region, the current line will be duplicated.
+However, if there's a region, all lines that region covers will
+be duplicated."
   (interactive "p")
   (let (beg end (origin (point)))
     (if (and mark-active (> (point) (mark)))
@@ -162,8 +172,8 @@ there's a region, all lines that region covers will be duplicated."
   (indent-region (point-min) (point-max)))
 
 (defun shift-region (distance)
-  "Shift the selected region right if distance is positive; left
-if negative."
+  "Shift the selected region right if DISTANCE is positive.
+Left if negative."
   (let ((mark (mark)))
     (save-excursion
       (indent-rigidly (region-beginning) (region-end) distance)
@@ -184,8 +194,12 @@ if negative."
 
 ;; Killing and yanking.
 (defun kill-and-join-forward (&optional arg)
-  "If at end of line, join with following; otherwise kill line.
-    Deletes whitespace at join."
+  "If at end of line, join with following.
+Otherwise kill line deletes whitespace at join.
+
+Param:
+
+ARG."
   (interactive "P")
   (if (and (eolp) (not (bolp)))
       (delete-indentation t)
@@ -193,8 +207,10 @@ if negative."
 
 ;; Transpositions.
 (defun transpose-params ()
-  "Transposes formal function parameters. Presumes that params are in the
-form (p, p, p) or {p, p, p} or [p, p, p]"
+  "Transposes formal function parameters.
+
+Presumes that params are in the form (p, p, p) or {p, p, p} or
+[p, p, p]"
   (interactive)
   (let* ((end-of-first (cond
                         ((looking-at ", ") (point))
@@ -213,6 +229,7 @@ form (p, p, p) or {p, p, p} or [p, p, p]"
     (transpose-regions start-of-first end-of-first start-of-last end-of-last)))
 
 (defun move-forward-out-of-param ()
+  "Move forward out of param."
   (while (not (looking-at ")\\|, \\| ?}\\| ?\\]"))
     (cond
      ((point-is-in-string-p) (move-point-forward-out-of-string))
@@ -220,6 +237,7 @@ form (p, p, p) or {p, p, p} or [p, p, p]"
      (t (forward-char)))))
 
 (defun move-backward-out-of-param ()
+  "Move backward out of param."
   (while (not (looking-back "(\\|, \\|{ ?\\|\\[ ?"))
     (cond
      ((point-is-in-string-p) (move-point-backward-out-of-string))
@@ -261,6 +279,11 @@ Toggles between: Òall lowerÓ, ÒInit CapsÓ, ÒALL CAPSÓ."
     ))
 
 (defun replace-next-underscore-with-camel (arg)
+  "Replace next underscore with camel case.
+
+Param:
+
+ARG."
   (interactive "p")
   (if (> arg 0)
       (setq arg (1+ arg))) ; 1-based index to get eternal loop with 0
@@ -273,7 +296,8 @@ Toggles between: Òall lowerÓ, ÒInit CapsÓ, ÒALL CAPSÓ."
       (setq arg (1- arg)))))
 
 (defun toggle-identifier-naming-style ()
-  "Toggles the symbol at point between C-style naming,
+  "Toggle the symbol at point between C-style naming.
+
 e.g. `hello_world_string', and camel case,
 e.g. `HelloWorldString'."
   (interactive)
@@ -344,20 +368,25 @@ index in STRING."
 
 ;; Toggle quotes.
 (defun current-quotes-char ()
+  "Current quotes char."
   (nth 3 (syntax-ppss)))
 
 (defalias 'point-is-in-string-p 'current-quotes-char)
 
 (defun move-point-forward-out-of-string ()
+  "Move point forward out of string."
   (while (point-is-in-string-p) (forward-char)))
 
 (defun move-point-backward-out-of-string ()
+  "Move point backward out of string."
   (while (point-is-in-string-p) (backward-char)))
 
 (defun alternate-quotes-char ()
+  "Alternate quotes char."
   (if (eq ?' (current-quotes-char)) ?\" ?'))
 
 (defun toggle-quotes ()
+  "Toggle quotes."
   (interactive)
   (if (point-is-in-string-p)
       (let ((old-quotes (char-to-string (current-quotes-char)))
@@ -382,10 +411,15 @@ index in STRING."
 ;; http://www.opensubscriber.com/message/emacs-devel@gnu.org/10971693.html
 (defun comment-dwim-line (&optional arg)
   "Replacement for the `comment-dwim' command.
+
 If no region is selected and current line is not blank and we are
-not at the end of the line, then comment current line. Replaces
-default behaviour of `comment-dwim', when it inserts comment at the
-end of the line."
+not at the end of the line, then comment current line.  Replaces
+default behaviour of `comment-dwim', when it inserts comment at
+the end of the line.
+
+Param:
+
+ARG"
   (interactive "*P")
   (comment-normalize-vars)
   (if (and (not (region-active-p)) (not (looking-at "[ \t]*$")))
@@ -395,28 +429,30 @@ end of the line."
 
 ;; View.
 (defun text-scale-reset ()
-  "Resets the text scale back to 0."
+  "Reset the text scale back to 0."
   (interactive)
   (text-scale-set 0))
 
 ;; Perspectives.
 (defun persp-curr-position (offset)
+  "Persp at the current OFFSET position."
   (+ offset
      (position (persp-name persp-curr)
                (persp-all-names))))
 
 (defun persp-next ()
-  "Switch to next perspective"
+  "Switch to next perspective."
   (interactive)
   (persp-switch (nth (persp-curr-position -1) (persp-all-names))))
 
 (defun persp-prev ()
-  "Switch to previous perspective"
+  "Switch to previous perspective."
   (interactive)
   (persp-switch (nth (persp-curr-position +1) (persp-all-names))))
 
 ;; http://stackoverflow.com/questions/2423834/move-line-region-up-and-down-in-emacs
 (defun move-text-internal (arg)
+  "Move text internal."
   (cond
    ((and mark-active transient-mark-mode)
     (if (> (point) (mark))
@@ -442,20 +478,23 @@ end of the line."
       (move-to-column column t)))))
 
 (defun move-text-down (arg)
-  "Move region (transient-mark-mode active) or current line
-  arg lines down."
+  "Move region or current line ARG lines down.
+
+`(transient-mark-mode active)`"
   (interactive "*p")
   (move-text-internal arg))
 
 (defun move-text-up (arg)
-  "Move region (transient-mark-mode active) or current line
-  arg lines up."
+  "Move region or current line ARG lines up.
+
+`(transient-mark-mode active)`"
   (interactive "*p")
   (move-text-internal (- arg)))
 
 
 (eval-when-compile (require 'cl))
 (defun toggle-transparency ()
+  "Toggle transparency."
   (interactive)
   (if (/=
        (cadr (frame-parameter nil 'alpha))
@@ -465,11 +504,13 @@ end of the line."
 
 ;; Set transparency of emacs
 (defun transparency (value)
-  "Sets the transparency of the frame window. 0=transparent/100=opaque"
+  "Set the transparency of the frame window to VALUE.
+
+0=transparent/100=opaque."
   (interactive "nTransparency Value 0 - 100 opaque:")
   (set-frame-parameter (selected-frame) 'alpha value))
 
 
 (provide 'goog-defuns)
 
-;;; goog-defuns.el ends here.
+;;; goog-defuns.el ends here

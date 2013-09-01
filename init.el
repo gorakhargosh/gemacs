@@ -18,7 +18,10 @@
 ;; Author: yesudeep@google.com (Yesudeep Mangalapilly)
 ;;
 ;;; This file is NOT a part of GNU Emacs.
-
+;;
+;;; Commentary:
+;;
+;;; Code:
 
 (eval-when-compile
   (require 'cl))
@@ -478,8 +481,7 @@
 ;; File and directory navigation.
 ;; ----------------------------------------------------------------------
 (defun ibuffer-ido-find-file ()
-  "Like `ido-find-file', but default to the directory of the buffer
-at point."
+  "`ido-find-file', but default to directory of buffer at point."
   (interactive
    (let ((default-directory (let ((buf (ibuffer-current-buffer)))
                               (if (buffer-live-p buf)
@@ -526,7 +528,7 @@ at point."
 (recentf-mode t)
 (setq recentf-max-saved-items 400)
 (defun ido-recentf-open ()
-  "Use `ido-completing-read' to \\[find-file] a recent file"
+  "Use `ido-completing-read' to \\[find-file] a recent file."
   (interactive)
   (if (find-file (ido-completing-read "Find recent file: " recentf-list))
       (message "Opening file...")
@@ -658,17 +660,17 @@ the minibuffer.")
 ;; goog/elisp
 ;; ----------------------------------------------------------------------
 (defun goog/elisp/load-current-module ()
-  "Loads the current Elisp module."
+  "Load the current Elisp module."
   (interactive)
   (load-file buffer-file-name))
 
 (defun goog/elisp/load-directory (dir)
-  "Loads all elisp modules from a given directory."
+  "Load all elisp modules from the given DIR directory."
   (when (file-exists-p dir)
     (mapc 'load (directory-files dir t "^[^#].*el"))))
 
 (defun goog/elisp/load-if-exists (name)
-  "Loads an elisp module if it exists."
+  "Load an elisp with the given NAME module if it exists."
   (when (file-exists-p name)
     (load name)))
 
@@ -1396,6 +1398,8 @@ compilation output."
 ;; Now load host, os, network-specific configuration.
 ;; ----------------------------------------------------------------------
 (progn
+  (message "Loading user, network, and host-specific configuration.")
+
   ;; ~/.emacs.d/*
   (setq goog-local-hosts-dir (concat config-dir "host/"))
   (setq goog-local-users-dir (concat config-dir "user/"))
@@ -1423,6 +1427,7 @@ compilation output."
   ;; valid directory name.
   (setq goog-os-dir (concat goog-local-os-dir (format "%s" system-type)))
 
+  (message "Setting user configuration.")
   (goog/elisp/eval-after-init
    '(progn
       (message "Network: %s" goog-network-name)
@@ -1446,6 +1451,8 @@ compilation output."
       (goog/elisp/load-directory goog-hostname-dir)
       (goog/elisp/load-directory goog-username-dir)
       (goog/elisp/load-directory goog-os-dir)
-      )))
 
-;;; init.el ends here.
+      )
+   ))
+
+;;; init.el ends here
