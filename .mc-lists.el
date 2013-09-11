@@ -24,6 +24,7 @@
         paredit-newline
         paredit-semicolon
         paredit-splice-sexp-killing-backward
+        python-indent-electric-colon
         sh-assignment
         yas-expand
         ))
