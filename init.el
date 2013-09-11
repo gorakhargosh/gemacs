@@ -117,7 +117,8 @@
                            nav
                            nrepl
                            paredit
-                           perspective
+                           ;; perspective
+                           persp-mode
                            rainbow-mode
                            switch-window
                            undo-tree
@@ -835,8 +836,8 @@ immediately."
 (autoload 'rename-sgml-tag "rename-sgml-tag" nil t)
 (define-key sgml-mode-map (kbd "C-c C-r") 'rename-sgml-tag)
 
-(require 'perspective)
-(persp-mode)
+(require 'persp-mode)
+(persp-mode t)
 
 (require 'helm-config)
 (helm-mode 1)
