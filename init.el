@@ -107,7 +107,7 @@
                            ioccur
                            js2-mode
                            key-chord
-                           less-css-mode
+                           ;; less-css-mode
                            loccur
                            magit
                            maxframe
@@ -1080,7 +1080,7 @@ immediately."
 ;; CSS mode.
 ;; ----------------------------------------------------------------------
 
-(require 'less-css-mode)
+;; (require 'less-css-mode)
 (defun goog/config/css-mode/setup ()
   "Configures `css-mode'."
 
@@ -1102,7 +1102,7 @@ immediately."
                      ac-source-css-property
                      )))
 (add-hook 'css-mode-hook 'goog/config/css-mode/setup)
-(add-hook 'less-css-mode-hook 'goog/config/css-mode/setup)
+;; (add-hook 'less-css-mode-hook 'goog/config/css-mode/setup)
 
 
 ;; ----------------------------------------------------------------------
