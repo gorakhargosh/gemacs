@@ -1188,6 +1188,7 @@ compilation output."
 
 ;; Now set the default theme.
 (require 'burp-theme)
+(powerline-default-theme)
 
 
 ;; ----------------------------------------------------------------------
