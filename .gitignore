@@ -22,4 +22,6 @@ session.*
 tramp
 url/cookies
 /.emacs.desktop.lock
-
+/persp-confs/
+/projectile-bookmarks.eld
+/request/curl-cookie-jar
