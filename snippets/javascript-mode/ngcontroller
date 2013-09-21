@@ -5,6 +5,8 @@
 # --
 goog.provide('$1.$2');
 
+goog.scope(function() {
+
 
 
 /**
@@ -13,14 +15,14 @@ goog.provide('$1.$2');
  * @param {!angular.Scope} $scope Angular scope via DI.
  * @constructor
  * @ngInject
+ * @export
  */
 ${1:ns}.${2:$$(capitalize yas/text)} = function($scope) {
-
-  /**
-   * @private {!angular.Scope}
-   */
+  /** @private {!angular.Scope} */
   this.scope_ = $scope;
+  this.scope_['$2'] = this;
 };
+var Ctrl = $1.$2;
 
 
 /**
@@ -28,4 +30,6 @@ ${1:ns}.${2:$$(capitalize yas/text)} = function($scope) {
  *
  * @const {string}
  */
-$1.$2.NG_NAME = '$2Ctrl';
+Ctrl.NG_NAME = '$1.$2';
+
+});  // goog.scope
