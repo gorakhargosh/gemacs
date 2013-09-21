@@ -82,15 +82,9 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar default-packages '(
-                           ;; slime
-                           ;; slime-js
-                           ;; slime-repl
-                           ;; smex   ;; Don't use this one. el-get works.
-                           auto-compile
-                           ace-jump-mode
                            ac-slime
-                           ;; auto-complete ;; Use the el-get version.
-                           ;; autopair
+                           ace-jump-mode
+                           auto-compile
                            clojure-mode
                            clojure-test-mode
                            clojurescript-mode
@@ -99,7 +93,6 @@
                            fastnav
                            find-things-fast
                            flycheck
-                           ;; go-mode
                            helm
                            highlight-symbol
                            ido-ubiquitous
@@ -107,40 +100,20 @@
                            ioccur
                            js2-mode
                            key-chord
-                           ;; less-css-mode
                            loccur
-                           ;; magit
                            maxframe
                            melpa
-                           ;; move-text
-                           ;; multiple-cursors
                            nav
                            nrepl
                            paredit
-                           ;; perspective
                            persp-mode
-                           rainbow-mode
                            rainbow-delimiters
+                           rainbow-mode
+                           smartparens
                            switch-window
                            undo-tree
-                           ;; yasnippet
-                           ;; web-mode
                            yaml-mode
                            zencoding-mode
-
-                           ;; Themes.
-                           ;; django-theme
-                           ;; github-theme
-                           ;; inkpot-theme
-                           ;; ir-black-theme
-                           ;; ir_black-theme
-                           ;; monokai-theme
-                           ;; tango-2-theme
-                           ;; tron-theme
-                           ;; twilight-theme
-                           ;; ujelly-theme
-                           ;; underwater-theme
-                           ;; zenburn-theme
                            ))
 (dolist (p default-packages)
   (when (not (package-installed-p p))
@@ -226,7 +199,7 @@
  goog:el-get-packages
  '(el-get
    ;; pymacs
-   autopair
+   ;; autopair
    auto-complete
    yasnippet
    coffee-mode
@@ -428,6 +401,11 @@
 (require 're-builder)
 (setq reb-re-syntax 'string)
 
+(require 'smartparens)
+(require 'smartparens-config)
+(smartparens-global-mode t)
+
+
 ;; Enable this if you need it.
 ;; (add-hook 'prog-mode-hook '(lambda () (rainbow-mode)))
 (require 'rainbow-delimiters)
@@ -539,82 +517,81 @@
       (message "Opening file...")
     (message "Aborting")))
 
-
 ;; ======================================================================
 ;; goog/paredit
 ;; ======================================================================
-(autoload 'paredit-mode "paredit"
-  "Minor mode for pseudo-structurally editing Lisp code." t)
+;; (autoload 'paredit-mode "paredit"
+;;   "Minor mode for pseudo-structurally editing Lisp code." t)
 
-;; Lispy languages
-(setq goog/paredit/lisp-modes '(
-                                emacs-lisp
-                                lisp
-                                lisp-interaction
-                                scheme
-                                clojure
-                                clojurescript))
+;; ;; Lispy languages
+;; (setq goog/paredit/lisp-modes '(
+;;                                 emacs-lisp
+;;                                 lisp
+;;                                 lisp-interaction
+;;                                 scheme
+;;                                 clojure
+;;                                 clojurescript))
 
-;; Non lispy languages.
-(setq goog/paredit/non-lisp-modes '(
-;;                                    js
-;;                                    js2
-;;                                    javascript
-;;                                    python
-                                    java
-                                    c))
+;; ;; Non lispy languages.
+;; (setq goog/paredit/non-lisp-modes '(
+;; ;;                                    js
+;; ;;                                    js2
+;; ;;                                    javascript
+;; ;;                                    python
+;;                                     java
+;;                                     c))
 
-(defun goog/paredit/singlequote (&optional n)
-  "Insert a pair of single-quotes.
-With a prefix argument N, wrap the following N S-expressions in
-single-quotes, escaping intermediate characters if necessary. If
-the region is active, `transient-mark-mode' is enabled, and the
-region's start and end fall in the same parenthesis depth, insert
-a pair of single-quotes around the region, again escaping
-intermediate characters if necessary. Inside a comment, insert a
-literal single-quote. At the end of a string, move past the
-closing single-quote. In the middle of a string, insert a
-backslash-escaped single-quote. If in a character literal, do
-nothing. This prevents accidentally changing a what was in the
-character literal to become a meaningful delimiter
-unintentionally."
-  (interactive "P")
-  (cond ((paredit-in-string-p)
-         (if (eq (cdr (paredit-string-start+end-points))
-                 (point))
-             (forward-char)             ; We're on the closing quote.
-             (insert ?\\ ?\' )))
-        ((paredit-in-comment-p)
-         (insert ?\' ))
-        ((not (paredit-in-char-p))
-         (paredit-insert-pair n ?\' ?\' 'paredit-forward-for-quote))))
+;; (defun goog/paredit/singlequote (&optional n)
+;;   "Insert a pair of single-quotes.
+;; With a prefix argument N, wrap the following N S-expressions in
+;; single-quotes, escaping intermediate characters if necessary. If
+;; the region is active, `transient-mark-mode' is enabled, and the
+;; region's start and end fall in the same parenthesis depth, insert
+;; a pair of single-quotes around the region, again escaping
+;; intermediate characters if necessary. Inside a comment, insert a
+;; literal single-quote. At the end of a string, move past the
+;; closing single-quote. In the middle of a string, insert a
+;; backslash-escaped single-quote. If in a character literal, do
+;; nothing. This prevents accidentally changing a what was in the
+;; character literal to become a meaningful delimiter
+;; unintentionally."
+;;   (interactive "P")
+;;   (cond ((paredit-in-string-p)
+;;          (if (eq (cdr (paredit-string-start+end-points))
+;;                  (point))
+;;              (forward-char)             ; We're on the closing quote.
+;;              (insert ?\\ ?\' )))
+;;         ((paredit-in-comment-p)
+;;          (insert ?\' ))
+;;         ((not (paredit-in-char-p))
+;;          (paredit-insert-pair n ?\' ?\' 'paredit-forward-for-quote))))
 
-(defun goog/paredit/lisp ()
-  "Enables paredit mode for lisp."
-  (paredit-mode +1))
+;; (defun goog/paredit/lisp ()
+;;   "Enables paredit mode for lisp."
+;;   (paredit-mode +1))
 
-(defun goog/paredit/non-lisp ()
-  "Enables paredit mode for non-lisp languages. Does not insert
-spaces before opening parentheses. See:
-https://gist.github.com/879305"
-  (add-to-list (make-local-variable
-                'paredit-space-for-delimiter-predicates)
-               (lambda (_ _) nil))
-  (enable-paredit-mode))
+;; (defun goog/paredit/non-lisp ()
+;;   "Enables paredit mode for non-lisp languages. Does not insert
+;; spaces before opening parentheses. See:
+;; https://gist.github.com/879305"
+;;   (add-to-list (make-local-variable
+;;                 'paredit-space-for-delimiter-predicates)
+;;                (lambda (_ _) nil))
+;;   (enable-paredit-mode))
 
 
-;; Enable paredit-mode for these major modes.
-(dolist (mode goog/paredit/lisp-modes)
-  (add-hook (intern (format "%s-mode-hook" mode)) 'goog/paredit/lisp))
+;; ;; Enable paredit-mode for these major modes.
+;; (dolist (mode goog/paredit/lisp-modes)
+;;   (add-hook (intern (format "%s-mode-hook" mode)) 'goog/paredit/lisp))
 
-(dolist (mode goog/paredit/non-lisp-modes)
-  (add-hook (intern (format "%s-mode-hook" mode)) 'goog/paredit/non-lisp))
+;; (dolist (mode goog/paredit/non-lisp-modes)
+;;   (add-hook (intern (format "%s-mode-hook" mode)) 'goog/paredit/non-lisp))
 
 
 (require 'eldoc) ; if not already loaded
-(eldoc-add-command
- 'paredit-backward-delete
- 'paredit-close-round)
+;; (eldoc-add-command
+;;  'paredit-backward-delete
+;;  'paredit-close-round)
 
 ;; (defun maybe-map-paredit-newline ()
 ;;   (unless (or (eq major-mode 'inferior-emacs-lisp-mode) (minibufferp))
@@ -622,44 +599,44 @@ https://gist.github.com/879305"
 
 ;; (add-hook 'paredit-mode-hook 'maybe-map-paredit-newline)
 
-(eval-after-load 'paredit
-  '(progn
-     ;; These are handy everywhere, not just in lisp modes
-     (global-set-key (kbd "M-(") 'paredit-wrap-round)
-     (global-set-key (kbd "M-[") 'paredit-wrap-square)
-     (global-set-key (kbd "M-{") 'paredit-wrap-curly)
+;; (eval-after-load 'paredit
+;;   '(progn
+;;      ;; These are handy everywhere, not just in lisp modes
+;;      (global-set-key (kbd "M-(") 'paredit-wrap-round)
+;;      (global-set-key (kbd "M-[") 'paredit-wrap-square)
+;;      (global-set-key (kbd "M-{") 'paredit-wrap-curly)
 
-     (global-set-key (kbd "M-)") 'paredit-close-round-and-newline)
-     (global-set-key (kbd "M-]") 'paredit-close-square-and-newline)
-     (global-set-key (kbd "M-}") 'paredit-close-curly-and-newline)
+;;      (global-set-key (kbd "M-)") 'paredit-close-round-and-newline)
+;;      (global-set-key (kbd "M-]") 'paredit-close-square-and-newline)
+;;      (global-set-key (kbd "M-}") 'paredit-close-curly-and-newline)
 
-     (dolist (binding (list (kbd "C-<left>") (kbd "C-<right>")
-                            (kbd "C-M-<left>") (kbd "C-M-<right>")))
-       (define-key paredit-mode-map binding nil))
+;;      (dolist (binding (list (kbd "C-<left>") (kbd "C-<right>")
+;;                             (kbd "C-M-<left>") (kbd "C-M-<right>")))
+;;        (define-key paredit-mode-map binding nil))
 
-     ;; Disable kill-sentence, which is easily confused with the kill-sexp
-     ;; binding, but doesn't preserve sexp structure
-     (define-key paredit-mode-map [remap kill-sentence] nil)
-     (define-key paredit-mode-map [remap backward-kill-sentence] nil)))
+;;      ;; Disable kill-sentence, which is easily confused with the kill-sexp
+;;      ;; binding, but doesn't preserve sexp structure
+;;      (define-key paredit-mode-map [remap kill-sentence] nil)
+;;      (define-key paredit-mode-map [remap backward-kill-sentence] nil)))
 
 ;; Compatibility with other modes
-(defadvice enable-paredit-mode (before disable-autopair activate)
-  (setq autopair-dont-activate t)
-  (autopair-mode -1))
+;; (defadvice enable-paredit-mode (before disable-autopair activate)
+;;   (setq autopair-dont-activate t)
+;;   (autopair-mode -1))
 ;; (suspend-mode-during-cua-rect-selection 'paredit-mode)
 
-;; Use paredit in the minibuffer
-(defun conditionally-enable-paredit-mode ()
-  "Enable paredit during lisp-related minibuffer commands."
-  (if (memq this-command paredit-minibuffer-commands)
-      (enable-paredit-mode)))
-(add-hook 'minibuffer-setup-hook 'conditionally-enable-paredit-mode)
+;; ;; Use paredit in the minibuffer
+;; (defun conditionally-enable-paredit-mode ()
+;;   "Enable paredit during lisp-related minibuffer commands."
+;;   (if (memq this-command paredit-minibuffer-commands)
+;;       (enable-paredit-mode)))
+;; (add-hook 'minibuffer-setup-hook 'conditionally-enable-paredit-mode)
 
-(defvar paredit-minibuffer-commands '(eval-expression
-                                      pp-eval-expression
-                                      eval-expression-with-eldoc)
-  "Interactive commands for which paredit should be enabled in
-the minibuffer.")
+;; (defvar paredit-minibuffer-commands '(eval-expression
+;;                                       pp-eval-expression
+;;                                       eval-expression-with-eldoc)
+;;   "Interactive commands for which paredit should be enabled in
+;; the minibuffer.")
 
 ;; ----------------------------------------------------------------------
 ;; goog/elisp
@@ -709,29 +686,29 @@ immediately."
      (setq magit-completing-read-function 'magit-ido-completing-read)
      ))
 
-(eval-after-load "autopair-autoloads"
-  '(progn
-     (require 'autopair)))
-(eval-after-load "autopair"
-  '(progn
-     (autopair-global-mode)
-     (setq autopair-autowrap t)
+;; (eval-after-load "autopair-autoloads"
+;;   '(progn
+;;      (require 'autopair)))
+;; (eval-after-load "autopair"
+;;   '(progn
+;;      (autopair-global-mode)
+;;      (setq autopair-autowrap t)
 
-     ;; Prevents: http://code.google.com/p/autopair/issues/detail?id=32
-     (add-hook 'sldb-mode-hook
-               #'(lambda ()
-                   (setq autopair-dont-activate t) ;; emacs < 24
-                   (autopair-mode -1)              ;; emacs >= 24
-                   ))
-     (set-default 'autopair-dont-activate
-                  #'(lambda ()
-                      (eq major-mode 'sldb-mode)))
-     (add-hook 'go-mode-hook
-               '(lambda ()
-                  (push '(?' . ?') (getf autopair-extra-pairs :code))
-                  (push '(?" . ?") (getf autopair-extra-pairs :code))
-                  ))
-     ))
+;;      ;; Prevents: http://code.google.com/p/autopair/issues/detail?id=32
+;;      (add-hook 'sldb-mode-hook
+;;                #'(lambda ()
+;;                    (setq autopair-dont-activate t) ;; emacs < 24
+;;                    (autopair-mode -1)              ;; emacs >= 24
+;;                    ))
+;;      (set-default 'autopair-dont-activate
+;;                   #'(lambda ()
+;;                       (eq major-mode 'sldb-mode)))
+;;      (add-hook 'go-mode-hook
+;;                '(lambda ()
+;;                   (push '(?' . ?') (getf autopair-extra-pairs :code))
+;;                   (push '(?" . ?") (getf autopair-extra-pairs :code))
+;;                   ))
+;;      ))
 
 
 (require 'undo-tree)
@@ -1269,10 +1246,10 @@ compilation output."
   ;; Auto-complete configuration.
   (setq ac-auto-start 0)
 
-  ;; Autopairing triple quotes.
-  (setq autopair-handle-action-fns
-        (list #'autopair-default-handle-action
-              #'autopair-python-triple-quote-action))
+  ;; ;; Autopairing triple quotes.
+  ;; (setq autopair-handle-action-fns
+  ;;       (list #'autopair-default-handle-action
+  ;;             #'autopair-python-triple-quote-action))
   ;; Configure jedi.
   (jedi:setup))
 
