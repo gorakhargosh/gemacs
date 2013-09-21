@@ -109,7 +109,7 @@
                            key-chord
                            ;; less-css-mode
                            loccur
-                           magit
+                           ;; magit
                            maxframe
                            melpa
                            ;; move-text
@@ -120,6 +120,7 @@
                            ;; perspective
                            persp-mode
                            rainbow-mode
+                           rainbow-delimiters
                            switch-window
                            undo-tree
                            ;; yasnippet
@@ -229,6 +230,7 @@
    auto-complete
    yasnippet
    coffee-mode
+   magit
    ;; clojure-mode
    fill-column-indicator
    ;; js2-mode
@@ -428,6 +430,8 @@
 
 ;; Enable this if you need it.
 ;; (add-hook 'prog-mode-hook '(lambda () (rainbow-mode)))
+(require 'rainbow-delimiters)
+(global-rainbow-delimiters-mode)
 
 ;; ----------------------------------------------------------------------
 ;; Clipboard and kill-ring.
@@ -1275,6 +1279,7 @@ compilation output."
 ;; ----------------------------------------------------------------------
 ;; Clojure.
 ;; ----------------------------------------------------------------------
+(require 'nrepl)
 (add-hook 'nrepl-interaction-mode-hook
           'nrepl-turn-on-eldoc-mode)
 (add-hook 'slime-repl-mode-hook
