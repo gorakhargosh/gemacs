@@ -257,6 +257,7 @@
               indicate-empty-lines t
               indicate-buffer-boundaries (quote left)
               require-final-newline t
+              cursor-type 'bar
               ;; next-line-add-newlines nil     ;; Don't add newlines past EOF.
               )
 
@@ -404,6 +405,8 @@
 (require 'smartparens)
 (require 'smartparens-config)
 (smartparens-global-mode t)
+;; (sp-add-tag-pair "<" "<_>" "</_>" 'sp-match-sgml-tags '(html-mode sgml-mode))
+
 
 
 ;; Enable this if you need it.
