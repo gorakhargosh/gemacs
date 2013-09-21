@@ -97,14 +97,13 @@
                            highlight-symbol
                            ido-ubiquitous
                            iedit
-                           ioccur
                            js2-mode
                            key-chord
-                           loccur
                            maxframe
                            melpa
                            nav
                            nrepl
+                           ac-nrepl
                            paredit
                            persp-mode
                            rainbow-delimiters
@@ -198,19 +197,15 @@
 (setq
  goog:el-get-packages
  '(el-get
-   ;; pymacs
    auto-complete
    yasnippet
    coffee-mode
    magit
-   ;; clojure-mode
    fill-column-indicator
-   ;; js2-mode
    powerline
    expand-region
    ;; jedi ;; Python autocompletion using jedi, python-epc, and autocomplete.
    ;; auto-async-byte-compile ;; This is nothing but trouble.
-   ;; ioccur
    multiple-cursors
    js2-refactor
    ;; pydoc-info
@@ -1108,11 +1103,19 @@ compilation output."
 (require 'nrepl)
 (add-hook 'nrepl-interaction-mode-hook
           'nrepl-turn-on-eldoc-mode)
-;; (add-hook 'slime-repl-mode-hook
-;;           (defun clojure-mode-slime-font-lock ()
-;;             (require 'clojure-mode)
-;;             (let (font-lock-mode)
-;;               (clojure-mode-font-lock-setup))))
+(require 'ac-nrepl)
+(add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+(add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'nrepl-mode))
+
+(defun set-auto-complete-as-completion-at-point-function ()
+  (setq completion-at-point-functions '(auto-complete)))
+(add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
+
+(add-hook 'nrepl-mode-hook 'set-auto-complete-as-completion-at-point-function)
+(add-hook 'nrepl-interaction-mode-hook 'set-auto-complete-as-completion-at-point-function)
+(define-key nrepl-interaction-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
 
 ;; ======================================================================
 ;; Keyboard bindings.
@@ -1199,16 +1202,8 @@ compilation output."
 (global-set-key [(meta f2)] 'highlight-symbol-prev)
 
 ;; Search, search, search.
-;; (require 'loccur)
 (global-set-key [(f7)] 'multi-occur-in-this-mode) ;; Find in all buffers.
 (global-set-key [(meta o)] 'ido-goto-symbol)     ;; Jump to symbol.
-;; (global-set-key [(control meta o)] 'loccur-current)     ;; Current word.
-;; (global-set-key [(meta shift o)] 'ioccur)               ;; Interactive occur.
-
-;; ;; defines shortcut for the interactive loccur command
-;; (global-set-key [(meta shift o)] 'loccur)
-;; ;; ;; defines shortcut for the loccur of the previously found word
-;; (global-set-key [(control shift o)] 'loccur-previous-match)
 
 ;; Transparency.
 (global-set-key (kbd "C-c t") 'toggle-transparency)
