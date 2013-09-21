@@ -408,7 +408,6 @@
 ;; (sp-add-tag-pair "<" "<_>" "</_>" 'sp-match-sgml-tags '(html-mode sgml-mode))
 
 
-
 ;; Enable this if you need it.
 ;; (add-hook 'prog-mode-hook '(lambda () (rainbow-mode)))
 (require 'rainbow-delimiters)
@@ -520,126 +519,7 @@
       (message "Opening file...")
     (message "Aborting")))
 
-;; ======================================================================
-;; goog/paredit
-;; ======================================================================
-;; (autoload 'paredit-mode "paredit"
-;;   "Minor mode for pseudo-structurally editing Lisp code." t)
-
-;; ;; Lispy languages
-;; (setq goog/paredit/lisp-modes '(
-;;                                 emacs-lisp
-;;                                 lisp
-;;                                 lisp-interaction
-;;                                 scheme
-;;                                 clojure
-;;                                 clojurescript))
-
-;; ;; Non lispy languages.
-;; (setq goog/paredit/non-lisp-modes '(
-;; ;;                                    js
-;; ;;                                    js2
-;; ;;                                    javascript
-;; ;;                                    python
-;;                                     java
-;;                                     c))
-
-;; (defun goog/paredit/singlequote (&optional n)
-;;   "Insert a pair of single-quotes.
-;; With a prefix argument N, wrap the following N S-expressions in
-;; single-quotes, escaping intermediate characters if necessary. If
-;; the region is active, `transient-mark-mode' is enabled, and the
-;; region's start and end fall in the same parenthesis depth, insert
-;; a pair of single-quotes around the region, again escaping
-;; intermediate characters if necessary. Inside a comment, insert a
-;; literal single-quote. At the end of a string, move past the
-;; closing single-quote. In the middle of a string, insert a
-;; backslash-escaped single-quote. If in a character literal, do
-;; nothing. This prevents accidentally changing a what was in the
-;; character literal to become a meaningful delimiter
-;; unintentionally."
-;;   (interactive "P")
-;;   (cond ((paredit-in-string-p)
-;;          (if (eq (cdr (paredit-string-start+end-points))
-;;                  (point))
-;;              (forward-char)             ; We're on the closing quote.
-;;              (insert ?\\ ?\' )))
-;;         ((paredit-in-comment-p)
-;;          (insert ?\' ))
-;;         ((not (paredit-in-char-p))
-;;          (paredit-insert-pair n ?\' ?\' 'paredit-forward-for-quote))))
-
-;; (defun goog/paredit/lisp ()
-;;   "Enables paredit mode for lisp."
-;;   (paredit-mode +1))
-
-;; (defun goog/paredit/non-lisp ()
-;;   "Enables paredit mode for non-lisp languages. Does not insert
-;; spaces before opening parentheses. See:
-;; https://gist.github.com/879305"
-;;   (add-to-list (make-local-variable
-;;                 'paredit-space-for-delimiter-predicates)
-;;                (lambda (_ _) nil))
-;;   (enable-paredit-mode))
-
-
-;; ;; Enable paredit-mode for these major modes.
-;; (dolist (mode goog/paredit/lisp-modes)
-;;   (add-hook (intern (format "%s-mode-hook" mode)) 'goog/paredit/lisp))
-
-;; (dolist (mode goog/paredit/non-lisp-modes)
-;;   (add-hook (intern (format "%s-mode-hook" mode)) 'goog/paredit/non-lisp))
-
-
 (require 'eldoc) ; if not already loaded
-;; (eldoc-add-command
-;;  'paredit-backward-delete
-;;  'paredit-close-round)
-
-;; (defun maybe-map-paredit-newline ()
-;;   (unless (or (eq major-mode 'inferior-emacs-lisp-mode) (minibufferp))
-;;     (local-set-key (kbd "RET") 'paredit-newline)))
-
-;; (add-hook 'paredit-mode-hook 'maybe-map-paredit-newline)
-
-;; (eval-after-load 'paredit
-;;   '(progn
-;;      ;; These are handy everywhere, not just in lisp modes
-;;      (global-set-key (kbd "M-(") 'paredit-wrap-round)
-;;      (global-set-key (kbd "M-[") 'paredit-wrap-square)
-;;      (global-set-key (kbd "M-{") 'paredit-wrap-curly)
-
-;;      (global-set-key (kbd "M-)") 'paredit-close-round-and-newline)
-;;      (global-set-key (kbd "M-]") 'paredit-close-square-and-newline)
-;;      (global-set-key (kbd "M-}") 'paredit-close-curly-and-newline)
-
-;;      (dolist (binding (list (kbd "C-<left>") (kbd "C-<right>")
-;;                             (kbd "C-M-<left>") (kbd "C-M-<right>")))
-;;        (define-key paredit-mode-map binding nil))
-
-;;      ;; Disable kill-sentence, which is easily confused with the kill-sexp
-;;      ;; binding, but doesn't preserve sexp structure
-;;      (define-key paredit-mode-map [remap kill-sentence] nil)
-;;      (define-key paredit-mode-map [remap backward-kill-sentence] nil)))
-
-;; Compatibility with other modes
-;; (defadvice enable-paredit-mode (before disable-autopair activate)
-;;   (setq autopair-dont-activate t)
-;;   (autopair-mode -1))
-;; (suspend-mode-during-cua-rect-selection 'paredit-mode)
-
-;; ;; Use paredit in the minibuffer
-;; (defun conditionally-enable-paredit-mode ()
-;;   "Enable paredit during lisp-related minibuffer commands."
-;;   (if (memq this-command paredit-minibuffer-commands)
-;;       (enable-paredit-mode)))
-;; (add-hook 'minibuffer-setup-hook 'conditionally-enable-paredit-mode)
-
-;; (defvar paredit-minibuffer-commands '(eval-expression
-;;                                       pp-eval-expression
-;;                                       eval-expression-with-eldoc)
-;;   "Interactive commands for which paredit should be enabled in
-;; the minibuffer.")
 
 ;; ----------------------------------------------------------------------
 ;; goog/elisp
@@ -1213,12 +1093,6 @@ compilation output."
   (interactive)
   (compile (concat "jshint " buffer-file-name)))
 
-;; Load swank-js.
-;; (add-hook 'after-init-hook
-;;           #'(lambda ()
-;;               (when (locate-library "slime-js")
-;;                 (require 'setup-slime-js))))
-
 
 ;; ----------------------------------------------------------------------
 ;; Python.
@@ -1262,11 +1136,11 @@ compilation output."
 (require 'nrepl)
 (add-hook 'nrepl-interaction-mode-hook
           'nrepl-turn-on-eldoc-mode)
-(add-hook 'slime-repl-mode-hook
-          (defun clojure-mode-slime-font-lock ()
-            (require 'clojure-mode)
-            (let (font-lock-mode)
-              (clojure-mode-font-lock-setup))))
+;; (add-hook 'slime-repl-mode-hook
+;;           (defun clojure-mode-slime-font-lock ()
+;;             (require 'clojure-mode)
+;;             (let (font-lock-mode)
+;;               (clojure-mode-font-lock-setup))))
 
 ;; ======================================================================
 ;; Keyboard bindings.
