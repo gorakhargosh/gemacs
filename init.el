@@ -151,16 +151,6 @@
                    (setq smex-save-file "~/.emacs.d/.smex-items")
                    (global-set-key (kbd "M-x") 'smex)
                    (global-set-key (kbd "M-X") 'smex-major-mode-commands)))
-
-   ;; (:name smart-forward
-   ;;        :website "https://github.com/magnars/smart-forward.el#readme"
-   ;;        :description "Smarter movement forwards and backwards."
-   ;;        :type github
-   ;;        :pkgname "magnars/smart-forward.el"
-   ;;        :depends (expand-region)
-   ;;        :post-init (progn
-   ;;                     (require 'smart-forward)))
-
    (:name go-mode
           :website "http://github.com/dominikh/go-mode.el#readme"
           :description "An improved go-mode."
@@ -168,30 +158,6 @@
           :pkgname "dominikh/go-mode.el"
           :post-init (progn
                        (require 'go-mode)))
-
-   ;; (:name emacs-git-gutter-fringe
-   ;;        :website "https://github.com/syohex/emacs-git-gutter-fringe#readme"
-   ;;        :description "Fringe version of git-gutter."
-   ;;        :type github
-   ;;        :depends (git-gutter fringe-helper)
-   ;;        :pkgname "syohex/emacs-git-gutter-fringe"
-   ;;        :post-init (progn
-   ;;                     (require 'git-gutter-fringe)))
-
-   ;; (:name emacs-git-gutter
-   ;;        :website "https://github.com/syohex/emacs-git-gutter#readme"
-   ;;        :description "Show git diff status for a buffer in the gutter."
-   ;;        :type github
-   ;;        :pkgname "syohex/emacs-git-gutter"
-   ;;        :depends (fringe-helper)
-   ;;        :post-init (progn
-   ;;                     (require 'git-gutter)
-   ;;                     ;; (require 'git-gutter-fringe) ;; If you want the fringe version.
-   ;;                     (add-hook 'after-save-hook
-   ;;                               (lambda ()
-   ;;                                 (if (zerop (call-process-shell-command "git rev-parse --show-toplevel"))
-   ;;                                     (git-gutter))))
-   ;;                     ))
    ))
 
 (setq
@@ -204,11 +170,8 @@
    fill-column-indicator
    powerline
    expand-region
-   ;; jedi ;; Python autocompletion using jedi, python-epc, and autocomplete.
-   ;; auto-async-byte-compile ;; This is nothing but trouble.
    multiple-cursors
    js2-refactor
-   ;; pydoc-info
    projectile
    ))
 ;; Synchronize el-get packages.
