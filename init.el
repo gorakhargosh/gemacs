@@ -1380,6 +1380,10 @@ compilation output."
 (key-chord-define-global ";'" 'ido-recentf-open)
 (key-chord-define-global ",." 'ido-find-file)
 
+;; Now set the default theme.
+(require 'burp-theme)
+
+
 ;; ----------------------------------------------------------------------
 ;; Now load host, os, network-specific configuration.
 ;; ----------------------------------------------------------------------
