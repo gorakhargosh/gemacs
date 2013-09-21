@@ -5,6 +5,8 @@
 # --
 goog.provide('$1.$2');
 
+goog.scope(function() {
+
 
 
 /**
@@ -25,10 +27,12 @@ ${1:ns}.${2:$$(capitalize yas/text)} = function() {
       'handler': '&'
     },
     'template': '<span ng-transclude></span>',
+    'controller': $1.$2.Controller_,
     'compile': $1.$2.compile_,
     'link': $1.$2.link_
   };
 };
+var Directive = $1.$2;
 
 
 /**
@@ -36,7 +40,7 @@ ${1:ns}.${2:$$(capitalize yas/text)} = function() {
  *
  * @const {string}
  */
-$1.$2.NG_NAME = '$2';
+Directive.NG_NAME = '$2';
 
 
 /**
@@ -44,8 +48,8 @@ $1.$2.NG_NAME = '$2';
  *
  * @const {!angular.Module}
  */
-$1.$2.NG_MODULE = angular.module($1.$2.NG_NAME, []).
-    directive($1.$2.NG_NAME, $1.$2);
+Directive.NG_MODULE = angular.module(Directive.NG_NAME, []).
+    directive(Directive.NG_NAME, Directive);
 
 
 /**
@@ -58,7 +62,7 @@ $1.$2.NG_MODULE = angular.module($1.$2.NG_NAME, []).
  * @param {Function} controller The controller associated with the directive.
  * @private
  */
-$1.$2.link_ = function(scope, element, attributes, controller) {
+Directive.link_ = function(scope, element, attributes, controller) {
 
 };
 
@@ -72,6 +76,25 @@ $1.$2.link_ = function(scope, element, attributes, controller) {
  * @param {Function} transclude A transclude linking function.
  * @private
  */
-$1.$2.compile_ = function(tElement, tAttributes, transclude) {
+Directive.compile_ = function(tElement, tAttributes, transclude) {
 
 };
+
+
+
+/**
+ * Controller associated with the directive.
+ *
+ * @param {!angular.Scope} $scope Angular scope.
+ * @constructor
+ * @ngInject
+ * @private
+ */
+Directive.Controller_ = function($scope) {
+  /** @private {!angular.Scope} */
+  this.scope_ = $scope;
+  this.scope_['$2Ctrl'] = this;
+};
+var Ctrl = Directive.Controller_;
+
+});  // goog.scope

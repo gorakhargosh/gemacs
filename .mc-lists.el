@@ -26,6 +26,7 @@
         paredit-splice-sexp-killing-backward
         python-indent-electric-colon
         sh-assignment
+        sp--cua-replace-region
         yas-expand
         ))
 
