@@ -541,11 +541,13 @@ immediately."
 
 ;; Need to test this properly.
 ;; Disabled because it causes Emacs to hang or misbehave.
-;; (when window-system
-;;   (require 'fill-column-indicator)
-;;   (define-globalized-minor-mode global-fci-mode fci-mode
-;;     (lambda () (fci-mode 1)))
-;;   (global-fci-mode 1))
+(when window-system
+  (require 'fill-column-indicator)
+  (define-globalized-minor-mode global-fci-mode fci-mode
+    (lambda () (fci-mode 1)))
+  (global-fci-mode 1)
+  (setq fci-rule-color "red")
+  )
 
 (autoload 'expand-region "expand-region" nil t)
 (autoload 'contract-region "expand-region" nil t)
