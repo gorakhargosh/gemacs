@@ -199,7 +199,6 @@
  goog:el-get-packages
  '(el-get
    ;; pymacs
-   ;; autopair
    auto-complete
    yasnippet
    coffee-mode
@@ -568,30 +567,6 @@ immediately."
   '(progn
      (setq magit-completing-read-function 'magit-ido-completing-read)
      ))
-
-;; (eval-after-load "autopair-autoloads"
-;;   '(progn
-;;      (require 'autopair)))
-;; (eval-after-load "autopair"
-;;   '(progn
-;;      (autopair-global-mode)
-;;      (setq autopair-autowrap t)
-
-;;      ;; Prevents: http://code.google.com/p/autopair/issues/detail?id=32
-;;      (add-hook 'sldb-mode-hook
-;;                #'(lambda ()
-;;                    (setq autopair-dont-activate t) ;; emacs < 24
-;;                    (autopair-mode -1)              ;; emacs >= 24
-;;                    ))
-;;      (set-default 'autopair-dont-activate
-;;                   #'(lambda ()
-;;                       (eq major-mode 'sldb-mode)))
-;;      (add-hook 'go-mode-hook
-;;                '(lambda ()
-;;                   (push '(?' . ?') (getf autopair-extra-pairs :code))
-;;                   (push '(?" . ?") (getf autopair-extra-pairs :code))
-;;                   ))
-;;      ))
 
 
 (require 'undo-tree)
@@ -1123,12 +1098,9 @@ compilation output."
   ;; Auto-complete configuration.
   (setq ac-auto-start 0)
 
-  ;; ;; Autopairing triple quotes.
-  ;; (setq autopair-handle-action-fns
-  ;;       (list #'autopair-default-handle-action
-  ;;             #'autopair-python-triple-quote-action))
   ;; Configure jedi.
-  (jedi:setup))
+  (jedi:setup)
+  )
 
 ;; ----------------------------------------------------------------------
 ;; Clojure.
