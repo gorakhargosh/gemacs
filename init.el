@@ -165,14 +165,14 @@
  '(el-get
    auto-complete
    yasnippet
-   coffee-mode
+   ;; coffee-mode
    magit
    fill-column-indicator
    powerline
    expand-region
    multiple-cursors
    js2-refactor
-   projectile
+   ;; projectile
    ))
 ;; Synchronize el-get packages.
 (setq goog:el-get-packages
@@ -180,9 +180,8 @@
        goog:el-get-packages
        (loop for src in el-get-sources collect (el-get-source-name src))))
 (el-get 'sync goog:el-get-packages)
-;;(el-get 'wait)
 
-(add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path user-emacs-directory)
 (require 'auto-compile)
 (auto-compile-on-load-mode 1)
 (auto-compile-on-save-mode 1)
@@ -422,9 +421,9 @@
 ;; ----------------------------------------------------------------------
 ;; Project navigation.
 ;; ----------------------------------------------------------------------
-(require 'projectile)
-(projectile-global-mode) ;; Enable in all buffers.
-(setq projectile-enable-caching t) ;; It's not automatic.
+;; (require 'projectile)
+;; (projectile-global-mode) ;; Enable in all buffers.
+;; (setq projectile-enable-caching t) ;; It's not automatic.
 
 ;; ----------------------------------------------------------------------
 ;; File and directory navigation.
@@ -470,7 +469,7 @@
      ))
 
 ;; ----------------------------------------------------------------------
-;; Recent files.
+;; Finding files, recent files and sessions.
 ;; ----------------------------------------------------------------------
 (autoload 'recentf "recentf" t)
 (setq recentf-auto-cleanup 'never) ;; Disable before we start recentf for tramp.
@@ -484,6 +483,12 @@
     (message "Aborting")))
 
 (require 'eldoc) ; if not already loaded
+(require 'switch-window)
+(require 'persp-mode)
+(persp-mode t)
+
+(require 'helm-config)
+(helm-mode 1)
 
 ;; ----------------------------------------------------------------------
 ;; goog/elisp
@@ -543,8 +548,6 @@ immediately."
 (autoload 'move-text-down "move-text" nil t)
 (global-set-key [M-S-up] 'move-text-up)
 (global-set-key [M-S-down] 'move-text-down)
-
-(require 'switch-window)
 
 ;; Need to test this properly.
 ;; Disabled because it causes Emacs to hang or misbehave.
@@ -642,13 +645,6 @@ immediately."
 (autoload 'rename-sgml-tag "rename-sgml-tag" nil t)
 (define-key sgml-mode-map (kbd "C-c C-r") 'rename-sgml-tag)
 
-(require 'persp-mode)
-(persp-mode t)
-
-(require 'helm-config)
-(helm-mode 1)
-
-
 ;; ======================================================================
 ;; Auto-complete and snippets.
 ;; ======================================================================
@@ -691,26 +687,6 @@ immediately."
 
 (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
 
-
-;; (global-auto-complete-mode t)
-;; Dirty fix to enable AC everywhere without bothering about the ac-modes list.
-(define-globalized-minor-mode real-global-auto-complete-mode
-  auto-complete-mode (lambda ()
-                       (if (not (minibufferp (current-buffer)))
-                         (auto-complete-mode 1))
-                       ))
-(real-global-auto-complete-mode t)
-
-;; ;; Use Emacs' built-in TAB completion hooks to trigger AC (Emacs >= 23.2)
-;; (setq tab-always-indent 'complete)  ;; use 'complete when auto-complete
-;;                                     ;; is disabled
-;; (add-to-list 'completion-styles 'initials t)
-;; ;; hook AC into completion-at-point
-;; (defun set-auto-complete-as-completion-at-point-function ()
-;;   (setq completion-at-point-functions '(auto-complete)))
-;; (add-hook 'auto-complete-mode-hook
-;;           'set-auto-complete-as-completion-at-point-function)
-
 ;; Set up sources for autocompletion.
 (setq-default ac-sources
               '(ac-source-abbrev
@@ -732,37 +708,6 @@ immediately."
                          (auto-complete-mode 1))
                        ))
 (real-global-auto-complete-mode t)
-
-;; Not required since we've enabled auto-complete-mode above globally.
-;; (dolist (mode '(
-;;                 clojure-mode
-;;                 clojurescript-mode
-;;                 css-mode
-;;                 csv-mode
-;;                 erc-mode
-;;                 espresso-mode
-;;                 go-mode
-;;                 haml-mode
-;;                 haskell-mode
-;;                 html-mode
-;;                 js3-mode
-;;                 less-css-mode
-;;                 lisp-mode
-;;                 log-edit-mode
-;;                 magit-log-edit-mode
-;;                 markdown-mode
-;;                 nxml-mode
-;;                 org-mode
-;;                 sass-mode
-;;                 sh-mode
-;;                 smarty-mode
-;;                 text-mode
-;;                 textile-mode
-;;                 tuareg-mode
-;;                 yaml-mode
-;;                 ))
-;;   (add-to-list 'ac-modes mode))
-
 
 ;; ======================================================================
 ;; Programming-specific.
@@ -797,8 +742,6 @@ immediately."
 (add-hook 'prog-mode-hook 'flycheck-mode)
 (add-hook 'go-mode-hook 'flycheck-mode)
 (add-hook 'text-mode-hook 'flycheck-mode)
-
-;; (require 'web-mode)
 
 ;; ----------------------------------------------------------------------
 ;; Define automatic mode detection for file types.
