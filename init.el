@@ -107,7 +107,7 @@
                            paredit
                            persp-mode
                            rainbow-delimiters
-                           rainbow-mode
+                           ;; rainbow-mode
                            smartparens
                            switch-window
                            undo-tree
@@ -251,28 +251,25 @@
   (line-number-mode 1)               ;; show line numbers in the mode line.
   )
 
-(progn
-  (show-paren-mode t)                ;; Highlight matching parentheses.
-  ;; (setq show-paren-style 'expression)
-  )
-
 ;; Cua mode without the nonsense.
 (setq cua-enable-cua-keys nil)       ;; Turn off Windows key bindings.
 (cua-mode t)                         ;; Rectangular selections are awesome.
 (cua-selection-mode nil)             ;; No shift-arrow style marking.
 
-(progn
-  (setq desktop-dirname config-dir
+;; TODO(yesudeep): Do we need this now that we have persp-mode?
+;;
+;; (progn
+;;   (setq desktop-dirname config-dir
 
-        desktop-enable t
-        desktop-restore-eager 5
-        desktop-load-locked-desktop t
-        desktop-files-not-to-save "^$"  ;; Reload tramp paths.
-        desktop-save 'if-exists
-        )
-  (desktop-save-mode t)           ;; Save sessions.
-  (desktop-load-default)          ;; Load the desktop on startup.
-  )
+;;         desktop-enable t
+;;         desktop-restore-eager 5
+;;         desktop-load-locked-desktop t
+;;         desktop-files-not-to-save "^$"  ;; Reload tramp paths.
+;;         desktop-save 'if-exists
+;;         )
+;;   (desktop-save-mode t)           ;; Save sessions.
+;;   (desktop-load-default)          ;; Load the desktop on startup.
+;;   )
 
 ;; Better buffer names.
 (require 'uniquify)
@@ -359,16 +356,23 @@
 (require 're-builder)
 (setq reb-re-syntax 'string)
 
+;; Configure pairs of characters and parenthese matching.
 (require 'smartparens)
 (require 'smartparens-config)
-(smartparens-global-mode t)
-;; (sp-add-tag-pair "<" "<_>" "</_>" 'sp-match-sgml-tags '(html-mode sgml-mode))
+(progn
+  (show-paren-mode t)                ;; Highlight matching parentheses.
+  ;; (setq show-paren-delay 0
+  ;;       show-paren-style 'expression
+  ;;       )
+  (smartparens-global-mode t)
+  )
+
+;; (require 'rainbow-delimiters)
+;; (global-rainbow-delimiters-mode)
 
 
 ;; Enable this if you need it.
 ;; (add-hook 'prog-mode-hook '(lambda () (rainbow-mode)))
-(require 'rainbow-delimiters)
-(global-rainbow-delimiters-mode)
 
 ;; ----------------------------------------------------------------------
 ;; Clipboard and kill-ring.
