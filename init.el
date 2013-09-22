@@ -36,13 +36,13 @@
 ;; ======================================================================
 ;; Initial configuration.
 ;; ======================================================================
-(setq config-dir (file-name-directory (or (buffer-file-name)
-                                          load-file-name)))
-(add-to-list 'load-path config-dir)
+;; (setq user-emacs-directory (file-name-directory (or (buffer-file-name)
+;;                                           load-file-name)))
+(add-to-list 'load-path user-emacs-directory)
 
 ;; Directory paths.
 (setq goog-site-lisp-dir (expand-file-name
-                          (concat config-dir "site-lisp")))
+                          (concat user-emacs-directory "site-lisp")))
 
 ;; Load-path.
 (add-to-list 'load-path goog-site-lisp-dir)
@@ -259,10 +259,15 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
+
+(require 'saveplace)
+(setq-default save-place t)
+(setq save-place-file (concat user-emacs-directory "places"))
+
 ;; TODO(yesudeep): Do we need this now that we have persp-mode?
 ;;
 ;; (progn
-;;   (setq desktop-dirname config-dir
+;;   (setq desktop-dirname user-emacs-directory
 ;;         desktop-enable t
 ;;         desktop-files-not-to-save "^$"  ;; Reload tramp paths.
 ;;         desktop-load-locked-desktop t
@@ -442,7 +447,7 @@
        '(progn
           (ido-ubiquitous t)
           ))
-     (setq ido-save-directory-list-file (concat config-dir ".ido.last")
+     (setq ido-save-directory-list-file (concat user-emacs-directory ".ido.last")
            ido-use-filename-at-point 'guess
            ido-enable-flex-matching t
            confirm-nonexistent-file-or-buffer nil
@@ -501,8 +506,8 @@
 (defun goog/elisp/reload-configuration ()
   "Reloads the init.el module from the Emacs configuration directory."
   (interactive)
-  ;; (load-file (concat config-dir "init.el"))
-  (load-file "~/.emacs.d/init.el")
+  ;; (load-file (concat user-emacs-directory "init.el"))
+  (load-file (concat user-emacs-directory "init.el"))
   (yas/reload-all))
 
 (defun goog/elisp/eval-after-init (form)
@@ -1200,9 +1205,9 @@ compilation output."
   (message "Loading user, network, and host-specific configuration.")
 
   ;; ~/.emacs.d/*
-  (setq goog-local-hosts-dir (concat config-dir "host/"))
-  (setq goog-local-users-dir (concat config-dir "user/"))
-  (setq goog-local-os-dir (concat config-dir "os/"))
+  (setq goog-local-hosts-dir (concat user-emacs-directory "host/"))
+  (setq goog-local-users-dir (concat user-emacs-directory "user/"))
+  (setq goog-local-os-dir (concat user-emacs-directory "os/"))
 
   ;; ~/.example.com/*.
   (setq goog-network-hosts-dir (concat goog-network-dir "host/"))
