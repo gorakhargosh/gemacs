@@ -82,6 +82,10 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar default-packages '(
+                           ;; maxframe
+                           ;; paredit
+                           ;; rainbow-mode
+                           ac-nrepl
                            ac-slime
                            ace-jump-mode
                            auto-compile
@@ -99,15 +103,11 @@
                            iedit
                            js2-mode
                            key-chord
-                           maxframe
                            melpa
                            nav
                            nrepl
-                           ac-nrepl
-                           paredit
                            persp-mode
                            rainbow-delimiters
-                           ;; rainbow-mode
                            smartparens
                            switch-window
                            undo-tree
