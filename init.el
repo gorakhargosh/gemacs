@@ -231,7 +231,6 @@
       save-place-file (concat user-emacs-directory "places")
       sentence-end-double-space nil
       shift-select-mode t            ;; Some of my users want this.
-      uniquify-buffer-name-style 'forward
       visible-bell t
       )
 
@@ -256,24 +255,24 @@
 (cua-mode t)                         ;; Rectangular selections are awesome.
 (cua-selection-mode nil)             ;; No shift-arrow style marking.
 
+;; Use unique buffer names.
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+
 ;; TODO(yesudeep): Do we need this now that we have persp-mode?
 ;;
 ;; (progn
 ;;   (setq desktop-dirname config-dir
-
 ;;         desktop-enable t
-;;         desktop-restore-eager 5
-;;         desktop-load-locked-desktop t
 ;;         desktop-files-not-to-save "^$"  ;; Reload tramp paths.
+;;         desktop-load-locked-desktop t
+;;         desktop-restore-eager 5
 ;;         desktop-save 'if-exists
 ;;         )
 ;;   (desktop-save-mode t)           ;; Save sessions.
 ;;   (desktop-load-default)          ;; Load the desktop on startup.
 ;;   )
 
-;; Better buffer names.
-(require 'uniquify)
-;; (setq uniquify-buffer-name-style 'reverse)
 
 ;; ----------------------------------------------------------------------
 ;; Backups.
@@ -288,10 +287,8 @@
 ;; (setq backup-directory-alist `(("." . "~/.saves")))
 ;; (setq backup-by-copying nil)
 ;; (setq make-backup-files nil)             ;; No backup files ~
-(setq backup-directory-alist
-          `((".*" . "~/.emacs.d/saves")))
-(setq auto-save-file-name-transforms
-      `((".*" "~/.emacs.d/saves" t)))
+(setq backup-directory-alist `((".*" . "~/.emacs.d/saves")))
+(setq auto-save-file-name-transforms `((".*" "~/.emacs.d/saves" t)))
 
 ;; ----------------------------------------------------------------------
 ;; Fonts
@@ -356,7 +353,9 @@
 (require 're-builder)
 (setq reb-re-syntax 'string)
 
+;; -----------------------------------------------------------------------------
 ;; Configure pairs of characters and parenthese matching.
+;;
 (require 'smartparens)
 (require 'smartparens-config)
 (progn
@@ -369,7 +368,6 @@
 
 ;; (require 'rainbow-delimiters)
 ;; (global-rainbow-delimiters-mode)
-
 
 ;; Enable this if you need it.
 ;; (add-hook 'prog-mode-hook '(lambda () (rainbow-mode)))
@@ -421,7 +419,7 @@
 ;; ----------------------------------------------------------------------
 (require 'projectile)
 (projectile-global-mode) ;; Enable in all buffers.
-;; (set projectile-enable-caching t) ;; It's not automatic.
+(setq projectile-enable-caching t) ;; It's not automatic.
 
 ;; ----------------------------------------------------------------------
 ;; File and directory navigation.
