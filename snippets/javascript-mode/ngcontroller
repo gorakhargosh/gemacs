@@ -22,7 +22,7 @@ ${1:ns}.${2:$$(capitalize yas/text)} = function($scope) {
   this.scope_ = $scope;
   this.scope_['$2'] = this;
 };
-var Ctrl = $1.$2;
+var $2 = $1.$2;
 
 
 /**
@@ -30,6 +30,6 @@ var Ctrl = $1.$2;
  *
  * @const {string}
  */
-Ctrl.NG_NAME = '$1.$2';
+$2.NG_NAME = '$1.$2';
 
 });  // goog.scope

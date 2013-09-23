@@ -32,7 +32,7 @@ ${1:ns}.${2:$$(capitalize yas/text)} = function() {
     'link': $1.$2.link_
   };
 };
-var Directive = $1.$2;
+var $2 = $1.$2;
 
 
 /**
@@ -40,7 +40,7 @@ var Directive = $1.$2;
  *
  * @const {string}
  */
-Directive.NG_NAME = '$2';
+$2.NG_NAME = '$2';
 
 
 /**
@@ -48,8 +48,8 @@ Directive.NG_NAME = '$2';
  *
  * @const {!angular.Module}
  */
-Directive.NG_MODULE = angular.module(Directive.NG_NAME, []).
-    directive(Directive.NG_NAME, Directive);
+$2.NG_MODULE = angular.module($2.NG_NAME, []).
+    directive($2.NG_NAME, $2);
 
 
 /**
@@ -62,7 +62,7 @@ Directive.NG_MODULE = angular.module(Directive.NG_NAME, []).
  * @param {Function} controller The controller associated with the directive.
  * @private
  */
-Directive.link_ = function(scope, element, attributes, controller) {
+$2.link_ = function(scope, element, attributes, controller) {
 
 };
 
@@ -76,7 +76,7 @@ Directive.link_ = function(scope, element, attributes, controller) {
  * @param {Function} transclude A transclude linking function.
  * @private
  */
-Directive.compile_ = function(tElement, tAttributes, transclude) {
+$2.compile_ = function(tElement, tAttributes, transclude) {
 
 };
 
@@ -90,11 +90,11 @@ Directive.compile_ = function(tElement, tAttributes, transclude) {
  * @ngInject
  * @private
  */
-Directive.Controller_ = function($scope) {
+$2.Controller_ = function($scope) {
   /** @private {!angular.Scope} */
   this.scope_ = $scope;
   this.scope_['$2Ctrl'] = this;
 };
-var Ctrl = Directive.Controller_;
+var Controller = $2.Controller_;
 
 });  // goog.scope
