@@ -1024,12 +1024,12 @@ compilation output."
 (eval-after-load "auto-complete"
   '(add-to-list 'ac-modes 'nrepl-mode))
 
-(defun goog/ac/set-as-completion-at-point-fn ()
+(defun goog/config/set-ac-as-completion-at-point-fn ()
   (setq completion-at-point-functions '(auto-complete)))
-(add-hook 'auto-complete-mode-hook 'goog/ac/set-as-completion-at-point-fn)
+(add-hook 'auto-complete-mode-hook 'goog/config/set-ac-as-completion-at-point-fn)
 
-(add-hook 'nrepl-mode-hook 'goog/ac/set-as-completion-at-point-fn)
-(add-hook 'nrepl-interaction-mode-hook 'goog/ac/set-as-completion-at-point-fn)
+(add-hook 'nrepl-mode-hook 'goog/config/set-ac-as-completion-at-point-fn)
+(add-hook 'nrepl-interaction-mode-hook 'goog/config/set-ac-as-completion-at-point-fn)
 (define-key nrepl-interaction-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
 
 ;; ======================================================================
