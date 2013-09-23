@@ -1126,7 +1126,10 @@ compilation output."
 (global-set-key [(meta f2)] 'highlight-symbol-prev)
 
 ;; Search, search, search.
-(global-set-key [(f7)] 'multi-occur-in-this-mode) ;; Find in all buffers.
+(global-set-key [(f5)] 'ack-and-a-half-find-file)
+(global-set-key [(f7)] 'ack-and-a-half)
+(global-set-key [(shift f7)] 'ack-and-a-half-same)
+;; (global-set-key [(shift f7)] 'multi-occur-in-this-mode) ;; Find in all buffers.
 (global-set-key [(meta o)] 'ido-goto-symbol)     ;; Jump to symbol.
 
 ;; Transparency.
