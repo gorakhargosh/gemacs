@@ -34,4 +34,5 @@
       '(
         iedit-mode
         isearch-other-control-char
+        sp--self-insert-command
         ))
