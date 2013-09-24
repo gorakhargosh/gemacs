@@ -456,9 +456,9 @@
      ;; Display ido results vertically, rather than horizontally.
      ;; From the Emacs wiki.
      (setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
-     (defun goog/config/ido-mode/disable-line-trucation ()
+     (defun goog/config/ido-mode/disable-line-truncation ()
        (set (make-local-variable 'truncate-lines) nil))
-     (add-hook 'ido-minibuffer-setup-hook 'goog/config/ido-mode/disable-line-trucation)
+     (add-hook 'ido-minibuffer-setup-hook 'goog/config/ido-mode/disable-line-truncation)
      (global-set-key [(control tab)] 'ido-switch-buffer)
 
      (defun goog/config/ido-mode/cycle-with-up-and-down-arrow-keys ()
