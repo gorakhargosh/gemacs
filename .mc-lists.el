@@ -24,6 +24,7 @@
         paredit-newline
         paredit-semicolon
         paredit-splice-sexp-killing-backward
+        python-indent-dedent-line-backspace
         python-indent-electric-colon
         sh-assignment
         sp--cua-replace-region
