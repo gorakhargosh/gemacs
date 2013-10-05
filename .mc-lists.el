@@ -12,6 +12,7 @@
         cua-delete-region
         cua-paste
         delete-indentation
+        eval-print-last-sexp
         go-mode-insert-and-indent
         insert-blank-line-below
         isearch-delete-char
@@ -24,6 +25,7 @@
         paredit-newline
         paredit-semicolon
         paredit-splice-sexp-killing-backward
+        python-indent-dedent-line-backspace
         python-indent-electric-colon
         sh-assignment
         sp--cua-replace-region

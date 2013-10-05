@@ -782,10 +782,21 @@ immediately."
                 ("\\.js$" . js2-mode)
                 ("\\.json$" . js2-mode)
 
+                ;; SQL mode.
+                ;; ("\\.mysql$" . sql-mode)
+
                 ;; Configuration files.
                 ("\\(?:\\.gitconfig\\|\\.gitmodules\\|config\\)$" . conf-mode)
                 )
               auto-mode-alist))
+
+;; -----------------------------------------------------------------------------
+;; SQL editing.
+;; -----------------------------------------------------------------------------
+(add-to-list 'auto-mode-alist
+             '("\\.mysql\\'" . (lambda ()
+                                 (sql-mode)
+                                 (sql-set-product 'mysql))))
 
 ;; ----------------------------------------------------------------------
 ;; IELM.
