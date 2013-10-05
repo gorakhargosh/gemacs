@@ -12,6 +12,7 @@
         cua-delete-region
         cua-paste
         delete-indentation
+        eval-print-last-sexp
         go-mode-insert-and-indent
         insert-blank-line-below
         isearch-delete-char
