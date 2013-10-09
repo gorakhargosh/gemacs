@@ -299,12 +299,55 @@
 ;; ----------------------------------------------------------------------
 ;; Fonts
 ;; ----------------------------------------------------------------------
+
+(setq preferred-fonts
+      '(
+        ;; Droid Sans Mono: quite nice.
+        ;; 15 pixels total height at 10 point.  Clear & crisp.
+        ;; (e.g. http://www.fontex.org/download/Droid-sans-mono.ttf)
+        "Droid Sans Mono Dotted-13"
+        "Droid Sans Mono-13"
+
+        ;; Monaco is available on Mac OS X.
+        "Monaco-13"
+
+        ;; Ubuntu Linux has this.
+        "Ubuntu Mono-18"
+
+        ;; Consolas: download installer from Microsoft.
+        ;; Quite beautiful and renders nicely, but a little light.
+        ;; Pretty similar to Droid Sans Mono.
+        ;; The slanted verticals on the capital M annoy me a little.
+        ;; (16 pixels height)
+        "Consolas-10.5"
+
+        ;; Inconsolata: lots of people like this.
+        ;; http://www.levien.com/type/myfonts/inconsolata.html:
+        ;; about same size as Consolas-10.5, but thicker and less leading
+        ;; (17 pixels height) and not as smooth lines.  Feels chunky.
+        "Inconsolata-12"
+
+        ;; default
+        "Courier New-10.5"))
+
+(defun find-first-font (list)
+  (cond ((null list) nil)
+        ((x-list-fonts (car list))
+         (message (concat "Using font " (car list)))
+         (car list))
+        (t                              ; recurse
+         (find-first-font (cdr list)))
+        ))
+
 (when window-system
+  ;; set default font attributes (for all frames)
+  (set-face-attribute 'default nil :font (find-first-font preferred-fonts))
   (when (goog/platform/is-darwin-p)
     ;; Monaco is clean. The default is too small in the GUI.
-    (set-face-font 'default "Monaco-13")
+    ;; (set-face-font 'default "Monaco-13")
     ;; Mac OS X-specific font anti-aliasing.
-    (setq mac-allow-anti-aliasing t)))
+    (setq mac-allow-anti-aliasing t))
+  )
 
 ;; Scroll faster.
 (setq mouse-wheel-scroll-amount '(7 ((shift) . 1) ((control) . nil)))
