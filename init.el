@@ -305,8 +305,8 @@
         ;; Droid Sans Mono: quite nice.
         ;; 15 pixels total height at 10 point.  Clear & crisp.
         ;; (e.g. http://www.fontex.org/download/Droid-sans-mono.ttf)
-        "Droid Sans Mono Dotted-13"
-        "Droid Sans Mono-13"
+        "Droid Sans Mono Dotted-14"
+        "Droid Sans Mono-14"
 
         ;; Monaco is available on Mac OS X.
         "Monaco-13"
