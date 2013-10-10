@@ -169,6 +169,7 @@
    yasnippet
    ;; coffee-mode
    magit
+   diff-hl
    fill-column-indicator
    powerline
    expand-region
@@ -635,8 +636,8 @@ immediately."
 
 (autoload 'move-text-up "move-text" nil t)
 (autoload 'move-text-down "move-text" nil t)
-(global-set-key [M-S-up] 'move-text-up)
-(global-set-key [M-S-down] 'move-text-down)
+(global-set-key [M-s-up] 'move-text-up)
+(global-set-key [M-s-down] 'move-text-down)
 
 ;; Need to test this properly.
 ;; Disabled because it causes Emacs to hang or misbehave.
@@ -692,11 +693,15 @@ immediately."
 (defun goog/config/highlight-symbol-mode/setup ()
   (when window-system
     (highlight-symbol-mode)
-    (setq highlight-symbol-idle-delay 0.1)))
+    (setq highlight-symbol-idle-delay 0.1)
+    ))
 (add-hook 'text-mode-hook 'goog/config/highlight-symbol-mode/setup)
 (add-hook 'prog-mode-hook 'goog/config/highlight-symbol-mode/setup)
 ;; Why does js2-mode not inherit from prog-mode?
 (add-hook 'js2-mode-hook 'goog/config/highlight-symbol-mode/setup)
+
+;; global diff highlight mode.
+(global-diff-hl-mode)
 
 ;; ----------------------------------------------------------------------
 ;; Mark and edit multiple regions.
