@@ -169,6 +169,7 @@
    yasnippet
    ;; coffee-mode
    magit
+   diff-hl
    fill-column-indicator
    powerline
    expand-region
@@ -300,15 +301,16 @@
 ;; Fonts
 ;; ----------------------------------------------------------------------
 
-(setq preferred-fonts
+;; Fonts appear to be larger on Linux workstations.
+(setq preferred-linux-fonts
       '(
-        ;; Droid Sans Mono: quite nice.
-        ;; 15 pixels total height at 10 point.  Clear & crisp.
-        ;; (e.g. http://www.fontex.org/download/Droid-sans-mono.ttf)
-        "Droid Sans Mono Dotted-14"
-        "Droid Sans Mono-14"
+        ;; Droid Sans Mono: quite nice. 15 pixels total height at 10 point.
+        ;; Clear & crisp. (e.g.
+        ;; http://www.fontex.org/download/Droid-sans-mono.ttf)
+        "Droid Sans Mono Dotted-10"
+        "Droid Sans Mono-10"
 
-        ;; Monaco is available on Mac OS X.
+        ;; Monaco is available on Mac OS X and some of my Linux workstations.
         "Monaco-13"
 
         ;; Ubuntu Linux has this.
@@ -322,9 +324,39 @@
         "Consolas-10.5"
 
         ;; Inconsolata: lots of people like this.
-        ;; http://www.levien.com/type/myfonts/inconsolata.html:
-        ;; about same size as Consolas-10.5, but thicker and less leading
-        ;; (17 pixels height) and not as smooth lines.  Feels chunky.
+        ;; http://www.levien.com/type/myfonts/inconsolata.html: about same size
+        ;; as Consolas-10.5, but thicker and less leading (17 pixels height) and
+        ;; not as smooth lines. Feels chunky.
+        "Inconsolata-12"
+
+        ;; default
+        "Courier New-10.5"))
+
+;; Mac OS X tends to show smaller fonts.
+(setq preferred-mac-fonts
+      '(
+        ;; Droid Sans Mono: quite nice. 15 pixels total height at 10 point.
+        ;; Clear & crisp. (e.g.
+        ;; http://www.fontex.org/download/Droid-sans-mono.ttf)
+        "Droid Sans Mono Dotted-14"
+        "Droid Sans Mono-14"
+
+        ;; Monaco is available on Mac OS X.
+        "Monaco-13"
+
+        ;; Ubuntu Linux has this but my Mac also does.
+        "Ubuntu Mono-18"
+
+        ;; Consolas: download installer from Microsoft. Quite beautiful and
+        ;; renders nicely, but a little light. Pretty similar to Droid Sans
+        ;; Mono. The slanted verticals on the capital M annoy me a little. (16
+        ;; pixels height)
+        "Consolas-10.5"
+
+        ;; Inconsolata: lots of people like this.
+        ;; http://www.levien.com/type/myfonts/inconsolata.html: about same size
+        ;; as Consolas-10.5, but thicker and less leading (17 pixels height) and
+        ;; not as smooth lines. Feels chunky.
         "Inconsolata-12"
 
         ;; default
@@ -341,12 +373,17 @@
 
 (when window-system
   ;; set default font attributes (for all frames)
-  (set-face-attribute 'default nil :font (find-first-font preferred-fonts))
   (when (goog/platform/is-darwin-p)
     ;; Monaco is clean. The default is too small in the GUI.
     ;; (set-face-font 'default "Monaco-13")
     ;; Mac OS X-specific font anti-aliasing.
+    (set-face-attribute 'default nil :font (find-first-font preferred-mac-fonts))
     (setq mac-allow-anti-aliasing t))
+  (when (goog/platform/is-linux-p)
+    ;; Monaco is clean. The default is too small in the GUI.
+    ;; (set-face-font 'default "Monaco-13")
+    ;; Mac OS X-specific font anti-aliasing.
+    (set-face-attribute 'default nil :font (find-first-font preferred-linux-fonts)))
   )
 
 ;; Scroll faster.
@@ -599,8 +636,8 @@ immediately."
 
 (autoload 'move-text-up "move-text" nil t)
 (autoload 'move-text-down "move-text" nil t)
-(global-set-key [M-S-up] 'move-text-up)
-(global-set-key [M-S-down] 'move-text-down)
+(global-set-key [M-s-up] 'move-text-up)
+(global-set-key [M-s-down] 'move-text-down)
 
 ;; Need to test this properly.
 ;; Disabled because it causes Emacs to hang or misbehave.
@@ -656,11 +693,15 @@ immediately."
 (defun goog/config/highlight-symbol-mode/setup ()
   (when window-system
     (highlight-symbol-mode)
-    (setq highlight-symbol-idle-delay 0.1)))
+    (setq highlight-symbol-idle-delay 0.1)
+    ))
 (add-hook 'text-mode-hook 'goog/config/highlight-symbol-mode/setup)
 (add-hook 'prog-mode-hook 'goog/config/highlight-symbol-mode/setup)
 ;; Why does js2-mode not inherit from prog-mode?
 (add-hook 'js2-mode-hook 'goog/config/highlight-symbol-mode/setup)
+
+;; global diff highlight mode.
+(global-diff-hl-mode)
 
 ;; ----------------------------------------------------------------------
 ;; Mark and edit multiple regions.
