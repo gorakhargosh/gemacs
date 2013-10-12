@@ -1089,8 +1089,6 @@ compilation output."
 ;; ----------------------------------------------------------------------
 ;; Python.
 ;; ----------------------------------------------------------------------
-(setq jedi:setup-keys t
-      jedi:complete-on-dot t)
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 (add-hook 'python-mode-hook 'goog/config/python-mode/setup)
 (font-lock-add-keywords
@@ -1114,9 +1112,6 @@ compilation output."
 
   ;; Auto-complete configuration.
   (setq ac-auto-start 0)
-
-  ;; Configure jedi.
-  (jedi:setup)
   )
 
 ;; ----------------------------------------------------------------------
