@@ -14,9 +14,10 @@
     ;;   ;; (set-face-font 'default "Consolas-14")
     ;;   (set-face-font 'default "Monaco-10")
     ;;   )
-    (when (goog/platform/is-darwin-p)
-      (set-face-font 'default "Monaco-13")
-      )
+    ;; (when (goog/platform/is-darwin-p)
+    ;;   (set-face-font 'default "Monaco-13")
+    ;;   ;; (set-face-font 'default "Droid Sans Mono-13")
+    ;;   )
 
     ;; Transparency. Set this before setting up your theme. The theme may
     ;; configure itself to use better colors for transparency.
