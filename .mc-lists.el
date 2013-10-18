@@ -12,6 +12,7 @@
         cua-delete-region
         cua-paste
         delete-indentation
+        duplicate-current-line-or-region
         eval-print-last-sexp
         go-mode-insert-and-indent
         insert-blank-line-below
@@ -28,6 +29,8 @@
         python-indent-dedent-line-backspace
         python-indent-electric-colon
         sh-assignment
+        shift-right
+        smex
         sp--cua-replace-region
         yas-expand
         ))

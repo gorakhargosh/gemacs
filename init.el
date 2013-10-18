@@ -1208,6 +1208,9 @@ compilation output."
 ;; Helm.
 (global-set-key (kbd "C-c h") 'helm-mini)
 
+;; Switch buffer.
+(global-set-key (kbd "C-x o") 'switch-window)
+
 ;; Evil numbers.
 (global-set-key (kbd "M-_") 'evil-numbers/dec-at-pt)
 (global-set-key (kbd "M-+") 'evil-numbers/inc-at-pt)
@@ -1308,3 +1311,4 @@ compilation output."
    ))
 
 ;;; init.el ends here
+(put 'downcase-region 'disabled nil)
