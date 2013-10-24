@@ -109,8 +109,8 @@
                            nrepl
                            persp-mode
                            rainbow-delimiters
-                           sql-indent
                            smartparens
+                           sql-indent
                            switch-window
                            undo-tree
                            yaml-mode
