@@ -165,17 +165,17 @@
 (setq
  goog:el-get-packages
  '(el-get
-   auto-complete
-   yasnippet
    ;; coffee-mode
-   magit
-   diff-hl
-   fill-column-indicator
-   powerline
-   expand-region
-   multiple-cursors
-   js2-refactor
    ;; projectile
+   auto-complete
+   diff-hl
+   expand-region
+   fill-column-indicator
+   js2-refactor
+   magit
+   multiple-cursors
+   powerline
+   yasnippet
    ))
 ;; Synchronize el-get packages.
 (setq goog:el-get-packages
