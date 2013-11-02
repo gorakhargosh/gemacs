@@ -56,6 +56,7 @@
       goog-network-dir (format "~/.%s/emacs.d/" goog-network-name)
       goog-network-re ".*[.]corp[.]google[.]com")
 
+
 ;; ======================================================================
 ;; Platform detection.
 ;; ======================================================================
@@ -105,8 +106,9 @@
                            js2-mode
                            key-chord
                            melpa
+                           cider
                            nav
-                           nrepl
+                           ;; nrepl
                            persp-mode
                            rainbow-delimiters
                            smartparens
@@ -1117,22 +1119,32 @@ compilation output."
 ;; ----------------------------------------------------------------------
 ;; Clojure.
 ;; ----------------------------------------------------------------------
-(require 'nrepl)
-(add-hook 'nrepl-interaction-mode-hook
-          'nrepl-turn-on-eldoc-mode)
+(require 'cider)
+(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+(setq cider-repl-wrap-history t)
+(setq cider-repl-history-size 9999) ; the default is 500
+(add-hook 'cider-repl-mode-hook 'subword-mode)
+(add-hook 'cider-repl-mode-hook 'smartparens-strict-mode)
+(add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
 (require 'ac-nrepl)
-(add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
-(add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
-(eval-after-load "auto-complete"
-  '(add-to-list 'ac-modes 'nrepl-mode))
+(add-hook 'cider-repl-mode-hook 'ac-nrepl-setup)
 
-(defun goog/config/set-ac-as-completion-at-point-fn ()
-  (setq completion-at-point-functions '(auto-complete)))
-(add-hook 'auto-complete-mode-hook 'goog/config/set-ac-as-completion-at-point-fn)
+;; (require 'nrepl)
+;; (add-hook 'nrepl-interaction-mode-hook
+;;           'nrepl-turn-on-eldoc-mode)
+;; (require 'ac-nrepl)
+;; (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+;; (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
+;; (eval-after-load "auto-complete"
+;;   '(add-to-list 'ac-modes 'nrepl-mode))
 
-(add-hook 'nrepl-mode-hook 'goog/config/set-ac-as-completion-at-point-fn)
-(add-hook 'nrepl-interaction-mode-hook 'goog/config/set-ac-as-completion-at-point-fn)
-(define-key nrepl-interaction-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
+;; (defun goog/config/set-ac-as-completion-at-point-fn ()
+;;   (setq completion-at-point-functions '(auto-complete)))
+;; (add-hook 'auto-complete-mode-hook 'goog/config/set-ac-as-completion-at-point-fn)
+
+;; (add-hook 'nrepl-mode-hook 'goog/config/set-ac-as-completion-at-point-fn)
+;; (add-hook 'nrepl-interaction-mode-hook 'goog/config/set-ac-as-completion-at-point-fn)
+;; (define-key nrepl-interaction-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
 
 ;; ======================================================================
 ;; Keyboard bindings.
@@ -1230,6 +1242,12 @@ compilation output."
 
 ;; Transparency.
 (global-set-key (kbd "C-c t") 'toggle-transparency)
+
+;; Org mode key bindings
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
 
 ;; ----------------------------------------------------------------------
 ;; Key chords
