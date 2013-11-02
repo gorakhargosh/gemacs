@@ -65,6 +65,7 @@
   (interactive)
   (string-equal system-type "darwin"))
 
+
 (defun goog/platform/is-linux-p ()
   "Determines whether the system is GNU/Linux-based."
   (interactive)
@@ -83,14 +84,13 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar default-packages '(
-                           ;; maxframe
-                           ;; paredit
-                           ;; rainbow-mode
                            ac-nrepl
                            ac-slime
                            ace-jump-mode
                            ack-and-a-half
                            auto-compile
+                           cider
+                           clojure-cheatsheet
                            clojure-mode
                            clojure-test-mode
                            clojurescript-mode
@@ -106,11 +106,10 @@
                            js2-mode
                            key-chord
                            melpa
-                           cider
                            nav
-                           ;; nrepl
                            persp-mode
                            rainbow-delimiters
+                           rcirc-color
                            smartparens
                            sql-indent
                            switch-window
@@ -167,8 +166,6 @@
 (setq
  goog:el-get-packages
  '(el-get
-   ;; coffee-mode
-   ;; projectile
    auto-complete
    diff-hl
    expand-region
@@ -177,6 +174,7 @@
    magit
    multiple-cursors
    powerline
+   transpose-frame
    yasnippet
    ))
 ;; Synchronize el-get packages.
@@ -452,6 +450,7 @@
   ;;       show-paren-style 'expression
   ;;       )
   (smartparens-global-mode t)
+  (show-smartparens-global-mode +1)
   )
 
 ;; (require 'rainbow-delimiters)
@@ -501,6 +500,11 @@
   "Cleans up whitespace on `kill-line'."
   (if (not (bolp))
       (delete-region (point) (progn (skip-chars-forward " \t") (point)))))
+
+;; -----------------------------------------------------------------------------
+;; RCIRC
+;; -----------------------------------------------------------------------------
+;; (require 'rcirc-color)
 
 ;; ----------------------------------------------------------------------
 ;; Project navigation.
