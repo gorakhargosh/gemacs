@@ -176,6 +176,7 @@
    powerline
    transpose-frame
    yasnippet
+   go-autocomplete
    ))
 ;; Synchronize el-get packages.
 (setq goog:el-get-packages
