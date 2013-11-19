@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        ace-jump-mode
         autopair-insert-opening
         autopair-insert-or-skip-quote
         autopair-skip-close-maybe
@@ -32,6 +33,7 @@
         shift-right
         smex
         sp--cua-replace-region
+        sp-remove-active-pair-overlay
         yas-expand
         ))
 
