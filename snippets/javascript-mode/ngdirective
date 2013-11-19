@@ -35,11 +35,7 @@ ${1:ns}.${2:$$(capitalize yas/text)} = function() {
 var $2 = $1.$2;
 
 
-/**
- * Name used by AngularJS dependency injector.
- *
- * @const {string}
- */
+/** Name used by AngularJS dependency injector. */
 $2.NG_NAME = '$2';
 
 
