@@ -56,6 +56,7 @@
       goog-network-dir (format "~/.%s/emacs.d/" goog-network-name)
       goog-network-re ".*[.]corp[.]google[.]com")
 
+
 ;; ======================================================================
 ;; Platform detection.
 ;; ======================================================================
@@ -63,6 +64,7 @@
   "Determines whether the system is darwin-based (Mac OS X)"
   (interactive)
   (string-equal system-type "darwin"))
+
 
 (defun goog/platform/is-linux-p ()
   "Determines whether the system is GNU/Linux-based."
@@ -82,14 +84,13 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar default-packages '(
-                           ;; maxframe
-                           ;; paredit
-                           ;; rainbow-mode
                            ac-nrepl
                            ac-slime
                            ace-jump-mode
                            ack-and-a-half
                            auto-compile
+                           cider
+                           clojure-cheatsheet
                            clojure-mode
                            clojure-test-mode
                            clojurescript-mode
@@ -106,11 +107,11 @@
                            key-chord
                            melpa
                            nav
-                           nrepl
                            persp-mode
                            rainbow-delimiters
-                           sql-indent
+                           rcirc-color
                            smartparens
+                           sql-indent
                            switch-window
                            undo-tree
                            yaml-mode
@@ -166,16 +167,16 @@
  goog:el-get-packages
  '(el-get
    auto-complete
-   yasnippet
-   ;; coffee-mode
-   magit
    diff-hl
-   fill-column-indicator
-   powerline
    expand-region
-   multiple-cursors
+   fill-column-indicator
    js2-refactor
-   ;; projectile
+   magit
+   multiple-cursors
+   powerline
+   transpose-frame
+   yasnippet
+   go-autocomplete
    ))
 ;; Synchronize el-get packages.
 (setq goog:el-get-packages
@@ -450,6 +451,7 @@
   ;;       show-paren-style 'expression
   ;;       )
   (smartparens-global-mode t)
+  (show-smartparens-global-mode +1)
   )
 
 ;; (require 'rainbow-delimiters)
@@ -499,6 +501,11 @@
   "Cleans up whitespace on `kill-line'."
   (if (not (bolp))
       (delete-region (point) (progn (skip-chars-forward " \t") (point)))))
+
+;; -----------------------------------------------------------------------------
+;; RCIRC
+;; -----------------------------------------------------------------------------
+;; (require 'rcirc-color)
 
 ;; ----------------------------------------------------------------------
 ;; Project navigation.
@@ -1117,22 +1124,32 @@ compilation output."
 ;; ----------------------------------------------------------------------
 ;; Clojure.
 ;; ----------------------------------------------------------------------
-(require 'nrepl)
-(add-hook 'nrepl-interaction-mode-hook
-          'nrepl-turn-on-eldoc-mode)
+(require 'cider)
+(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+(setq cider-repl-wrap-history t)
+(setq cider-repl-history-size 9999) ; the default is 500
+(add-hook 'cider-repl-mode-hook 'subword-mode)
+(add-hook 'cider-repl-mode-hook 'smartparens-strict-mode)
+(add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
 (require 'ac-nrepl)
-(add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
-(add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
-(eval-after-load "auto-complete"
-  '(add-to-list 'ac-modes 'nrepl-mode))
+(add-hook 'cider-repl-mode-hook 'ac-nrepl-setup)
 
-(defun goog/config/set-ac-as-completion-at-point-fn ()
-  (setq completion-at-point-functions '(auto-complete)))
-(add-hook 'auto-complete-mode-hook 'goog/config/set-ac-as-completion-at-point-fn)
+;; (require 'nrepl)
+;; (add-hook 'nrepl-interaction-mode-hook
+;;           'nrepl-turn-on-eldoc-mode)
+;; (require 'ac-nrepl)
+;; (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+;; (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
+;; (eval-after-load "auto-complete"
+;;   '(add-to-list 'ac-modes 'nrepl-mode))
 
-(add-hook 'nrepl-mode-hook 'goog/config/set-ac-as-completion-at-point-fn)
-(add-hook 'nrepl-interaction-mode-hook 'goog/config/set-ac-as-completion-at-point-fn)
-(define-key nrepl-interaction-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
+;; (defun goog/config/set-ac-as-completion-at-point-fn ()
+;;   (setq completion-at-point-functions '(auto-complete)))
+;; (add-hook 'auto-complete-mode-hook 'goog/config/set-ac-as-completion-at-point-fn)
+
+;; (add-hook 'nrepl-mode-hook 'goog/config/set-ac-as-completion-at-point-fn)
+;; (add-hook 'nrepl-interaction-mode-hook 'goog/config/set-ac-as-completion-at-point-fn)
+;; (define-key nrepl-interaction-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
 
 ;; ======================================================================
 ;; Keyboard bindings.
@@ -1230,6 +1247,12 @@ compilation output."
 
 ;; Transparency.
 (global-set-key (kbd "C-c t") 'toggle-transparency)
+
+;; Org mode key bindings
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
 
 ;; ----------------------------------------------------------------------
 ;; Key chords
