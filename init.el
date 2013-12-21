@@ -75,6 +75,57 @@
 ;; ======================================================================
 ;; Package management.
 ;; ======================================================================
+
+;; ----------------------------------------------------------------------
+;; El-get
+;; ----------------------------------------------------------------------
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (let (el-get-master-branch)
+      (goto-char (point-max))
+      (eval-print-last-sexp))))
+(setq
+ el-get-sources
+ '(el-get
+   (:name smex              ;; a better (ido-like) M-x
+          :after (progn
+                   (setq smex-save-file "~/.emacs.d/.smex-items")
+                   (global-set-key (kbd "M-x") 'smex)
+                   (global-set-key (kbd "M-X") 'smex-major-mode-commands)))
+   (:name go-mode
+          :website "http://github.com/dominikh/go-mode.el#readme"
+          :description "An improved go-mode."
+          :type github
+          :pkgname "dominikh/go-mode.el"
+          :post-init (progn
+                       (require 'go-mode)))
+   ))
+(setq
+ goog:el-get-packages
+ '(auto-complete
+   diff-hl
+   expand-region
+   fill-column-indicator
+   go-autocomplete
+   js2-refactor
+   magit
+   multiple-cursors
+   powerline
+   ))
+(setq goog:el-get-packages
+      (append
+       goog:el-get-packages
+       (loop for src in el-get-sources collect (el-get-source-name src))))
+
+(el-get 'sync goog:el-get-packages)
+
+;; ----------------------------------------------------------------------
+;; package.el
+;; ----------------------------------------------------------------------
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -115,68 +166,16 @@
                            switch-window
                            undo-tree
                            yaml-mode
+                           yasnippet
                            zencoding-mode
                            ))
 (dolist (p default-packages)
   (when (not (package-installed-p p))
     (package-install p)))
 
-;; ----------------------------------------------------------------------
-;; Installs el-get.
-;; ----------------------------------------------------------------------
-;; El-get manages packages for GNU Emacs and can install, load, configure
-;; and uninstall packages for you easily.
-;;
-;; @see http://github.com/dimitri/el-get/
-;; @see http://www.emacswiki.org/emacs/el-get
-;; ----------------------------------------------------------------------
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-
-(unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-    (let (el-get-master-branch)
-      (goto-char (point-max))
-      (eval-print-last-sexp))))
-(setq
- el-get-sources
- '(el-get
-   (:name smex              ;; a better (ido-like) M-x
-          :after (progn
-                   (setq smex-save-file "~/.emacs.d/.smex-items")
-                   (global-set-key (kbd "M-x") 'smex)
-                   (global-set-key (kbd "M-X") 'smex-major-mode-commands)))
-   (:name go-mode
-          :website "http://github.com/dominikh/go-mode.el#readme"
-          :description "An improved go-mode."
-          :type github
-          :pkgname "dominikh/go-mode.el"
-          :post-init (progn
-                       (require 'go-mode)))
-   ))
-(setq
- goog:el-get-packages
- '(el-get
-
-   auto-complete
-   diff-hl
-   expand-region
-   fill-column-indicator
-   go-autocomplete
-   js2-refactor
-   magit
-   multiple-cursors
-   powerline
-   transpose-frame
-   yasnippet
-   ))
-(setq goog:el-get-packages
-      (append
-       goog:el-get-packages
-       (loop for src in el-get-sources collect (el-get-source-name src))))
-
-(el-get 'sync goog:el-get-packages)
+;;------------------------------------------------------------------------------
+;; End package management.
+;;------------------------------------------------------------------------------
 
 ;; Autocompilation.
 (add-to-list 'load-path user-emacs-directory)
@@ -606,14 +605,14 @@ immediately."
 (global-set-key [M-s-down] 'move-text-down)
 
 ;; Need to test this properly.
-;; Disabled because it causes Emacs to hang or misbehave.
-;; (when window-system
-;;   (require 'fill-column-indicator)
-;;   (define-globalized-minor-mode global-fci-mode fci-mode
-;;     (lambda () (fci-mode 1)))
-;;   (global-fci-mode 1)
-;;   (setq fci-rule-color "red")
-;;   )
+(when window-system
+  (require 'fill-column-indicator)
+  (add-hook 'after-change-major-mode-hook 'fci-mode)
+  (define-globalized-minor-mode global-fci-mode fci-mode
+    (lambda () (fci-mode 1)))
+  (global-fci-mode 1)
+  (setq fci-rule-color "red")
+  )
 
 (autoload 'expand-region "expand-region" nil t)
 (autoload 'contract-region "expand-region" nil t)
@@ -1250,3 +1249,15 @@ compilation output."
    ))
 
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(persp-nil-name "none"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
