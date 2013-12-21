@@ -633,12 +633,6 @@ immediately."
 (global-set-key (kbd "M-8") 'er/expand-region)
 (global-set-key (kbd "M-7") 'er/contract-region)
 
-;; (autoload 'smart-forward "smart-forward" nil t)
-;; (global-set-key (kbd "M-<up>") 'smart-up)
-;; (global-set-key (kbd "M-<down>") 'smart-down)
-;; (global-set-key (kbd "M-<right>") 'smart-forward)
-;; (global-set-key (kbd "M-<left>") 'smart-backward)
-
 (require 'ace-jump-mode)
 (define-key global-map (kbd "C-c .") 'ace-jump-mode)
 
@@ -694,20 +688,10 @@ immediately."
 (global-set-key (kbd "C-, C-e") 'mc/edit-ends-of-lines)
 (global-set-key (kbd "C-, C-a") 'mc/edit-beginnings-of-lines)
 
-;; Cursor at mouse down.
-;; (global-unset-key (kbd "M-<down-mouse-1>"))
-;; (global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click)
-;; (global-set-key (kbd "s-<mouse-1>") 'mc/add-cursor-on-click)
-
-;; Rectangular region mode
-;; (global-set-key (kbd "C-, C-,") 'set-rectangular-region-anchor)
-
 ;; Mark more like this.
 (global-set-key (kbd "C-, C-;") 'mc/mark-all-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-;; (global-set-key (kbd "C-<") 'mc/mark-previous-word-like-this)
-;; (global-set-key (kbd "C->") 'mc/mark-next-word-like-this)
 (global-set-key (kbd "C-, C-h") 'mc/mark-all-symbols-like-this)
 (global-set-key (kbd "C-, C-d") 'mc/mark-all-symbols-like-this-in-defun)
 (global-set-key (kbd "C-, C-,") 'mc/mark-all-like-this-dwim)
@@ -722,14 +706,6 @@ immediately."
 ;; Auto-complete and snippets.
 ;; ======================================================================
 (require 'dabbrev)
-
-;; Conflicts bindings with iedit.
-;; (add-hook 'prog-mode-common-hook (lambda ()
-;;                                    (flyspell-prog-mode)))
-;; (add-hook 'js2-mode-hook (lambda ()
-;;                            (flyspell-prog-mode)))
-;; (setq flyspell-issue-message-flag nil)
-
 (require 'yasnippet)
 (setq yas-snippet-dirs
       '("~/.emacs.d/snippets"  ;; Our snippets.
