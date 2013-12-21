@@ -170,13 +170,13 @@
    diff-hl
    expand-region
    fill-column-indicator
+   go-autocomplete
    js2-refactor
    magit
    multiple-cursors
    powerline
    transpose-frame
    yasnippet
-   go-autocomplete
    ))
 ;; Synchronize el-get packages.
 (setq goog:el-get-packages
@@ -267,34 +267,6 @@
 (setq-default save-place t)
 (setq save-place-file (concat user-emacs-directory "places"))
 
-;; TODO(yesudeep): Do we need this now that we have persp-mode?
-;;
-;; (progn
-;;   (setq desktop-dirname user-emacs-directory
-;;         desktop-enable t
-;;         desktop-files-not-to-save "^$"  ;; Reload tramp paths.
-;;         desktop-load-locked-desktop t
-;;         desktop-restore-eager 5
-;;         desktop-save 'if-exists
-;;         )
-;;   (desktop-save-mode t)           ;; Save sessions.
-;;   (desktop-load-default)          ;; Load the desktop on startup.
-;;   )
-
-
-;; ----------------------------------------------------------------------
-;; Backups.
-;; ----------------------------------------------------------------------
-;; (setq backup-by-copying t             ;; don't clobber symlinks
-;;       backup-directory-alist
-;;       '(("." . "~/.emacs.d/saves"))   ;; don't litter my fs tree
-;;       delete-old-versions t
-;;       kept-new-versions 6
-;;       kept-old-versions 2
-;;       version-control t)              ;; use versioned backups
-;; (setq backup-directory-alist `(("." . "~/.saves")))
-;; (setq backup-by-copying nil)
-;; (setq make-backup-files nil)             ;; No backup files ~
 (setq backup-directory-alist `((".*" . "~/.emacs.d/saves")))
 (setq auto-save-file-name-transforms `((".*" "~/.emacs.d/saves" t)))
 
