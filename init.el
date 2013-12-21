@@ -315,7 +315,7 @@
         "Monaco-13"
 
         ;; Ubuntu Linux has this.
-        "Ubuntu Mono-18"
+        "Ubuntu Mono-12"
 
         ;; Consolas: download installer from Microsoft.
         ;; Quite beautiful and renders nicely, but a little light.
