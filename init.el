@@ -132,20 +132,13 @@
 ;; ----------------------------------------------------------------------
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
-(unless (require 'el-get nil t)
-  (url-retrieve
-   "https://raw.github.com/dimitri/el-get/master/el-get-install.el"
-   (lambda (s)
-     (let (el-get-master-branch)
-       (goto-char (point-max))
-       (eval-print-last-sexp)))))
-
-;; ----------------------------------------------------------------------
-;; El-get packages.
-;; ----------------------------------------------------------------------
-;; NOTE: Use el-get packages only if we do not have stable packages
-;; in elpa, melpa, marmalade.
-;; ----------------------------------------------------------------------
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (let (el-get-master-branch)
+      (goto-char (point-max))
+      (eval-print-last-sexp))))
 (setq
  el-get-sources
  '(el-get
@@ -162,10 +155,10 @@
           :post-init (progn
                        (require 'go-mode)))
    ))
-
 (setq
  goog:el-get-packages
  '(el-get
+
    auto-complete
    diff-hl
    expand-region
@@ -178,13 +171,14 @@
    transpose-frame
    yasnippet
    ))
-;; Synchronize el-get packages.
 (setq goog:el-get-packages
       (append
        goog:el-get-packages
        (loop for src in el-get-sources collect (el-get-source-name src))))
+
 (el-get 'sync goog:el-get-packages)
 
+;; Autocompilation.
 (add-to-list 'load-path user-emacs-directory)
 (require 'auto-compile)
 (auto-compile-on-load-mode 1)
@@ -480,13 +474,6 @@
 ;; (require 'rcirc-color)
 
 ;; ----------------------------------------------------------------------
-;; Project navigation.
-;; ----------------------------------------------------------------------
-;; (require 'projectile)
-;; (projectile-global-mode) ;; Enable in all buffers.
-;; (setq projectile-enable-caching t) ;; It's not automatic.
-
-;; ----------------------------------------------------------------------
 ;; File and directory navigation.
 ;; ----------------------------------------------------------------------
 (defun ibuffer-ido-find-file ()
@@ -658,7 +645,6 @@ immediately."
 (autoload 'ftf-find-file "find-things-fast" nil t)
 (autoload 'ftf-grepsource "find-things-fast" nil t)
 (global-set-key (kbd "C-x f") 'ftf-find-file)
-;; (global-set-key (kbd "C-x f") 'projectile-find-file)
 (global-set-key (kbd "<f6>") 'ftf-grepsource)
 
 ;; Highlight current symbol.
@@ -696,7 +682,6 @@ immediately."
 (global-set-key (kbd "C-, C-d") 'mc/mark-all-symbols-like-this-in-defun)
 (global-set-key (kbd "C-, C-,") 'mc/mark-all-like-this-dwim)
 (global-set-key (kbd "C-, C-r") 'mc/mark-all-in-region)
-
 
 (require 'sgml-mode)
 (autoload 'rename-sgml-tag "rename-sgml-tag" nil t)
@@ -788,9 +773,9 @@ immediately."
           'executable-make-buffer-file-executable-if-script-p)
 
 ;; Static analysis.
-(add-hook 'prog-mode-hook 'flycheck-mode)
-(add-hook 'go-mode-hook 'flycheck-mode)
-(add-hook 'text-mode-hook 'flycheck-mode)
+;; (add-hook 'prog-mode-hook 'flycheck-mode)
+;; (add-hook 'go-mode-hook 'flycheck-mode)
+;; (add-hook 'text-mode-hook 'flycheck-mode)
 
 ;; ----------------------------------------------------------------------
 ;; Define automatic mode detection for file types.
@@ -1004,17 +989,18 @@ immediately."
 
   (js2r-add-keybindings-with-prefix "C-c C-m"))
 
+
 ;; Tools for Javascript.
 (defun goog/config/js-mode/gjslint-buffer ()
   "Runs gjslint in strict mode on the current buffer."
   (interactive)
-  (compile (concat "gjslint --strict --unix_mode --closurized_namespaces=goog,appkit,hub,goa,jfk,bulletin,tvt,md " buffer-file-name)))
+  (compile (concat "gjslint --strict --unix_mode --closurized_namespaces=appkit,bulletin,cg,croc,goa,goog,hub,jfk,md,ooo,shub,tvt " buffer-file-name)))
 
 (defun goog/config/js-mode/gjslint-dir ()
   "Runs gjslint in strict mode on the parent directory of the file in the
 current buffer."
   (interactive)
-  (compile (concat "gjslint --strict --unix_mode --closurized_namespaces=goog,appkit,hub,goa,jfk,bulletin,tvt,md -r "
+  (compile (concat "gjslint --strict --unix_mode --closurized_namespaces=appkit,bulletin,cg,croc,goa,goog,hub,jfk,md,ooo,shub,tvt -r "
                    (file-name-directory buffer-file-name))))
 
 (defun goog/config/js-mode/fixjsstyle-buffer ()
@@ -1082,23 +1068,6 @@ compilation output."
 (require 'ac-nrepl)
 (add-hook 'cider-repl-mode-hook 'ac-nrepl-setup)
 
-;; (require 'nrepl)
-;; (add-hook 'nrepl-interaction-mode-hook
-;;           'nrepl-turn-on-eldoc-mode)
-;; (require 'ac-nrepl)
-;; (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
-;; (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
-;; (eval-after-load "auto-complete"
-;;   '(add-to-list 'ac-modes 'nrepl-mode))
-
-;; (defun goog/config/set-ac-as-completion-at-point-fn ()
-;;   (setq completion-at-point-functions '(auto-complete)))
-;; (add-hook 'auto-complete-mode-hook 'goog/config/set-ac-as-completion-at-point-fn)
-
-;; (add-hook 'nrepl-mode-hook 'goog/config/set-ac-as-completion-at-point-fn)
-;; (add-hook 'nrepl-interaction-mode-hook 'goog/config/set-ac-as-completion-at-point-fn)
-;; (define-key nrepl-interaction-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
-
 ;; ======================================================================
 ;; Keyboard bindings.
 ;; ======================================================================
@@ -1115,7 +1084,6 @@ compilation output."
 (global-set-key (kbd "s-]") 'shift-right)
 (global-set-key (kbd "s-[") 'shift-left)
 (global-set-key (kbd "RET") 'newline-and-indent)
-;; (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; ibuffer.
 (global-set-key [(f8)] 'ibuffer)
@@ -1282,4 +1250,3 @@ compilation output."
    ))
 
 ;;; init.el ends here
-(put 'downcase-region 'disabled nil)
