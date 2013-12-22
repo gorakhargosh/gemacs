@@ -491,7 +491,7 @@
      (ido-mode t)
      (eval-after-load "ido-ubiquitous"
        '(progn
-          (ido-ubiquitous t)
+          (ido-ubiquitous-mode t)
           ))
      (setq ido-save-directory-list-file (concat user-emacs-directory ".ido.last")
            ido-use-filename-at-point 'guess
@@ -568,7 +568,7 @@
   (interactive)
   ;; (load-file (concat user-emacs-directory "init.el"))
   (load-file (concat user-emacs-directory "init.el"))
-  (yas/reload-all))
+  (yas-reload-all))
 
 (defun goog/elisp/eval-after-init (form)
   "Add `(lambda () FORM)' to `after-init-hook'.
@@ -641,6 +641,9 @@ immediately."
 (global-set-key "\M-P" 'fastnav-sprint-backward)
 
 ;; Find things fast.
+(defvar ftf-filetypes
+  '("*")
+  "A list of filetype patterns that grepsource will use.")
 (autoload 'ftf-find-file "find-things-fast" nil t)
 (autoload 'ftf-grepsource "find-things-fast" nil t)
 (global-set-key (kbd "C-x f") 'ftf-find-file)
