@@ -247,9 +247,10 @@
   )
 
 ;; Cua mode without the nonsense.
-(setq cua-enable-cua-keys nil)       ;; Turn off Windows key bindings.
-(cua-mode t)                         ;; Rectangular selections are awesome.
-(cua-selection-mode nil)             ;; No shift-arrow style marking.
+;; (setq cua-enable-cua-keys nil)       ;; Turn off Windows key bindings.
+;; (cua-mode t)                         ;; Rectangular selections are awesome.
+;; (cua-selection-mode nil)             ;; No shift-arrow style marking.
+(delete-selection-mode t)
 
 ;; Use unique buffer names.
 (require 'uniquify)
@@ -1252,3 +1253,15 @@ compilation output."
    ))
 
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(persp-nil-name "none"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
