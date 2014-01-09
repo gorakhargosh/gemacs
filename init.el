@@ -305,6 +305,9 @@
 ;; Fonts appear to be larger on Linux workstations.
 (setq preferred-linux-fonts
       '(
+        ;; Used by the secure shell app on Chrome. Looks pretty.
+        "DejaVu Sans Mono-12"
+
         ;; Droid Sans Mono: quite nice. 15 pixels total height at 10 point.
         ;; Clear & crisp. (e.g.
         ;; http://www.fontex.org/download/Droid-sans-mono.ttf)
@@ -336,6 +339,9 @@
 ;; Mac OS X tends to show smaller fonts.
 (setq preferred-mac-fonts
       '(
+        ;; Used by the secure shell app on Chrome. Looks pretty.
+        "DejaVu Sans Mono-13"
+
         ;; Droid Sans Mono: quite nice. 15 pixels total height at 10 point.
         ;; Clear & crisp. (e.g.
         ;; http://www.fontex.org/download/Droid-sans-mono.ttf)
