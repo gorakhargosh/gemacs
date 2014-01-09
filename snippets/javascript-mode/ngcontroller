@@ -12,15 +12,11 @@ goog.scope(function() {
 /**
  * ${4:A short description.}
  *
- * @param {!angular.Scope} $scope Angular scope via DI.
  * @constructor
  * @ngInject
  * @export
  */
-${1:ns}.${2:$$(capitalize yas/text)} = function($scope) {
-  /** @private {!angular.Scope} */
-  this.scope_ = $scope;
-  this.scope_['$2'] = this;
+${1:ns}.${2:ControllerName} = function() {
 };
 var $2 = $1.$2;
 
