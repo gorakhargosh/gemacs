@@ -110,7 +110,8 @@
    diff-hl
    expand-region
    fill-column-indicator
-   go-autocomplete
+   ;; go-autocomplete
+   js2-mode
    js2-refactor
    magit
    multiple-cursors
@@ -154,9 +155,9 @@
                            highlight-symbol
                            ido-ubiquitous
                            iedit
-                           js2-mode
+                           ;; js2-mode
                            key-chord
-                           melpa
+                           ;; melpa
                            nav
                            persp-mode
                            rainbow-delimiters
@@ -703,7 +704,7 @@ immediately."
 
 (require 'auto-complete)
 (require 'auto-complete-config)
-(require 'go-autocomplete)
+;; (require 'go-autocomplete)
 (ac-config-default)
 (setq ac-ignore-case t
       ac-use-fuzzy t
@@ -840,7 +841,7 @@ immediately."
                      ac-source-features
                      ac-source-symbols
                      ac-source-words-in-same-mode-buffers))
-  (add-to-list 'ac-modes 'inferior-emacs-lisp-mode)
+  ;; (add-to-list 'ac-modes 'inferior-emacs-lisp-mode)
   (auto-complete-mode 1))
 
 (add-hook 'ielm-mode-hook 'goog/config/ielm-mode/setup)
