@@ -15,7 +15,7 @@ goog.scope(function() {
  * @constructor
  * @ngInject
  */
-${1:ns}.${2:$$(capitalize yas/text)} = function() {
+${1:ns}.${2:Name} = function() {
   return {
     'priority': 0,
     'restrict': 'EAMC',

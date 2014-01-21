@@ -17,15 +17,12 @@ goog.scope(function() {
  * @export
  */
 ${1:ns}.${2:ControllerName} = function() {
+
 };
 var $2 = $1.$2;
 
 
-/**
- * Name used by dependency injector.
- *
- * @const {string}
- */
+/** Name used by dependency injector. */
 $2.NG_NAME = '$1.$2';
 
 });  // goog.scope

@@ -75,6 +75,58 @@
 ;; ======================================================================
 ;; Package management.
 ;; ======================================================================
+
+;; ----------------------------------------------------------------------
+;; El-get
+;; ----------------------------------------------------------------------
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (let (el-get-master-branch)
+      (goto-char (point-max))
+      (eval-print-last-sexp))))
+(setq
+ el-get-sources
+ '(el-get
+   (:name smex              ;; a better (ido-like) M-x
+          :after (progn
+                   (setq smex-save-file "~/.emacs.d/.smex-items")
+                   (global-set-key (kbd "M-x") 'smex)
+                   (global-set-key (kbd "M-X") 'smex-major-mode-commands)))
+   (:name go-mode
+          :website "http://github.com/dominikh/go-mode.el#readme"
+          :description "An improved go-mode."
+          :type github
+          :pkgname "dominikh/go-mode.el"
+          :post-init (progn
+                       (require 'go-mode)))
+   ))
+(setq
+ goog:el-get-packages
+ '(auto-complete
+   diff-hl
+   expand-region
+   fill-column-indicator
+   ;; go-autocomplete
+   js2-mode
+   js2-refactor
+   magit
+   multiple-cursors
+   powerline
+   ))
+(setq goog:el-get-packages
+      (append
+       goog:el-get-packages
+       (loop for src in el-get-sources collect (el-get-source-name src))))
+
+(el-get 'sync goog:el-get-packages)
+
+;; ----------------------------------------------------------------------
+;; package.el
+;; ----------------------------------------------------------------------
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -103,9 +155,9 @@
                            highlight-symbol
                            ido-ubiquitous
                            iedit
-                           js2-mode
+                           ;; js2-mode
                            key-chord
-                           melpa
+                           ;; melpa
                            nav
                            persp-mode
                            rainbow-delimiters
@@ -115,76 +167,18 @@
                            switch-window
                            undo-tree
                            yaml-mode
+                           yasnippet
                            zencoding-mode
                            ))
 (dolist (p default-packages)
   (when (not (package-installed-p p))
     (package-install p)))
 
-;; ----------------------------------------------------------------------
-;; Installs el-get.
-;; ----------------------------------------------------------------------
-;; El-get manages packages for GNU Emacs and can install, load, configure
-;; and uninstall packages for you easily.
-;;
-;; @see http://github.com/dimitri/el-get/
-;; @see http://www.emacswiki.org/emacs/el-get
-;; ----------------------------------------------------------------------
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+;;------------------------------------------------------------------------------
+;; End package management.
+;;------------------------------------------------------------------------------
 
-(unless (require 'el-get nil t)
-  (url-retrieve
-   "https://raw.github.com/dimitri/el-get/master/el-get-install.el"
-   (lambda (s)
-     (let (el-get-master-branch)
-       (goto-char (point-max))
-       (eval-print-last-sexp)))))
-
-;; ----------------------------------------------------------------------
-;; El-get packages.
-;; ----------------------------------------------------------------------
-;; NOTE: Use el-get packages only if we do not have stable packages
-;; in elpa, melpa, marmalade.
-;; ----------------------------------------------------------------------
-(setq
- el-get-sources
- '(el-get
-   (:name smex              ;; a better (ido-like) M-x
-          :after (progn
-                   (setq smex-save-file "~/.emacs.d/.smex-items")
-                   (global-set-key (kbd "M-x") 'smex)
-                   (global-set-key (kbd "M-X") 'smex-major-mode-commands)))
-   (:name go-mode
-          :website "http://github.com/dominikh/go-mode.el#readme"
-          :description "An improved go-mode."
-          :type github
-          :pkgname "dominikh/go-mode.el"
-          :post-init (progn
-                       (require 'go-mode)))
-   ))
-
-(setq
- goog:el-get-packages
- '(el-get
-   auto-complete
-   diff-hl
-   expand-region
-   fill-column-indicator
-   js2-refactor
-   magit
-   multiple-cursors
-   powerline
-   transpose-frame
-   yasnippet
-   go-autocomplete
-   ))
-;; Synchronize el-get packages.
-(setq goog:el-get-packages
-      (append
-       goog:el-get-packages
-       (loop for src in el-get-sources collect (el-get-source-name src))))
-(el-get 'sync goog:el-get-packages)
-
+;; Autocompilation.
 (add-to-list 'load-path user-emacs-directory)
 (require 'auto-compile)
 (auto-compile-on-load-mode 1)
@@ -254,9 +248,10 @@
   )
 
 ;; Cua mode without the nonsense.
-(setq cua-enable-cua-keys nil)       ;; Turn off Windows key bindings.
-(cua-mode t)                         ;; Rectangular selections are awesome.
-(cua-selection-mode nil)             ;; No shift-arrow style marking.
+;; (setq cua-enable-cua-keys nil)       ;; Turn off Windows key bindings.
+;; (cua-mode t)                         ;; Rectangular selections are awesome.
+;; (cua-selection-mode nil)             ;; No shift-arrow style marking.
+(delete-selection-mode t)
 
 ;; Use unique buffer names.
 (require 'uniquify)
@@ -267,34 +262,6 @@
 (setq-default save-place t)
 (setq save-place-file (concat user-emacs-directory "places"))
 
-;; TODO(yesudeep): Do we need this now that we have persp-mode?
-;;
-;; (progn
-;;   (setq desktop-dirname user-emacs-directory
-;;         desktop-enable t
-;;         desktop-files-not-to-save "^$"  ;; Reload tramp paths.
-;;         desktop-load-locked-desktop t
-;;         desktop-restore-eager 5
-;;         desktop-save 'if-exists
-;;         )
-;;   (desktop-save-mode t)           ;; Save sessions.
-;;   (desktop-load-default)          ;; Load the desktop on startup.
-;;   )
-
-
-;; ----------------------------------------------------------------------
-;; Backups.
-;; ----------------------------------------------------------------------
-;; (setq backup-by-copying t             ;; don't clobber symlinks
-;;       backup-directory-alist
-;;       '(("." . "~/.emacs.d/saves"))   ;; don't litter my fs tree
-;;       delete-old-versions t
-;;       kept-new-versions 6
-;;       kept-old-versions 2
-;;       version-control t)              ;; use versioned backups
-;; (setq backup-directory-alist `(("." . "~/.saves")))
-;; (setq backup-by-copying nil)
-;; (setq make-backup-files nil)             ;; No backup files ~
 (setq backup-directory-alist `((".*" . "~/.emacs.d/saves")))
 (setq auto-save-file-name-transforms `((".*" "~/.emacs.d/saves" t)))
 
@@ -318,7 +285,7 @@
         "Monaco-13"
 
         ;; Ubuntu Linux has this.
-        "Ubuntu Mono-18"
+        "Ubuntu Mono-12"
 
         ;; Consolas: download installer from Microsoft.
         ;; Quite beautiful and renders nicely, but a little light.
@@ -514,13 +481,6 @@
 ;; (require 'rcirc-color)
 
 ;; ----------------------------------------------------------------------
-;; Project navigation.
-;; ----------------------------------------------------------------------
-;; (require 'projectile)
-;; (projectile-global-mode) ;; Enable in all buffers.
-;; (setq projectile-enable-caching t) ;; It's not automatic.
-
-;; ----------------------------------------------------------------------
 ;; File and directory navigation.
 ;; ----------------------------------------------------------------------
 (defun ibuffer-ido-find-file ()
@@ -539,7 +499,7 @@
      (ido-mode t)
      (eval-after-load "ido-ubiquitous"
        '(progn
-          (ido-ubiquitous t)
+          (ido-ubiquitous-mode t)
           ))
      (setq ido-save-directory-list-file (concat user-emacs-directory ".ido.last")
            ido-use-filename-at-point 'guess
@@ -616,7 +576,7 @@
   (interactive)
   ;; (load-file (concat user-emacs-directory "init.el"))
   (load-file (concat user-emacs-directory "init.el"))
-  (yas/reload-all))
+  (yas-reload-all))
 
 (defun goog/elisp/eval-after-init (form)
   "Add `(lambda () FORM)' to `after-init-hook'.
@@ -653,9 +613,9 @@ immediately."
 (global-set-key [M-s-down] 'move-text-down)
 
 ;; Need to test this properly.
-;; Disabled because it causes Emacs to hang or misbehave.
 ;; (when window-system
 ;;   (require 'fill-column-indicator)
+;;   (add-hook 'after-change-major-mode-hook 'fci-mode)
 ;;   (define-globalized-minor-mode global-fci-mode fci-mode
 ;;     (lambda () (fci-mode 1)))
 ;;   (global-fci-mode 1)
@@ -667,14 +627,8 @@ immediately."
 (global-set-key (kbd "M-8") 'er/expand-region)
 (global-set-key (kbd "M-7") 'er/contract-region)
 
-;; (autoload 'smart-forward "smart-forward" nil t)
-;; (global-set-key (kbd "M-<up>") 'smart-up)
-;; (global-set-key (kbd "M-<down>") 'smart-down)
-;; (global-set-key (kbd "M-<right>") 'smart-forward)
-;; (global-set-key (kbd "M-<left>") 'smart-backward)
-
 (require 'ace-jump-mode)
-(define-key global-map (kbd "C-.") 'ace-jump-mode)
+(define-key global-map (kbd "C-c .") 'ace-jump-mode)
 
 (require 'fastnav)
 (global-set-key "\M-z" 'fastnav-zap-up-to-char-forward)
@@ -695,10 +649,12 @@ immediately."
 (global-set-key "\M-P" 'fastnav-sprint-backward)
 
 ;; Find things fast.
+(defvar ftf-filetypes
+  '("*")
+  "A list of filetype patterns that grepsource will use.")
 (autoload 'ftf-find-file "find-things-fast" nil t)
 (autoload 'ftf-grepsource "find-things-fast" nil t)
 (global-set-key (kbd "C-x f") 'ftf-find-file)
-;; (global-set-key (kbd "C-x f") 'projectile-find-file)
 (global-set-key (kbd "<f6>") 'ftf-grepsource)
 
 ;; Highlight current symbol.
@@ -728,25 +684,14 @@ immediately."
 (global-set-key (kbd "C-, C-e") 'mc/edit-ends-of-lines)
 (global-set-key (kbd "C-, C-a") 'mc/edit-beginnings-of-lines)
 
-;; Cursor at mouse down.
-;; (global-unset-key (kbd "M-<down-mouse-1>"))
-;; (global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click)
-;; (global-set-key (kbd "s-<mouse-1>") 'mc/add-cursor-on-click)
-
-;; Rectangular region mode
-;; (global-set-key (kbd "C-, C-,") 'set-rectangular-region-anchor)
-
 ;; Mark more like this.
 (global-set-key (kbd "C-, C-;") 'mc/mark-all-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-;; (global-set-key (kbd "C-<") 'mc/mark-previous-word-like-this)
-;; (global-set-key (kbd "C->") 'mc/mark-next-word-like-this)
 (global-set-key (kbd "C-, C-h") 'mc/mark-all-symbols-like-this)
 (global-set-key (kbd "C-, C-d") 'mc/mark-all-symbols-like-this-in-defun)
 (global-set-key (kbd "C-, C-,") 'mc/mark-all-like-this-dwim)
 (global-set-key (kbd "C-, C-r") 'mc/mark-all-in-region)
-
 
 (require 'sgml-mode)
 (autoload 'rename-sgml-tag "rename-sgml-tag" nil t)
@@ -756,14 +701,6 @@ immediately."
 ;; Auto-complete and snippets.
 ;; ======================================================================
 (require 'dabbrev)
-
-;; Conflicts bindings with iedit.
-;; (add-hook 'prog-mode-common-hook (lambda ()
-;;                                    (flyspell-prog-mode)))
-;; (add-hook 'js2-mode-hook (lambda ()
-;;                            (flyspell-prog-mode)))
-;; (setq flyspell-issue-message-flag nil)
-
 (require 'yasnippet)
 (setq yas-snippet-dirs
       '("~/.emacs.d/snippets"  ;; Our snippets.
@@ -773,7 +710,7 @@ immediately."
 
 (require 'auto-complete)
 (require 'auto-complete-config)
-(require 'go-autocomplete)
+;; (require 'go-autocomplete)
 (ac-config-default)
 (setq ac-ignore-case t
       ac-use-fuzzy t
@@ -846,9 +783,9 @@ immediately."
           'executable-make-buffer-file-executable-if-script-p)
 
 ;; Static analysis.
-(add-hook 'prog-mode-hook 'flycheck-mode)
-(add-hook 'go-mode-hook 'flycheck-mode)
-(add-hook 'text-mode-hook 'flycheck-mode)
+;; (add-hook 'prog-mode-hook 'flycheck-mode)
+;; (add-hook 'go-mode-hook 'flycheck-mode)
+;; (add-hook 'text-mode-hook 'flycheck-mode)
 
 ;; ----------------------------------------------------------------------
 ;; Define automatic mode detection for file types.
@@ -910,7 +847,7 @@ immediately."
                      ac-source-features
                      ac-source-symbols
                      ac-source-words-in-same-mode-buffers))
-  (add-to-list 'ac-modes 'inferior-emacs-lisp-mode)
+  ;; (add-to-list 'ac-modes 'inferior-emacs-lisp-mode)
   (auto-complete-mode 1))
 
 (add-hook 'ielm-mode-hook 'goog/config/ielm-mode/setup)
@@ -1062,17 +999,18 @@ immediately."
 
   (js2r-add-keybindings-with-prefix "C-c C-m"))
 
+
 ;; Tools for Javascript.
 (defun goog/config/js-mode/gjslint-buffer ()
   "Runs gjslint in strict mode on the current buffer."
   (interactive)
-  (compile (concat "gjslint --strict --unix_mode --closurized_namespaces=goog,appkit,hub,goa,jfk,bulletin,tvt,md " buffer-file-name)))
+  (compile (concat "gjslint --strict --unix_mode --closurized_namespaces=appkit,bulletin,cg,croc,goa,goog,hub,jfk,md,ooo,shub,tvt " buffer-file-name)))
 
 (defun goog/config/js-mode/gjslint-dir ()
   "Runs gjslint in strict mode on the parent directory of the file in the
 current buffer."
   (interactive)
-  (compile (concat "gjslint --strict --unix_mode --closurized_namespaces=goog,appkit,hub,goa,jfk,bulletin,tvt,md -r "
+  (compile (concat "gjslint --strict --unix_mode --closurized_namespaces=appkit,bulletin,cg,croc,goa,goog,hub,jfk,md,ooo,shub,tvt -r "
                    (file-name-directory buffer-file-name))))
 
 (defun goog/config/js-mode/fixjsstyle-buffer ()
@@ -1140,23 +1078,6 @@ compilation output."
 (require 'ac-nrepl)
 (add-hook 'cider-repl-mode-hook 'ac-nrepl-setup)
 
-;; (require 'nrepl)
-;; (add-hook 'nrepl-interaction-mode-hook
-;;           'nrepl-turn-on-eldoc-mode)
-;; (require 'ac-nrepl)
-;; (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
-;; (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
-;; (eval-after-load "auto-complete"
-;;   '(add-to-list 'ac-modes 'nrepl-mode))
-
-;; (defun goog/config/set-ac-as-completion-at-point-fn ()
-;;   (setq completion-at-point-functions '(auto-complete)))
-;; (add-hook 'auto-complete-mode-hook 'goog/config/set-ac-as-completion-at-point-fn)
-
-;; (add-hook 'nrepl-mode-hook 'goog/config/set-ac-as-completion-at-point-fn)
-;; (add-hook 'nrepl-interaction-mode-hook 'goog/config/set-ac-as-completion-at-point-fn)
-;; (define-key nrepl-interaction-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
-
 ;; ======================================================================
 ;; Keyboard bindings.
 ;; ======================================================================
@@ -1173,7 +1094,6 @@ compilation output."
 (global-set-key (kbd "s-]") 'shift-right)
 (global-set-key (kbd "s-[") 'shift-left)
 (global-set-key (kbd "RET") 'newline-and-indent)
-;; (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; ibuffer.
 (global-set-key [(f8)] 'ibuffer)
@@ -1340,4 +1260,15 @@ compilation output."
    ))
 
 ;;; init.el ends here
-(put 'downcase-region 'disabled nil)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(persp-nil-name "none"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
