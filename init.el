@@ -159,9 +159,9 @@
                            key-chord
                            ;; melpa
                            nav
-                           persp-mode
                            rainbow-delimiters
                            rcirc-color
+                           persp-mode
                            smartparens
                            sql-indent
                            switch-window
@@ -628,7 +628,7 @@ immediately."
 (global-set-key (kbd "M-7") 'er/contract-region)
 
 (require 'ace-jump-mode)
-(define-key global-map (kbd "C-c .") 'ace-jump-mode)
+(define-key global-map (kbd "C-.") 'ace-jump-mode)
 
 (require 'fastnav)
 (global-set-key "\M-z" 'fastnav-zap-up-to-char-forward)
