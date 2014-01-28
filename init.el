@@ -155,13 +155,11 @@
                            highlight-symbol
                            ido-ubiquitous
                            iedit
-                           ;; js2-mode
                            key-chord
-                           ;; melpa
                            nav
+                           persp-mode
                            rainbow-delimiters
                            rcirc-color
-                           persp-mode
                            smartparens
                            sql-indent
                            switch-window
