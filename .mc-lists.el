@@ -17,11 +17,13 @@
         eval-print-last-sexp
         go-mode-insert-and-indent
         insert-blank-line-below
+        isearch-abort
         isearch-delete-char
         isearch-exit
         isearch-forward-regexp
         isearch-printing-char
         keyboard-escape-quit
+        kill-region
         mc/add-cursor-on-click
         move-text-up
         paredit-newline
@@ -34,12 +36,14 @@
         smex
         sp--cua-replace-region
         sp-remove-active-pair-overlay
+        text-scale-decrease
         yas-expand
         ))
 
 (setq mc/cmds-to-run-once
       '(
         iedit-mode
+        isearch-backward-regexp
         isearch-other-control-char
         sp--self-insert-command
         ))
