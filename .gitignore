@@ -18,6 +18,7 @@ anything-c-adaptive-history
 eshell/history
 eshell/lastdir
 places
+recentf
 session.*
 tramp
 url/cookies
