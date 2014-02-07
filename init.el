@@ -593,7 +593,6 @@ immediately."
 ;; Git integration.
 (autoload 'magit-status "magit" nil t)
 (global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key [(f9)] 'magit-status)
 (eval-after-load "magit"
   '(progn
      (setq magit-completing-read-function 'magit-ido-completing-read)
