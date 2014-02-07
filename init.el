@@ -1055,7 +1055,7 @@ compilation output."
         require-final-newline 't
         tab-width 2
         python-indent-offset 2
-        python-indent 2
+        ;; python-indent 2
         py-indent-offset 2)
 
   ;; Auto-complete configuration.
