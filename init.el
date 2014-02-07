@@ -1142,8 +1142,9 @@ compilation output."
 (global-set-key (kbd "s-t") 'transpose-params)
 
 ;; Perspectives.
-(global-set-key (kbd "s-<left>") 'persp-prev)
-(global-set-key (kbd "s-<right>") 'persp-next)
+;; NOTE(yesudeep): No longer functional.
+;; (global-set-key (kbd "s-<left>") 'persp-prev)
+;; (global-set-key (kbd "s-<right>") 'persp-next)
 
 ;; Helm.
 (global-set-key (kbd "C-c h") 'helm-mini)
