@@ -156,6 +156,7 @@
                            ido-ubiquitous
                            iedit
                            key-chord
+                           markdown-mode
                            nav
                            persp-mode
                            rainbow-delimiters
@@ -814,6 +815,11 @@ immediately."
                 ("\\.js$" . js2-mode)
                 ("\\.json$" . js2-mode)
 
+                ;; Markdown
+                ("\\.text\\'" . markdown-mode)
+                ("\\.markdown\\'" . markdown-mode)
+                ("\\.md\\'" . markdown-mode)
+
                 ;; SQL mode.
                 ;; ("\\.mysql$" . sql-mode)
 
@@ -821,6 +827,12 @@ immediately."
                 ("\\(?:\\.gitconfig\\|\\.gitmodules\\|config\\)$" . conf-mode)
                 )
               auto-mode-alist))
+
+;; -----------------------------------------------------------------------------
+;; Markdown editing.
+;; -----------------------------------------------------------------------------
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
 
 ;; -----------------------------------------------------------------------------
 ;; SQL editing.
@@ -1001,13 +1013,13 @@ immediately."
 (defun goog/config/js-mode/gjslint-buffer ()
   "Runs gjslint in strict mode on the current buffer."
   (interactive)
-  (compile (concat "gjslint --strict --unix_mode --closurized_namespaces=appkit,bulletin,cg,croc,goa,goog,hub,jfk,md,ooo,shub,tvt " buffer-file-name)))
+  (compile (concat "gjslint --strict --unix_mode --closurized_namespaces=appkit,bulletin,cg,croc,goa,goog,hub,jfk,md,mountie,northstar,ooo,shub,tvt " buffer-file-name)))
 
 (defun goog/config/js-mode/gjslint-dir ()
   "Runs gjslint in strict mode on the parent directory of the file in the
 current buffer."
   (interactive)
-  (compile (concat "gjslint --strict --unix_mode --closurized_namespaces=appkit,bulletin,cg,croc,goa,goog,hub,jfk,md,ooo,shub,tvt -r "
+  (compile (concat "gjslint --strict --unix_mode --closurized_namespaces=appkit,bulletin,cg,croc,goa,goog,hub,jfk,md,mountie,northstar,ooo,shub,tvt -r "
                    (file-name-directory buffer-file-name))))
 
 (defun goog/config/js-mode/fixjsstyle-buffer ()
@@ -1258,3 +1270,15 @@ compilation output."
    ))
 
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(persp-nil-name "none"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
