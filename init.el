@@ -161,6 +161,7 @@
                            persp-mode
                            rainbow-delimiters
                            rcirc-color
+                           sass-mode
                            smartparens
                            sql-indent
                            switch-window
@@ -796,6 +797,10 @@ immediately."
 
                 ;; CSS.
                 ("\\.gss" . css-mode)
+
+                ;; Sass.
+                ("\\.sass" . sass-mode)
+                ("\\.scss" . sass-mode)
 
                 ;; HTML.
                 ("\\.tmpl" . html-mode)  ;; Server-side template extension.
