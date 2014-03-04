@@ -1,15 +1,12 @@
 # -*- mode: snippet -*-
-# name: goog.debug.Logger class member
-# contributor: Yesudeep Mangalapilly (yesudeep@google.com)
+# name: Logger
 # expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
 # --
-goog.require('goog.debug.Logger');
+goog.require('goog.log.Level');
+goog.require('goog.log');
 
 
-/**
- * Logger for this class.
- *
- * @type {!goog.debug.Logger}
- * @protected
- */
-$1.prototype.logger = goog.debug.Logger.getLogger('$1');
+/** @private {goog.log.Logger} */
+$1.prototype.logger_ = goog.log.getLogger(
+    '${2:namespace}', goog.log.Level.${3:$$(upcase yas/text)});$0
