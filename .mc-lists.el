@@ -42,6 +42,7 @@
 
 (setq mc/cmds-to-run-once
       '(
+        haml-electric-backspace
         iedit-mode
         isearch-backward-regexp
         isearch-other-control-char
