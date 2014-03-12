@@ -4,6 +4,7 @@
 # contributor: Yesudeep Mangalapilly <yesudeep@google.com>
 # --
 goog.provide('$1.$2');
+goog.provide('$1.$2.module');
 
 goog.scope(function() {
 
@@ -36,15 +37,15 @@ var $2 = $1.$2;
 
 
 /** Name used by AngularJS dependency injector. */
-$2.NG_NAME = '$2';
+$2.NG_NAME = '$5';
 
 
 /**
  * Module used by AngularJS dependency injector.
  *
- * @const {!angular.Module}
+ * @type {!angular.Module}
  */
-$2.NG_MODULE = angular.module($2.NG_NAME, []).
+$2.module = angular.module('$1.$2', []).
     directive($2.NG_NAME, $2);
 
 
@@ -89,7 +90,6 @@ $2.compile_ = function(tElement, tAttributes, transclude) {
 $2.Controller_ = function($scope) {
   /** @private {!angular.Scope} */
   this.scope_ = $scope;
-  this.scope_['$2Ctrl'] = this;
 };
 var Controller = $2.Controller_;
 
