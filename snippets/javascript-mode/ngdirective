@@ -20,6 +20,7 @@ ${1:ns}.${2:Name} = function() {
   return {
     'priority': 0,
     'restrict': 'EAMC',
+    'require': [],
     'replace': true,
     'transclude': true,
     'scope': {
@@ -28,7 +29,7 @@ ${1:ns}.${2:Name} = function() {
       'handler': '&'
     },
     'template': '<span ng-transclude></span>',
-    'controller': $1.$2.Controller_,
+    'controller': $1.$2.Controller,
     'compile': $1.$2.compile_,
     'link': $1.$2.link_
   };
@@ -53,13 +54,15 @@ $2.module = angular.module('$1.$2', []).
  * Links the DOM to its scope for the directive.
  *
  * @param {!angular.Scope} scope The scope of the directive.
- * @param {!Object} element The element wrapped by AngularJS.
- * @param {!Object.<string,string>} attributes The attributes available to the
+ * @param {!angular.JQLite} element The element wrapped by AngularJS.
+ * @param {!angular.Attributes} attributes The attributes available to the
  *     directive.
- * @param {Function} controller The controller associated with the directive.
+ * @param {!Object|!Array.<!Object>} controllers A controller or an array of
+ *     controllers brought in as a result of requiring parent directives.
+ * @param {Function} transclude A transclude linking function.
  * @private
  */
-$2.link_ = function(scope, element, attributes, controller) {
+$2.link_ = function(scope, element, attributes, controller, transclude) {
 
 };
 
@@ -67,8 +70,8 @@ $2.link_ = function(scope, element, attributes, controller) {
 /**
  * Compiles the DOM from the template for the directive.
  *
- * @param {!Object} tElement The template element wrapped by AngularJS.
- * @param {!Object.<string,string>} tAttributes The template attributes
+ * @param {!angular.jQLite} tElement The template element wrapped by AngularJS.
+ * @param {!angular.Attributes} tAttributes The template attributes
  *     available to the directive during the compilation phase.
  * @param {Function} transclude A transclude linking function.
  * @private
@@ -85,12 +88,11 @@ $2.compile_ = function(tElement, tAttributes, transclude) {
  * @param {!angular.Scope} $scope Angular scope.
  * @constructor
  * @ngInject
- * @private
  */
-$2.Controller_ = function($scope) {
+$2.Controller = function($scope) {
   /** @private {!angular.Scope} */
   this.scope_ = $scope;
 };
-var Controller = $2.Controller_;
+var Controller = $2.Controller;
 
 });  // goog.scope
