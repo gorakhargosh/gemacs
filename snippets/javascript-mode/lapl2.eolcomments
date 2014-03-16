@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: Apache License version 2.0 header
-# key: lapl2
+# key: #lapl2
 # contributor: Yesudeep Mangalapilly <yesudeep@google.com>
 # --
 // Copyright ${2:`(nth 5 (decode-time))`} ${3:Google Inc}.

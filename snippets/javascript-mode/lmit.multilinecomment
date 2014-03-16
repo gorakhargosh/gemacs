@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: MIT license version 2.0 header
 # contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# key: ##lmit
 # --
 /*${1:!}
  * The MIT License (MIT)
