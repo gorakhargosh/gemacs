@@ -7,8 +7,6 @@ goog.provide('${1:namespace}.${2:ClassName}');
 
 goog.scope(function() {
 
-var ${3:ns} = $1;
-
 
 
 /**
@@ -16,8 +14,9 @@ var ${3:ns} = $1;
  *
  * @constructor
  */
-$3.$2 = function($4) {
+$1.$2 = function($4) {
   $0
 };
+var $2 = $1.$2;
 
 });  // goog.scope
