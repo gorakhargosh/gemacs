@@ -64,7 +64,7 @@ $2.module = angular.module('$1.$2', []).
  * @param {Function} transclude A transclude linking function.
  * @private
  */
-$2.link_ = function(scope, element, attributes, controller, transclude) {
+$2.link_ = function(scope, element, attributes, controllers, transclude) {
 
 };
 
