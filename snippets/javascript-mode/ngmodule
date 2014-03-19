@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: AngularJS directive module (gscoped).
+# expand-env: ((yas/indent-line 'fixed))
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+/**
+ * Module used by AngularJS dependency injector.
+ *
+ * @type {!angular.Module}
+ */
+$2.module = angular.module('$1.$2', []).
+    directive($2.NG_NAME, $2);
