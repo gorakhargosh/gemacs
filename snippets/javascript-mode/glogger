@@ -3,8 +3,8 @@
 # expand-env: ((yas/indent-line 'fixed))
 # contributor: Yesudeep Mangalapilly <yesudeep@google.com>
 # --
-goog.require('goog.log.Level');
 goog.require('goog.log');
+goog.require('goog.log.Level');
 
 
 /** @private {goog.log.Logger} */
