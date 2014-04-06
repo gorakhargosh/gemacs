@@ -307,7 +307,7 @@
 (setq preferred-mac-fonts
       '(
         ;; Used by the secure shell app on Chrome. Looks pretty.
-        "DejaVu Sans Mono-13"
+        "DejaVu Sans Mono-14"
 
         ;; Droid Sans Mono: quite nice. 15 pixels total height at 10 point.
         ;; Clear & crisp. (e.g.
