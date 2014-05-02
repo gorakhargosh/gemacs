@@ -612,14 +612,14 @@ immediately."
 (global-set-key [M-s-down] 'move-text-down)
 
 ;; Need to test this properly.
-(when window-system
-  (require 'fill-column-indicator)
-  (add-hook 'after-change-major-mode-hook 'fci-mode)
-  (define-globalized-minor-mode global-fci-mode fci-mode
-    (lambda () (fci-mode 1)))
-  (global-fci-mode 1)
-  (setq fci-rule-color "red")
-  )
+;; (when window-system
+;;   (require 'fill-column-indicator)
+;;   (add-hook 'after-change-major-mode-hook 'fci-mode)
+;;   (define-globalized-minor-mode global-fci-mode fci-mode
+;;     (lambda () (fci-mode 1)))
+;;   (global-fci-mode 1)
+;;   (setq fci-rule-color "red")
+;;   )
 
 (autoload 'expand-region "expand-region" nil t)
 (autoload 'contract-region "expand-region" nil t)
@@ -1209,8 +1209,8 @@ compilation output."
 (key-chord-define-global ",." 'ido-find-file)
 
 ;; Now set the default theme.
-;; (require 'burp-theme)
-(require 'cloud-theme)
+(require 'burp-theme)
+;; (require 'cloud-theme)
 (powerline-default-theme)
 
 
