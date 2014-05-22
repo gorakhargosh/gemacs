@@ -111,10 +111,10 @@
    expand-region
    fill-column-indicator
    ;; go-autocomplete
+   ;; clojurescript-mode
    js2-mode
    js2-refactor
    magit
-   multiple-cursors
    powerline
    ))
 (setq goog:el-get-packages
@@ -145,7 +145,6 @@
                            clojure-cheatsheet
                            clojure-mode
                            clojure-test-mode
-                           clojurescript-mode
                            dart-mode
                            evil-numbers
                            fastnav
@@ -157,6 +156,7 @@
                            iedit
                            key-chord
                            markdown-mode
+                           multiple-cursors
                            nav
                            persp-mode
                            rainbow-delimiters
