@@ -16,6 +16,7 @@
         duplicate-current-line-or-region
         eval-print-last-sexp
         go-mode-insert-and-indent
+        help-for-help
         insert-blank-line-below
         isearch-abort
         isearch-delete-char
@@ -26,6 +27,9 @@
         kill-region
         mc/add-cursor-on-click
         move-text-up
+        org-delete-char
+        org-self-insert-command
+        org-yank
         paredit-newline
         paredit-semicolon
         paredit-splice-sexp-killing-backward
