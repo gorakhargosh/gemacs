@@ -711,7 +711,7 @@ immediately."
 
 (require 'auto-complete)
 (require 'auto-complete-config)
-;; (require 'go-autocomplete)
+(require 'go-autocomplete)
 (ac-config-default)
 (setq ac-ignore-case t
       ac-use-fuzzy t
