@@ -106,12 +106,13 @@
    ))
 (setq
  goog:el-get-packages
- '(auto-complete
+ '(
+   ;; clojurescript-mode
+   ;; go-autocomplete
+   auto-complete
    diff-hl
    expand-region
    fill-column-indicator
-   ;; go-autocomplete
-   ;; clojurescript-mode
    js2-mode
    js2-refactor
    magit
@@ -150,6 +151,7 @@
                            fastnav
                            find-things-fast
                            flycheck
+                           go-autocomplete
                            helm
                            highlight-symbol
                            ido-ubiquitous
