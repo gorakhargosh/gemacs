@@ -427,6 +427,9 @@
   ;;       )
   (smartparens-global-mode t)
   (show-smartparens-global-mode +1)
+
+  ;; Don't automatically escape quotes within quotes.
+  (setq sp-autoescape-string-quote nil)
   )
 
 ;; (require 'rainbow-delimiters)
