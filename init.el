@@ -168,6 +168,7 @@
                            sql-indent
                            switch-window
                            undo-tree
+                           vimrc-mode
                            yaml-mode
                            yasnippet
                            zencoding-mode
