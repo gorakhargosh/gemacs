@@ -817,10 +817,11 @@ immediately."
                 ("\\.dart$" . dart-mode)
 
                 ;; Python.
-                ("\\wscript$" . python-mode)
-                ("\\SConstruct" . python-mode)
-                ("\\SConscript" . python-mode)
+                ("\\BUCK$" . python-mode)
                 ("\\BUILD$" . python-mode)
+                ("\\SConscript" . python-mode)
+                ("\\SConstruct" . python-mode)
+                ("\\wscript$" . python-mode)
 
                 ;; JavaScript.
                 ("\\.js$" . js2-mode)
