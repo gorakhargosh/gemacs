@@ -106,12 +106,13 @@
    ))
 (setq
  goog:el-get-packages
- '(auto-complete
+ '(
+   ;; clojurescript-mode
+   ;; go-autocomplete
+   auto-complete
    diff-hl
    expand-region
    fill-column-indicator
-   ;; go-autocomplete
-   ;; clojurescript-mode
    js2-mode
    js2-refactor
    magit
@@ -150,6 +151,7 @@
                            fastnav
                            find-things-fast
                            flycheck
+                           go-autocomplete
                            helm
                            highlight-symbol
                            ido-ubiquitous
@@ -166,6 +168,7 @@
                            sql-indent
                            switch-window
                            undo-tree
+                           vimrc-mode
                            yaml-mode
                            yasnippet
                            zencoding-mode
@@ -426,6 +429,9 @@
   ;;       )
   (smartparens-global-mode t)
   (show-smartparens-global-mode +1)
+
+  ;; Don't automatically escape quotes within quotes.
+  (setq sp-autoescape-string-quote nil)
   )
 
 ;; (require 'rainbow-delimiters)
@@ -710,7 +716,7 @@ immediately."
 
 (require 'auto-complete)
 (require 'auto-complete-config)
-;; (require 'go-autocomplete)
+(require 'go-autocomplete)
 (ac-config-default)
 (setq ac-ignore-case t
       ac-use-fuzzy t
@@ -812,10 +818,11 @@ immediately."
                 ("\\.dart$" . dart-mode)
 
                 ;; Python.
-                ("\\wscript$" . python-mode)
-                ("\\SConstruct" . python-mode)
-                ("\\SConscript" . python-mode)
+                ("\\BUCK$" . python-mode)
                 ("\\BUILD$" . python-mode)
+                ("\\SConscript" . python-mode)
+                ("\\SConstruct" . python-mode)
+                ("\\wscript$" . python-mode)
 
                 ;; JavaScript.
                 ("\\.js$" . js2-mode)
