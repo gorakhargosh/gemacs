@@ -418,6 +418,7 @@
 ;;
 (require 'smartparens)
 (require 'smartparens-config)
+(setq sp-autoescape-string-quote nil)
 (progn
   (show-paren-mode t)                ;; Highlight matching parentheses.
   ;; (setq show-paren-delay 0
