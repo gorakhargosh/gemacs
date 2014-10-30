@@ -167,6 +167,7 @@
                            smartparens
                            sql-indent
                            switch-window
+                           tup-mode
                            undo-tree
                            vimrc-mode
                            yaml-mode
