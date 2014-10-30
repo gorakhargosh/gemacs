@@ -142,10 +142,10 @@
                            ace-jump-mode
                            ack-and-a-half
                            auto-compile
-                           cider
-                           clojure-cheatsheet
-                           clojure-mode
-                           clojure-test-mode
+                           ;;cider
+                           ;;clojure-cheatsheet
+                           ;;clojure-mode
+                           ;;clojure-test-mode
                            dart-mode
                            evil-numbers
                            fastnav
