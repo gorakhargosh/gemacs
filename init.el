@@ -943,6 +943,7 @@ immediately."
 ;; Go.
 ;; ----------------------------------------------------------------------
 (autoload 'go-mode "go-mode" nil t)
+(setq gofmt-command "goimports")
 
 (defun goog/config/go-mode/execute-buffer ()
   "Formats, compiles and executes the Go code in the current buffer."
