@@ -137,8 +137,8 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar default-packages '(
-                           ac-nrepl
-                           ac-slime
+                           ;; ac-nrepl
+                           ;; ac-slime
                            ace-jump-mode
                            ack-and-a-half
                            auto-compile
