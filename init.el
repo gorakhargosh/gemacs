@@ -278,6 +278,9 @@
         ;; Monaco is available on Mac OS X and some of my Linux workstations.
         "Monaco-13"
 
+        ;; Ubuntu Linux has this.
+        "Ubuntu Mono-12"
+
         ;; Used by the secure shell app on Chrome. Looks pretty.
         "DejaVu Sans Mono-12"
 
@@ -286,9 +289,6 @@
         ;; http://www.fontex.org/download/Droid-sans-mono.ttf)
         "Droid Sans Mono Dotted-10"
         "Droid Sans Mono-10"
-
-        ;; Ubuntu Linux has this.
-        "Ubuntu Mono-12"
 
         ;; Consolas: download installer from Microsoft.
         ;; Quite beautiful and renders nicely, but a little light.
