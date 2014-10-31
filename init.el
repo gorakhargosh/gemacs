@@ -137,15 +137,15 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar default-packages '(
-                           ac-nrepl
-                           ac-slime
+                           ;; ac-nrepl
+                           ;; ac-slime
                            ace-jump-mode
                            ack-and-a-half
                            auto-compile
-                           cider
-                           clojure-cheatsheet
-                           clojure-mode
-                           clojure-test-mode
+                           ;;cider
+                           ;;clojure-cheatsheet
+                           ;;clojure-mode
+                           ;;clojure-test-mode
                            dart-mode
                            evil-numbers
                            fastnav
@@ -167,6 +167,7 @@
                            smartparens
                            sql-indent
                            switch-window
+                           tup-mode
                            undo-tree
                            vimrc-mode
                            yaml-mode
@@ -943,6 +944,7 @@ immediately."
 ;; Go.
 ;; ----------------------------------------------------------------------
 (autoload 'go-mode "go-mode" nil t)
+(setq gofmt-command "goimports")
 
 (defun goog/config/go-mode/execute-buffer ()
   "Formats, compiles and executes the Go code in the current buffer."
@@ -1090,15 +1092,15 @@ compilation output."
 ;; ----------------------------------------------------------------------
 ;; Clojure.
 ;; ----------------------------------------------------------------------
-(require 'cider)
-(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
-(setq cider-repl-wrap-history t)
-(setq cider-repl-history-size 9999) ; the default is 500
-(add-hook 'cider-repl-mode-hook 'subword-mode)
-(add-hook 'cider-repl-mode-hook 'smartparens-strict-mode)
-(add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
-(require 'ac-nrepl)
-(add-hook 'cider-repl-mode-hook 'ac-nrepl-setup)
+;; (require 'cider)
+;; (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+;; (setq cider-repl-wrap-history t)
+;; (setq cider-repl-history-size 9999) ; the default is 500
+;; (add-hook 'cider-repl-mode-hook 'subword-mode)
+;; (add-hook 'cider-repl-mode-hook 'smartparens-strict-mode)
+;; (add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
+;; (require 'ac-nrepl)
+;; (add-hook 'cider-repl-mode-hook 'ac-nrepl-setup)
 
 ;; ======================================================================
 ;; Keyboard bindings.
