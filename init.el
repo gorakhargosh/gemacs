@@ -103,15 +103,15 @@
           :pkgname "dominikh/go-mode.el"
           :post-init (progn
                        (require 'go-mode)))
-   (:name powerline
-          :website "https://github.com/milkypostman/powerline#readme"
-          :description "An improved fork of powerline."
-          :type github
-          :pkgname "milkypostman/powerline"
-          :pos-init (progn 
-                      (require 'powerline)
-                      (powerline-default-theme)
-                      ))
+   ;; (:name powerline
+   ;;        :website "https://github.com/milkypostman/powerline#readme"
+   ;;        :description "An improved fork of powerline."
+   ;;        :type github
+   ;;        :pkgname "milkypostman/powerline"
+   ;;        :pos-init (progn 
+   ;;                    (require 'powerline)
+   ;;                    (powerline-default-theme)
+   ;;                    ))
    ))
 (setq
  goog:el-get-packages
