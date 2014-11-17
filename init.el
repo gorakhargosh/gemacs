@@ -103,6 +103,15 @@
           :pkgname "dominikh/go-mode.el"
           :post-init (progn
                        (require 'go-mode)))
+   (:name powerline
+          :website "https://github.com/milkypostman/powerline#readme"
+          :description "An improved fork of powerline."
+          :type github
+          :pkgname "milkypostman/powerline"
+          :pos-init (progn 
+                      (require 'powerline)
+                      (powerline-default-theme)
+                      ))
    ))
 (setq
  goog:el-get-packages
@@ -116,7 +125,7 @@
    js2-mode
    js2-refactor
    magit
-   powerline
+   ;; powerline
    ))
 (setq goog:el-get-packages
       (append
@@ -157,6 +166,7 @@
                            ido-ubiquitous
                            iedit
                            key-chord
+                           less-css-mode
                            markdown-mode
                            multiple-cursors
                            nav
@@ -829,6 +839,9 @@ immediately."
                 ;; JavaScript.
                 ("\\.js$" . js2-mode)
                 ("\\.json$" . js2-mode)
+
+                ;; Less CSS mode.
+                ("\\.less\\'" . less-css-mode)
 
                 ;; Markdown
                 ("\\.text\\'" . markdown-mode)
