@@ -108,7 +108,7 @@
    ;;        :description "An improved fork of powerline."
    ;;        :type github
    ;;        :pkgname "milkypostman/powerline"
-   ;;        :pos-init (progn 
+   ;;        :pos-init (progn
    ;;                    (require 'powerline)
    ;;                    (powerline-default-theme)
    ;;                    ))
