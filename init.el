@@ -155,6 +155,7 @@
                            ;;clojure-cheatsheet
                            ;;clojure-mode
                            ;;clojure-test-mode
+                           exec-path-from-shell
                            dart-mode
                            evil-numbers
                            fastnav
@@ -192,6 +193,14 @@
 ;;------------------------------------------------------------------------------
 ;; End package management.
 ;;------------------------------------------------------------------------------
+
+;; -----------------------------------------------------------------------------
+;; Copy environment variables on Mac OS X because Apple is an asshole
+;; and breaks everything all the time.
+;; -----------------------------------------------------------------------------
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
 
 ;; Autocompilation.
 (add-to-list 'load-path user-emacs-directory)
