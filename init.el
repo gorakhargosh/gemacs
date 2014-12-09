@@ -1252,7 +1252,7 @@ compilation output."
 (key-chord-define-global ",." 'ido-find-file)
 
 ;; Now set the default theme.
-(require 'molokai-theme)
+(require 'golokai-theme)
 ;; (require 'cloud-theme)
 (powerline-default-theme)
 

@@ -1,9 +1,11 @@
-;;; molokai-theme-kit.el
+;;; golokai-theme-kit.el
 
 ;; Copyright (C) 2013 Huang Bin
+;; Copyright (C) 2014 Google Inc.
 
 ;; Author: Huang Bin <embrace.hbin@gmail.com>
-;; URL: https://github.com/hbin/molokai-theme
+;; Author: Yesudeep Mangalapilly <yesudeep@google.com>
+;; URL: https://github.com/gorakhargosh/golokai-theme
 ;; Version: 0.8
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -21,7 +23,7 @@
 
 ;;; Commentary:
 ;;
-;; This is optional UI settings for molokai theme.
+;; This is optional UI settings for golokai theme.
 ;;
 ;; Include: limun style, mode line...
 
@@ -89,4 +91,4 @@
                "%-" ;; fill with '-'
                ))
 
-(provide 'molokai-theme-kit)
+(provide 'golokai-theme-kit)

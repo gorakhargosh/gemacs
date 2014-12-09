@@ -1,9 +1,10 @@
-;;; molokai-theme.el --- Yet another molokai theme for Emacs 24
+;;; golokai-theme.el --- Yet another golokai theme for Emacs 24
 
 ;; Copyright (C) 2013 Huang Bin
+;; Copyright (C) 2014 Google Inc.
 
 ;; Author: Huang Bin <embrace.hbin@gmail.com>
-;; URL: https://github.com/hbin/molokai-theme
+;; URL: https://github.com/hbin/golokai-theme
 ;; Version: 0.8
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -21,7 +22,7 @@
 
 ;;; Commentary:
 ;;
-;; This is another molokai dark theme for Emacs 24.
+;; This is another golokai dark theme for Emacs 24.
 ;; Equiped with my favorites.
 
 ;;; Requirements:
@@ -29,93 +30,93 @@
 ;; Emacs 24
 
 ;;; Code:
-(deftheme molokai "The molokai color theme for Emacs 24")
+(deftheme golokai "The golokai color theme for Emacs 24")
 
 (let ((class '((class color) (min-colors 89)))
-      ;; molokai palette
-      (molokai-white          "#ffffff")
-      (molokai-fg             "#f8f8f0")
-      (molokai-red            "#ff0000")
-      (molokai-pink           "#f92672")
-      (molokai-orange+5       "#ef5939")
-      (molokai-orange         "#fd971f")
-      (molokai-yellow         "#ffff00")
-      (molokai-darkgoldenrod  "#e6db74")
-      (molokai-wheat          "#c4be89")
-      (molokai-olive          "#808000")
-      (molokai-chartreuse     "#a6e22e")
-      (molokai-lime           "#00ff00")
-      (molokai-green          "#008000")
-      (molokai-darkwine       "#1e0010")
-      (molokai-maroon         "#800000")
-      (molokai-wine           "#960050")
-      (molokai-teal           "#008080")
-      (molokai-aqua           "#00ffff")
-      (molokai-blue           "#66d9ef")
-      (molokai-slateblue      "#7070f0")
-      (molokai-purple         "#ae81ff")
-      (molokai-palevioletred  "#d33682")
-      (molokai-grey-2         "#bcbcbc")
-      (molokai-grey-1         "#8f8f8f")
-      (molokai-grey           "#808080")
-      (molokai-grey+2         "#403d3d")
-      (molokai-grey+3         "#4c4745")
-      (molokai-grey+5         "#232526")
-      (molokai-bg             "#1b1d1e")
-      (molokai-grey+10        "#080808")
-      (molokai-dark           "#000000")
-      (molokai-base01         "#465457")
-      (molokai-base02         "#455354")
-      (molokai-base03         "#293739")
-      (molokai-dodgerblue     "#13354a"))
+      ;; golokai palette
+      (golokai-white          "#ffffff")
+      (golokai-fg             "#f8f8f0")
+      (golokai-red            "#ff0000")
+      (golokai-pink           "#f92672")
+      (golokai-orange+5       "#ef5939")
+      (golokai-orange         "#fd971f")
+      (golokai-yellow         "#ffff00")
+      (golokai-darkgoldenrod  "#e6db74")
+      (golokai-wheat          "#c4be89")
+      (golokai-olive          "#808000")
+      (golokai-chartreuse     "#a6e22e")
+      (golokai-lime           "#00ff00")
+      (golokai-green          "#008000")
+      (golokai-darkwine       "#1e0010")
+      (golokai-maroon         "#800000")
+      (golokai-wine           "#960050")
+      (golokai-teal           "#008080")
+      (golokai-aqua           "#00ffff")
+      (golokai-blue           "#66d9ef")
+      (golokai-slateblue      "#7070f0")
+      (golokai-purple         "#ae81ff")
+      (golokai-palevioletred  "#d33682")
+      (golokai-grey-2         "#bcbcbc")
+      (golokai-grey-1         "#8f8f8f")
+      (golokai-grey           "#808080")
+      (golokai-grey+2         "#403d3d")
+      (golokai-grey+3         "#4c4745")
+      (golokai-grey+5         "#232526")
+      (golokai-bg             "#1b1d1e")
+      (golokai-grey+10        "#080808")
+      (golokai-dark           "#000000")
+      (golokai-base01         "#465457")
+      (golokai-base02         "#455354")
+      (golokai-base03         "#293739")
+      (golokai-dodgerblue     "#13354a"))
   (custom-theme-set-faces
-   'molokai
+   'golokai
 
    ;; base
-   `(default ((t (:background ,molokai-bg :foreground ,molokai-fg))))
-   `(cursor ((t (:background ,molokai-fg :foreground ,molokai-bg))))
-   `(fringe ((t (:foreground ,molokai-base02 :background ,molokai-bg))))
-   `(highlight ((t (:background ,molokai-grey))))
-   `(region ((t (:background  ,molokai-grey+2))
+   `(default ((t (:background ,golokai-bg :foreground ,golokai-fg))))
+   `(cursor ((t (:background ,golokai-fg :foreground ,golokai-bg))))
+   `(fringe ((t (:foreground ,golokai-base02 :background ,golokai-bg))))
+   `(highlight ((t (:background ,golokai-grey))))
+   `(region ((t (:background  ,golokai-grey+2))
              (t :inverse-video t)))
-   `(warning ((t (:foreground ,molokai-palevioletred :weight bold))))
+   `(warning ((t (:foreground ,golokai-palevioletred :weight bold))))
 
    ;; font lock
-   `(font-lock-builtin-face ((t (:foreground ,molokai-chartreuse))))
-   `(font-lock-comment-face ((t (:foreground ,molokai-base01))))
-   `(font-lock-comment-delimiter-face ((t (:foreground ,molokai-base01))))
-   `(font-lock-constant-face ((t (:foreground ,molokai-purple))))
-   `(font-lock-doc-string-face ((t (:foreground ,molokai-darkgoldenrod))))
-   `(font-lock-function-name-face ((t (:foreground ,molokai-chartreuse))))
-   `(font-lock-keyword-face ((t (:foreground ,molokai-pink :weight bold))))
-   `(font-lock-negation-char-face ((t (:foreground ,molokai-wine))))
+   `(font-lock-builtin-face ((t (:foreground ,golokai-chartreuse))))
+   `(font-lock-comment-face ((t (:foreground ,golokai-base01))))
+   `(font-lock-comment-delimiter-face ((t (:foreground ,golokai-base01))))
+   `(font-lock-constant-face ((t (:foreground ,golokai-purple))))
+   `(font-lock-doc-string-face ((t (:foreground ,golokai-darkgoldenrod))))
+   `(font-lock-function-name-face ((t (:foreground ,golokai-chartreuse))))
+   `(font-lock-keyword-face ((t (:foreground ,golokai-pink :weight bold))))
+   `(font-lock-negation-char-face ((t (:foreground ,golokai-wine))))
    `(font-lock-preprocessor-face ((t (:inherit (font-lock-builtin-face)))))
    `(font-lock-regexp-grouping-backslash ((t (:inherit (bold)))))
    `(font-lock-regexp-grouping-construct ((t (:inherit (bold)))))
-   `(font-lock-string-face ((t (:foreground ,molokai-darkgoldenrod))))
-   `(font-lock-type-face ((t (:foreground ,molokai-blue :weight bold))))
-   `(font-lock-variable-name-face ((t (:foreground ,molokai-orange))))
-   `(font-lock-warning-face ((t (:foreground ,molokai-palevioletred :weight bold))))
+   `(font-lock-string-face ((t (:foreground ,golokai-darkgoldenrod))))
+   `(font-lock-type-face ((t (:foreground ,golokai-blue :weight bold))))
+   `(font-lock-variable-name-face ((t (:foreground ,golokai-orange))))
+   `(font-lock-warning-face ((t (:foreground ,golokai-palevioletred :weight bold))))
 
    ;; mode line
-   `(mode-line ((t (:foreground ,molokai-fg
-                                :background ,molokai-base03
+   `(mode-line ((t (:foreground ,golokai-fg
+                                :background ,golokai-base03
                                 :box nil))))
    `(mode-line-buffer-id ((t (:weight bold))))
-   `(mode-line-inactive ((t (:foreground ,molokai-fg
-                                         :background ,molokai-base02
+   `(mode-line-inactive ((t (:foreground ,golokai-fg
+                                         :background ,golokai-base02
                                          :box nil))))
 
    ;; search
-   `(isearch ((t (:foreground ,molokai-dark :background ,molokai-wheat :weight bold))))
-   `(isearch-fail ((t (:foreground ,molokai-wine :background ,molokai-darkwine))))
+   `(isearch ((t (:foreground ,golokai-dark :background ,golokai-wheat :weight bold))))
+   `(isearch-fail ((t (:foreground ,golokai-wine :background ,golokai-darkwine))))
 
    ;; linum-mode
-   `(linum ((t (:foreground ,molokai-grey-2 :background ,molokai-grey+5))))
+   `(linum ((t (:foreground ,golokai-grey-2 :background ,golokai-grey+5))))
 
    ;; hl-line-mode
-   `(hl-line-face ((,class (:background ,molokai-grey+5)) (t :weight bold)))
-   `(hl-line ((,class (:background ,molokai-grey+5)) (t :weight bold)))
+   `(hl-line-face ((,class (:background ,golokai-grey+5)) (t :weight bold)))
+   `(hl-line ((,class (:background ,golokai-grey+5)) (t :weight bold)))
 
    ;; TODO
    ;; ido-mode
@@ -125,22 +126,22 @@
    ;; highlight-symbols
    ))
 
-(defcustom molokai-theme-kit nil
-  "Non-nil means load molokai-theme-kit UI component"
+(defcustom golokai-theme-kit nil
+  "Non-nil means load golokai-theme-kit UI component"
   :type 'boolean
-  :group 'molokai-theme)
+  :group 'golokai-theme)
 
-(defcustom molokai-theme-kit-file
+(defcustom golokai-theme-kit-file
   (concat (file-name-directory
            (or (buffer-file-name) load-file-name))
-          "molokai-theme-kit.el")
-  "molokai-theme-kit-file"
+          "golokai-theme-kit.el")
+  "golokai-theme-kit-file"
   :type 'string
-  :group 'molokai-theme)
+  :group 'golokai-theme)
 
-(if (and molokai-theme-kit
-         (file-exists-p molokai-theme-kit-file))
-    (load-file molokai-theme-kit-file))
+(if (and golokai-theme-kit
+         (file-exists-p golokai-theme-kit-file))
+    (load-file golokai-theme-kit-file))
 
 ;;;###autoload
 (and load-file-name
@@ -149,10 +150,10 @@
                   (file-name-as-directory
                    (file-name-directory load-file-name))))
 
-(provide-theme 'molokai)
+(provide-theme 'golokai)
 
 ;; Local Variables:
 ;; no-byte-compile: t
 ;; End:
 
-;;; molokai-theme.el ends here
+;;; golokai-theme.el ends here
