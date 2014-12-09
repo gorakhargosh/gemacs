@@ -107,8 +107,6 @@
 (setq
  goog:el-get-packages
  '(
-   ;; clojurescript-mode
-   ;; go-autocomplete
    auto-complete
    diff-hl
    expand-region
@@ -136,12 +134,6 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar default-packages '(
-                           ;; ac-nrepl
-                           ;; ac-slime
-                           ;;cider
-                           ;;clojure-cheatsheet
-                           ;;clojure-mode
-                           ;;clojure-test-mode
                            ace-jump-mode
                            ack-and-a-half
                            auto-compile
@@ -494,10 +486,6 @@
   (if (not (bolp))
       (delete-region (point) (progn (skip-chars-forward " \t") (point)))))
 
-;; -----------------------------------------------------------------------------
-;; RCIRC
-;; -----------------------------------------------------------------------------
-;; (require 'rcirc-color)
 
 ;; ----------------------------------------------------------------------
 ;; File and directory navigation.
