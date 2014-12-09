@@ -12,7 +12,7 @@
     ;; (require 'monokai-theme)
     ;; (require 'github-theme)
     ;; (require 'tango-2-theme)
-    (require 'burp-theme)
+    ;; (r-equire 'burp-theme)
     )
   )
 (provide 'komald)

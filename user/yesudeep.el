@@ -35,4 +35,4 @@
 
 (provide 'yesudeep)
 
-;;; yesudeep ends here
+;;; yesudeep.el ends here
