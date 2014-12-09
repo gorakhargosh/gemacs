@@ -15,12 +15,16 @@
     ;; (set-frame-parameter (selected-frame) 'alpha '(95 85))
     ;; (add-to-list 'default-frame-alist '(alpha 95 85))
 
-    ;; (require 'monokai-theme)
-    ;; (require 'github-theme)
-    ;; (require 'tango-2-theme)
+    ;; Now set the default theme.
     ;; (require 'burp-theme)
     ;; (require 'cloud-theme)
+    ;; (require 'github-theme)
     ;; (require 'google-code-theme)
+    ;; (require 'monokai-theme)
+    ;; (require 'tango-2-theme)
+    ;; (require 'tangotango-theme)
+    ;; (require 'cloud-theme)
+    ;; (powerline-default-theme)
 
     ;; Transparency.
     ;; (set-frame-parameter (selected-frame) 'alpha '(<active> [<inactive>]))
