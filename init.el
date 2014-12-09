@@ -103,15 +103,6 @@
           :pkgname "dominikh/go-mode.el"
           :post-init (progn
                        (require 'go-mode)))
-   ;; (:name powerline
-   ;;        :website "https://github.com/milkypostman/powerline#readme"
-   ;;        :description "An improved fork of powerline."
-   ;;        :type github
-   ;;        :pkgname "milkypostman/powerline"
-   ;;        :pos-init (progn
-   ;;                    (require 'powerline)
-   ;;                    (powerline-default-theme)
-   ;;                    ))
    ))
 (setq
  goog:el-get-packages
@@ -125,7 +116,6 @@
    js2-mode
    js2-refactor
    magit
-   ;; powerline
    ))
 (setq goog:el-get-packages
       (append
@@ -148,16 +138,16 @@
 (defvar default-packages '(
                            ;; ac-nrepl
                            ;; ac-slime
-                           ace-jump-mode
-                           ack-and-a-half
-                           auto-compile
                            ;;cider
                            ;;clojure-cheatsheet
                            ;;clojure-mode
                            ;;clojure-test-mode
-                           exec-path-from-shell
+                           ace-jump-mode
+                           ack-and-a-half
+                           auto-compile
                            dart-mode
                            evil-numbers
+                           exec-path-from-shell
                            fastnav
                            find-things-fast
                            flycheck
@@ -172,6 +162,7 @@
                            multiple-cursors
                            nav
                            persp-mode
+                           powerline
                            protobuf-mode
                            rainbow-delimiters
                            rcirc-color
