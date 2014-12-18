@@ -144,6 +144,7 @@
                            find-things-fast
                            flycheck
                            go-autocomplete
+                           go-eldoc
                            helm
                            highlight-symbol
                            ido-ubiquitous
@@ -967,6 +968,10 @@ immediately."
 (eval-after-load 'go-mode
   '(when (executable-find "goimports")
      (setq gofmt-command "goimports -e=false")))
+
+;; Documentation.
+(require 'go-eldoc) ;; Don't need to require, if you install by package.el
+(add-hook 'go-mode-hook 'go-eldoc-setup)
 
 (defun goog/config/go-mode/execute-buffer ()
   "Formats, compiles and executes the Go code in the current buffer."
