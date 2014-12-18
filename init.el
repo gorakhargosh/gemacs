@@ -789,6 +789,7 @@ immediately."
           'executable-make-buffer-file-executable-if-script-p)
 
 ;; Static analysis.
+(add-hook 'after-init-hook #'global-flycheck-mode)
 ;; (add-hook 'prog-mode-hook 'flycheck-mode)
 ;; (add-hook 'go-mode-hook 'flycheck-mode)
 ;; (add-hook 'text-mode-hook 'flycheck-mode)
@@ -965,7 +966,7 @@ immediately."
 (autoload 'go-mode "go-mode" nil t)
 (eval-after-load 'go-mode
   '(when (executable-find "goimports")
-     (setq gofmt-command "goimports")))
+     (setq gofmt-command "goimports -e=false")))
 
 (defun goog/config/go-mode/execute-buffer ()
   "Formats, compiles and executes the Go code in the current buffer."
