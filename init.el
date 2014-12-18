@@ -973,6 +973,10 @@ immediately."
 (require 'go-eldoc) ;; Don't need to require, if you install by package.el
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 
+;;(load "$GOPATH/src/code.google.com/p/go.tools/cmd/oracle/oracle.el")
+(load "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
+(add-hook 'go-mode-hook 'go-oracle-mode)
+
 (defun goog/config/go-mode/execute-buffer ()
   "Formats, compiles and executes the Go code in the current buffer."
   (interactive)
