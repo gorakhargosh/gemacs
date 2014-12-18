@@ -967,7 +967,7 @@ immediately."
 (autoload 'go-mode "go-mode" nil t)
 (eval-after-load 'go-mode
   '(when (executable-find "goimports")
-     (setq gofmt-command "goimports -e=false")))
+     (setq gofmt-command "goimports")))
 
 ;; Documentation.
 (require 'go-eldoc) ;; Don't need to require, if you install by package.el
