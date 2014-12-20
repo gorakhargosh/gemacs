@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: For i (incrementing) loop.
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+for ${1:i} := 0; $1 < $2; $1++ {
+  $0
+}
