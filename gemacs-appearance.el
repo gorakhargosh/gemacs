@@ -103,17 +103,17 @@
 ;; Mac OS X tends to show smaller fonts.
 (setq preferred-mac-fonts
       '(
-        ;; Monaco is available on Mac OS X.
-        "Monaco-13"
-
-        ;; Used by the secure shell app on Chrome. Looks pretty.
-        "DejaVu Sans Mono-14"
-
         ;; Droid Sans Mono: quite nice. 15 pixels total height at 10 point.
         ;; Clear & crisp. (e.g.
         ;; http://www.fontex.org/download/Droid-sans-mono.ttf)
         "Droid Sans Mono Dotted-14"
         "Droid Sans Mono-14"
+
+        ;; Monaco is available on Mac OS X.
+        "Monaco-13"
+
+        ;; Used by the secure shell app on Chrome. Looks pretty.
+        "DejaVu Sans Mono-14"
 
         ;; Ubuntu Linux has this but my Mac also does.
         "Ubuntu Mono-18"
