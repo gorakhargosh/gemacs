@@ -1,4 +1,4 @@
-;;; gemacs-dart.el --- Golang related stuff.
+;;; gemacs-dart.el --- Dart related stuff.
 ;;
 ;;; Commentary:
 ;;
