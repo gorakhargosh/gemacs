@@ -760,40 +760,6 @@ immediately."
                        ))
 (real-global-auto-complete-mode t)
 
-;; ======================================================================
-;; Programming-specific.
-;; ======================================================================
-
-;; Additional faces.
-(defvar font-lock-operator-face 'font-lock-operator-face)
-(defface font-lock-operator-face
-  '((((type tty) (class color)) nil)
-    (((class color) (background light))
-     (:foreground "dark red"))
-    (t nil))
-  "Used for operators."
-  :group 'font-lock-faces)
-(defvar font-lock-end-statement-face 'font-lock-end-statement-face)
-(defface font-lock-end-statement-face
-  '((((type tty) (class color)) nil)
-    (((class color) (background light))
-     (:foreground "DarkSlateBlue"))
-    (t nil))
-  "Used for end statement symbols."
-  :group 'font-lock-faces)
-(defvar font-lock-operator-keywords
-  '(("\\([][|!.+=&/%*,<>(){}:^~-]+\\)" 1 font-lock-operator-face)
-    (";" 0 font-lock-end-statement-face)))
-
-;; Automatically set executable permissions on executable script files.
-(add-hook 'after-save-hook
-          'executable-make-buffer-file-executable-if-script-p)
-
-;; Static analysis.
-(add-hook 'after-init-hook #'global-flycheck-mode)
-;; (add-hook 'prog-mode-hook 'flycheck-mode)
-;; (add-hook 'go-mode-hook 'flycheck-mode)
-;; (add-hook 'text-mode-hook 'flycheck-mode)
 
 ;; ----------------------------------------------------------------------
 ;; Define automatic mode detection for file types.
@@ -846,25 +812,33 @@ immediately."
                 )
               auto-mode-alist))
 
-(require 'gemacs-tup)
-(require 'gemacs-protobuf)
-(require 'gemacs-ielm)
-(require 'gemacs-sql)
-(require 'gemacs-sh)
-(require 'gemacs-html)
+
+;; Automatically set executable permissions on executable script files.
+(add-hook 'after-save-hook
+          'executable-make-buffer-file-executable-if-script-p)
+
+;; Appearance.
+(require 'gemacs-appearance)
+
+;; Programming languages.
+(require 'gemacs-clojure)
 (require 'gemacs-css)
 (require 'gemacs-dart)
 (require 'gemacs-go)
+(require 'gemacs-html)
+(require 'gemacs-ielm)
 (require 'gemacs-javascript)
+(require 'gemacs-protobuf)
 (require 'gemacs-python)
-(require 'gemacs-clojure)
+(require 'gemacs-sh)
+(require 'gemacs-sql)
+(require 'gemacs-tup)
+
+;; Tools.
+(require 'gemacs-flycheck)
 
 (require 'gemacs-keyboard)
 
-;; Now set the default theme.
-(require 'golokai-theme)
-;; (require 'cloud-theme)
-(powerline-default-theme)
 
 
 ;; ----------------------------------------------------------------------
