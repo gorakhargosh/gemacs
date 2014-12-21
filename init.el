@@ -846,18 +846,7 @@ immediately."
                 )
               auto-mode-alist))
 
-;; -----------------------------------------------------------------------------
-;; Tup mode.
-;; -----------------------------------------------------------------------------
-(require 'tup-mode)
-
-;; -----------------------------------------------------------------------------
-;; Markdown editing.
-;; -----------------------------------------------------------------------------
-(autoload 'markdown-mode "markdown-mode"
-   "Major mode for editing Markdown files" t)
-
-
+(require 'gemacs-tup)
 (require 'gemacs-protobuf)
 (require 'gemacs-ielm)
 (require 'gemacs-sql)
