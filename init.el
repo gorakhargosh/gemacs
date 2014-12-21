@@ -72,9 +72,6 @@
   (string-equal system-type "gnu/linux"))
 
 
-
-
-;; Packages
 (require 'gemacs-packages)
 
 ;; Copy environment variables on Mac OS X because Apple is an asshole
@@ -83,11 +80,9 @@
   (exec-path-from-shell-initialize))
 
 (require 'goog-defuns)
-
 (require 'gemacs-appearance)
 (require 'gemacs-workspace)
 (require 'gemacs-editing)
-
 
 ;; ----------------------------------------------------------------------
 ;; goog/elisp
@@ -124,8 +119,6 @@ immediately."
     (when after-init-time
       (eval form))))
 
-
-(require 'gemacs-git)
 
 ;; ----------------------------------------------------------------------
 ;; Define automatic mode detection for file types.
@@ -202,6 +195,7 @@ immediately."
 
 ;; Tools.
 (require 'gemacs-flycheck)
+(require 'gemacs-git)
 
 (require 'gemacs-keyboard)
 
