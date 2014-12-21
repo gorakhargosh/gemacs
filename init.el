@@ -857,19 +857,8 @@ immediately."
 (autoload 'markdown-mode "markdown-mode"
    "Major mode for editing Markdown files" t)
 
-;; -----------------------------------------------------------------------------
-;; Protobuf mode.
-;; -----------------------------------------------------------------------------
-(require 'protobuf-mode)
-(add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
-(defconst google-protobuf-style
-  '((c-basic-offset . 2)
-    (indent-tabs-mode . nil)))
 
-(add-hook 'protobuf-mode-hook
-          (lambda () (c-add-style "google-style" google-protobuf-style)))
-
-
+(require 'gemacs-protobuf)
 (require 'gemacs-ielm)
 (require 'gemacs-sql)
 (require 'gemacs-sh)
