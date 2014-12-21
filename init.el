@@ -910,22 +910,7 @@ immediately."
 (add-hook 'sh-mode-hook 'goog/config/sh-mode/setup)
 
 
-;; ----------------------------------------------------------------------
-;; html-mode
-;; ----------------------------------------------------------------------
-(defun goog/config/html-mode/setup ()
-  "Configures `html-mode'."
-
-  ;; Coding style.
-  (set (make-local-variable 'sgml-basic-offset) 2)
-  (setq indent-tabs-mode nil)  ;; Don't use tabs to indent.
-
-  ;; Autocompletion.
-  (zencoding-mode 1))
-
-(add-hook 'html-mode-hook 'goog/config/html-mode/setup)
-
-
+(require 'gemacs-html)
 (require 'gemacs-css)
 (require 'gemacs-dart)
 (require 'gemacs-go)
