@@ -69,6 +69,12 @@
 ;; Fonts appear to be larger on Linux workstations.
 (setq preferred-linux-fonts
       '(
+        ;; Droid Sans Mono: quite nice. 15 pixels total height at 10 point.
+        ;; Clear & crisp. (e.g.
+        ;; http://www.fontex.org/download/Droid-sans-mono.ttf)
+        "Droid Sans Mono Dotted-10"
+        "Droid Sans Mono-10"
+
         ;; Monaco is available on Mac OS X and some of my Linux workstations.
         "Monaco-13"
 
@@ -77,12 +83,6 @@
 
         ;; Used by the secure shell app on Chrome. Looks pretty.
         "DejaVu Sans Mono-12"
-
-        ;; Droid Sans Mono: quite nice. 15 pixels total height at 10 point.
-        ;; Clear & crisp. (e.g.
-        ;; http://www.fontex.org/download/Droid-sans-mono.ttf)
-        "Droid Sans Mono Dotted-10"
-        "Droid Sans Mono-10"
 
         ;; Consolas: download installer from Microsoft.
         ;; Quite beautiful and renders nicely, but a little light.
