@@ -29,6 +29,8 @@
 (require 'helm-config)
 (helm-mode 1)
 
+(autoload 'nav "nav" nil t)
+(global-set-key (kbd "C-x C-a") 'nav)
 
 (require 'ack-and-a-half)
 ;; Create shorter aliases

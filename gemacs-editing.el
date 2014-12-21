@@ -123,6 +123,96 @@
   (if (not (bolp))
       (delete-region (point) (progn (skip-chars-forward " \t") (point)))))
 
+;; Undo and history.
+(require 'undo-tree)
+
+(autoload 'move-text-up "move-text" nil t)
+(autoload 'move-text-down "move-text" nil t)
+(global-set-key [M-s-up] 'move-text-up)
+(global-set-key [M-s-down] 'move-text-down)
+
+;; Need to test this properly.
+;; (when window-system
+;;   (require 'fill-column-indicator)
+;;   (add-hook 'after-change-major-mode-hook 'fci-mode)
+;;   (define-globalized-minor-mode global-fci-mode fci-mode
+;;     (lambda () (fci-mode 1)))
+;;   (global-fci-mode 1)
+;;   (setq fci-rule-color "red")
+;;   )
+
+(autoload 'expand-region "expand-region" nil t)
+(autoload 'contract-region "expand-region" nil t)
+(global-set-key (kbd "M-8") 'er/expand-region)
+(global-set-key (kbd "M-7") 'er/contract-region)
+
+(require 'ace-jump-mode)
+(define-key global-map (kbd "C-.") 'ace-jump-mode)
+
+(require 'fastnav)
+(global-set-key "\M-z" 'fastnav-zap-up-to-char-forward)
+(global-set-key "\M-Z" 'fastnav-zap-up-to-char-backward)
+(global-set-key "\M-s" 'fastnav-jump-to-char-forward)
+(global-set-key "\M-S" 'fastnav-jump-to-char-backward)
+(global-set-key "\M-r" 'fastnav-replace-char-forward)
+(global-set-key "\M-R" 'fastnav-replace-char-backward)
+(global-set-key "\M-i" 'fastnav-insert-at-char-forward)
+(global-set-key "\M-I" 'fastnav-insert-at-char-backward)
+(global-set-key "\M-j" 'fastnav-execute-at-char-forward)
+(global-set-key "\M-J" 'fastnav-execute-at-char-backward)
+(global-set-key "\M-k" 'fastnav-delete-char-forward)
+(global-set-key "\M-K" 'fastnav-delete-char-backward)
+(global-set-key "\M-m" 'fastnav-mark-to-char-forward)
+(global-set-key "\M-M" 'fastnav-mark-to-char-backward)
+(global-set-key "\M-p" 'fastnav-sprint-forward)
+(global-set-key "\M-P" 'fastnav-sprint-backward)
+
+;; Find things fast.
+(defvar ftf-filetypes
+  '("*")
+  "A list of filetype patterns that grepsource will use.")
+(autoload 'ftf-find-file "find-things-fast" nil t)
+(autoload 'ftf-grepsource "find-things-fast" nil t)
+(global-set-key (kbd "C-x f") 'ftf-find-file)
+(global-set-key (kbd "<f6>") 'ftf-grepsource)
+
+;; Highlight current symbol.
+(require 'highlight-symbol)
+(defun goog/config/highlight-symbol-mode/setup ()
+  (when window-system
+    (highlight-symbol-mode)
+    (setq highlight-symbol-idle-delay 0.1)
+    ))
+(add-hook 'text-mode-hook 'goog/config/highlight-symbol-mode/setup)
+(add-hook 'prog-mode-hook 'goog/config/highlight-symbol-mode/setup)
+;; Why does js2-mode not inherit from prog-mode?
+(add-hook 'js2-mode-hook 'goog/config/highlight-symbol-mode/setup)
+
+;; global diff highlight mode.
+(global-diff-hl-mode)
+
+;; ----------------------------------------------------------------------
+;; Mark and edit multiple regions.
+;; ----------------------------------------------------------------------
+(require 'iedit)
+(put 'narrow-to-region 'disabled nil)  ;; Allow narrowing to work.
+
+(require 'multiple-cursors)
+;; From active region to multiple cursors:
+(global-set-key (kbd "C-, C-l") 'mc/edit-lines)
+(global-set-key (kbd "C-, C-e") 'mc/edit-ends-of-lines)
+(global-set-key (kbd "C-, C-a") 'mc/edit-beginnings-of-lines)
+
+;; Mark more like this.
+(global-set-key (kbd "C-, C-;") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-, C-h") 'mc/mark-all-symbols-like-this)
+(global-set-key (kbd "C-, C-d") 'mc/mark-all-symbols-like-this-in-defun)
+(global-set-key (kbd "C-, C-,") 'mc/mark-all-like-this-dwim)
+(global-set-key (kbd "C-, C-r") 'mc/mark-all-in-region)
+
+
 (provide 'gemacs-editing)
 
 ;;; gemacs-editing.el ends here
