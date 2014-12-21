@@ -47,4 +47,4 @@
 
 (provide 'gemacs-go)
 
-;;; gmacs-go.el ends here
+;;; gemacs-go.el ends here

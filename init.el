@@ -954,12 +954,7 @@ immediately."
 (add-hook 'css-mode-hook 'goog/config/css-mode/setup)
 ;; (add-hook 'less-css-mode-hook 'goog/config/css-mode/setup)
 
-
-;; ----------------------------------------------------------------------
-;; Dart.
-;; ----------------------------------------------------------------------
-(autoload 'dart-mode "dart-mode" "Edit Dart code." t)
-
+(require 'gemacs-dart)
 (require 'gemacs-go)
 
 ;; ----------------------------------------------------------------------
