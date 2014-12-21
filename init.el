@@ -813,9 +813,6 @@ immediately."
               auto-mode-alist))
 
 
-;; Automatically set executable permissions on executable script files.
-(add-hook 'after-save-hook
-          'executable-make-buffer-file-executable-if-script-p)
 
 ;; Appearance.
 (require 'gemacs-appearance)
