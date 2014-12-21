@@ -896,20 +896,7 @@ immediately."
 
 (add-hook 'ielm-mode-hook 'goog/config/ielm-mode/setup)
 
-
-;; ----------------------------------------------------------------------
-;; sh-mode
-;; ----------------------------------------------------------------------
-(defun goog/config/sh-mode/setup ()
-  "Configures `sh-mode'."
-
-  ;; Coding style.
-  (setq sh-basic-offset 2
-        sh-indentation 2))
-
-(add-hook 'sh-mode-hook 'goog/config/sh-mode/setup)
-
-
+(require 'gemacs-sh)
 (require 'gemacs-html)
 (require 'gemacs-css)
 (require 'gemacs-dart)
