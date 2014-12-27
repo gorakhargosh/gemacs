@@ -42,6 +42,7 @@
    js2-mode
    js2-refactor
    magit
+   rst-mode
    ))
 (setq goog:el-get-packages
       (append
