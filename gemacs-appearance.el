@@ -180,7 +180,9 @@
 
 
 ;; Now set the default theme.
-(require 'golokai-theme)
+(when window-system
+  (require 'golokai-theme)
+  )
 (powerline-default-theme)
 
 (provide 'gemacs-appearance)
