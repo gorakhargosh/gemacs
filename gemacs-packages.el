@@ -66,6 +66,7 @@
                            ace-jump-mode
                            ack-and-a-half
                            auto-compile
+                           cypher-mode
                            dart-mode
                            evil-numbers
                            exec-path-from-shell
