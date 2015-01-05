@@ -69,6 +69,9 @@
 ;; Fonts appear to be larger on Linux workstations.
 (setq preferred-linux-fonts
       '(
+        ;; Ubuntu Linux has this.
+        "Ubuntu Mono-14"
+
         ;; Droid Sans Mono: quite nice. 15 pixels total height at 10 point.
         ;; Clear & crisp. (e.g.
         ;; http://www.fontex.org/download/Droid-sans-mono.ttf)
@@ -77,9 +80,6 @@
 
         ;; Monaco is available on Mac OS X and some of my Linux workstations.
         "Monaco-13"
-
-        ;; Ubuntu Linux has this.
-        "Ubuntu Mono-12"
 
         ;; Used by the secure shell app on Chrome. Looks pretty.
         "DejaVu Sans Mono-12"
