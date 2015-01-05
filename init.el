@@ -192,6 +192,7 @@ immediately."
 (require 'gemacs-sh)
 (require 'gemacs-sql)
 (require 'gemacs-tup)
+(require 'gemacs-neo4j)
 
 ;; Tools.
 (require 'gemacs-flycheck)
