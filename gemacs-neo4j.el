@@ -1,4 +1,4 @@
-;;; gemacs-neo4j.el --- SQL related stuff.
+;;; gemacs-neo4j.el --- Cypher/neo4j related stuff.
 ;;
 ;;; Commentary:
 ;;
@@ -6,7 +6,7 @@
 
 
 (add-to-list 'auto-mode-alist
-             '("\\.cyp\\'" . (lambda ()
+             '("\\.cypher\\|\\.cql\\'" . (lambda ()
                                  (cypher-mode)
                                  )))
 (require 'cypher-mode)

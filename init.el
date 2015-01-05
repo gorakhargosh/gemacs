@@ -186,13 +186,13 @@ immediately."
 (require 'gemacs-html)
 (require 'gemacs-ielm)
 (require 'gemacs-javascript)
+(require 'gemacs-neo4j)
 (require 'gemacs-protobuf)
 (require 'gemacs-python)
 (require 'gemacs-sgml)
 (require 'gemacs-sh)
 (require 'gemacs-sql)
 (require 'gemacs-tup)
-(require 'gemacs-neo4j)
 
 ;; Tools.
 (require 'gemacs-flycheck)

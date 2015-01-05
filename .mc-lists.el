@@ -35,6 +35,7 @@
         paredit-splice-sexp-killing-backward
         python-indent-dedent-line-backspace
         python-indent-electric-colon
+        sgml-slash
         sh-assignment
         shift-right
         smex
