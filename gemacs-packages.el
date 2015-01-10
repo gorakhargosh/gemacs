@@ -75,6 +75,7 @@
                            flycheck
                            go-autocomplete
                            go-eldoc
+                           graphviz-dot-mode
                            helm
                            highlight-symbol
                            ido-ubiquitous
