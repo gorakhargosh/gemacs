@@ -72,7 +72,7 @@
                            exec-path-from-shell
                            fastnav
                            find-things-fast
-                           flycheck
+                           ;; flycheck
                            go-autocomplete
                            go-eldoc
                            graphviz-dot-mode

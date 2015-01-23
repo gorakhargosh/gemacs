@@ -195,7 +195,7 @@ immediately."
 (require 'gemacs-tup)
 
 ;; Tools.
-(require 'gemacs-flycheck)
+;;(require 'gemacs-flycheck)	      
 (require 'gemacs-git)
 
 (require 'gemacs-keyboard)
