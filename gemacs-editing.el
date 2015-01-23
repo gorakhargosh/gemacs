@@ -126,10 +126,23 @@
 ;; Undo and history.
 (require 'undo-tree)
 
-(autoload 'move-text-up "move-text" nil t)
-(autoload 'move-text-down "move-text" nil t)
-(global-set-key [M-s-up] 'move-text-up)
-(global-set-key [M-s-down] 'move-text-down)
+;; (autoload 'move-text-up "move-text" nil t)
+;; (autoload 'move-text-down "move-text" nil t)
+;; (defun move-line-up ()
+;;   (interactive)
+;;   (transpose-lines 1)
+;;   (forward-line -2))
+
+;; (defun move-line-down ()
+;;   (interactive)
+;;   (forward-line 1)
+;;   (transpose-lines 1)
+;;   (forward-line -1))
+;; (global-set-key [M-s-up] 'move-line-up)
+;; (global-set-key [M-s-down] 'move-line-down)
+
+(require 'move-lines)
+(move-lines-binding)
 
 ;; Need to test this properly.
 ;; (when window-system

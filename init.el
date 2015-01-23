@@ -185,6 +185,7 @@ immediately."
 (require 'gemacs-go)
 (require 'gemacs-html)
 (require 'gemacs-ielm)
+(require 'gemacs-java)
 (require 'gemacs-javascript)
 (require 'gemacs-neo4j)
 (require 'gemacs-protobuf)
