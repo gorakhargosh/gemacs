@@ -68,6 +68,7 @@
                            auto-compile
                            cypher-mode
                            dart-mode
+                           emacs-eclim
                            evil-numbers
                            exec-path-from-shell
                            fastnav
