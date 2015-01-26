@@ -1,9 +1,10 @@
 # -*- mode: snippet -*-
 # name: thread
 # key: thread
+# expand-env: ((yas/indent-line 'fixed))
 # --
 Thread t = new Thread($1) {
-    public void run() {
-        $0
-    }
+  public void run() {
+    $0
+  }
 }.start();
