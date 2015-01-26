@@ -3,6 +3,6 @@
 # key: class
 # expand-env: ((yas/indent-line 'fixed))
 # --
-${1:public} class ${2:`(file-name-sans-extension (buffer-name))`}$3 {
+${1:public} class ${2:`(file-name-base)`}$3 {
   $0
 }
