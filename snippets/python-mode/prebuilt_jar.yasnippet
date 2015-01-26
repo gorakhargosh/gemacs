@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: prebuilt_jar build rule
+# key: prebuilt_jar
+# expand-env: ((yas/indent-line 'fixed))
+# --
+prebuilt_jar(
+  name = '${1:name}',
+  binary_jar = '${2:name-version}.jar',
+  source_jar = '${2}-sources.jar',
+  javadoc_url = '$3',
+)
