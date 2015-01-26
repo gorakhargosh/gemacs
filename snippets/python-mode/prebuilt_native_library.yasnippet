@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: prebuilt_native_library build rule
+# key: prebuilt_native_library
+# expand-env: ((yas/indent-line 'fixed))
+# --
+prebuilt_native_library(
+  name        = '${1:name}',
+  native_libs = '${2:libs}',
+  is_asset    = ${3:False},
+  visibility  = [],
+)
