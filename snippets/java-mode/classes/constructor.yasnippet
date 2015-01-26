@@ -1,7 +1,8 @@
 # -*- mode: snippet -*-
 # name: constructor
 # key: con
+# expand-env: ((yas/indent-line 'fixed))
 # --
-public ${1:`(file-name-sans-extension (buffer-name))`}($2) {
-    $0
+${1:public} ${2:`(file-name-sans-extension (buffer-name))`}($3) {
+  $0
 }

@@ -1,7 +1,8 @@
 # -*- mode: snippet -*-
 # name: interface
 # key: interface
+# expand-env: ((yas/indent-line 'fixed))
 # --
-public interface ${1:`(file-name-sans-extension (buffer-name))`}$2 {
-    $0
+${1:public} interface ${2:`(file-name-sans-extension (buffer-name))`}$3 {
+  $0
 }
