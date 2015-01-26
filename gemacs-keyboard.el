@@ -43,7 +43,7 @@
 (global-set-key (kbd "s-<return>") 'insert-blank-line-below-next-line)
 
 ;; Line or region duplication.
-(global-set-key (kbd "C-c C-d") 'duplicate-current-line-or-region)
+(global-set-key (kbd "s-d") 'duplicate-current-line-or-region)
 
 ;; Toggle identifier case.
 (global-set-key (kbd "C-x t c") 'toggle-identifier-naming-style)
