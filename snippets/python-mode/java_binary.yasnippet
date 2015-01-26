@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: java_binary build rule
+# key: java_binary
+# expand-env: ((yas/indent-line 'fixed))
+# --
+java_binary(
+  name = '${1:name}',
+  main_class = '$4',
+  deps = [$0],
+)

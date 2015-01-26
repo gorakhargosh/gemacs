@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: java_library build rule
+# key: java_library
+# expand-env: ((yas/indent-line 'fixed))
+# --
+java_library(
+  name = '${1:name}',
+  srcs = glob(['${2:*.java}']),
+  srcs = [$3],
+  deps = [$0],
+)
