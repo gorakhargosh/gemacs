@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: python_test build rule
+# key: python_test
+# expand-env: ((yas/indent-line 'fixed))
+# --
+python_test(
+  name = '${1:name}_test',
+  srcs = ['$1_test.py']),
+  deps = [
+    ':$1',
+  ],
+  source_under_test = [
+    ':$1',
+  ],
+  labels = ['{$2:small}'],
+)

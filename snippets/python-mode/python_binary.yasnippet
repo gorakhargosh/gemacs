@@ -1,10 +1,10 @@
 # -*- mode: snippet -*-
-# name: java_binary build rule
-# key: java_binary
+# name: python_binary build rule
+# key: python_binary
 # expand-env: ((yas/indent-line 'fixed))
 # --
-java_binary(
+python_binary(
   name = '${1:name}',
-  main_class = '$4',
+  main = '${2:name}.py',
   deps = [$0],
 )

@@ -9,3 +9,16 @@ java_library(
   srcs = [$3],
   deps = [$0],
 )
+
+python_binary(
+  name = 'tailer',
+  main = 'tailer.py',
+  deps = [
+    ':tailerutils',
+  ],
+)
+
+python_library(
+  name = 'tailerutils',
+  srcs = glob(['*.py'], excludes = ['tailer.py']),
+)

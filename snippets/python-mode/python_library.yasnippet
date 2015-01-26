@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: python_library build rule
+# key: python_library
+# expand-env: ((yas/indent-line 'fixed))
+# --
+python_library(
+  name = '${1:name}',
+  srcs = glob(['*.py']),
+)
