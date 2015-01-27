@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: java_test build rule
+# key: java_test
+# expand-env: ((yas/indent-line 'fixed))
+# --
+java_test(
+  name = '${1:name}',
+  srcs = glob(['*Test.java']),
+  source_under_test = [
+    '$2',
+  ],
+  deps = [
+    '//third_party/java/guava:guava',
+    '//third_party/java/junit:junit',
+    '//third_party/java/hamcrest:hamcrest-core',
+    '//third_party/java/hamcrest:hamcrest-library',
+    '//third_party/java/jackson:jackson-core',
+    '//third_party/java/jackson:jackson-databind',$0
+  ],
+)
