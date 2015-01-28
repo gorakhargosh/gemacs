@@ -25,6 +25,6 @@
 
 (require 'osc52e)
 
-(provide 'gemacs-chromebook.el)
+(provide 'gemacs-chromebook)
 
 ;;; gemacs-chromebook.el ends here
