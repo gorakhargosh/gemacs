@@ -195,11 +195,13 @@ immediately."
 (require 'gemacs-sql)
 (require 'gemacs-tup)
 
+
 ;; Tools.
-;;(require 'gemacs-flycheck)	      
+;;(require 'gemacs-flycheck)
 (require 'gemacs-git)
 
 (require 'gemacs-keyboard)
+(require 'gemacs-chromebook)
 
 
 
