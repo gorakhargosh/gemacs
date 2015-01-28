@@ -15,6 +15,8 @@
 
 ;;;; Call `osc52-set-cut-function' to activate.
 
+;;;; See: http://www.alex-charlton.com/posts/Using_the_Samsung_Chromebook_for_remote_and_local_development_with_Emacs/
+
 (defcustom osc52-max-sequence 100000
   "Maximum length of the OSC 52 sequence.
 
