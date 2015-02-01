@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: fmt.Println
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+fmt.Println($0)
