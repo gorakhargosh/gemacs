@@ -117,7 +117,7 @@
 
    ;; hl-line-mode
    `(hl-line-face ((,class (:background ,golokai-grey+5)) (t :weight bold)))
-   `(hl-line ((,class (:background ,golokai-grey+5)) (t :weight bold)))
+   `(hl-line ((,class (:background ,golokai-grey+10)) (t :weight bold)))
 
    ;; TODO
    ;; ido-mode
