@@ -109,7 +109,7 @@
                                          :box nil))))
 
    ;; search
-   `(isearch ((t (:foreground ,golokai-dark :background ,golokai-wheat :weight bold))))
+   `(isearch ((t (:foreground ,golokai-dark :background ,golokai-yellow :weight bold))))
    `(isearch-fail ((t (:foreground ,golokai-wine :background ,golokai-darkwine))))
 
    ;; linum-mode
