@@ -1,10 +1,15 @@
-;;; golokai-theme.el --- Yet another golokai theme for Emacs 24
+;;; golokai-theme.el --- Golokai Theme for Emacs 24
 
 ;; Copyright (C) 2013 Huang Bin
 ;; Copyright (C) 2014 Google Inc.
 
-;; Author: Huang Bin <embrace.hbin@gmail.com>
+;; Author: Yesudeep Mangalapilly <yesudeep@google.com>
 ;; URL: https://github.com/hbin/golokai-theme
+;; Version: 0.1
+
+;; Based on:
+;; Author: Huang Bin <embrace.hbin@gmail.com>
+;; URL: https://github.com/hbin/molokai-theme
 ;; Version: 0.8
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -22,8 +27,7 @@
 
 ;;; Commentary:
 ;;
-;; This is another golokai dark theme for Emacs 24.
-;; Equiped with my favorites.
+;; This is the Golokai theme for Emacs 24.
 
 ;;; Requirements:
 ;;
