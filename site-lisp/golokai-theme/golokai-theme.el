@@ -115,6 +115,8 @@
    ;; search
    `(isearch ((t (:foreground ,golokai-dark :background ,golokai-yellow :weight bold))))
    `(isearch-fail ((t (:foreground ,golokai-wine :background ,golokai-darkwine))))
+   ;; `(isearch-lazy-highlight-face ((t (:foreground ,golokai-dark :background ,golokai-wheat))))
+   `(lazy-highlight ((t (:foreground ,golokai-dark :background ,golokai-wheat))))
 
    ;; linum-mode
    `(linum ((t (:foreground ,golokai-grey-2 :background ,golokai-grey+10))))
@@ -123,7 +125,10 @@
    `(hl-line-face ((,class (:background ,golokai-grey+5)) (t :weight bold)))
    `(hl-line ((,class (:background ,golokai-grey+10)) (t :weight bold)))
 
-   ;; TODO
+   `(highlight-symbol-face ((t (:foreground "#ffcc00"))))
+   ;; `'(highlight-symbol-face ((t (:inherit isearch))))
+
+ ;; TODO
    ;; ido-mode
    ;; flycheck
    ;; show-paren
