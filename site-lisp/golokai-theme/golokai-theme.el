@@ -113,7 +113,7 @@
    `(isearch-fail ((t (:foreground ,golokai-wine :background ,golokai-darkwine))))
 
    ;; linum-mode
-   `(linum ((t (:foreground ,golokai-grey-2 :background ,golokai-grey+5))))
+   `(linum ((t (:foreground ,golokai-grey-2 :background ,golokai-grey+10))))
 
    ;; hl-line-mode
    `(hl-line-face ((,class (:background ,golokai-grey+5)) (t :weight bold)))
