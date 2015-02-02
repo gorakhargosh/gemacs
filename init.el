@@ -126,8 +126,9 @@ immediately."
 (setq auto-mode-alist
       (append '(
                 ;; YAML.
+                ("\\.raml" . yaml-mode)
                 ("\\.yaml$" . yaml-mode)
-                ("\\.yml" . yaml-mode)
+                ("\\.yaml$" . yaml-mode)
 
                 ;; CSS.
                 ("\\.gss" . css-mode)
