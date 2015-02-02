@@ -72,7 +72,7 @@
                            evil-numbers
                            exec-path-from-shell
                            fastnav
-                           find-things-fast
+                           ;; find-things-fast
                            ;; flycheck
                            go-autocomplete
                            go-eldoc

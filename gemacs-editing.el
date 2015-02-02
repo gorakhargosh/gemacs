@@ -180,14 +180,15 @@
 (global-set-key "\M-p" 'fastnav-sprint-forward)
 (global-set-key "\M-P" 'fastnav-sprint-backward)
 
-;; Find things fast.
-(defvar ftf-filetypes
+;; Find things faster.
+(require 'fafafa)
+(defvar fafafa-filetypes
   '("*")
   "A list of filetype patterns that grepsource will use.")
-(autoload 'ftf-find-file "find-things-fast" nil t)
-(autoload 'ftf-grepsource "find-things-fast" nil t)
-(global-set-key (kbd "C-x f") 'ftf-find-file)
-(global-set-key (kbd "<f6>") 'ftf-grepsource)
+(autoload 'fafafa-find-file "find-things-fast" nil t)
+(autoload 'fafafa-grepsource "find-things-fast" nil t)
+(global-set-key (kbd "C-x f") 'fafafa-find-file)
+(global-set-key (kbd "<f6>") 'fafafa-grepsource)
 
 ;; Highlight current symbol.
 (require 'highlight-symbol)
