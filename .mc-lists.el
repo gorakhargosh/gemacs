@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        electric-graphviz-dot-semi
         yaml-electric-backspace
         yaml-electric-dash-and-dot
         ))
