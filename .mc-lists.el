@@ -4,6 +4,7 @@
 (setq mc/cmds-to-run-for-all
       '(
         electric-graphviz-dot-semi
+        electric-newline-and-maybe-indent
         sp-remove-active-pair-overlay
         yaml-electric-backspace
         yaml-electric-dash-and-dot
