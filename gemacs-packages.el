@@ -69,7 +69,7 @@
                            cypher-mode
                            dart-mode
                            emacs-eclim
-                           evil-numbers
+                           ;; evil-numbers
                            exec-path-from-shell
                            fastnav
                            ;; find-things-fast

@@ -11,11 +11,11 @@
 (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
 
 ;; Helm find files.
-(global-set-key (kbd "M-F") 'helm-for-files)
+;; (global-set-key (kbd "M-F") 'helm-for-files)
 
 ;; Shift region left or right.
-(global-set-key (kbd "s-]") 'shift-right)
-(global-set-key (kbd "s-[") 'shift-left)
+(global-set-key (kbd "M-]") 'shift-right)
+(global-set-key (kbd "M-[") 'shift-left)
 (global-set-key (kbd "RET") 'newline-and-indent)
 
 ;; ibuffer.
@@ -62,7 +62,7 @@
 (global-set-key (kbd "M-0") 'goto-match-paren)
 
 ;; Quotes.
-(global-set-key (kbd "C-'") 'toggle-quotes)
+(global-set-key (kbd "M-'") 'toggle-quotes)
 
 ;; Transpose parameters.
 (global-set-key (kbd "s-t") 'transpose-params)
@@ -79,8 +79,8 @@
 (global-set-key (kbd "C-x o") 'switch-window)
 
 ;; Evil numbers.
-(global-set-key (kbd "M-_") 'evil-numbers/dec-at-pt)
-(global-set-key (kbd "M-+") 'evil-numbers/inc-at-pt)
+;; (global-set-key (kbd "M-_") 'evil-numbers/dec-at-pt)
+;; (global-set-key (kbd "M-+") 'evil-numbers/inc-at-pt)
 
 ;; I don't use F2 much, so binding it here to highlight symbol.
 (global-set-key [(control f2)] 'highlight-symbol-at-point)
@@ -96,7 +96,7 @@
 (global-set-key [(meta o)] 'ido-goto-symbol)     ;; Jump to symbol.
 
 ;; Transparency.
-(global-set-key (kbd "C-c t") 'toggle-transparency)
+;; (global-set-key (kbd "C-c t") 'toggle-transparency)
 
 ;; Org mode key bindings
 (global-set-key "\C-cl" 'org-store-link)

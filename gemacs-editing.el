@@ -160,7 +160,7 @@
 (global-set-key (kbd "M-7") 'er/contract-region)
 
 (require 'ace-jump-mode)
-(define-key global-map (kbd "M-.") 'ace-jump-mode)
+(define-key global-map (kbd "M-2") 'ace-jump-mode)
 
 (require 'fastnav)
 (global-set-key "\M-z" 'fastnav-zap-up-to-char-forward)
@@ -183,12 +183,12 @@
 ;; Find things faster.
 (require 'fafafa)
 (defvar fafafa-filetypes
-  '("*")
-  "A list of filetype patterns that grepsource will use.")
+ '("*")
+ "A list of filetype patterns that grepsource will use.")
 (autoload 'fafafa-find-file "find-things-fast" nil t)
 (autoload 'fafafa-grepsource "find-things-fast" nil t)
 (global-set-key (kbd "C-x f") 'fafafa-find-file)
-(global-set-key (kbd "<f6>") 'fafafa-grepsource)
+(global-set-key (kbd "C-x M-f") 'fafafa-grepsource)
 
 ;; Highlight current symbol.
 (require 'highlight-symbol)
@@ -210,21 +210,23 @@
 ;; ----------------------------------------------------------------------
 (require 'iedit)
 (put 'narrow-to-region 'disabled nil)  ;; Allow narrowing to work.
+(global-set-key (kbd "M-1") 'iedit-mode)
 
 (require 'multiple-cursors)
 ;; From active region to multiple cursors:
-(global-set-key (kbd "C-, C-l") 'mc/edit-lines)
-(global-set-key (kbd "C-, C-e") 'mc/edit-ends-of-lines)
-(global-set-key (kbd "C-, C-a") 'mc/edit-beginnings-of-lines)
+;; (global-set-key (kbd "C-, C-l") 'mc/edit-lines)
+;; (global-set-key (kbd "C-, C-e") 'mc/edit-ends-of-lines)
+;; (global-set-key (kbd "C-, C-a") 'mc/edit-beginnings-of-lines)
 
 ;; Mark more like this.
-(global-set-key (kbd "C-, C-;") 'mc/mark-all-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-, C-h") 'mc/mark-all-symbols-like-this)
-(global-set-key (kbd "C-, C-d") 'mc/mark-all-symbols-like-this-in-defun)
-(global-set-key (kbd "C-, C-,") 'mc/mark-all-like-this-dwim)
-(global-set-key (kbd "C-, C-r") 'mc/mark-all-in-region)
+(global-set-key (kbd "M-,") 'mc/mark-previous-like-this)
+(global-set-key (kbd "M-.") 'mc/mark-next-like-this)
+(global-set-key (kbd "M-\\") 'mc/mark-all-like-this-dwim)
+
+;; (global-set-key (kbd "C-, C-;") 'mc/mark-all-like-this)
+;; (global-set-key (kbd "C-, C-h") 'mc/mark-all-symbols-like-this)
+;; (global-set-key (kbd "C-, C-d") 'mc/mark-all-symbols-like-this-in-defun)
+;; (global-set-key (kbd "M-\\") 'mc/mark-all-in-region)
 
 
 (provide 'gemacs-editing)
