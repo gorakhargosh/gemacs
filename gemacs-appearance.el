@@ -69,6 +69,9 @@
 ;; Fonts appear to be larger on Linux workstations.
 (setq preferred-linux-fonts
       '(
+        ;; http://input.fontbureau.com/
+        "Input Mono Narrow-14"
+
         ;; Ubuntu Linux has this.
         "Ubuntu Mono-14"
 
@@ -103,6 +106,9 @@
 ;; Mac OS X tends to show smaller fonts.
 (setq preferred-mac-fonts
       '(
+        ;; http://input.fontbureau.com/
+        "Input Mono Narrow-14"
+
         ;; Droid Sans Mono: quite nice. 15 pixels total height at 10 point.
         ;; Clear & crisp. (e.g.
         ;; http://www.fontex.org/download/Droid-sans-mono.ttf)
