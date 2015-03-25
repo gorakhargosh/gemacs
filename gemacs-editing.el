@@ -160,7 +160,7 @@
 (global-set-key (kbd "M-7") 'er/contract-region)
 
 (require 'ace-jump-mode)
-(define-key global-map (kbd "C-.") 'ace-jump-mode)
+(define-key global-map (kbd "M-.") 'ace-jump-mode)
 
 (require 'fastnav)
 (global-set-key "\M-z" 'fastnav-zap-up-to-char-forward)
