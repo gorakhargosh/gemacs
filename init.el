@@ -23,6 +23,11 @@
 ;;
 ;;; Code:
 
+;; FIXME(yesudeep): tmux eats up the C-y keyboard binding to cause yanking to
+;; break within any session. The keyboard combination works fine outside any
+;; active tmux sessions.
+
+
 (eval-when-compile
   (require 'cl))
 
