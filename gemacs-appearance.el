@@ -70,7 +70,7 @@
 (setq preferred-linux-fonts
       '(
         ;; http://input.fontbureau.com/
-        "Input Mono Narrow-14"
+        "Input Mono Narrow-12"
 
         ;; Ubuntu Linux has this.
         "Ubuntu Mono-14"
