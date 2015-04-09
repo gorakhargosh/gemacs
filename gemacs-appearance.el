@@ -66,6 +66,9 @@
 ;; (cua-selection-mode nil)             ;; No shift-arrow style marking.
 (delete-selection-mode t)
 
+;; highlight unique symbols.
+(highlight-unique-symbol t)
+
 ;; Fonts appear to be larger on Linux workstations.
 (setq preferred-linux-fonts
       '(

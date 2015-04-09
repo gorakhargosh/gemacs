@@ -79,6 +79,7 @@
                            graphviz-dot-mode
                            helm
                            highlight-symbol
+                           highlight-unique-symbol
                            ido-ubiquitous
                            iedit
                            key-chord
