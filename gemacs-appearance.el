@@ -73,7 +73,7 @@
 (setq preferred-linux-fonts
       '(
         ;; http://input.fontbureau.com/
-        "Input Mono Narrow-12"
+        "Input Mono-12"
 
         ;; Ubuntu Linux has this.
         "Ubuntu Mono-14"
@@ -110,7 +110,7 @@
 (setq preferred-mac-fonts
       '(
         ;; http://input.fontbureau.com/
-        "Input Mono Narrow-14"
+        "Input Mono-14"
 
         ;; Droid Sans Mono: quite nice. 15 pixels total height at 10 point.
         ;; Clear & crisp. (e.g.
