@@ -41,7 +41,7 @@
    fill-column-indicator
    js2-mode
    js2-refactor
-   magit
+   ;; magit
    rst-mode
    ))
 (setq goog:el-get-packages
@@ -63,17 +63,17 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar default-packages '(
+                           ;; evil-numbers
+                           ;; find-things-fast
+                           ;; flycheck
                            ace-jump-mode
                            ack-and-a-half
                            auto-compile
                            cypher-mode
                            dart-mode
                            emacs-eclim
-                           ;; evil-numbers
                            exec-path-from-shell
                            fastnav
-                           ;; find-things-fast
-                           ;; flycheck
                            go-autocomplete
                            go-eldoc
                            graphviz-dot-mode
@@ -84,6 +84,7 @@
                            iedit
                            key-chord
                            less-css-mode
+                           magit
                            markdown-mode
                            multiple-cursors
                            nav
