@@ -65,7 +65,7 @@
 (defvar default-packages '(
                            ;; evil-numbers
                            ;; find-things-fast
-                           ;; flycheck
+                           flycheck
                            ace-jump-mode
                            ack-and-a-half
                            auto-compile

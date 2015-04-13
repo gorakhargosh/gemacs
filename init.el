@@ -203,7 +203,7 @@ immediately."
 
 
 ;; Tools.
-;;(require 'gemacs-flycheck)
+(require 'gemacs-flycheck)
 (require 'gemacs-git)
 
 (require 'gemacs-keyboard)
