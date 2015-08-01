@@ -77,6 +77,7 @@
                            go-autocomplete
                            go-eldoc
                            graphviz-dot-mode
+                           haskell-mode
                            helm
                            highlight-symbol
                            highlight-unique-symbol

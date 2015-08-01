@@ -189,6 +189,7 @@ immediately."
 (require 'gemacs-css)
 (require 'gemacs-dart)
 (require 'gemacs-go)
+(require 'gemacs-haskell)
 (require 'gemacs-html)
 (require 'gemacs-ielm)
 (require 'gemacs-java)
