@@ -44,12 +44,13 @@
 (require 'whitespace)
 (global-whitespace-mode t)
 (setq whitespace-style
-      '(face empty indentation lines-tail newline tabs trailing)
+      '(face empty indentation lines-tail newline trailing)
       whitespace-action '(auto-cleanup warn-read-only)
       whitespace-line-column 80)
 ;; Disabled space-mark newline-mark because it makes code very hard to read.
 (setq whitespace-display-mappings
-      '((space-mark   ?\    [?\xB7]     [?.])       ;; space
+      '(
+        (space-mark   ?\    [?\xB7]     [?.])       ;; space
         (space-mark   ?\xA0 [?\xA4]     [?_])       ;; hard space
         (newline-mark ?\n   [?\xB6 ?\n] [?$ ?\n])   ;; end-of-line
         ))
