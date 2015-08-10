@@ -209,8 +209,7 @@ immediately."
 
 (require 'gemacs-keyboard)
 (require 'gemacs-chromebook)
-
-
+(require 'gemacs-mouse)
 
 ;; ----------------------------------------------------------------------
 ;; Now load host, os, network-specific configuration.
@@ -230,47 +229,47 @@ immediately."
   ;; ~/.emacs.d/hosts/dhcp-172-26-239-50.hyd.corp.google.com.el
   (setq goog-hostname-config (concat goog-local-hosts-dir system-name ".el"))
 
-  ;; ~/.emacs.d/users/<username>.el
-  (setq goog-username-config (concat goog-local-users-dir user-login-name ".el"))
+ ;; ~/.emacs.d/users/<username>.el
+ (setq goog-username-config (concat goog-local-users-dir user-login-name ".el"))
 
-  ;; ~/.emacs.d/hosts/dhcp-172-26-239-50.hyd.corp.google.com/*.el
-  (setq goog-hostname-dir (concat goog-local-hosts-dir system-name))
+ ;; ~/.emacs.d/hosts/dhcp-172-26-239-50.hyd.corp.google.com/*.el
+ (setq goog-hostname-dir (concat goog-local-hosts-dir system-name))
 
-  ;; ~/.emacs.d/users/<username>/*.el
-  (setq goog-username-dir (concat goog-local-users-dir user-login-name))
+ ;; ~/.emacs.d/users/<username>/*.el
+ (setq goog-username-dir (concat goog-local-users-dir user-login-name))
 
-  ;; ~/.emacs.d/os/<os-type>/*.el
-  ;; TODO(yesudeep): os-type needs to be normalized from system-type. For
-  ;; example, Linux is represented by "gnu/linux" which cannot be a reliably
-  ;; valid directory name.
-  (setq goog-os-dir (concat goog-local-os-dir (format "%s" system-type)))
+ ;; ~/.emacs.d/os/<os-type>/*.el
+ ;; TODO(yesudeep): os-type needs to be normalized from system-type. For
+ ;; example, Linux is represented by "gnu/linux" which cannot be a reliably
+ ;; valid directory name.
+ (setq goog-os-dir (concat goog-local-os-dir (format "%s" system-type)))
 
-  (message "Setting user configuration.")
-  (goog/elisp/eval-after-init
-   '(progn
-      (message "Network: %s" goog-network-name)
-      (message "Hostname: %s" system-name)
-      (message "Username: %s" user-login-name)
+ (message "Setting user configuration.")
+ (goog/elisp/eval-after-init
+  '(progn
+     (message "Network: %s" goog-network-name)
+     (message "Hostname: %s" system-name)
+     (message "Username: %s" user-login-name)
 
-      ;; --------------------------------------------------
-      ;; Network wide.
-      ;; --------------------------------------------------
-      (when (string-match goog-network-re system-name)
-        (goog/elisp/load-directory goog-network-dir)
-        (goog/elisp/load-directory goog-network-hosts-dir)
-        (goog/elisp/load-directory goog-network-users-dir))
+     ;; --------------------------------------------------
+     ;; Network wide.
+     ;; --------------------------------------------------
+     (when (string-match goog-network-re system-name)
+       (goog/elisp/load-directory goog-network-dir)
+       (goog/elisp/load-directory goog-network-hosts-dir)
+       (goog/elisp/load-directory goog-network-users-dir))
 
-      ;; --------------------------------------------------
-      ;; Local
-      ;; --------------------------------------------------
-      (goog/elisp/load-if-exists goog-hostname-config)
-      (goog/elisp/load-if-exists goog-username-config)
+     ;; --------------------------------------------------
+     ;; Local
+     ;; --------------------------------------------------
+     (goog/elisp/load-if-exists goog-hostname-config)
+     (goog/elisp/load-if-exists goog-username-config)
 
-      (goog/elisp/load-directory goog-hostname-dir)
-      (goog/elisp/load-directory goog-username-dir)
-      (goog/elisp/load-directory goog-os-dir)
+     (goog/elisp/load-directory goog-hostname-dir)
+     (goog/elisp/load-directory goog-username-dir)
+     (goog/elisp/load-directory goog-os-dir)
 
-      )
+     )
    ))
 
 ;;; init.el ends here

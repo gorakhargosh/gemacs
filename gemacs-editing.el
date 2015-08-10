@@ -4,23 +4,6 @@
 ;;
 ;;; Code:
 
-;; Scroll faster.
-(setq mouse-wheel-scroll-amount '(7 ((shift) . 1) ((control) . nil)))
-
-
-;; Enables mouse support scrolling when using Emacs in the terminal.
-(unless window-system
-  (require 'mouse)
-  (xterm-mouse-mode t)
-  (global-set-key [mouse-4] '(lambda ()
-                               (interactive)
-                               (scroll-down 1)))
-  (global-set-key [mouse-5] '(lambda ()
-                               (interactive)
-                               (scroll-up 1)))
-  ;; (defun track-mouse (e))
-  (setq mouse-sel-mode t))
-
 ;; ----------------------------------------------------------------------
 ;; Editing and searching.
 ;; ----------------------------------------------------------------------
