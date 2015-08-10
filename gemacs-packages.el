@@ -65,15 +65,16 @@
 (defvar default-packages '(
                            ;; evil-numbers
                            ;; find-things-fast
-                           flycheck
                            ace-jump-mode
                            ack-and-a-half
+                           auctex
                            auto-compile
                            cypher-mode
                            dart-mode
                            emacs-eclim
                            exec-path-from-shell
                            fastnav
+                           flycheck
                            go-autocomplete
                            go-eldoc
                            graphviz-dot-mode
