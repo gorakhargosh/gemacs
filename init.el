@@ -209,7 +209,7 @@ immediately."
 
 (require 'gemacs-keyboard)
 (require 'gemacs-chromebook)
-(require 'gemacs-mouse)
+;; (require 'gemacs-xterm)
 
 ;; ----------------------------------------------------------------------
 ;; Now load host, os, network-specific configuration.

@@ -158,8 +158,8 @@
     ;; (set-face-font 'default "Monaco-13")
     ;; Mac OS X-specific font anti-aliasing.
     (set-face-attribute 'default nil :font (find-first-font preferred-mac-fonts))
-    (setq mac-allow-anti-aliasing t))
-  (when (goog/platform/is-linux-p)
+   (setq mac-allow-anti-aliasing t))
+ (when (goog/platform/is-linux-p)
     ;; Monaco is clean. The default is too small in the GUI.
     ;; (set-face-font 'default "Monaco-13")
     ;; Mac OS X-specific font anti-aliasing.
