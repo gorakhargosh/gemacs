@@ -192,7 +192,7 @@ immediately."
 (require 'gemacs-haskell)
 (require 'gemacs-html)
 (require 'gemacs-ielm)
-(require 'gemacs-java)
+;; (require 'gemacs-java)
 (require 'gemacs-javascript)
 (require 'gemacs-neo4j)
 (require 'gemacs-protobuf)
