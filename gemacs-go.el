@@ -42,7 +42,7 @@
   (define-key go-mode-map (kbd "C-c C-e") 'goog/config/go-mode/execute-buffer)
   (define-key go-mode-map (kbd "C-c C-b") 'goog/config/go-mode/build-buffer)
   ; Godef jump key binding
-  (define-key go-mode-map (kbd "M-.") 'godef-jump)
+  (define-key go-mode-map (kbd "C-.") 'godef-jump)
   )
 
 (add-hook 'before-save-hook 'gofmt-before-save)
