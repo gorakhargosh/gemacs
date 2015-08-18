@@ -77,6 +77,7 @@
                            flycheck
                            go-autocomplete
                            go-eldoc
+                           golint
                            graphviz-dot-mode
                            haskell-mode
                            helm
