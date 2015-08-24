@@ -19,11 +19,11 @@
 (setq
  el-get-sources
  '(el-get
-   (:name smex              ;; a better (ido-like) M-x
-          :after (progn
-                   (setq smex-save-file "~/.emacs.d/.smex-items")
-                   (global-set-key (kbd "M-x") 'smex)
-                   (global-set-key (kbd "M-X") 'smex-major-mode-commands)))
+   ;; (:name smex              ;; a better (ido-like) M-x
+   ;;        :after (progn
+   ;;                 (setq smex-save-file "~/.emacs.d/.smex-items")
+   ;;                 (global-set-key (kbd "M-x") 'smex)
+   ;;                 (global-set-key (kbd "M-X") 'smex-major-mode-commands)))
    (:name go-mode
           :website "http://github.com/dominikh/go-mode.el#readme"
           :description "An improved go-mode."
@@ -43,6 +43,9 @@
    js2-refactor
    ;; magit
    rst-mode
+   company-mode
+   go-company
+   company-c-headers
    ))
 (setq goog:el-get-packages
       (append
@@ -65,6 +68,18 @@
 (defvar default-packages '(
                            ;; evil-numbers
                            ;; find-things-fast
+                           ;; company-arduino
+                           ;; company-auctex
+                           ;; company-c-headers
+                           ;; company-cabal
+                           ;; ;; company-cmake
+                           ;; company-ghc
+                           ;; company-ghci
+                           ;; company-go
+                           ;; company-math
+                           ;; company
+                           ;; company-web
+
                            ace-jump-mode
                            ack-and-a-half
                            auctex
@@ -77,6 +92,7 @@
                            flycheck
                            go-autocomplete
                            go-eldoc
+                           go-errcheck
                            golint
                            graphviz-dot-mode
                            haskell-mode
@@ -106,6 +122,8 @@
                            yaml-mode
                            yasnippet
                            zencoding-mode
+
+                           smex
                            ))
 (dolist (p default-packages)
   (when (not (package-installed-p p))

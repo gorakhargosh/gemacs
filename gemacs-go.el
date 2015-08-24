@@ -17,6 +17,16 @@
 (load "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
 (add-hook 'go-mode-hook 'go-oracle-mode)
 
+(add-hook 'go-mode-hook (lambda ()
+                          ;;(set (make-local-variable 'company-backends) '(company-go))
+                          (add-to-list 'company-backends 'company-go)
+                          (company-mode)
+
+                          (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)
+                          (local-set-key (kbd "C-c i") 'go-goto-imports)
+                          ))
+
+
 (defun goog/config/go-mode/execute-buffer ()
   "Formats, compiles and executes the Go code in the current buffer."
   (interactive)
