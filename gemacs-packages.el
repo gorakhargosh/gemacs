@@ -46,7 +46,9 @@
    company-mode
    go-company
    company-c-headers
-   ))
+   anaconda-mode
+   company-anaconda
+  ))
 (setq goog:el-get-packages
       (append
        goog:el-get-packages
@@ -79,7 +81,6 @@
                            ;; company-math
                            ;; company
                            ;; company-web
-
                            ace-jump-mode
                            ack-and-a-half
                            auctex

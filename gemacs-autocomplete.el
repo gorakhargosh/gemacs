@@ -23,10 +23,11 @@
 ;; (require 'company-auctex)
 (add-hook 'after-init-hook 'global-company-mode)
 
-(setq company-idle-delay 0)
-(setq company-tooltip-limit 7)
 (setq company-begin-commands '(self-insert-command))
 (setq company-echo-delay 0)
+(setq company-idle-delay 0)
+(setq company-minimum-prefix-length 0)
+(setq company-tooltip-limit 7)
 
 ;; (require 'auto-complete)
 ;; (require 'auto-complete-config)

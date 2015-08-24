@@ -16,6 +16,11 @@
    ("\\<[\\+-]?[0-9]+\\(.[0-9]+\\)?\\>" 0 'font-lock-constant-face)
    ("\\([][{}()~^<>:=,.\\+*/%-]\\)" 0 'widget-inactive-face)))
 
+(eval-after-load "company"
+  '(progn
+     (add-to-list 'company-backends 'company-anaconda)))
+(add-hook 'python-mode-hook 'anaconda-mode)
+
 (defun goog/config/python-mode/setup ()
   "Configures `python-mode'."
   (setq indent-tabs-mode nil
@@ -26,7 +31,7 @@
         py-indent-offset 2)
 
   ;; Auto-complete configuration.
-  (setq ac-auto-start 0)
+  ;; (setq ac-auto-start 0)
   )
 
 (provide 'gemacs-python)
