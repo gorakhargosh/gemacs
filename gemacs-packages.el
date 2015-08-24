@@ -24,13 +24,13 @@
    ;;                 (setq smex-save-file "~/.emacs.d/.smex-items")
    ;;                 (global-set-key (kbd "M-x") 'smex)
    ;;                 (global-set-key (kbd "M-X") 'smex-major-mode-commands)))
-   (:name go-mode
-          :website "http://github.com/dominikh/go-mode.el#readme"
-          :description "An improved go-mode."
-          :type github
-          :pkgname "dominikh/go-mode.el"
-          :post-init (progn
-                       (require 'go-mode)))
+   ;; (:name go-mode
+   ;;        :website "http://github.com/dominikh/go-mode.el#readme"
+   ;;        :description "An improved go-mode."
+   ;;        :type github
+   ;;        :pkgname "dominikh/go-mode.el"
+   ;;        :post-init (progn
+   ;;                     (require 'go-mode)))
    ))
 (setq
  goog:el-get-packages
@@ -48,6 +48,8 @@
    company-c-headers
    anaconda-mode
    company-anaconda
+   go-mode
+   go-oracle
   ))
 (setq goog:el-get-packages
       (append

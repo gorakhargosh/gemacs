@@ -14,14 +14,15 @@
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 
 ;;(load "$GOPATH/src/code.google.com/p/go.tools/cmd/oracle/oracle.el")
-(load "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
-(add-hook 'go-mode-hook 'go-oracle-mode)
+;; (load "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
+;; (add-hook 'go-mode-hook 'go-oracle-mode)
 
 (add-hook 'go-mode-hook (lambda ()
                           ;;(set (make-local-variable 'company-backends) '(company-go))
                           (add-to-list 'company-backends 'company-go)
                           (company-mode)
 
+                          (go-oracle-mode)
                           (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)
                           (local-set-key (kbd "C-c i") 'go-goto-imports)
                           ))
