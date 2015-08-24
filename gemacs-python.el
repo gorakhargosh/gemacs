@@ -16,10 +16,10 @@
    ("\\<[\\+-]?[0-9]+\\(.[0-9]+\\)?\\>" 0 'font-lock-constant-face)
    ("\\([][{}()~^<>:=,.\\+*/%-]\\)" 0 'widget-inactive-face)))
 
-(eval-after-load "company"
-  '(progn
-     (add-to-list 'company-backends 'company-anaconda)))
-(add-hook 'python-mode-hook 'anaconda-mode)
+;; (eval-after-load "company"
+;;   '(progn
+;;      (add-to-list 'company-backends 'company-anaconda)))
+;; (add-hook 'python-mode-hook 'anaconda-mode)
 
 (defun goog/config/python-mode/setup ()
   "Configures `python-mode'."
