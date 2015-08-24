@@ -4,6 +4,7 @@
 (setq mc/cmds-to-run-for-all
       '(
         c-electric-semi&comma
+        delete-indentation
         electric-graphviz-dot-semi
         electric-newline-and-maybe-indent
         sp-remove-active-pair-overlay
