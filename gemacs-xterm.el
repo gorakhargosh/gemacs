@@ -7,8 +7,6 @@
 ;; Scroll faster.
 (setq mouse-wheel-scroll-amount '(7 ((shift) . 1) ((control) . nil)))
 
-(require 'gemacs-init-frame-hooks)
-
 (defun fix-up-xterm-control-arrows ()
   (let ((map (if (boundp 'input-decode-map)
                  input-decode-map
@@ -22,17 +20,21 @@
     (define-key map "\e[5C"   [C-right])
     (define-key map "\e[5D"   [C-left])))
 
-(global-set-key [mouse-4] (lambda () (interactive) (scroll-down 1)))
-(global-set-key [mouse-5] (lambda () (interactive) (scroll-up 1)))
 
-(defun sanityinc/console-frame-setup ()
-  (when (< emacs-major-version 23)
-    (fix-up-xterm-control-arrows))
-  (xterm-mouse-mode 1) ; Mouse in a terminal (Use shift to paste with middle button)
-  (when (fboundp 'mwheel-install)
-    (mwheel-install)))
+;; (global-set-key [mouse-4] (lambda () (interactive) (scroll-down 1)))
+;; (global-set-key [mouse-5] (lambda () (interactive) (scroll-up 1)))
 
-(add-hook 'after-make-console-frame-hooks 'sanityinc/console-frame-setup)
+;; (defun goog/console-frame-setup ()
+;;   (when (< emacs-major-version 23)
+;;     )
+;;   (xterm-mouse-mode 1) ; Mouse in a terminal (Use shift to paste with middle button)
+;;   (when (fboundp 'mwheel-install)
+;;     (mwheel-install)))
+
+(defun goog/console-frame-setup ()
+  (fix-up-xterm-control-arrows))
+
+(add-hook 'after-make-console-frame-hooks 'goog/console-frame-setup)
 
 ;; Enables mouse support scrolling when using Emacs in the terminal.
 ;; (unless window-system

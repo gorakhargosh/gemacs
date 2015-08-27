@@ -202,7 +202,7 @@ immediately."
 (require 'gemacs-sh)
 (require 'gemacs-sql)
 (require 'gemacs-tup)
-
+(require 'gemacs-tex)
 
 ;; Tools.
 (require 'gemacs-flycheck)
