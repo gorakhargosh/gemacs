@@ -80,11 +80,9 @@
 
                            ;; Utility.
                            ace-jump-mode
-                           ;; ack-and-a-half
                            exec-path-from-shell
                            fastnav
                            flycheck
-                           ;; helm
                            highlight-symbol
                            highlight-unique-symbol
                            ido-ubiquitous
