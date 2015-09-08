@@ -196,23 +196,6 @@
 (put 'narrow-to-region 'disabled nil)  ;; Allow narrowing to work.
 (global-set-key (kbd "M-1") 'iedit-mode)
 
-(require 'multiple-cursors)
-;; From active region to multiple cursors:
-;; (global-set-key (kbd "C-, C-l") 'mc/edit-lines)
-;; (global-set-key (kbd "C-, C-e") 'mc/edit-ends-of-lines)
-;; (global-set-key (kbd "C-, C-a") 'mc/edit-beginnings-of-lines)
-
-;; Mark more like this.
-(global-set-key (kbd "M-,") 'mc/mark-previous-like-this)
-(global-set-key (kbd "M-.") 'mc/mark-next-like-this)
-(global-set-key (kbd "M-\\") 'mc/mark-all-like-this-dwim)
-
-;; (global-set-key (kbd "C-, C-;") 'mc/mark-all-like-this)
-;; (global-set-key (kbd "C-, C-h") 'mc/mark-all-symbols-like-this)
-;; (global-set-key (kbd "C-, C-d") 'mc/mark-all-symbols-like-this-in-defun)
-;; (global-set-key (kbd "M-\\") 'mc/mark-all-in-region)
-
-
 (provide 'gemacs-editing)
 
 ;;; gemacs-editing.el ends here

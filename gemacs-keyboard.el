@@ -115,7 +115,12 @@
 (key-chord-define-global "hj" 'undo)
 (key-chord-define-global "jk" 'dabbrev-expand)
 (key-chord-define-global ";'" 'ido-recentf-open)
-(key-chord-define-global ",." 'ido-find-file)
+
+(require 'multiple-cursors)
+;; Mark more like this.
+(global-set-key (kbd "M-\\") 'mc/mark-all-like-this-dwim)
+(key-chord-define-global "m," 'mc/mark-previous-like-this)
+(key-chord-define-global ",." 'mc/mark-next-like-this)
 
 (provide 'gemacs-keyboard)
 

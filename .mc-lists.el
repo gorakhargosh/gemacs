@@ -3,10 +3,14 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        LaTeX-babel-insert-hyphen
+        TeX-insert-backslash
         c-electric-semi&comma
         delete-indentation
         electric-graphviz-dot-semi
         electric-newline-and-maybe-indent
+        eval-print-last-sexp
+        kill-region
         reindent-then-newline-and-indent
         sp-remove-active-pair-overlay
         yaml-electric-backspace
@@ -16,4 +20,5 @@
 
 (setq mc/cmds-to-run-once
       '(
+        sp-wrap-cancel
         ))
