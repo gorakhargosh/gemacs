@@ -1,12 +1,8 @@
 ;;; gemacs-editing.el --- Editing related stuff.
-;;
 ;;; Commentary:
-;;
 ;;; Code:
 
-;; ----------------------------------------------------------------------
 ;; Editing and searching.
-;; ----------------------------------------------------------------------
 (setq-default fill-column 80)     ;; right margin and fill column.
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'text-mode-hook 'turn-on-watchwords)
@@ -22,8 +18,7 @@
 (add-hook 'prog-mode-common-hook 'goog/prog-mode-common/setup)
 
 ;; Use whitespace mode. Cleans up trailing spaces, shows tabs, unnecessary
-;; whitespace, end of file newline, bad indentation, text overrunning the
-;; margin, etc.
+;; whitespace, EOF newline, bad indentation, margin bleeds, etc.
 (require 'whitespace)
 (global-whitespace-mode t)
 (setq whitespace-style
@@ -41,17 +36,12 @@
 (require 're-builder)
 (setq reb-re-syntax 'string)
 
-;; -----------------------------------------------------------------------------
 ;; Configure pairs of characters and parenthese matching.
-;;
 (require 'smartparens)
 (require 'smartparens-config)
 (setq sp-autoescape-string-quote nil)
 (progn
   (show-paren-mode t)                ;; Highlight matching parentheses.
-  ;; (setq show-paren-delay 0
-  ;;       show-paren-style 'expression
-  ;;       )
   (smartparens-global-mode t)
   (show-smartparens-global-mode +1)
 
@@ -59,15 +49,7 @@
   (setq sp-autoescape-string-quote nil)
   )
 
-;; (require 'rainbow-delimiters)
-;; (global-rainbow-delimiters-mode)
-
-;; Enable this if you need it.
-;; (add-hook 'prog-mode-hook '(lambda () (rainbow-mode)))
-
-;; ----------------------------------------------------------------------
 ;; Clipboard and kill-ring.
-;; ----------------------------------------------------------------------
 (setq x-select-enable-clipboard t) ;; <3 clipboard copy-paste.
 ;; https://github.com/bbatsov/emacs-prelude/commit/d26924894b31d5dc3a8b2813719579baccc2b433
 (when (goog/platform/is-darwin-p)
@@ -109,35 +91,8 @@
 
 ;; Undo and history.
 (require 'undo-tree)
-
-;; (autoload 'move-text-up "move-text" nil t)
-;; (autoload 'move-text-down "move-text" nil t)
-;; (defun move-line-up ()
-;;   (interactive)
-;;   (transpose-lines 1)
-;;   (forward-line -2))
-
-;; (defun move-line-down ()
-;;   (interactive)
-;;   (forward-line 1)
-;;   (transpose-lines 1)
-;;   (forward-line -1))
-;; (global-set-key [M-s-up] 'move-line-up)
-;; (global-set-key [M-s-down] 'move-line-down)
-
 (require 'move-lines)
 (move-lines-binding)
-
-;; Need to test this properly.
-;; (when window-system
-;;   (require 'fill-column-indicator)
-;;   (add-hook 'after-change-major-mode-hook 'fci-mode)
-;;   (define-globalized-minor-mode global-fci-mode fci-mode
-;;     (lambda () (fci-mode 1)))
-;;   (global-fci-mode 1)
-;;   (setq fci-rule-color "red")
-;;   )
-
 (autoload 'expand-region "expand-region" nil t)
 (autoload 'contract-region "expand-region" nil t)
 (global-set-key (kbd "M-8") 'er/expand-region)
@@ -188,13 +143,6 @@
 
 ;; global diff highlight mode.
 (global-diff-hl-mode)
-
-;; ----------------------------------------------------------------------
-;; Mark and edit multiple regions.
-;; ----------------------------------------------------------------------
-(require 'iedit)
-(put 'narrow-to-region 'disabled nil)  ;; Allow narrowing to work.
-(global-set-key (kbd "M-1") 'iedit-mode)
 
 (provide 'gemacs-editing)
 

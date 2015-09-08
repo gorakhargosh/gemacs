@@ -88,6 +88,10 @@
 (global-set-key (kbd "M-)") 'mc/mark-next-like-this)
 (global-set-key (kbd "M-\\") 'mc/mark-all-like-this-dwim)
 
+(require 'iedit)
+(put 'narrow-to-region 'disabled nil)  ;; Allow narrowing to work.
+(global-set-key (kbd "M-1") 'iedit-mode)
+
 (provide 'gemacs-keyboard)
 
 ;;; gemacs-keyboard.el ends here
