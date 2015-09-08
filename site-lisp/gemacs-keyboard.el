@@ -2,6 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'key-chord)
+(key-chord-mode 1)
+(setq key-chord-two-keys-delay 0.05)
+
 (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
 
 ;; Shift region left or right.
@@ -58,17 +62,17 @@
 ;; Switch buffer.
 (global-set-key (kbd "C-x o") 'switch-window)
 
-;; I don't use F2 much, so binding it here to highlight symbol.
+;; Highlight symbol.
 (global-set-key [(control f2)] 'highlight-symbol-at-point)
-(global-set-key [f2] 'highlight-symbol-next)
-(global-set-key [(shift f2)] 'highlight-symbol-prev)
-(global-set-key [(meta f2)] 'highlight-symbol-prev)
+(global-set-key (kbd "M-8") 'highlight-symbol-next)
+(global-set-key (kbd "M-7") 'highlight-symbol-prev)
 
 ;; Search, search, search.
-(global-set-key [(f5)] 'ack-and-a-half-find-file)
+(key-chord-define-global ",." 'ack-and-a-half-find-file)
+(global-set-key (kbd "C-x C-f") )
 (global-set-key [(f7)] 'ack-and-a-half)
 (global-set-key [(shift f7)] 'ack-and-a-half-same)
-(global-set-key [(meta o)] 'ido-goto-symbol)     ;; Jump to symbol.
+(global-set-key [(meta o)] 'ido-goto-symbol)
 
 ;; Org mode key bindings
 (global-set-key "\C-cl" 'org-store-link)
@@ -76,9 +80,6 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
 
-(require 'key-chord)
-(key-chord-mode 1)
-(setq key-chord-two-keys-delay 0.05)
 (key-chord-define-global "hj" 'undo)
 (key-chord-define-global "jk" 'dabbrev-expand)
 (key-chord-define-global ";'" 'ido-recentf-open)

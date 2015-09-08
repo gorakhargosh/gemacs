@@ -53,7 +53,6 @@
            ido-create-new-buffer 'always)
 
      ;; Display ido results vertically, rather than horizontally.
-     ;; From the Emacs wiki.
      (setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
      (defun goog/config/ido-mode/disable-line-truncation ()
        (set (make-local-variable 'truncate-lines) nil))
@@ -81,5 +80,4 @@
     (message "Aborting")))
 
 (provide 'gemacs-workspace)
-
 ;;; gemacs-workspace.el ends here
