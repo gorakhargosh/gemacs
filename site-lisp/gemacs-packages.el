@@ -19,18 +19,7 @@
 (setq
  el-get-sources
  '(el-get
-   ;; (:name smex              ;; a better (ido-like) M-x
-   ;;        :after (progn
-   ;;                 (setq smex-save-file "~/.emacs.d/.smex-items")
-   ;;                 (global-set-key (kbd "M-x") 'smex)
-   ;;                 (global-set-key (kbd "M-X") 'smex-major-mode-commands)))
-   ;; (:name go-mode
-   ;;        :website "http://github.com/dominikh/go-mode.el#readme"
-   ;;        :description "An improved go-mode."
-   ;;        :type github
-   ;;        :pkgname "dominikh/go-mode.el"
-   ;;        :post-init (progn
-   ;;                     (require 'go-mode)))
+   ;; source based stuff here.
    ))
 (setq
  goog:el-get-packages
