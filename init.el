@@ -1,32 +1,10 @@
-;;; init.el -- Emacs configuration in a single file.
-;;
-;; Copyright (C) 2015 Google Inc.
-;;
-;; This program is free software: you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
-;;
-;; This program is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-;;
-;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
-;;
-;; Author: yesudeep@google.com (Yesudeep Mangalapilly)
-;;
-;;; This file is NOT a part of GNU Emacs.
-;;
+;;; init.el -- Emacs configuration in a single file. See COPYING for license.
 ;;; Commentary:
-;;
 ;;; Code:
 
 ;; FIXME(yesudeep): tmux eats up the C-y keyboard binding to cause yanking to
 ;; break within any session. The keyboard combination works fine outside any
 ;; active tmux sessions.
-
 
 (eval-when-compile
   (require 'cl))
@@ -38,19 +16,8 @@
 
 (set-locale-environment "en_US.UTF-8")
 
-;; ======================================================================
-;; Initial configuration.
-;; ======================================================================
-;; (setq user-emacs-directory (file-name-directory (or (buffer-file-name)
-;;                                           load-file-name)))
-;; Do NOT add this to the load-path. It causes unnecessary warnings.
-;; (add-to-list 'load-path user-emacs-directory)
-
-;; Directory paths.
 (setq goog-site-lisp-dir (expand-file-name
                           (concat user-emacs-directory "site-lisp")))
-
-;; Load-path.
 (add-to-list 'load-path goog-site-lisp-dir)
 
 ;; Add all subdirectories of site-lisp to load path.
@@ -63,9 +30,7 @@
       goog-network-re ".*[.]corp[.]google[.]com")
 
 
-;; ======================================================================
 ;; Platform detection.
-;; ======================================================================
 (defun goog/platform/is-darwin-p ()
   "Determines whether the system is darwin-based (Mac OS X)"
   (interactive)
@@ -90,9 +55,6 @@
 (require 'gemacs-workspace)
 (require 'gemacs-editing)
 
-;; ----------------------------------------------------------------------
-;; goog/elisp
-;; ----------------------------------------------------------------------
 (defun goog/elisp/load-current-module ()
   "Load the current Elisp module."
   (interactive)
@@ -125,10 +87,6 @@ immediately."
     (when after-init-time
       (eval form))))
 
-
-;; ----------------------------------------------------------------------
-;; Define automatic mode detection for file types.
-;; ----------------------------------------------------------------------
 (setq auto-mode-alist
       (append '(
                 ;; YAML.
@@ -179,13 +137,9 @@ immediately."
               auto-mode-alist))
 
 
-;; Documentation and help.
-(require 'eldoc) ;; if not already loaded
-
-;; Editing
+(require 'eldoc)
 (require 'gemacs-autocomplete)
 
-;; Programming languages.
 (require 'gemacs-css)
 (require 'gemacs-go)
 (require 'gemacs-haskell)
@@ -198,20 +152,14 @@ immediately."
 (require 'gemacs-sgml)
 (require 'gemacs-sh)
 (require 'gemacs-sql)
-(require 'gemacs-tup)
 (require 'gemacs-tex)
+(require 'gemacs-tup)
 
-;; Tools.
 (require 'gemacs-flycheck)
 (require 'gemacs-git)
-
 (require 'gemacs-keyboard)
 (require 'gemacs-chromebook)
-;; (require 'gemacs-xterm)
 
-;; ----------------------------------------------------------------------
-;; Now load host, os, network-specific configuration.
-;; ----------------------------------------------------------------------
 (progn
   (message "Loading user, network, and host-specific configuration.")
 
