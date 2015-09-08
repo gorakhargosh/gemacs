@@ -35,21 +35,21 @@
 (setq
  goog:el-get-packages
  '(
-   auto-complete
+   ;; auto-complete
+   ;; magit
+   anaconda-mode
+   company-anaconda
+   company-c-headers
+   company-mode
    diff-hl
    expand-region
    fill-column-indicator
-   js2-mode
-   js2-refactor
-   ;; magit
-   rst-mode
-   company-mode
    go-company
-   company-c-headers
-   anaconda-mode
-   company-anaconda
    go-mode
    go-oracle
+   js2-mode
+   js2-refactor
+   rst-mode
   ))
 (setq goog:el-get-packages
       (append
