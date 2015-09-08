@@ -1,7 +1,5 @@
 ;;; gemacs-autocomplete.el --- Autocomplete related stuff.
-;;
 ;;; Commentary:
-;;
 ;;; Code:
 
 (require 'smex)

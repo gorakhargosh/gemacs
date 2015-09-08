@@ -186,14 +186,11 @@ immediately."
 (require 'gemacs-autocomplete)
 
 ;; Programming languages.
-;; (require 'gemacs-clojure)
 (require 'gemacs-css)
-;; (require 'gemacs-dart)
 (require 'gemacs-go)
 (require 'gemacs-haskell)
 (require 'gemacs-html)
 (require 'gemacs-ielm)
-;; (require 'gemacs-java)
 (require 'gemacs-javascript)
 (require 'gemacs-neo4j)
 (require 'gemacs-protobuf)

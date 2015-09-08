@@ -1,7 +1,5 @@
 ;;; gemacs-appearance.el --- Appearance related stuff.
-;;
 ;;; Commentary:
-;;
 ;;; Code:
 
 ;; Maximize the Emacs frame on startup.
