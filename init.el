@@ -43,7 +43,8 @@
 ;; ======================================================================
 ;; (setq user-emacs-directory (file-name-directory (or (buffer-file-name)
 ;;                                           load-file-name)))
-(add-to-list 'load-path user-emacs-directory)
+;; Do NOT add this to the load-path. It causes unnecessary warnings.
+;; (add-to-list 'load-path user-emacs-directory)
 
 ;; Directory paths.
 (setq goog-site-lisp-dir (expand-file-name
