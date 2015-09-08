@@ -16,18 +16,18 @@
 (setq auto-save-file-name-transforms `((".*" "~/.emacs.d/saves" t)))
 
 ;; Autocompilation.
-(add-to-list 'load-path user-emacs-directory)
-(require 'auto-compile)
-(auto-compile-on-load-mode 1)
-(auto-compile-on-save-mode 1)
+;; (add-to-list 'load-path user-emacs-directory)
+;; (require 'auto-compile)
+;; (auto-compile-on-load-mode 1)
+;; (auto-compile-on-save-mode 1)
 
 (require 'switch-window)
 
 (require 'persp-mode)
 (persp-mode t)
 
-(require 'helm-config)
-(helm-mode 1)
+;; (require 'helm-config)
+;; (helm-mode 1)
 
 (autoload 'nav "nav" nil t)
 (global-set-key (kbd "C-x C-a") 'nav)
