@@ -1,7 +1,5 @@
 ;;; gemacs-workspace.el --- Workspace related stuff.
-;;
 ;;; Commentary:
-;;
 ;;; Code:
 
 ;; Use unique buffer names.
@@ -15,33 +13,21 @@
 (setq backup-directory-alist `((".*" . "~/.emacs.d/saves")))
 (setq auto-save-file-name-transforms `((".*" "~/.emacs.d/saves" t)))
 
-;; Autocompilation.
-;; (add-to-list 'load-path user-emacs-directory)
-;; (require 'auto-compile)
-;; (auto-compile-on-load-mode 1)
-;; (auto-compile-on-save-mode 1)
-
 (require 'switch-window)
 
 (require 'persp-mode)
 (persp-mode t)
 
-;; (require 'helm-config)
-;; (helm-mode 1)
-
 (autoload 'nav "nav" nil t)
 (global-set-key (kbd "C-x C-a") 'nav)
 
 (require 'ack-and-a-half)
-;; Create shorter aliases
 (defalias 'ack 'ack-and-a-half)
 (defalias 'ack-same 'ack-and-a-half-same)
 (defalias 'ack-find-file 'ack-and-a-half-find-file)
 (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)
 
-;; ----------------------------------------------------------------------
 ;; File and directory navigation.
-;; ----------------------------------------------------------------------
 (defun ibuffer-ido-find-file ()
   "`ido-find-file', but default to directory of buffer at point."
   (interactive
@@ -82,9 +68,7 @@
      (add-hook 'ido-setup-hook 'goog/config/ido-mode/cycle-with-up-and-down-arrow-keys)
      ))
 
-;; ----------------------------------------------------------------------
 ;; Finding files, recent files and sessions.
-;; ----------------------------------------------------------------------
 (autoload 'recentf "recentf" t)
 (setq recentf-auto-cleanup 'never) ;; Disable before we start recentf for tramp.
 (recentf-mode t)
@@ -95,7 +79,6 @@
   (if (find-file (ido-completing-read "Find recent file: " recentf-list))
       (message "Opening file...")
     (message "Aborting")))
-
 
 (provide 'gemacs-workspace)
 

@@ -1,25 +1,17 @@
 ;;; gemacs-keyboard.el --- Keyboard related stuff.
-;;
 ;;; Commentary:
-;;
 ;;; Code:
 
-;; Reload the user init file.
-;; (global-set-key (kbd "C-.") 'goog/elisp/reload-configuration)
+(require 'key-chord)
+(key-chord-mode 1)
+(setq key-chord-two-keys-delay 0.05)
 
-;; Open recent files using `ido-mode'.
 (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
-
-;; Helm find files.
-;; (global-set-key (kbd "M-F") 'helm-for-files)
 
 ;; Shift region left or right.
 (global-set-key (kbd "M-]") 'shift-right)
 (global-set-key (kbd "M-[") 'shift-left)
 (global-set-key (kbd "RET") 'newline-and-indent)
-
-;; ibuffer.
-(global-set-key [(f8)] 'ibuffer)
 
 ;; Increase/decrease/reset font size.
 (global-set-key (kbd "C-+") 'text-scale-increase)
@@ -67,20 +59,8 @@
 ;; Transpose parameters.
 (global-set-key (kbd "s-t") 'transpose-params)
 
-;; Perspectives.
-;; NOTE(yesudeep): No longer functional.
-;; (global-set-key (kbd "s-<left>") 'persp-prev)
-;; (global-set-key (kbd "s-<right>") 'persp-next)
-
-;; Helm.
-;; (global-set-key (kbd "C-c h") 'helm-mini)
-
 ;; Switch buffer.
 (global-set-key (kbd "C-x o") 'switch-window)
-
-;; Evil numbers.
-;; (global-set-key (kbd "M-_") 'evil-numbers/dec-at-pt)
-;; (global-set-key (kbd "M-+") 'evil-numbers/inc-at-pt)
 
 ;; I don't use F2 much, so binding it here to highlight symbol.
 (global-set-key [(control f2)] 'highlight-symbol-at-point)
@@ -92,25 +72,13 @@
 (global-set-key [(f5)] 'ack-and-a-half-find-file)
 (global-set-key [(f7)] 'ack-and-a-half)
 (global-set-key [(shift f7)] 'ack-and-a-half-same)
-;; (global-set-key [(shift f7)] 'multi-occur-in-this-mode) ;; Find in all buffers.
 (global-set-key [(meta o)] 'ido-goto-symbol)     ;; Jump to symbol.
-
-;; Transparency.
-;; (global-set-key (kbd "C-c t") 'toggle-transparency)
 
 ;; Org mode key bindings
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
-
-;; ----------------------------------------------------------------------
-;; Key chords
-;; ----------------------------------------------------------------------
-;; Let the power to type multiple keys at the same time be yours.
-(require 'key-chord)
-(key-chord-mode 1)
-(setq key-chord-two-keys-delay 0.05)
 
 (key-chord-define-global "hj" 'undo)
 (key-chord-define-global "jk" 'dabbrev-expand)

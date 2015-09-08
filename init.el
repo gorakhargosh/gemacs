@@ -29,13 +29,11 @@
       goog-network-dir (format "~/.%s/emacs.d/" goog-network-name)
       goog-network-re ".*[.]corp[.]google[.]com")
 
-
 ;; Platform detection.
 (defun goog/platform/is-darwin-p ()
   "Determines whether the system is darwin-based (Mac OS X)"
   (interactive)
   (string-equal system-type "darwin"))
-
 
 (defun goog/platform/is-linux-p ()
   "Determines whether the system is GNU/Linux-based."
