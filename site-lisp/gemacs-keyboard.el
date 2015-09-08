@@ -117,10 +117,9 @@
 (key-chord-define-global ";'" 'ido-recentf-open)
 
 (require 'multiple-cursors)
-;; Mark more like this.
+(global-set-key (kbd "M-(") 'mc/mark-previous-like-this)
+(global-set-key (kbd "M-)") 'mc/mark-next-like-this)
 (global-set-key (kbd "M-\\") 'mc/mark-all-like-this-dwim)
-(key-chord-define-global "m," 'mc/mark-previous-like-this)
-(key-chord-define-global ",." 'mc/mark-next-like-this)
 
 (provide 'gemacs-keyboard)
 
