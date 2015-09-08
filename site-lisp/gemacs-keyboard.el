@@ -2,10 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'key-chord)
-(key-chord-mode 1)
-(setq key-chord-two-keys-delay 0.05)
-
 (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
 
 ;; Shift region left or right.
@@ -80,6 +76,9 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
 
+(require 'key-chord)
+(key-chord-mode 1)
+(setq key-chord-two-keys-delay 0.05)
 (key-chord-define-global "hj" 'undo)
 (key-chord-define-global "jk" 'dabbrev-expand)
 (key-chord-define-global ";'" 'ido-recentf-open)
