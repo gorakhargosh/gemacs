@@ -64,7 +64,6 @@
 (global-set-key (kbd "M-7") 'highlight-symbol-prev)
 
 ;; Search, search, search.
-(global-set-key (kbd "C-x C-f") )
 (global-set-key [(f7)] 'ack-and-a-half)
 (global-set-key [(shift f7)] 'ack-and-a-half-same)
 (global-set-key [(meta o)] 'ido-goto-symbol)
