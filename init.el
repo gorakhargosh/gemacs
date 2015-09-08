@@ -188,7 +188,7 @@ immediately."
 ;; Programming languages.
 (require 'gemacs-clojure)
 (require 'gemacs-css)
-(require 'gemacs-dart)
+;; (require 'gemacs-dart)
 (require 'gemacs-go)
 (require 'gemacs-haskell)
 (require 'gemacs-html)
