@@ -36,6 +36,7 @@
  goog:el-get-packages
  '(
    ;; Programming related.
+   ack-and-a-half
    anaconda-mode
    company-anaconda
    company-c-headers
@@ -90,7 +91,7 @@
 
                            ;; Utility.
                            ace-jump-mode
-                           ack-and-a-half
+                           ;; ack-and-a-half
                            exec-path-from-shell
                            fastnav
                            flycheck
