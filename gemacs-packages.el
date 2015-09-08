@@ -70,19 +70,6 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar default-packages '(
-                           ;; evil-numbers
-                           ;; find-things-fast
-                           ;; company-arduino
-                           ;; company-auctex
-                           ;; company-c-headers
-                           ;; company-cabal
-                           ;; ;; company-cmake
-                           ;; company-ghc
-                           ;; company-ghci
-                           ;; company-go
-                           ;; company-math
-                           ;; company
-                           ;; company-web
                            ace-jump-mode
                            ack-and-a-half
                            auctex
@@ -117,6 +104,7 @@
                            rcirc-color
                            sass-mode
                            smartparens
+                           smex
                            sql-indent
                            switch-window
                            tup-mode
@@ -125,8 +113,6 @@
                            yaml-mode
                            yasnippet
                            zencoding-mode
-
-                           smex
                            ))
 (dolist (p default-packages)
   (when (not (package-installed-p p))
