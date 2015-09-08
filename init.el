@@ -185,7 +185,7 @@ immediately."
 (require 'gemacs-autocomplete)
 
 ;; Programming languages.
-(require 'gemacs-clojure)
+;; (require 'gemacs-clojure)
 (require 'gemacs-css)
 ;; (require 'gemacs-dart)
 (require 'gemacs-go)
@@ -204,7 +204,7 @@ immediately."
 (require 'gemacs-tex)
 
 ;; Tools.
-;; (require 'gemacs-flycheck)
+(require 'gemacs-flycheck)
 (require 'gemacs-git)
 
 (require 'gemacs-keyboard)

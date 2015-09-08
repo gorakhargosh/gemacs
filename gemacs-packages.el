@@ -35,21 +35,20 @@
 (setq
  goog:el-get-packages
  '(
-   ;; auto-complete
-   ;; magit
+   ;; Programming related.
    anaconda-mode
    company-anaconda
    company-c-headers
    company-mode
-   diff-hl
-   expand-region
-   fill-column-indicator
    go-company
    go-mode
    go-oracle
    js2-mode
    js2-refactor
-   rst-mode
+
+   ;; Utility.
+   diff-hl
+   expand-region
   ))
 (setq goog:el-get-packages
       (append
@@ -70,49 +69,49 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar default-packages '(
-                           ace-jump-mode
-                           ack-and-a-half
+                           ;; Programming-related.
                            auctex
-                           auto-compile
                            cypher-mode
-                           dart-mode
-                           emacs-eclim
-                           exec-path-from-shell
-                           fastnav
-                           flycheck
                            go-autocomplete
                            go-eldoc
                            go-errcheck
                            golint
                            graphviz-dot-mode
                            haskell-mode
-                           helm
+                           less-css-mode
+                           markdown-mode
+                           protobuf-mode
+                           sass-mode
+                           sql-indent
+                           tup-mode
+                           vimrc-mode
+                           yaml-mode
+                           zencoding-mode
+
+                           ;; Utility.
+                           ace-jump-mode
+                           ack-and-a-half
+                           exec-path-from-shell
+                           fastnav
+                           flycheck
+                           ;; helm
                            highlight-symbol
                            highlight-unique-symbol
                            ido-ubiquitous
                            iedit
                            key-chord
-                           less-css-mode
                            magit
-                           markdown-mode
                            multiple-cursors
                            nav
                            persp-mode
                            powerline
-                           protobuf-mode
                            rainbow-delimiters
                            rcirc-color
-                           sass-mode
                            smartparens
                            smex
-                           sql-indent
                            switch-window
-                           tup-mode
                            undo-tree
-                           vimrc-mode
-                           yaml-mode
                            yasnippet
-                           zencoding-mode
                            ))
 (dolist (p default-packages)
   (when (not (package-installed-p p))

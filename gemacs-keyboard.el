@@ -73,7 +73,7 @@
 ;; (global-set-key (kbd "s-<right>") 'persp-next)
 
 ;; Helm.
-(global-set-key (kbd "C-c h") 'helm-mini)
+;; (global-set-key (kbd "C-c h") 'helm-mini)
 
 ;; Switch buffer.
 (global-set-key (kbd "C-x o") 'switch-window)
