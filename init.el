@@ -179,11 +179,10 @@ immediately."
 
 
 ;; Documentation and help.
-(require 'eldoc) ; if not already loaded
+(require 'eldoc) ;; if not already loaded
 
 ;; Editing
 (require 'gemacs-autocomplete)
-
 
 ;; Programming languages.
 (require 'gemacs-clojure)
@@ -205,7 +204,7 @@ immediately."
 (require 'gemacs-tex)
 
 ;; Tools.
-(require 'gemacs-flycheck)
+;; (require 'gemacs-flycheck)
 (require 'gemacs-git)
 
 (require 'gemacs-keyboard)
