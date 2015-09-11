@@ -75,8 +75,8 @@
 (global-set-key "\C-cb" 'org-iswitchb)
 
 (require 'multiple-cursors)
-(global-set-key (kbd "M-(") 'mc/mark-previous-like-this)
-(global-set-key (kbd "M-)") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-c 9") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c 0") 'mc/mark-next-like-this)
 (global-set-key (kbd "M-\\") 'mc/mark-all-like-this-dwim)
 
 (require 'iedit)
