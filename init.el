@@ -138,6 +138,7 @@ immediately."
 (require 'eldoc)
 (require 'gemacs-autocomplete)
 
+(require 'gemacs-clojure)
 (require 'gemacs-css)
 (require 'gemacs-go)
 (require 'gemacs-haskell)

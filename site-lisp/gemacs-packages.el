@@ -23,7 +23,6 @@
    ack-and-a-half
    anaconda-mode
    clojure-mode
-   cider
    company-anaconda
    company-c-headers
    company-mode
@@ -54,6 +53,7 @@
 (defvar default-packages '(
                            ;; Programming-related.
                            auctex
+                           cider
                            cypher-mode
                            go-autocomplete
                            go-eldoc
