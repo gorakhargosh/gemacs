@@ -22,6 +22,8 @@
    ;; Programming related.
    ack-and-a-half
    anaconda-mode
+   clojure-mode
+   cider
    company-anaconda
    company-c-headers
    company-mode
@@ -30,6 +32,7 @@
    go-oracle
    js2-mode
    js2-refactor
+   racket-mode
 
    ;; Utility.
    diff-hl
