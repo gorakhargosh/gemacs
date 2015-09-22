@@ -19,7 +19,7 @@
 (persp-mode t)
 
 (autoload 'nav "nav" nil t)
-(global-set-key (kbd "C-x C-a") 'nav)
+(global-set-key (kbd "C-x a") 'nav)
 
 (require 'ack-and-a-half)
 (defalias 'ack 'ack-and-a-half)

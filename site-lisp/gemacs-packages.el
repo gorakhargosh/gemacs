@@ -26,6 +26,7 @@
    company-anaconda
    company-c-headers
    company-mode
+   eclim
    go-company
    go-mode
    go-oracle
@@ -76,6 +77,7 @@
                            exec-path-from-shell
                            fastnav
                            flycheck
+                           helm
                            highlight-symbol
                            highlight-unique-symbol
                            ido-ubiquitous

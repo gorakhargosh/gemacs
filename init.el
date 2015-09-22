@@ -134,7 +134,6 @@ immediately."
                 )
               auto-mode-alist))
 
-
 (require 'eldoc)
 (require 'gemacs-autocomplete)
 
@@ -144,6 +143,7 @@ immediately."
 (require 'gemacs-haskell)
 (require 'gemacs-html)
 (require 'gemacs-ielm)
+(require 'gemacs-java)
 (require 'gemacs-javascript)
 (require 'gemacs-neo4j)
 (require 'gemacs-protobuf)
@@ -158,6 +158,8 @@ immediately."
 (require 'gemacs-git)
 (require 'gemacs-keyboard)
 (require 'gemacs-chromebook)
+
+(require 'helm-config)
 
 (progn
   (message "Loading user, network, and host-specific configuration.")
