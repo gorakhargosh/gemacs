@@ -5,8 +5,13 @@
 (require 'smex)
 (smex-initialize)
 (setq smex-save-file "~/.emacs.d/.smex-items")
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+
+(require 'helm-config)
+(helm-mode 1)
+(setq helm-recentf-fuzzy-match t
+      helm-buffers-fuzzy-matching t
+      helm-M-x-fuzzy-match t
+      helm-apropos-fuzzy-match t)
 
 (require 'dabbrev)
 (require 'yasnippet)

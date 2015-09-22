@@ -159,7 +159,6 @@ immediately."
 (require 'gemacs-keyboard)
 (require 'gemacs-chromebook)
 
-(require 'helm-config)
 
 (progn
   (message "Loading user, network, and host-specific configuration.")

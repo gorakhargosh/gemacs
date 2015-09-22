@@ -129,8 +129,6 @@
  "A list of filetype patterns that grepsource will use.")
 (autoload 'fafafa-find-file "find-things-fast" nil t)
 (autoload 'fafafa-grepsource "find-things-fast" nil t)
-(global-set-key (kbd "C-x f") 'fafafa-find-file)
-(global-set-key (kbd "C-c C-f") 'fafafa-grepsource)
 
 ;; Highlight current symbol.
 (require 'highlight-symbol)

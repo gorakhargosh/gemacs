@@ -2,7 +2,20 @@
 ;;; Commentary:
 ;;; Code:
 
-(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
+(global-set-key (kbd "C-x a") 'nav)
+
+(global-set-key (kbd "M-X") 'smex)
+;; (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+(global-set-key (kbd "M-x") 'helm-M-x)
+
+;; (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
+(global-set-key (kbd "C-x C-r") 'helm-recentf)
+
+;; Git find.
+;; (global-set-key (kbd "C-x f") 'fafafa-find-file)
+(global-set-key (kbd "C-x f") 'helm-ls-git-ls)
+(global-set-key (kbd "C-c C-f") 'fafafa-grepsource)
+(global-set-key (kbd "C-x C-d") 'helm-browse-project)
 
 ;; Shift region left or right.
 (global-set-key (kbd "M-]") 'shift-right)
@@ -31,7 +44,7 @@
 (global-set-key (kbd "s-<return>") 'insert-blank-line-below-next-line)
 
 ;; Line or region duplication.
-(global-set-key (kbd "C-x C-d") 'duplicate-current-line-or-region)
+(global-set-key (kbd "C-c C-d") 'duplicate-current-line-or-region)
 
 ;; Toggle identifier case.
 (global-set-key (kbd "C-x t c") 'toggle-identifier-naming-style)

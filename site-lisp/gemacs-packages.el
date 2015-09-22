@@ -78,6 +78,7 @@
                            fastnav
                            flycheck
                            helm
+                           helm-ls-git
                            highlight-symbol
                            highlight-unique-symbol
                            ido-ubiquitous
