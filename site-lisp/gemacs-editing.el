@@ -17,6 +17,9 @@
                   'font-lock-comment-face)))))
 (add-hook 'prog-mode-common-hook 'goog/prog-mode-common/setup)
 
+;; Allow upcasing an entire region.
+(put 'upcase-region 'disabled nil)
+
 ;; Use whitespace mode. Cleans up trailing spaces, shows tabs, unnecessary
 ;; whitespace, EOF newline, bad indentation, margin bleeds, etc.
 (require 'whitespace)
