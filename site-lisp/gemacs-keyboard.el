@@ -13,9 +13,8 @@
 
 ;; Git find.
 ;; (global-set-key (kbd "C-x f") 'fafafa-find-file)
-(global-set-key (kbd "C-x f") 'helm-ls-git-ls)
+(global-set-key (kbd "C-x f") 'helm-browse-project)
 (global-set-key (kbd "C-c C-f") 'fafafa-grepsource)
-(global-set-key (kbd "C-x C-d") 'helm-browse-project)
 
 ;; Shift region left or right.
 (global-set-key (kbd "M-]") 'shift-right)
@@ -103,7 +102,8 @@
 (key-chord-define-global ",." 'ack-and-a-half-find-file)
 (key-chord-define-global "hj" 'undo)
 (key-chord-define-global "jk" 'dabbrev-expand)
-(key-chord-define-global ";'" 'ido-recentf-open)
+;; (key-chord-define-global ";'" 'ido-recentf-open)
+(key-chord-define-global ";'" 'helm-recentf)
 
 (provide 'gemacs-keyboard)
 
