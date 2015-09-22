@@ -14,7 +14,7 @@
 ;; Git find.
 ;; (global-set-key (kbd "C-x f") 'fafafa-find-file)
 (global-set-key (kbd "C-x f") 'helm-browse-project)
-(global-set-key (kbd "C-c C-f") 'fafafa-grepsource)
+(global-set-key (kbd "C-x C-d") 'fafafa-grepsource)
 
 ;; Shift region left or right.
 (global-set-key (kbd "M-]") 'shift-right)
