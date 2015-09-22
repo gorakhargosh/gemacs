@@ -60,6 +60,7 @@
 
 ;; Highlight symbol.
 (global-set-key [(control f2)] 'highlight-symbol-at-point)
+(global-set-key [(f2)] 'highlight-symbol-next)
 (global-set-key (kbd "M-8") 'highlight-symbol-next)
 (global-set-key (kbd "M-7") 'highlight-symbol-prev)
 
