@@ -47,7 +47,11 @@
                             (setq c-basic-offset 2
                                   tab-width 2
                                   indent-tabs-mode nil)
-                            (eclim-mode t)))
+                            (eclim-mode t)
+                            ;; Whitespace mode does not work well with completion in java mode with eclim.
+                            (set (make-local-variable 'whitespace-action) nil)
+                            ))
+
 
 (provide 'gemacs-java)
 
