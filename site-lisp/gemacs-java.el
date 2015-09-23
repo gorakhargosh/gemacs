@@ -11,10 +11,22 @@
 
 (require 'eclimd)
 
-(add-to-list 'eclim-eclipse-dirs "/Applications/Eclipse.app/Contents/Eclipse")
-(setq eclim-executable (or (executable-find "eclim") "/Applications/Eclipse.app/Contents/Eclipse/eclim")
-      eclimd-executable (or (executable-find "eclimd") "/Applications/Eclipse.app/Contents/Eclipse/eclimd")
-      eclimd-wait-for-process nil
+
+(when (goog/platform/is-darwin-p)
+  (add-to-list 'eclim-eclipse-dirs
+               "/Applications/Eclipse.app/Contents/Eclipse")
+  (set eclim-executable (or (executable-find "eclim") "/Applications/Eclipse.app/Contents/Eclipse/eclim")
+       eclimd-executable (or (executable-find "eclimd") "/Applications/Eclipse.app/Contents/Eclipse/eclimd"))
+  )
+
+(when (goog/platform/is-linux-p)
+  (add-to-list 'eclim-eclipse-dirs
+               (format "/usr/local/google/eclipse45_%s/stable/" user-login-name)
+               (format "/usr/local/google/eclipse44_%s/stable/" user-login-name))
+  (set eclim-executable (or (executable-find "eclim") "/Applications/Eclipse.app/Contents/Eclipse/eclim")
+       eclimd-executable (or (executable-find "eclimd") "/Applications/Eclipse.app/Contents/Eclipse/eclimd")))
+
+(setq eclimd-wait-for-process nil
       eclimd-default-workspace "~/workspace/"
       help-at-pt-display-when-idle t
       help-at-pt-timer-delay 0.1)
