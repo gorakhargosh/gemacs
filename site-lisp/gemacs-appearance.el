@@ -108,7 +108,7 @@
 (setq preferred-mac-fonts
       '(
         ;; http://input.fontbureau.com/
-        "Input Mono-13"
+        "Input Mono-14"
 
         ;; Droid Sans Mono: quite nice. 15 pixels total height at 10 point.
         ;; Clear & crisp. (e.g.
