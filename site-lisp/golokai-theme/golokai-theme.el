@@ -34,6 +34,9 @@
 ;; Emacs 24
 
 ;;; Code:
+
+(require 'color)
+
 (deftheme golokai "The golokai color theme for Emacs 24")
 
 (let ((class '((class color) (min-colors 89)))
@@ -136,6 +139,15 @@
    ;; highlight-symbols
    ))
 
+;; For dark themes: See: http://www.emacswiki.org/emacs/CompanyMode
+(let ((bg (face-attribute 'default :background)))
+  (custom-set-faces
+   `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 2)))))
+   `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 10)))))
+   `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))
+   `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
+        `(company-tooltip-common ((t (:inherit font-lock-constant-face))))))
+
 (defcustom golokai-theme-kit nil
   "Non-nil means load golokai-theme-kit UI component"
   :type 'boolean
@@ -159,6 +171,7 @@
      (add-to-list 'custom-theme-load-path
                   (file-name-as-directory
                    (file-name-directory load-file-name))))
+
 
 (provide-theme 'golokai)
 
