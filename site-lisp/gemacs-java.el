@@ -24,7 +24,7 @@
                (format "/usr/local/google/eclipse45_%s/stable/" user-login-name))
 
   (setq eclim-executable (or (executable-find "eclim") (format "/usr/local/google/eclipse45_%s/stable/eclim" user-login-name))
-        eclimd-executable (or (executable-find "eclimd") (format "/usr/local/google/eclipse45_%s/eclimd" user-login-name))))
+        eclimd-executable (or (executable-find "eclimd") (format "/usr/local/google/eclipse45_%s/stable/eclimd" user-login-name))))
 
 (setq eclimd-wait-for-process nil
       eclimd-default-workspace "~/workspace/"
