@@ -33,6 +33,10 @@
    js2-refactor
    racket-mode
 
+   ;; C and C++ related.
+   company-irony
+   irony-mode
+
    ;; Java-related
    eclim
    popup
