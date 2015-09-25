@@ -22,6 +22,9 @@
 (eval-after-load 'company
   '(add-to-list 'company-backends 'company-irony))
 
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+
 (provide 'gemacs-c)
 
 ;;; gemacs-c.el ends here

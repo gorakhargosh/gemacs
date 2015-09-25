@@ -35,11 +35,12 @@
 
    ;; C and C++ related.
    company-irony
+   flycheck-irony
    irony-mode
 
    ;; Java-related
-   eclim
    popup
+   eclim
 
    ;; Utility.
    diff-hl
