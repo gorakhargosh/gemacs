@@ -190,18 +190,24 @@
 ;; (when window-system
 ;;   (require 'golokai-theme)
 ;;   )
-;; (if (daemonp)
-;;     (add-hook 'after-make-frame-functions
-;;         (lambda (frame)
-;;             (select-frame frame)
-;;             (load-theme 'dichromacy t)))
-;;   (load-theme 'dichromacy t))
 
-(when (goog/platform/is-darwin-p)
-  (require 'golokai-theme)
-  (when window-system
+;; (when (window-system)
+;;   (require 'golokai-theme)
+;; )
+
+(defun start-theme ()
+  "Start the theme."
+  (if window-system
     (require 'golokai-theme)
-    ))
+    (load-theme 'wombat t)))
+
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+                (select-frame frame)
+                (start-theme)))
+  (start-theme))
+
 
 (powerline-default-theme)
 
