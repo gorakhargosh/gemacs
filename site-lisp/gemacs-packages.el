@@ -26,13 +26,16 @@
    company-anaconda
    company-c-headers
    company-mode
-   eclim
    go-company
    go-mode
    go-oracle
    js2-mode
    js2-refactor
    racket-mode
+
+   ;; Java-related
+   eclim
+   popup
 
    ;; Utility.
    diff-hl
