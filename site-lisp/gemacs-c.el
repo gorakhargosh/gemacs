@@ -5,6 +5,7 @@
 ;;; Code:
 
 (require 'clang-format)
+(require 'c-auto-include)
 
 (add-hook 'c-mode-hook 'cwarn-mode)
 (add-hook 'c-mode-hook 'irony-mode)
@@ -31,7 +32,10 @@
   "Add this to .emacs to run gofmt on the current buffer when saving:
  (add-hook 'before-save-hook 'cfmt-before-save)."
   (interactive)
-  (when (eq major-mode 'c-mode) (clang-format-buffer "Google")))
+  (when (eq major-mode 'c-mode)
+    (c-auto-include)
+    (clang-format-buffer "Google")
+    ))
 
 (add-hook 'before-save-hook 'cfmt-before-save)
 
