@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: typedef
+# key: type
+# expand-env: ((yas/indent-line 'fixed))
+# --
+typedef $1 $2;
