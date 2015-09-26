@@ -80,6 +80,9 @@
                            yaml-mode
                            zencoding-mode
 
+                           ;; C
+                           clang-format
+
                            ;; Utility.
                            ace-jump-mode
                            exec-path-from-shell

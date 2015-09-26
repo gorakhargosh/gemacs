@@ -4,6 +4,8 @@
 ;;
 ;;; Code:
 
+(require 'clang-format)
+
 (add-hook 'c-mode-hook 'cwarn-mode)
 (add-hook 'c-mode-hook 'irony-mode)
 (add-hook 'c++-mode-hook 'irony-mode)
@@ -19,11 +21,21 @@
 (add-hook 'irony-mode-hook 'my-irony-mode-hook)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
+
 (eval-after-load 'company
   '(add-to-list 'company-backends 'company-irony))
 
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+
+(defun cfmt-before-save ()
+  "Add this to .emacs to run gofmt on the current buffer when saving:
+ (add-hook 'before-save-hook 'cfmt-before-save)."
+  (interactive)
+  (when (eq major-mode 'c-mode) (clang-format-buffer)))
+
+
+(add-hook 'before-save-hook 'cfmt-before-save)
 
 (provide 'gemacs-c)
 

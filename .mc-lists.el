@@ -4,6 +4,7 @@
 (setq mc/cmds-to-run-for-all
       '(
         LaTeX-babel-insert-hyphen
+        LaTeX-insert-left-brace
         TeX-insert-backslash
         c-electric-semi&comma
         delete-indentation
