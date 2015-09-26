@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: if block.
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# expand-env: ((yas/indent-line 'fixed))
+# --
+if ($1) {
+  $0
+}

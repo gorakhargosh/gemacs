@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Documentation
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# key: ##
+# expand-env: ((yas/indent-line 'fixed))
+# --
+/**
+ * $0
+ */

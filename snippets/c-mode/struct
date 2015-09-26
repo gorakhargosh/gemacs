@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name : struct ... { ... }
+# key: struct
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# expand-env: ((yas/indent-line 'fixed))
+# --
+struct ${1:name} {
+  $0
+};

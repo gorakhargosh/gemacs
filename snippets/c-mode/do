@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: do .. while loop.
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# expand-env: ((yas/indent-line 'fixed))
+# --
+do {
+  $0
+} while ($1);

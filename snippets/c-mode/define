@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: define
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# --
+#define "${1:$$(upcase yas-text)}"

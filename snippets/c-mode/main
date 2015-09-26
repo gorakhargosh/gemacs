@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: main
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# expand-env: ((yas/indent-line 'fixed))
+# --
+int main(int argc, char *argv[]) {
+  $0
+  return 0;
+}

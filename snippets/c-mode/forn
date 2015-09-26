@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: For n (decrementing) loop.
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# expand-env: ((yas/indent-line 'fixed))
+# --
+for (int ${1:n} = $2; $1 > 0; $1--) {
+  $0
+}
