@@ -32,7 +32,7 @@
   "Add this to .emacs to run gofmt on the current buffer when saving:
  (add-hook 'before-save-hook 'cfmt-before-save)."
   (interactive)
-  (when (eq major-mode 'c-mode) (clang-format-buffer)))
+  (when (eq major-mode 'c-mode) (clang-format-buffer "Google")))
 
 
 (add-hook 'before-save-hook 'cfmt-before-save)
