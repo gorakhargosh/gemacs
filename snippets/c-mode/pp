@@ -1,6 +1,5 @@
 # -*- mode: snippet -*-
 # name: printf
-# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
 # expand-env: ((yas/indent-line 'fixed))
 # --
 printf("$1\n"$0);

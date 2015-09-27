@@ -1,9 +1,8 @@
 # -*- mode: snippet -*-
-# name: Documentation
+# name: For n (decrementing) loop.
 # contributor: Yesudeep Mangalapilly <yesudeep@google.com>
-# key: ##
 # expand-env: ((yas/indent-line 'fixed))
 # --
-/**
- * $0
- */
+for ${1:n} := $2; $1 > ${3:0}; $1-- {
+  $0
+}
