@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: For loop.
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# expand-env: ((yas/indent-line 'fixed))
+# --
+for ($1; $2; $3) {
+  $0
+}

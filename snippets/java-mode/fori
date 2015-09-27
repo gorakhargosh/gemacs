@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: For i (incrementing) loop.
+# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# expand-env: ((yas/indent-line 'fixed))
+# --
+for (int ${1:i} = ${2:0}; $1 < $3; $1++) {
+  $0
+}
