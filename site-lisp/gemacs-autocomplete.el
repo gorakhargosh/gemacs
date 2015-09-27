@@ -31,5 +31,10 @@
 (setq company-minimum-prefix-length 0)
 (setq company-tooltip-limit 7)
 
+;; The whitespace matters in some snippets.
+(add-hook 'snippet-mode-hook '(lambda ()
+                                (set (make-local-variable 'whitespace-action) nil)
+                                ))
+
 (provide 'gemacs-autocomplete)
 ;;; gemacs-autocomplete.el ends here

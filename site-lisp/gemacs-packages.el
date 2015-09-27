@@ -37,6 +37,7 @@
    company-irony
    flycheck-irony
    irony-mode
+   irony-eldoc
 
    ;; Java-related
    popup
