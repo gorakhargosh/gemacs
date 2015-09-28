@@ -225,12 +225,21 @@
     ("fenv.h" nil t
      ,(rx (and symbol-start
                (or (and (or
+                         "feclearexcept"
+                         "fegetenv"
+                         "fegetexceptflag"
                          "fegetround"
+                         "feholdexcept"
+                         "feraiseexcept"
+                         "fesetenv"
+                         "fesetexceptflag"
                          "fesetround"
+                         "feupdateenv"
                          )
                         (* space) "(")
                    (and (or
                          (and "FE_" (1+ (in "A-Z")))
+                         "FENV_ACCESS"
                          "FE_ALL_EXCEPT"
                          "FE_DFL_ENV"
                          "FE_DIVBYZERO"
