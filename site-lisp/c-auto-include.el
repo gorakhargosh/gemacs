@@ -133,19 +133,30 @@
     ("ctype.h" nil t
      ,(rx (and symbol-start
                (or
+                "ascii"
+                "ctype_l"
+                "digittoint"
                 "isalnum"
                 "isalpha"
+                "isascii"
+                "isblank"
                 "iscntrl"
                 "isdigit"
                 "isgraph"
+                "isideogram"
                 "islower"
+                "isphonogram"
                 "isprint"
                 "ispunct"
+                "isrune"
                 "isspace"
+                "isspecial"
                 "isupper"
                 "isxdigit"
+                "toascii"
                 "tolower"
                 "toupper"
+                "wctype"
                 )
                symbol-end)))
     ("stdlib.h" nil t
@@ -204,11 +215,36 @@
     ("errno.h" nil t
      ,(rx (and symbol-start
                (and (or
+                     (and "E" (1+ (in "A-Z")))
                      "errno"
                      "EDOM"
                      "ERANGE"
+                     "EILSEQ"
                      )
                     symbol-end))))
+    ("fenv.h" nil t
+     ,(rx (and symbol-start
+               (or (and (or
+                         "fegetround"
+                         "fesetround"
+                         )
+                        (* space) "(")
+                   (and (or
+                         (and "FE_" (1+ (in "A-Z")))
+                         "FE_ALL_EXCEPT"
+                         "FE_DFL_ENV"
+                         "FE_DIVBYZERO"
+                         "FE_DOWNWARD"
+                         "FE_INEXACT"
+                         "FE_INVALID"
+                         "FE_OVERFLOW"
+                         "FE_TONEAREST"
+                         "FE_TOWARDZERO"
+                         "FE_UNDERFLOW"
+                         "FE_UPWARD"
+                         "fenv_t"
+                         "fexcept_t"
+                         ))))))
     ("float.h" nil t
      ,(rx (and symbol-start
                (and (or
@@ -217,14 +253,18 @@
                      "DBL_MANT_DIG"
                      "DBL_MAX"
                      "DBL_MAX_10_EXP"
+                     "DBL_MAX_EXP"
                      "DBL_MIN"
                      "DBL_MIN_10_EXP"
                      "DBL_MIN_EXP"
+                     "DECIMAL_DIG"
                      "FLT_DIG"
                      "FLT_EPSILON"
+                     "FLT_EVAL_METHOD"
                      "FLT_MANT_DIG"
                      "FLT_MAX"
                      "FLT_MAX_10_EXP"
+                     "FLT_MAX_EXP"
                      "FLT_MIN"
                      "FLT_MIN_10_EXP"
                      "FLT_MIN_EXP"
@@ -235,6 +275,7 @@
                      "LDBL_MANT_DIG"
                      "LDBL_MAX"
                      "LDBL_MAX_10_EXP"
+                     "LDBL_MAX_EXP"
                      "LDBL_MIN"
                      "LDBL_MIN_10_EXP"
                      "LDBL_MIN_EXP"
@@ -248,6 +289,8 @@
                      "CHAR_MIN"
                      "INT_MAX"
                      "INT_MIN"
+                     "LLONG_MAX"
+                     "LLONG_MIN"
                      "LONG_MAX"
                      "LONG_MIN"
                      "MB_LEN_MAX"
@@ -257,10 +300,49 @@
                      "SHRT_MIN"
                      "UCHAR_MAX"
                      "UINT_MAX"
+                     "UINT_MIN"
+                     "ULLONG_MAX"
                      "ULONG_MAX"
                      "USHRT_MAX"
+                     "USHRT_MIN"
                      )
                     symbol-end))))
+    ("complex.h" nil t
+     ,(rx (and symbol-start
+               (or (and (or
+                         "CMPLX"
+                         "CMPLXF"
+                         "CMPLXL"
+                         "cabs"
+                         "cacos"
+                         "cacosh"
+                         "carg"
+                         "casin"
+                         "casinh"
+                         "catan"
+                         "catanh"
+                         "ccos"
+                         "ccosh"
+                         "cexp"
+                         "cimage"
+                         "clog"
+                         "conj"
+                         "cpow"
+                         "cproj"
+                         "creal"
+                         "csin"
+                         "csinh"
+                         "csqrt"
+                         "ctan"
+                         "ctanh"
+                         )
+                        (* space) "(")
+                   (and (or
+                         "complex"
+                         "_Complex"
+                         "I"
+                         )
+                        symbol-end)))))
     ("stddef.h" nil t
      ,(rx (and symbol-start
                (or (and (or
