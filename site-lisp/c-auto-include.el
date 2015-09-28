@@ -34,50 +34,227 @@
 (defvar c-auto-include--header-regexp
   `(("stdio.h" nil t
      ,(rx (and symbol-start
-               (or  (and (or "scanf" "sscanf" "puts" "sprintf" "printf"
-                             "gets" "fgets" "putchar")
+               (or  (and (or
+                          "fgets"
+                          "gets"
+                          "printf"
+                          "putchar"
+                          "puts"
+                          "scanf"
+                          "sprintf"
+                          "sscanf"
+                          )
                          (* space) "(")
-                    (and  (or "FILE" "stdin" "stdout" "stderr")
+                    (and  (or
+                           "FILE"
+                           "stderr"
+                           "stdin"
+                           "stdout"
+                           )
                           symbol-end)))))
     ("assert.h" nil t "\\bassert\\s-+(")
     ("string.h" nil t
      ,(rx (and symbol-start
-               (or "memcpy" "memset" "memcmp" "memncmp"
-                   "strlen" "strcmp" "strncmp" "strcpy" "strncpy" "strerr" "strcat"
-                   "strstr" "strchr")
+               (or
+                "memcmp"
+                "memcpy"
+                "memncmp"
+                "memset"
+                "strcat"
+                "strchr"
+                "strcmp"
+                "strcpy"
+                "strerr"
+                "strlen"
+                "strncmp"
+                "strncpy"
+                "strstr"
+                )
+               symbol-end)))
+    ("ctype.h" nil t
+     ,(rx (and symbol-start
+               (or
+                "isalnum"
+                "isalpha"
+                "iscntrl"
+                "isdigit"
+                "isgraph"
+                "islower"
+                "isprint"
+                "ispunct"
+                "isspace"
+                "isupper"
+                "isxdigit"
+                "tolower"
+                "toupper"
+                )
                symbol-end)))
     ("stdlib.h" nil t
      ,(rx (and symbol-start
-               (or (and (or "system" "abs" "atoi" "atof" "itoa"
-                            "strtod" "strtold" "strtoul" "strtof" "strtol"
-                            "strtoll" "strtoull" "strtoq" "strtouq"
-                            "free" "exit" "labs" "srand" "srandom" "srandom_r"
-                            "rand" "rand_r" "random" "random_r" "qsort")
+               (or (and (or
+                         "abs"
+                         "atof"
+                         "atoi"
+                         "exit"
+                         "free"
+                         "itoa"
+                         "labs"
+                         "qsort"
+                         "rand"
+                         "rand_r"
+                         "random"
+                         "random_r"
+                         "srand"
+                         "srandom"
+                         "srandom_r"
+                         "strtod"
+                         "strtof"
+                         "strtol"
+                         "strtold"
+                         "strtoll"
+                         "strtoq"
+                         "strtoul"
+                         "strtoull"
+                         "strtouq"
+                         "system"
+                         )
                         (* space) "(")
                    (and (or (and "EXIT_" (1+ (in "A-Z")))
                             "NULL"))))))
+    ("errno.h" nil t
+     ,(rx (and symbol-start
+               (and (or
+                     "errno"
+                     "EDOM"
+                     "ERANGE"
+                     )
+                    symbol-end))))
+    ("float.h" nil t
+     ,(rx (and symbol-start
+               (and (or
+                     "DBL_DIG"
+                     "DBL_EPSILON"
+                     "DBL_MANT_DIG"
+                     "DBL_MAX"
+                     "DBL_MAX_10_EXP"
+                     "DBL_MIN"
+                     "DBL_MIN_10_EXP"
+                     "DBL_MIN_EXP"
+                     "FLT_DIG"
+                     "FLT_EPSILON"
+                     "FLT_MANT_DIG"
+                     "FLT_MAX"
+                     "FLT_MAX_10_EXP"
+                     "FLT_MIN"
+                     "FLT_MIN_10_EXP"
+                     "FLT_MIN_EXP"
+                     "FLT_RADIX"
+                     "FLT_ROUNDS"
+                     "LDBL_DIG"
+                     "LDBL_EPSILON"
+                     "LDBL_MANT_DIG"
+                     "LDBL_MAX"
+                     "LDBL_MAX_10_EXP"
+                     "LDBL_MIN"
+                     "LDBL_MIN_10_EXP"
+                     "LDBL_MIN_EXP"
+                     )
+                    symbol-end))))
     ("math.h" nil t
      ,(rx (and symbol-start
-               (or (and (or "powf" "powl"
-                            "acos" "acosf" "acosh" "acoshf" "acoshl" "acosl"
-                            "asin" "asinf" "asinh" "asinhf" "asinhl" "asin"
-                            "atan" "atan2" "atan2f" "atan2l" "atanf" "atanh" "atanhf"
-                            "atanhl" "atanl" "exp" "expf" "expl" "exp10" "exp10f"
-                            "exp10l" "exp2" "exp2f" "exp2l" "expm1" "expm1f" "expm1l"
-                            "fabs" "fabsf" "fabsl" "log" "logf" "logl"
-                            "log2" "log2f" "log2l" "log10" "log10f" "log10l" "log1p"
-                            "log1pf" "log1pl" "nan" "nanf" "nanl"
-                            "ceil" "ceilf" "ceill" "floor" "floorf" "floorl"
-                            "round" "roundf" "roundl" "lround" "lroundf" "lroundl"
-                            "llround" "llroundf" "llroundl" "sqrt" "sqrtf" "sqrtl")
+               (or (and (or
+                         "acos"
+                         "acosf"
+                         "acosh"
+                         "acoshf"
+                         "acoshl"
+                         "acosl"
+                         "asin"
+                         "asin"
+                         "asinf"
+                         "asinh"
+                         "asinhf"
+                         "asinhl"
+                         "atan"
+                         "atan2"
+                         "atan2f"
+                         "atan2l"
+                         "atanf"
+                         "atanh"
+                         "atanhf"
+                         "atanhl"
+                         "atanl"
+                         "ceil"
+                         "ceilf"
+                         "ceill"
+                         "exp"
+                         "exp10"
+                         "exp10f"
+                         "exp10l"
+                         "exp2"
+                         "exp2f"
+                         "exp2l"
+                         "expf"
+                         "expl"
+                         "expm1"
+                         "expm1f"
+                         "expm1l"
+                         "fabs"
+                         "fabsf"
+                         "fabsl"
+                         "floor"
+                         "floorf"
+                         "floorl"
+                         "llround"
+                         "llroundf"
+                         "llroundl"
+                         "log"
+                         "log10"
+                         "log10f"
+                         "log10l"
+                         "log1p"
+                         "log1pf"
+                         "log1pl"
+                         "log2"
+                         "log2f"
+                         "log2l"
+                         "logf"
+                         "logl"
+                         "lround"
+                         "lroundf"
+                         "lroundl"
+                         "nan"
+                         "nanf"
+                         "nanl"
+                         "powf"
+                         "powl"
+                         "round"
+                         "roundf"
+                         "roundl"
+                         "sqrt"
+                         "sqrtf"
+                         "sqrtl"
+                         )
                         (* space) "(")
-                   (and (or "NAN" "INFINITY" "HUGE_VAL" "HUGE_VALF" "HUGE_VALL")
+                   (and (or
+                         "HUGE_VAL"
+                         "HUGE_VALF"
+                         "HUGE_VALL"
+                         "INFINITY"
+                         "NAN"
+                         )
                         symbol-end)))))
     ("time.h" nil t ,(rx (and symbol-start
-                             (or (and (or "time" "clock")
-                                      (* space) "(")
-                                 (and (or "fixed" "hex")
-                                      symbol-end)))))
+                              (or (and (or
+                                        "clock"
+                                        "time"
+                                        )
+                                       (* space) "(")
+                                  (and (or
+                                        "fixed"
+                                        "hex"
+                                        )
+                                       symbol-end)))))
     ("string" t t "\\bstring\\b")
     ("utility" t t "\\b\\(?:pair\\s-*<\\|make_pair\\)")))
 
@@ -130,9 +307,9 @@
     (goto-char (point-min))
     (let ((re "^\\s-*#\\s-*include\\s-*<\\([^>]+\\)>")
           headers)
-     (while (re-search-forward re nil t)
-       (cl-pushnew (match-string-no-properties 1) headers :test 'equal))
-     headers)))
+      (while (re-search-forward re nil t)
+        (cl-pushnew (match-string-no-properties 1) headers :test 'equal))
+      headers)))
 
 (defun c-auto-include--header-insert-point ()
   (save-excursion
