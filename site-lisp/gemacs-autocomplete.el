@@ -21,20 +21,20 @@
         ))
 (yas-global-mode 1)  ;; or M-x yas/reload-all to reload yasnippet.
 
-(require 'company)
-(require 'company-go)
-(add-hook 'after-init-hook 'global-company-mode)
-
-(setq company-begin-commands '(self-insert-command))
-(setq company-echo-delay 0)
-(setq company-idle-delay .3)
-(setq company-minimum-prefix-length 0)
-(setq company-tooltip-limit 7)
-
 ;; The whitespace matters in some snippets.
 (add-hook 'snippet-mode-hook '(lambda ()
                                 (set (make-local-variable 'whitespace-action) nil)
                                 ))
+
+(require 'company)
+(require 'company-go)
+(add-hook 'after-init-hook 'global-company-mode)
+
+;; (setq company-begin-commands '(self-insert-command))
+(setq company-echo-delay 0)
+(setq company-idle-delay .3)
+(setq company-minimum-prefix-length 0)
+(setq company-tooltip-limit 5)
 
 (provide 'gemacs-autocomplete)
 ;;; gemacs-autocomplete.el ends here
