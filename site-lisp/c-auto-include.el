@@ -528,8 +528,7 @@
                                         "time_t"
                                         )
                                        symbol-end)))))
-    ("string" t t "\\bstring\\b")
-    ("utility" t t "\\b\\(?:pair\\s-*<\\|make_pair\\)")))
+    ))
 
 (defun c-auto-include--include-line (header)
   (save-excursion
