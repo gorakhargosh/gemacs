@@ -534,6 +534,8 @@
                          )
                         (* space) "(")
                    (and (or
+                         (and "LC_" (1+ (in "A-Z")))
+                         "struct lconv"
                          "LC_ALL"
                          "LC_COLLATE"
                          "LC_CTYPE"
