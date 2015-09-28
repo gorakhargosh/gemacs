@@ -35,18 +35,64 @@
   `(("stdio.h" nil t
      ,(rx (and symbol-start
                (or  (and (or
+                          "clearerr"
+                          "fclose"
+                          "feof"
+                          "ferror"
+                          "fflush"
+                          "fgetc"
+                          "fgetpos"
                           "fgets"
+                          "fopen"
+                          "fprintf"
+                          "fputc"
+                          "fputs"
+                          "fread"
+                          "freopen"
+                          "fscanf"
+                          "fseek"
+                          "fsetpos"
+                          "ftell"
+                          "fwrite"
+                          "getc"
+                          "getchar"
                           "gets"
+                          "perror"
                           "printf"
+                          "putc"
                           "putchar"
                           "puts"
+                          "remove"
+                          "rename"
+                          "rewind"
                           "scanf"
+                          "setbuf"
+                          "setvbuf"
                           "sprintf"
                           "sscanf"
+                          "tmpfile"
+                          "tmpnam"
+                          "ungetc"
+                          "vfprintf"
+                          "vprintf"
+                          "vsprintf"
                           )
                          (* space) "(")
                     (and  (or
+                           "BUFSIZ"
+                           "EOF"
                            "FILE"
+                           "FILENAME_MAX"
+                           "FOPEN_MAX"
+                           "L_tmpnam"
+                           "SEEK_CUR"
+                           "SEEK_END"
+                           "SEEK_SET"
+                           "TMP_MAX"
+                           "_IOFBF"
+                           "_IOLBF"
+                           "_IONBF"
+                           "fpos_t"
                            "stderr"
                            "stdin"
                            "stdout"
@@ -56,19 +102,29 @@
     ("string.h" nil t
      ,(rx (and symbol-start
                (or
+                "memchr"
                 "memcmp"
                 "memcpy"
+                "memmove"
                 "memncmp"
                 "memset"
+                "sterror"
                 "strcat"
                 "strchr"
                 "strcmp"
+                "strcoll"
                 "strcpy"
+                "strcspn"
                 "strerr"
                 "strlen"
+                "strncat"
                 "strncmp"
                 "strncpy"
+                "strpbrk"
+                "strspn"
                 "strstr"
+                "strtok"
+                "strxfrm"
                 )
                symbol-end)))
     ("ctype.h" nil t
@@ -92,18 +148,31 @@
     ("stdlib.h" nil t
      ,(rx (and symbol-start
                (or (and (or
+                         "abort"
                          "abs"
+                         "atexit"
                          "atof"
                          "atoi"
+                         "atol"
+                         "bsearch"
+                         "calloc"
+                         "div"
                          "exit"
                          "free"
+                         "getenv"
                          "itoa"
                          "labs"
+                         "ldiv"
+                         "malloc"
+                         "mblen"
+                         "mbstowcs"
+                         "mbtowc"
                          "qsort"
                          "rand"
                          "rand_r"
                          "random"
                          "random_r"
+                         "realloc"
                          "srand"
                          "srandom"
                          "srandom_r"
@@ -117,10 +186,18 @@
                          "strtoull"
                          "strtouq"
                          "system"
+                         "wcstombs"
+                         "wctomb"
                          )
                         (* space) "(")
-                   (and (or (and "EXIT_" (1+ (in "A-Z")))
-                            "NULL"))))))
+                   (and (or
+                         "EXIT_FAILURE"
+                         "EXIT_SUCCESS"
+                         "MB_CUR_MAX"
+                         "RAND_MAX"
+                         "div_t"
+                         "ldiv_t"
+                         ))))))
     ("errno.h" nil t
      ,(rx (and symbol-start
                (and (or
@@ -160,6 +237,99 @@
                      "LDBL_MIN_EXP"
                      )
                     symbol-end))))
+    ("limits.h" nil t
+     ,(rx (and symbol-start
+               (and (or
+                     "CHAR_BIT"
+                     "CHAR_MAX"
+                     "CHAR_MIN"
+                     "INT_MAX"
+                     "INT_MIN"
+                     "LONG_MAX"
+                     "LONG_MIN"
+                     "MB_LEN_MAX"
+                     "SCHAR_MAX"
+                     "SCHAR_MIN"
+                     "SHRT_MAX"
+                     "SHRT_MIN"
+                     "UCHAR_MAX"
+                     "UINT_MAX"
+                     "ULONG_MAX"
+                     "USHRT_MAX"
+                     )
+                    symbol-end))))
+    ("stddef.h" nil t
+     ,(rx (and symbol-start
+               (or (and (or
+                         "offsetof"
+                         )
+                        (* space) "(")
+                   (and (or
+                         "ptrdiff_t"
+                         "size_t"
+                         "wchar_t"
+                         "NULL"
+                         )
+                        symbol-end)))))
+    ("stdarg.h" nil t
+     ,(rx (and symbol-start
+               (or (and (or
+                         "va_arg"
+                         "va_end"
+                         "va_start"
+                         )
+                        (* space) "(")
+                   (and (or
+                         "va_list"
+                         )
+                        symbol-end)))))
+    ("signal.h" nil t
+     ,(rx (and symbol-start
+               (or (and (or
+                         "raise"
+                         "signal"
+                         )
+                        (* space) "(")
+                   (and (or
+                         "sig_atomic_t"
+                         "SIG_DFL"
+                         "SIG_ERR"
+                         "SIG_IGN"
+                         "SIGABRT"
+                         "SIGFPE"
+                         "SIGILL"
+                         "SIGINT"
+                         "SIGSEGV"
+                         "SIGTERM"
+                         )
+                        symbol-end)))))
+    ("setjmp.h" nil t
+     ,(rx (and symbol-start
+               (or (and (or
+                         "setjmp"
+                         "longjmp"
+                         )
+                        (* space) "(")
+                   (and (or
+                         "jmp_buf"
+                         )
+                        symbol-end)))))
+    ("locale.h" nil t
+     ,(rx (and symbol-start
+               (or (and (or
+                         "localeconv"
+                         "setlocale"
+                         )
+                        (* space) "(")
+                   (and (or
+                         "LC_ALL"
+                         "LC_COLLATE"
+                         "LC_CTYPE"
+                         "LC_MONETARY"
+                         "LC_NUMERIC"
+                         "LC_TIME"
+                         )
+                        symbol-end)))))
     ("math.h" nil t
      ,(rx (and symbol-start
                (or (and (or
@@ -246,13 +416,22 @@
                         symbol-end)))))
     ("time.h" nil t ,(rx (and symbol-start
                               (or (and (or
+                                        "asctime"
                                         "clock"
+                                        "ctime"
+                                        "difftime"
+                                        "gmtime"
+                                        "localtime"
+                                        "mktime"
+                                        "strftime"
                                         "time"
                                         )
                                        (* space) "(")
                                   (and (or
-                                        "fixed"
-                                        "hex"
+                                        "CLOCKS_PER_SEC"
+                                        "clock_t"
+                                        "struct tm"
+                                        "time_t"
                                         )
                                        symbol-end)))))
     ("string" t t "\\bstring\\b")
