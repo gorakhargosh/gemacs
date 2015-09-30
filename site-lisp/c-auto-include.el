@@ -124,7 +124,7 @@
                 "strcpy"
                 "strcspn"
                 "strdup"
-                "strerr"
+                "strerror"
                 "strlen"
                 "strncat"
                 "strncmp"
