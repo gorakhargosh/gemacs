@@ -101,7 +101,12 @@
                            "stdout"
                            )
                           symbol-end)))))
-    ("assert.h" nil t "\\bassert\\s-+(")
+    ("assert.h" nil t
+     ,(rx (and symbol-start
+               (and (or
+                     "assert"
+                     )
+                    (* space) "("))))
     ("string.h" nil t
      ,(rx (and symbol-start
                (or
@@ -118,6 +123,7 @@
                 "strcoll"
                 "strcpy"
                 "strcspn"
+                "strdup"
                 "strerr"
                 "strlen"
                 "strncat"
@@ -695,6 +701,14 @@
                          "va_list"
                          )
                         symbol-end)))))
+    ("stdbool.h" nil t
+     ,(rx (and symbol-start
+                   (and (or
+                         "bool"
+                         "false"
+                         "true"
+                         )
+                        symbol-end))))
     ("signal.h" nil t
      ,(rx (and symbol-start
                (or (and (or
