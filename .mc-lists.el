@@ -11,6 +11,7 @@
         electric-graphviz-dot-semi
         electric-newline-and-maybe-indent
         eval-print-last-sexp
+        isearch-forward-regexp
         kill-region
         reindent-then-newline-and-indent
         sp-remove-active-pair-overlay
