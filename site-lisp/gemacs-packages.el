@@ -91,6 +91,7 @@
                            flycheck
                            helm
                            helm-ls-git
+                           helm-ls-hg
                            highlight-symbol
                            highlight-unique-symbol
                            ido-ubiquitous
