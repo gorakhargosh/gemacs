@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: deftest
+# key: deftest
+# group: testing
+# --
+def test${1:_function_name}(self):
+  $0

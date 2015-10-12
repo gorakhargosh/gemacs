@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: gtest_file
+# key: gtfile
+# group : testing
+# --
+# -*- coding: utf-8 -*-
+
+"""Unit tests for ${2}."""
+
+import google3
+
+#TODO(yesudeep): import googletest
+
+$0
+
+if __name__ == '__main__':
+  googletest.main()
