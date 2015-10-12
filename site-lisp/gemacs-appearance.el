@@ -197,9 +197,11 @@
 
 (defun start-theme ()
   "Start the theme."
-  (if window-system
-    (require 'golokai-theme)
-    (load-theme 'wombat t)))
+  (if (goog/platform/is-darwin-p)
+      (require 'golokai-theme)
+    (if window-system
+        (require 'golokai-theme)
+      (load-theme 'wombat t))))
 
 (if (daemonp)
     (add-hook 'after-make-frame-functions
