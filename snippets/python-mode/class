@@ -3,5 +3,5 @@
 # key: class
 # group: object oriented
 # --
-class ${1:class}:
+class ${1:Class}${2:(${3:object})}:
   $0
