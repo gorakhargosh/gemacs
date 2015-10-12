@@ -1,9 +1,9 @@
 # -*- mode: snippet -*-
-# name: Function
-# key: gdef
-# group: definitions
+# name: method_docstring
+# key: gdefm
+# group: object oriented
 # --
-def ${1:name}($2):
+def ${1:name}(self$2):
   \"\"\"$3
   ${2:$(python-args-to-google-docstring)}
   \"\"\"
