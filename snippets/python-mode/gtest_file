@@ -5,11 +5,13 @@
 # --
 # -*- coding: utf-8 -*-
 
-"""Unit tests for ${2}."""
+"""Unit tests for $2."""
 
 import google3
 
-#TODO(yesudeep): import googletest
+from google3.testing.pybase import googletest
+
+from google3.${1:path} import ${2:module}
 
 $0
 
