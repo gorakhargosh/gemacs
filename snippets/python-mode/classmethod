@@ -1,41 +1,8 @@
-# -*- coding: utf-8; mode: snippet -*-
+# -*- mode: snippet -*-
 # name: classmethod
-# contributor: Orestis Markou
-# contributor: Yasser González Fernández <yglez@uh.cu>
-# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# key: cdef
+# group: object oriented
 # --
 @classmethod
-def ${1:name}(cls, $2):
-    """
-    $3
-
-    :returns:
-    $4
-    ${2:$
-      (let*
-        ((indent
-            (concat "\n" (make-string (current-column) 32)))
-           (args
-            (mapconcat
-             '(lambda (x)
-                (if (not (string= (nth 0 x) ""))
-                    (concat ":param " (nth 0 x)
-                            ":\n")))
-             (mapcar
-              '(lambda (x)
-                 (mapcar
-                  '(lambda (x)
-                     (replace-regexp-in-string "[[:blank:]]*$" ""
-                      (replace-regexp-in-string "^[[:blank:]]*" "" x)))
-                  x))
-              (mapcar '(lambda (x) (split-string x "="))
-                      (split-string text ",")))
-             indent)))
-      (if (string= args "")
-          (make-string 3 34)
-        (mapconcat
-         'identity
-         (list "" args (make-string 3 34))
-         indent)))
-    }
-    $0
+def ${1:meth}(cls):
+  $0

@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: test_file
+# key: tfile
+# group : testing
+# --
+# -*- coding: utf-8 -*-
+
+"""Unit tests for $2."""
+
+import unittest
+
+${1:import ${2:module}}
+
+$0
+
+if __name__ == '__main__':
+  unittest.main()

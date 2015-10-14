@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: gtest_class
+# key: gtclass
+# group : testing
+# --
+class Test${1:toTest}(${2:googletest.TestCase}):
+  $0
