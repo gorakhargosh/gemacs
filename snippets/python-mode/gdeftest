@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: gdeftest
+# key: gdeftest
+# group: testing
+# --
+def test${1:FunctionName}(self):
+  $0
