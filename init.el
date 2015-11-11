@@ -6,6 +6,8 @@
 ;; break within any session. The keyboard combination works fine outside any
 ;; active tmux sessions.
 
+(package-initialize) ;; DO NOT delete.
+
 (eval-when-compile
   (require 'cl))
 
@@ -144,7 +146,6 @@ immediately."
 (require 'gemacs-haskell)
 (require 'gemacs-html)
 (require 'gemacs-ielm)
-(require 'gemacs-java)
 (require 'gemacs-javascript)
 (require 'gemacs-neo4j)
 (require 'gemacs-protobuf)
@@ -159,6 +160,10 @@ immediately."
 (require 'gemacs-git)
 (require 'gemacs-keyboard)
 (require 'gemacs-chromebook)
+
+;; Java has the worst support in Emacs. If any of this fails, quite a lot of
+;; stuff starts breaking. Load this last.
+(require 'gemacs-java)
 
 
 (progn
