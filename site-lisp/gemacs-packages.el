@@ -44,6 +44,7 @@
    eclim
 
    ;; Utility.
+   gist
    diff-hl
    expand-region
   ))
