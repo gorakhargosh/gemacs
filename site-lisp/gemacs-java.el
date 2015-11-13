@@ -19,6 +19,7 @@
   (setq eclim-executable (or (executable-find "eclim") "/Applications/Eclipse.app/Contents/Eclipse/eclim")
         eclimd-executable (or (executable-find "eclimd") "/Applications/Eclipse.app/Contents/Eclipse/eclimd")))
 
+;; TODO(yesudeep): Separate google-specific and otherwise configuration.
 (when (goog/platform/is-linux-p)
   (add-to-list 'eclim-eclipse-dirs
                (format "/usr/local/google/eclipse45_%s/stable/" user-login-name))
