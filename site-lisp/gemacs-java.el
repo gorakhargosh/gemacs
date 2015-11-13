@@ -21,11 +21,15 @@
 
 ;; TODO(yesudeep): Separate google-specific and otherwise configuration.
 (when (goog/platform/is-linux-p)
-  (add-to-list 'eclim-eclipse-dirs
-               (format "/usr/local/google/eclipse45_%s/stable/" user-login-name))
+  (when (string-match-p goog-network-name "corp.google.com")
+    (add-to-list 'eclim-eclipse-dirs
+                 (format "/usr/local/google/eclipse45_%s/stable/" user-login-name))
 
-  (setq eclim-executable (or (executable-find "eclim") (format "/usr/local/google/eclipse45_%s/stable/eclim" user-login-name))
-        eclimd-executable (or (executable-find "eclimd") (format "/usr/local/google/eclipse45_%s/stable/eclimd" user-login-name))))
+    (setq eclim-executable (or (executable-find "eclim") (format "/usr/local/google/eclipse45_%s/stable/eclim" user-login-name))
+          eclimd-executable (or (executable-find "eclimd") (format "/usr/local/google/eclipse45_%s/stable/eclimd" user-login-name)))
+
+    )
+  )
 
 (setq eclimd-wait-for-process nil
       eclimd-default-workspace "~/workspace/"
