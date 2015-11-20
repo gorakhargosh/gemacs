@@ -49,7 +49,7 @@
                                   indent-tabs-mode nil)
                             (eclim-mode t)
                             ;; Whitespace mode does not work well with completion in java mode with eclim.
-                            (set (make-local-variable 'whitespace-action) nil)
+                            ;; (set (make-local-variable 'whitespace-action) nil)
                             ))
 
 
