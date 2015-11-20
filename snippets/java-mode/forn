@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: For n (decrementing) loop.
-# contributor: Yesudeep Mangalapilly <yesudeep@google.com>
+# key: forn
 # expand-env: ((yas/indent-line 'fixed))
 # --
 for (int ${1:n} = $2; $1 > ${3:0}; $1--) {
