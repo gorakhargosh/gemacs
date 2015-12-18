@@ -72,6 +72,7 @@
                            golint
                            graphviz-dot-mode
                            haskell-mode
+                           javadoc-lookup
                            less-css-mode
                            markdown-mode
                            protobuf-mode

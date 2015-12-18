@@ -14,6 +14,7 @@
         eval-print-last-sexp
         isearch-forward-regexp
         kill-region
+        markdown-exdent-or-delete
         reindent-then-newline-and-indent
         sp-remove-active-pair-overlay
         yaml-electric-backspace
