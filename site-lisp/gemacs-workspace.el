@@ -13,6 +13,8 @@
 (setq backup-directory-alist `((".*" . "~/.emacs.d/saves")))
 (setq auto-save-file-name-transforms `((".*" "~/.emacs.d/saves" t)))
 
+(helm-flx-mode +1)
+
 (require 'switch-window)
 
 (require 'persp-mode)

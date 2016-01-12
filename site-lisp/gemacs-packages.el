@@ -92,6 +92,7 @@
                            fastnav
                            flycheck
                            helm
+                           helm-flx
                            helm-ls-git
                            helm-ls-hg
                            highlight-symbol
