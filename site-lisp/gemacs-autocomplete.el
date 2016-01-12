@@ -13,6 +13,11 @@
       helm-M-x-fuzzy-match t
       helm-apropos-fuzzy-match t)
 
+;; See: http://emacs.stackexchange.com/questions/13702/why-is-helm-recentf-not-fuzzy
+(setq helm-source-recentf
+  (helm-make-source "Recentf" 'helm-recentf-source
+    :fuzzy-match t))
+
 (require 'dabbrev)
 (require 'yasnippet)
 (setq yas-snippet-dirs
@@ -35,6 +40,9 @@
 (setq company-idle-delay .3)
 (setq company-minimum-prefix-length 0)
 (setq company-tooltip-limit 5)
+
+;; (custom-set-variables
+;;  '(company-auto-complete (quote (quote company-explicit-action-p))))
 
 (provide 'gemacs-autocomplete)
 ;;; gemacs-autocomplete.el ends here
