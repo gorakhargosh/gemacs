@@ -100,6 +100,7 @@
                            ido-ubiquitous
                            iedit
                            key-chord
+                           lorem-ipsum
                            magit
                            multiple-cursors
                            nav
