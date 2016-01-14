@@ -37,7 +37,9 @@
 
 ;; (setq company-begin-commands '(self-insert-command))
 (setq company-echo-delay 0)
-(setq company-idle-delay .3)
+;; (setq company-idle-delay 0.3)
+(setq company-idle-delay nil)
+(global-set-key (kbd "M-/") 'company-manual-begin)
 (setq company-minimum-prefix-length 0)
 (setq company-tooltip-limit 5)
 
