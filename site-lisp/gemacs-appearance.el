@@ -71,7 +71,7 @@
 (setq preferred-linux-fonts
       '(
         ;; https://mozilla.github.io/Fira/
-        "Fira Mono-11"
+        "Fira Mono-12"
 
         ;; http://input.fontbureau.com/
         "Input Mono-12"
@@ -192,29 +192,22 @@
     (";" 0 font-lock-end-statement-face)))
 
 
-;; Now set the default theme.
-;; (when window-system
-;;   (require 'golokai-theme)
-;;   )
+;; Disabled themes.
+;;
+;; (defun start-theme ()
+;;   "Start the theme."
+;;   (if (goog/platform/is-darwin-p)
+;;       (require 'cloud-theme)
+;;     (if window-system
+;;         (require 'cloud-theme)
+;;       (load-theme 'wombat t))))
 
-;; (when (window-system)
-;;   (require 'golokai-theme)
-;; )
-
-(defun start-theme ()
-  "Start the theme."
-  (if (goog/platform/is-darwin-p)
-      (require 'golokai-theme)
-    (if window-system
-        (require 'golokai-theme)
-      (load-theme 'wombat t))))
-
-(if (daemonp)
-    (add-hook 'after-make-frame-functions
-              (lambda (frame)
-                (select-frame frame)
-                (start-theme)))
-  (start-theme))
+;; (if (daemonp)
+;;     (add-hook 'after-make-frame-functions
+;;               (lambda (frame)
+;;                 (select-frame frame)
+;;                 (start-theme)))
+;;   (start-theme))
 
 
 (powerline-default-theme)
