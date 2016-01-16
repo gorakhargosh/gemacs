@@ -11,6 +11,9 @@
 (eval-when-compile
   (require 'cl))
 
+;; See: http://stackoverflow.com/questions/1217180/how-do-i-byte-compile-everything-in-my-emacs-d-directory
+(byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
+
 ;; Dear Emacs, please don't make me wait at startup.
 (modify-frame-parameters nil '((wait-for-wm . nil)))
 
