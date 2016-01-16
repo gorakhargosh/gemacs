@@ -6,13 +6,15 @@
 ;; break within any session. The keyboard combination works fine outside any
 ;; active tmux sessions.
 
+(setq load-prefer-newer t)
 (package-initialize) ;; DO NOT delete.
+
 
 (eval-when-compile
   (require 'cl))
 
 ;; See: http://stackoverflow.com/questions/1217180/how-do-i-byte-compile-everything-in-my-emacs-d-directory
-(byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
+;; (byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
 
 ;; Dear Emacs, please don't make me wait at startup.
 (modify-frame-parameters nil '((wait-for-wm . nil)))
