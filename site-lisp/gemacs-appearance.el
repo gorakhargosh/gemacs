@@ -111,7 +111,7 @@
 (setq preferred-mac-fonts
       '(
         ;; https://mozilla.github.io/Fira/
-        "Fira Mono-12"
+        "Fira Mono-14"
 
         ;; http://input.fontbureau.com/
         "Input Mono-14"
