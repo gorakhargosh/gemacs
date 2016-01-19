@@ -88,7 +88,6 @@
 
                            ;; Utility.
                            ace-jump-mode
-                           auto-compile
                            exec-path-from-shell
                            fastnav
                            flycheck
@@ -119,9 +118,6 @@
   (when (not (package-installed-p p))
     (package-install p)))
 
-(require 'auto-compile)
-(auto-compile-on-save-mode)
-(auto-compile-on-load-mode)
 
 (provide 'gemacs-packages)
 
