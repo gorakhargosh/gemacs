@@ -13,7 +13,9 @@
                   (font-lock-add-keywords nil font-lock-operator-keywords t))
                t t)
      ))
+
 (add-hook 'js-mode-hook 'goog/config/js-mode/setup)
+(add-hook 'js2-mode-hook #'js2-refactor-mode)
 
 (defun goog/config/js-mode/setup ()
   "Configures `js-mode' and `js2-mode'."
@@ -28,6 +30,9 @@
         js2-mode-squeeze-spaces nil
         ;; js2-bounce-indent-p t
         js2-auto-indent-p t)
+
+
+  (js2r-add-keybindings-with-prefix "C-c C-m")
 
   ;; Keyboard bindings.
   (define-key js2-mode-map (kbd "C-c l l")
@@ -45,9 +50,7 @@
 
   ;; Keychords.
   (key-chord-define js2-mode-map ";;"  "\C-e;")
-  (key-chord-define js2-mode-map ",,"  "\C-e,")
-
-  (js2r-add-keybindings-with-prefix "C-c C-m"))
+  (key-chord-define js2-mode-map ",,"  "\C-e,"))
 
 
 ;; Tools for Javascript.
