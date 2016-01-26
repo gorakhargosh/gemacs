@@ -118,6 +118,7 @@
   (when (not (package-installed-p p))
     (package-install p)))
 
+
 (provide 'gemacs-packages)
 
 ;;; gemacs-packages.el ends here

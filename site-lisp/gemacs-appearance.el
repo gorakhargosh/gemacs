@@ -18,6 +18,9 @@
   (tooltip-mode -1)
   )
 
+;; Prevent C-z from hiding Emacs.
+(when window-system (global-unset-key "\C-z"))
+
 (setq-default indent-tabs-mode nil
               indicate-empty-lines t
               indicate-buffer-boundaries (quote left)
@@ -39,8 +42,12 @@
       save-place-file (concat user-emacs-directory "places")
       sentence-end-double-space nil
       shift-select-mode t            ;; Some of my users want this.
-      visible-bell t
       )
+
+(setq
+ visible-bell nil     ;; Produces a black/white square on OS X when set to true.
+)
+(require 'gemacs-bell)
 
 
 (add-hook 'snippet-mode-hook (lambda ()
@@ -111,7 +118,7 @@
 (setq preferred-mac-fonts
       '(
         ;; https://mozilla.github.io/Fira/
-        "Fira Mono-12"
+        "Fira Mono-14"
 
         ;; http://input.fontbureau.com/
         "Input Mono-14"

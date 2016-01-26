@@ -2,6 +2,7 @@
 # name: For loop.
 # contributor: Yesudeep Mangalapilly <yesudeep@google.com>
 # expand-env: ((yas/indent-line 'fixed))
+# key: for
 # --
 for ($1; $2; $3) {
   $0
