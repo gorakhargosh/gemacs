@@ -18,6 +18,9 @@
   (tooltip-mode -1)
   )
 
+;; Prevent C-z from hiding Emacs.
+(when window-system (global-unset-key "\C-z"))
+
 (setq-default indent-tabs-mode nil
               indicate-empty-lines t
               indicate-buffer-boundaries (quote left)
