@@ -39,8 +39,12 @@
       save-place-file (concat user-emacs-directory "places")
       sentence-end-double-space nil
       shift-select-mode t            ;; Some of my users want this.
-      visible-bell t
       )
+
+(setq
+ visible-bell nil     ;; Produces a black/white square on OS X when set to true.
+)
+(require 'gemacs-bell)
 
 
 (add-hook 'snippet-mode-hook (lambda ()
