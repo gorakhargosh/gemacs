@@ -13,12 +13,13 @@
 (require 'go-eldoc) ;; Don't need to require, if you install by package.el
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 
+(require 'go-rename)
+
 ;;(load "$GOPATH/src/code.google.com/p/go.tools/cmd/oracle/oracle.el")
 ;; (load "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
 ;; (add-hook 'go-mode-hook 'go-oracle-mode)
 
 (add-hook 'go-mode-hook (lambda ()
-                          ;;(set (make-local-variable 'company-backends) '(company-go))
                           (add-to-list 'company-backends 'company-go)
                           (company-mode)
 

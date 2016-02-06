@@ -29,6 +29,7 @@
    go-company
    go-mode
    go-oracle
+   go-rename
    js2-mode
    js2-refactor
    racket-mode
@@ -44,9 +45,10 @@
    eclim
 
    ;; Utility.
-   gist
    diff-hl
+   exec-path-from-shell
    expand-region
+   gist
   ))
 (setq goog:el-get-packages
       (append

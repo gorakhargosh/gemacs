@@ -9,6 +9,11 @@
 (setq load-prefer-newer t)
 (package-initialize) ;; DO NOT delete.
 
+;; Copy the environment for the Mac OS X GUI.
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+(exec-path-from-shell-copy-env "GOPATH")
+
 
 (eval-when-compile
   (require 'cl))
