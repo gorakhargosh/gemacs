@@ -118,6 +118,7 @@ immediately."
                 ;; Python.
                 ("\\BUCK$" . python-mode)
                 ("\\BUILD$" . python-mode)
+                ("\\WORKSPACE" . python-mode)
                 ("\\SConscript" . python-mode)
                 ("\\SConstruct" . python-mode)
                 ("\\wscript$" . python-mode)
