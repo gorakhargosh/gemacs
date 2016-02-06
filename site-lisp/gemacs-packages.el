@@ -29,6 +29,7 @@
    go-company
    go-mode
    go-oracle
+   go-rename
    js2-mode
    js2-refactor
    racket-mode
