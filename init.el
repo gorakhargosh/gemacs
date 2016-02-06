@@ -9,6 +9,8 @@
 (setq load-prefer-newer t)
 (package-initialize) ;; DO NOT delete.
 
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
 (eval-when-compile
   (require 'cl))

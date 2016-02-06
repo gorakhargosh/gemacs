@@ -45,9 +45,10 @@
    eclim
 
    ;; Utility.
-   gist
    diff-hl
+   exec-path-from-shell
    expand-region
+   gist
   ))
 (setq goog:el-get-packages
       (append
