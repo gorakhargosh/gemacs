@@ -13,6 +13,8 @@
         electric-newline-and-maybe-indent
         eval-print-last-sexp
         isearch-forward-regexp
+        isearch-printing-char
+        keyboard-escape-quit
         kill-region
         markdown-exdent-or-delete
         reindent-then-newline-and-indent
