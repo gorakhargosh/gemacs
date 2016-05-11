@@ -13,10 +13,12 @@
         electric-newline-and-maybe-indent
         eval-print-last-sexp
         isearch-forward-regexp
+        keyboard-escape-quit
         kill-region
         markdown-exdent-or-delete
         reindent-then-newline-and-indent
         sp-remove-active-pair-overlay
+        wdired-finish-edit
         yaml-electric-backspace
         yaml-electric-dash-and-dot
         yas-expand
