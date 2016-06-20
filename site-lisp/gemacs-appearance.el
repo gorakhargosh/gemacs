@@ -199,8 +199,6 @@
     (";" 0 font-lock-end-statement-face)))
 
 
-;; Disabled themes.
-;;
 (defun start-theme ()
   "Start the theme."
   (if (goog/platform/is-darwin-p)
