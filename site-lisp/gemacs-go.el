@@ -7,9 +7,9 @@
 (autoload 'go-mode "go-mode" nil t)
 
 ;; Don't use goimports. We'll do it by hand.
-;; (eval-after-load 'go-mode
-;;   '(when (executable-find "goimports")
-;;      (setq gofmt-command "goimports")))
+(eval-after-load 'go-mode
+  '(when (executable-find "goimports")
+     (setq gofmt-command "goimports")))
 
 ;; Documentation.
 (require 'go-eldoc) ;; Don't need to require, if you install by package.el
