@@ -147,21 +147,21 @@ immediately."
 (require 'gemacs-autocomplete)
 
 (require 'gemacs-c)
-(require 'gemacs-clojure)
+;; (require 'gemacs-clojure)
 (require 'gemacs-css)
 (require 'gemacs-go)
-(require 'gemacs-haskell)
+;; (require 'gemacs-haskell)
 (require 'gemacs-html)
 (require 'gemacs-ielm)
 (require 'gemacs-javascript)
-(require 'gemacs-neo4j)
+;; (require 'gemacs-neo4j)
 (require 'gemacs-protobuf)
 (require 'gemacs-python)
 (require 'gemacs-sgml)
 (require 'gemacs-sh)
 (require 'gemacs-sql)
 (require 'gemacs-tex)
-(require 'gemacs-tup)
+;; (require 'gemacs-tup)
 
 (require 'gemacs-flycheck)
 (require 'gemacs-git)
@@ -170,7 +170,7 @@ immediately."
 
 ;; Java has the worst support in Emacs. If any of this fails, quite a lot of
 ;; stuff starts breaking. Load this last.
-(require 'gemacs-java)
+;; (require 'gemacs-java)
 
 
 (progn
@@ -232,3 +232,21 @@ immediately."
    ))
 
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (protobuf-mode zencoding-mode yasnippet yaml-mode vimrc-mode undo-tree tup-mode switch-window sql-indent smex smartparens sass-mode rcirc-color rainbow-delimiters powerline persp-mode nav multiple-cursors markdown-mode magit lorem-ipsum less-css-mode key-chord javadoc-lookup iedit ido-ubiquitous highlight-unique-symbol highlight-symbol helm-ls-hg helm-ls-git helm-flx haskell-mode graphviz-dot-mode golint go-errcheck go-eldoc go-autocomplete flycheck fastnav exec-path-from-shell cypher-mode clang-format cider auctex ace-jump-mode))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-scrollbar-bg ((t (:background "#191919"))))
+ '(company-scrollbar-fg ((t (:background "#0c0c0c"))))
+ '(company-tooltip ((t (:inherit default :background "#050505"))))
+ '(company-tooltip-common ((t (:inherit font-lock-constant-face))))
+ '(company-tooltip-selection ((t (:inherit font-lock-function-name-face)))))

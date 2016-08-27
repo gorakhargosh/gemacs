@@ -28,7 +28,6 @@
    company-mode
    go-company
    go-mode
-   go-oracle
    go-rename
    js2-mode
    js2-refactor
@@ -66,11 +65,12 @@
 (defvar default-packages '(
                            ;; Programming-related.
                            auctex
-                           cider
-                           cypher-mode
+                           ;; cider
+                           ;; cypher-mode
                            go-autocomplete
                            go-eldoc
                            go-errcheck
+			   go-guru
                            golint
                            graphviz-dot-mode
                            haskell-mode

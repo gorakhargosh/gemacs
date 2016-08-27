@@ -199,22 +199,22 @@
     (";" 0 font-lock-end-statement-face)))
 
 
-;; Disabled themes.
+;; Themes.
 ;;
-(defun start-theme ()
-  "Start the theme."
-  (if (goog/platform/is-darwin-p)
-      (require 'golokai-theme)
-    (if window-system
-        (require 'golokai-theme)
-      (load-theme 'wombat t))))
+;; (defun start-theme ()
+;;   "Start the theme."
+;;   (if (goog/platform/is-darwin-p)
+;;       (require 'golokai-theme)
+;;     (if window-system
+;;         (require 'golokai-theme)
+;;       (load-theme 'wombat t))))
 
-(if (daemonp)
-    (add-hook 'after-make-frame-functions
-              (lambda (frame)
-                (select-frame frame)
-                (start-theme)))
-  (start-theme))
+;; (if (daemonp)
+;;     (add-hook 'after-make-frame-functions
+;;               (lambda (frame)
+;;                 (select-frame frame)
+;;                 (start-theme)))
+;;   (start-theme))
 
 
 (powerline-default-theme)

@@ -6,14 +6,15 @@
 
 (autoload 'go-mode "go-mode" nil t)
 
-;; Don't use goimports. We'll do it by hand.
-;; (eval-after-load 'go-mode
-;;   '(when (executable-find "goimports")
-;;      (setq gofmt-command "goimports")))
+(eval-after-load 'go-mode
+  '(when (executable-find "goimports")
+     (setq gofmt-command "goimports")))
 
 ;; Documentation.
 (require 'go-eldoc) ;; Don't need to require, if you install by package.el
 (add-hook 'go-mode-hook 'go-eldoc-setup)
+
+(require 'go-guru)
 
 (require 'go-rename)
 
@@ -24,8 +25,9 @@
 (add-hook 'go-mode-hook (lambda ()
                           (add-to-list 'company-backends 'company-go)
                           (company-mode)
+                          (go-guru-hl-identifier-mode)
 
-                          (go-oracle-mode)
+                          ;; (go-oracle-mode)
                           (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)
                           (local-set-key (kbd "C-c i") 'go-goto-imports)
                           ))
