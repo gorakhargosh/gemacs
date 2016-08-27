@@ -200,21 +200,20 @@
 
 
 ;; Themes.
-;; Disabled for performance reasons. No theme == faster performance.
-;; (defun start-theme ()
-;;   "Start the theme."
-;;   (if (goog/platform/is-darwin-p)
-;;       (require 'golokai-theme)
-;;     (if window-system
-;;         (require 'golokai-theme)
-;;       (load-theme 'wombat t))))
-;;
-;; (if (daemonp)
-;;     (add-hook 'after-make-frame-functions
-;;               (lambda (frame)
-;;                 (select-frame frame)
-;;                 (start-theme)))
-;;   (start-theme))
+(defun start-theme ()
+  "Start the theme."
+  (if (goog/platform/is-darwin-p)
+      (require 'golokai-theme)
+    (if window-system
+        (require 'golokai-theme)
+      (load-theme 'wombat t))))
+
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+                (select-frame frame)
+                (start-theme)))
+  (start-theme))
 
 
 (powerline-default-theme)
