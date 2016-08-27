@@ -43,7 +43,11 @@
    popup
    eclim
 
+   ;; Dot
+   graphviz-dot-mode
+
    ;; Utility.
+   helm
    diff-hl
    exec-path-from-shell
    expand-region
@@ -72,8 +76,7 @@
                            go-errcheck
 			   go-guru
                            golint
-                           graphviz-dot-mode
-                           haskell-mode
+                           ;; haskell-mode
                            javadoc-lookup
                            less-css-mode
                            markdown-mode
@@ -93,7 +96,7 @@
                            exec-path-from-shell
                            fastnav
                            flycheck
-                           helm
+                           ;; helm
                            helm-flx
                            helm-ls-git
                            helm-ls-hg

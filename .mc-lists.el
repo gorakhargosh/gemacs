@@ -18,6 +18,7 @@
         kill-region
         markdown-exdent-or-delete
         reindent-then-newline-and-indent
+        sh-assignment
         sp-remove-active-pair-overlay
         wdired-finish-edit
         yaml-electric-backspace

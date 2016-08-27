@@ -200,7 +200,7 @@
 
 
 ;; Themes.
-;;
+;; Disabled for performance reasons. No theme == faster performance.
 ;; (defun start-theme ()
 ;;   "Start the theme."
 ;;   (if (goog/platform/is-darwin-p)
@@ -208,7 +208,7 @@
 ;;     (if window-system
 ;;         (require 'golokai-theme)
 ;;       (load-theme 'wombat t))))
-
+;;
 ;; (if (daemonp)
 ;;     (add-hook 'after-make-frame-functions
 ;;               (lambda (frame)
