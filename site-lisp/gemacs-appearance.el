@@ -202,11 +202,13 @@
 ;; Themes.
 (defun start-theme ()
   "Start the theme."
-  (if (goog/platform/is-darwin-p)
-      (require 'golokai-theme)
-    (if window-system
-        (require 'golokai-theme)
-      (load-theme 'wombat t))))
+  (if (not window-system)
+      (load-theme 'wombat t)))
+
+;; This is a great dark theme in the UI, but we don't want to
+;; pay the performance penalty.
+;; (if (goog/platform/is-darwin-p)
+;;     (require 'golokai-theme))
 
 (if (daemonp)
     (add-hook 'after-make-frame-functions
