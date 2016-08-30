@@ -203,7 +203,8 @@
 (defun start-theme ()
   "Start the theme."
   (if (not window-system)
-      (load-theme 'wombat t)))
+      (load-theme 'wombat t)
+    (require 'golokai-theme)))
 
 ;; This is a great dark theme in the UI, but we don't want to
 ;; pay the performance penalty.
