@@ -78,7 +78,7 @@
 (setq preferred-linux-fonts
       '(
         ;; https://mozilla.github.io/Fira/
-        "Fira Mono-12"
+        "Fira Mono-11"
 
         ;; http://input.fontbureau.com/
         "Input Mono-12"
@@ -204,7 +204,10 @@
   "Start the theme."
   (if (not window-system)
       (load-theme 'wombat t)
-    (require 'golokai-theme)))
+    ;; Comment this line to disable for GUI.
+    (require 'golokai-theme)
+    )
+  )
 
 ;; This is a great dark theme in the UI, but we don't want to
 ;; pay the performance penalty.
