@@ -77,11 +77,11 @@
 ;; Fonts appear to be larger on Linux workstations.
 (setq preferred-linux-fonts
       '(
-        ;; https://mozilla.github.io/Fira/
-        "Fira Mono-11"
-
         ;; http://input.fontbureau.com/
         "Input Mono-12"
+
+        ;; https://mozilla.github.io/Fira/
+        "Fira Mono-12"
 
         ;; Ubuntu Linux has this.
         "Ubuntu Mono-14"
