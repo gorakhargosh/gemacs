@@ -28,7 +28,7 @@
    company-mode
    go-company
    go-mode
-   go-rename
+   ;; go-rename
    js2-mode
    js2-refactor
    racket-mode
@@ -74,13 +74,14 @@
                            go-autocomplete
                            go-eldoc
                            go-errcheck
-			   go-guru
+                           go-guru
                            golint
                            ;; haskell-mode
                            javadoc-lookup
                            less-css-mode
                            markdown-mode
                            protobuf-mode
+                           sage-shell-mode
                            sass-mode
                            sql-indent
                            tup-mode

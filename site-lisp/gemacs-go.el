@@ -16,7 +16,7 @@
 
 (require 'go-guru)
 
-(require 'go-rename)
+;; (require 'go-rename)
 
 ;;(load "$GOPATH/src/code.google.com/p/go.tools/cmd/oracle/oracle.el")
 ;; (load "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
