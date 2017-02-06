@@ -162,6 +162,7 @@ immediately."
 (require 'gemacs-sql)
 (require 'gemacs-tex)
 ;; (require 'gemacs-tup)
+(require 'gemacs-sage)
 
 (require 'gemacs-flycheck)
 (require 'gemacs-git)
