@@ -123,8 +123,9 @@ immediately."
                 ("\\SConstruct" . python-mode)
                 ("\\wscript$" . python-mode)
 
-                ;; JavaScript.
+                ;; JavaScript/Google Apps Script.
                 ("\\.js$" . js2-mode)
+                ("\\.gs$" . js2-mode)
                 ("\\.json$" . js2-mode)
 
                 ;; Less CSS mode.
